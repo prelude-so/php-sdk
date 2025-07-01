@@ -18,10 +18,10 @@ class SendResponse implements BaseModel
     public string $id;
 
     #[Api('created_at')]
-    public mixed $createdAt;
+    public \DateTimeInterface $createdAt;
 
     #[Api('expires_at')]
-    public mixed $expiresAt;
+    public \DateTimeInterface $expiresAt;
 
     #[Api('template_id')]
     public string $templateID;
@@ -52,8 +52,8 @@ class SendResponse implements BaseModel
      */
     final public function __construct(
         string $id,
-        mixed $createdAt,
-        mixed $expiresAt,
+        \DateTimeInterface $createdAt,
+        \DateTimeInterface $expiresAt,
         string $templateID,
         string $to,
         array $variables,
