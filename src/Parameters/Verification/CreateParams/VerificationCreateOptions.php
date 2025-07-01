@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Parameters\Verification;
 
-use Prelude\Core\None;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\None;
 use Prelude\Core\Serde\MapOf;
 
 class VerificationCreateOptions implements BaseModel
@@ -64,17 +64,16 @@ class VerificationCreateOptions implements BaseModel
      */
     final public function __construct(
         array|None $appRealm = None::NOT_SET,
-        string|None $callbackURL = None::NOT_SET,
+        None|string $callbackURL = None::NOT_SET,
         int|None $codeSize = None::NOT_SET,
-        string|None $customCode = None::NOT_SET,
-        string|None $locale = None::NOT_SET,
-        string|None $method = None::NOT_SET,
-        string|None $preferredChannel = None::NOT_SET,
-        string|None $senderID = None::NOT_SET,
-        string|None $templateID = None::NOT_SET,
-        array|None $variables = None::NOT_SET,
+        None|string $customCode = None::NOT_SET,
+        None|string $locale = None::NOT_SET,
+        None|string $method = None::NOT_SET,
+        None|string $preferredChannel = None::NOT_SET,
+        None|string $senderID = None::NOT_SET,
+        None|string $templateID = None::NOT_SET,
+        array|None $variables = None::NOT_SET
     ) {
-
         $args = func_get_args();
 
         $data = [];
@@ -85,7 +84,6 @@ class VerificationCreateOptions implements BaseModel
         }
 
         $this->__unserialize($data);
-
     }
 }
 

@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Prelude\Resources;
 
-use Prelude\RequestOptions;
 use Prelude\Client;
 use Prelude\Contracts\VerificationContract;
 use Prelude\Core\Serde;
-use Prelude\Models\NewResponse;
 use Prelude\Models\CheckResponse;
-use Prelude\Parameters\Verification\CreateParams;
+use Prelude\Models\NewResponse;
 use Prelude\Parameters\Verification\CheckParams;
+use Prelude\Parameters\Verification\CreateParams;
+use Prelude\RequestOptions;
 
 class Verification implements VerificationContract
 {
+    public function __construct(protected Client $client) {}
+
     /**
      * @param array{
      *
@@ -63,7 +65,7 @@ class Verification implements VerificationContract
      */
     public function create(
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): NewResponse {
         [$parsed, $options] = CreateParams::parseRequest($params, $requestOptions);
         $resp = $this->client->request(
@@ -97,7 +99,7 @@ class Verification implements VerificationContract
      */
     public function check(
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): CheckResponse {
         [$parsed, $options] = CheckParams::parseRequest($params, $requestOptions);
         $resp = $this->client->request(
@@ -109,9 +111,5 @@ class Verification implements VerificationContract
 
         // @phpstan-ignore-next-line;
         return Serde::coerce(CheckResponse::class, value: $resp);
-    }
-
-    public function __construct(protected Client $client)
-    {
     }
 }

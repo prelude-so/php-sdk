@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Models;
 
-use Prelude\Core\None;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\None;
 use Prelude\Core\Serde\ListOf;
 
 class NewResponse implements BaseModel
@@ -60,11 +60,10 @@ class NewResponse implements BaseModel
         string $status,
         array|None $channels = None::NOT_SET,
         array|None $metadata = None::NOT_SET,
-        string|None $reason = None::NOT_SET,
-        string|None $requestID = None::NOT_SET,
-        array|None $silent = None::NOT_SET,
+        None|string $reason = None::NOT_SET,
+        None|string $requestID = None::NOT_SET,
+        array|None $silent = None::NOT_SET
     ) {
-
         $args = func_get_args();
 
         $data = [];
@@ -75,7 +74,6 @@ class NewResponse implements BaseModel
         }
 
         $this->__unserialize($data);
-
     }
 }
 

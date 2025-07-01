@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Models;
 
-use Prelude\Core\None;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\None;
 
 class PredictResponse implements BaseModel
 {
@@ -25,9 +25,8 @@ class PredictResponse implements BaseModel
     final public function __construct(
         string $id,
         string $prediction,
-        string $requestID,
+        string $requestID
     ) {
-
         $args = func_get_args();
 
         $data = [];
@@ -38,7 +37,6 @@ class PredictResponse implements BaseModel
         }
 
         $this->__unserialize($data);
-
     }
 }
 

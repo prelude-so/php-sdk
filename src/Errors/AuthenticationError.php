@@ -2,6 +2,4 @@
 
 namespace Prelude\Errors;
 
-class AuthenticationError extends APIStatusError
-{
-}
+class AuthenticationError extends APIStatusError {}

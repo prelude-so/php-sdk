@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Prelude\Resources;
 
-use Prelude\RequestOptions;
 use Prelude\Client;
 use Prelude\Contracts\WatchContract;
 use Prelude\Core\Serde;
@@ -14,9 +13,12 @@ use Prelude\Models\SendFeedbacksResponse;
 use Prelude\Parameters\Watch\PredictParams;
 use Prelude\Parameters\Watch\SendEventsParams;
 use Prelude\Parameters\Watch\SendFeedbacksParams;
+use Prelude\RequestOptions;
 
 class Watch implements WatchContract
 {
+    public function __construct(protected Client $client) {}
+
     /**
      * @param array{
      *
@@ -51,7 +53,7 @@ class Watch implements WatchContract
      */
     public function predict(
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): PredictResponse {
         [$parsed, $options] = PredictParams::parseRequest(
             $params,
@@ -94,7 +96,7 @@ class Watch implements WatchContract
      */
     public function sendEvents(
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): SendEventsResponse {
         [$parsed, $options] = SendEventsParams::parseRequest(
             $params,
@@ -150,7 +152,7 @@ class Watch implements WatchContract
      */
     public function sendFeedbacks(
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): SendFeedbacksResponse {
         [$parsed, $options] = SendFeedbacksParams::parseRequest(
             $params,
@@ -165,9 +167,5 @@ class Watch implements WatchContract
 
         // @phpstan-ignore-next-line;
         return Serde::coerce(SendFeedbacksResponse::class, value: $resp);
-    }
-
-    public function __construct(protected Client $client)
-    {
     }
 }

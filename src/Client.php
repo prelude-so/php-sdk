@@ -22,21 +22,8 @@ class Client extends BaseClient
 
     public Watch $watch;
 
-    /**
-     * @return array<string, string>
-     */
-    protected function authHeaders(): array
-    {
-        if (!$this->apiToken) {
-            return [];
-        }
-
-        return ['Authorization' => "Bearer {$this->apiToken}"];
-    }
-
     public function __construct(?string $apiToken = null, ?string $baseUrl = null)
     {
-
         $this->apiToken = (string) ($apiToken ?? getenv('API_TOKEN'));
 
         $base = $baseUrl ?? getenv('PRELUDE_BASE_URL') ?: 'https://api.prelude.dev';
@@ -53,6 +40,17 @@ class Client extends BaseClient
         $this->transactional = new Transactional($this);
         $this->verification = new Verification($this);
         $this->watch = new Watch($this);
+    }
 
+    /**
+     * @return array<string, string>
+     */
+    protected function authHeaders(): array
+    {
+        if (!$this->apiToken) {
+            return [];
+        }
+
+        return ['Authorization' => "Bearer {$this->apiToken}"];
     }
 }

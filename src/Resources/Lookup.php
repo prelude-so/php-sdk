@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace Prelude\Resources;
 
-use Prelude\RequestOptions;
 use Prelude\Client;
 use Prelude\Contracts\LookupContract;
 use Prelude\Core\Serde;
 use Prelude\Models\LookupResponse;
 use Prelude\Parameters\Lookup\LookupParams;
+use Prelude\RequestOptions;
 
 class Lookup implements LookupContract
 {
+    public function __construct(protected Client $client) {}
+
     /**
      * @param array{phoneNumber?: string, type?: list<string>} $params
      * @param RequestOptions|array{
@@ -30,7 +32,7 @@ class Lookup implements LookupContract
     public function lookup(
         string $phoneNumber,
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): LookupResponse {
         [$parsed, $options] = LookupParams::parseRequest($params, $requestOptions);
         $resp = $this->client->request(
@@ -42,9 +44,5 @@ class Lookup implements LookupContract
 
         // @phpstan-ignore-next-line;
         return Serde::coerce(LookupResponse::class, value: $resp);
-    }
-
-    public function __construct(protected Client $client)
-    {
     }
 }

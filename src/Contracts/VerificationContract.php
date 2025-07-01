@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\RequestOptions;
-use Prelude\Models\NewResponse;
 use Prelude\Models\CheckResponse;
+use Prelude\Models\NewResponse;
+use Prelude\RequestOptions;
 
 interface VerificationContract
 {
@@ -58,7 +58,7 @@ interface VerificationContract
      */
     public function create(
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): NewResponse;
 
     /**
@@ -81,6 +81,6 @@ interface VerificationContract
      */
     public function check(
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): CheckResponse;
 }

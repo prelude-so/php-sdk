@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Models;
 
-use Prelude\Core\None;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\None;
 use Prelude\Core\Serde\MapOf;
 
 class SendResponse implements BaseModel
@@ -57,11 +57,10 @@ class SendResponse implements BaseModel
         string $templateID,
         string $to,
         array $variables,
-        string|None $callbackURL = None::NOT_SET,
-        string|None $correlationID = None::NOT_SET,
-        string|None $from = None::NOT_SET,
+        None|string $callbackURL = None::NOT_SET,
+        None|string $correlationID = None::NOT_SET,
+        None|string $from = None::NOT_SET
     ) {
-
         $args = func_get_args();
 
         $data = [];
@@ -72,7 +71,6 @@ class SendResponse implements BaseModel
         }
 
         $this->__unserialize($data);
-
     }
 }
 

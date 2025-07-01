@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Prelude\Core\Concerns;
 
-use Psr\Http\Message\ResponseInterface;
 use Prelude\Core\BaseClient;
 use Prelude\Core\Pagination\PageRequestOptions;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * @internal

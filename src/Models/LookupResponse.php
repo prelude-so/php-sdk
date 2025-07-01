@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Models;
 
-use Prelude\Core\None;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\None;
 use Prelude\Core\Serde\ListOf;
 
 class LookupResponse implements BaseModel
@@ -62,15 +62,14 @@ class LookupResponse implements BaseModel
      * @param string $phoneNumber
      */
     final public function __construct(
-        string|None $callerName = None::NOT_SET,
-        string|None $countryCode = None::NOT_SET,
+        None|string $callerName = None::NOT_SET,
+        None|string $countryCode = None::NOT_SET,
         array|None $flags = None::NOT_SET,
-        string|None $lineType = None::NOT_SET,
+        None|string $lineType = None::NOT_SET,
         array|None $networkInfo = None::NOT_SET,
         array|None $originalNetworkInfo = None::NOT_SET,
-        string|None $phoneNumber = None::NOT_SET,
+        None|string $phoneNumber = None::NOT_SET
     ) {
-
         $args = func_get_args();
 
         $data = [];
@@ -81,7 +80,6 @@ class LookupResponse implements BaseModel
         }
 
         $this->__unserialize($data);
-
     }
 }
 

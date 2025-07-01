@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Parameters\Verification;
 
-use Prelude\Core\None;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\None;
 
 class VerificationCreateMetadata implements BaseModel
 {
@@ -20,9 +20,8 @@ class VerificationCreateMetadata implements BaseModel
      * @param string $correlationID
      */
     final public function __construct(
-        string|None $correlationID = None::NOT_SET,
+        None|string $correlationID = None::NOT_SET
     ) {
-
         $args = func_get_args();
 
         $data = [];
@@ -33,7 +32,6 @@ class VerificationCreateMetadata implements BaseModel
         }
 
         $this->__unserialize($data);
-
     }
 }
 

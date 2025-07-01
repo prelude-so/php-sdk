@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Models;
 
-use Prelude\Core\None;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\None;
 
 class CheckResponse implements BaseModel
 {
@@ -35,11 +35,10 @@ class CheckResponse implements BaseModel
      */
     final public function __construct(
         string $status,
-        string|None $id = None::NOT_SET,
+        None|string $id = None::NOT_SET,
         array|None $metadata = None::NOT_SET,
-        string|None $requestID = None::NOT_SET,
+        None|string $requestID = None::NOT_SET
     ) {
-
         $args = func_get_args();
 
         $data = [];
@@ -50,7 +49,6 @@ class CheckResponse implements BaseModel
         }
 
         $this->__unserialize($data);
-
     }
 }
 

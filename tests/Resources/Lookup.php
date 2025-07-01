@@ -2,9 +2,9 @@
 
 namespace Prelude\Tests\Resources;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\TestCase;
 use Prelude\Client;
 
 /**
