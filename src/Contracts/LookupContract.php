@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\RequestOptions;
 use Prelude\Models\LookupResponse;
+use Prelude\RequestOptions;
 
 interface LookupContract
 {
@@ -26,6 +26,6 @@ interface LookupContract
     public function lookup(
         string $phoneNumber,
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): LookupResponse;
 }

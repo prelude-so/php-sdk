@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Parameters\Watch;
 
-use Prelude\Core\None;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\None;
 
 class WatchPredictSignals implements BaseModel
 {
@@ -48,16 +48,15 @@ class WatchPredictSignals implements BaseModel
      * @param string $userAgent
      */
     final public function __construct(
-        string|None $appVersion = None::NOT_SET,
-        string|None $deviceID = None::NOT_SET,
-        string|None $deviceModel = None::NOT_SET,
-        string|None $devicePlatform = None::NOT_SET,
-        string|None $ip = None::NOT_SET,
+        None|string $appVersion = None::NOT_SET,
+        None|string $deviceID = None::NOT_SET,
+        None|string $deviceModel = None::NOT_SET,
+        None|string $devicePlatform = None::NOT_SET,
+        None|string $ip = None::NOT_SET,
         bool|None $isTrustedUser = None::NOT_SET,
-        string|None $osVersion = None::NOT_SET,
-        string|None $userAgent = None::NOT_SET,
+        None|string $osVersion = None::NOT_SET,
+        None|string $userAgent = None::NOT_SET
     ) {
-
         $args = func_get_args();
 
         $data = [];
@@ -68,7 +67,6 @@ class WatchPredictSignals implements BaseModel
         }
 
         $this->__unserialize($data);
-
     }
 }
 

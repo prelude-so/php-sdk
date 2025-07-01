@@ -2,6 +2,4 @@
 
 namespace Prelude\Errors;
 
-class Error extends \Exception
-{
-}
+class Error extends \Exception {}

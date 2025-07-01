@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\RequestOptions;
 use Prelude\Models\SendResponse;
+use Prelude\RequestOptions;
 
 interface TransactionalContract
 {
@@ -36,6 +36,6 @@ interface TransactionalContract
      */
     public function send(
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): SendResponse;
 }

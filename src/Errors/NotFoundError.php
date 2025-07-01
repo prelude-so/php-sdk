@@ -2,6 +2,4 @@
 
 namespace Prelude\Errors;
 
-class NotFoundError extends APIStatusError
-{
-}
+class NotFoundError extends APIStatusError {}

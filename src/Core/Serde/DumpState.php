@@ -7,7 +7,6 @@ namespace Prelude\Core\Serde;
 final class DumpState
 {
     public function __construct(
-        public bool $canRetry = true,
-    ) {
-    }
+        public bool $canRetry = true
+    ) {}
 }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Parameters\Watch;
 
-use Prelude\Core\None;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\None;
 
 class WatchPredictTarget implements BaseModel
 {
@@ -21,7 +21,6 @@ class WatchPredictTarget implements BaseModel
 
     final public function __construct(string $type, string $value)
     {
-
         $args = func_get_args();
 
         $data = [];
@@ -32,7 +31,6 @@ class WatchPredictTarget implements BaseModel
         }
 
         $this->__unserialize($data);
-
     }
 }
 

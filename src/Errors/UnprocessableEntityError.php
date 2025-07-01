@@ -2,6 +2,4 @@
 
 namespace Prelude\Errors;
 
-class UnprocessableEntityError extends APIStatusError
-{
-}
+class UnprocessableEntityError extends APIStatusError {}

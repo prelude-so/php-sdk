@@ -2,9 +2,9 @@
 
 namespace Prelude\Tests\Resources;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\TestCase;
 use Prelude\Client;
 
 /**
@@ -34,7 +34,8 @@ final class TransactionalTest extends TestCase
             ->send([
                 'templateID' => 'template_01jd1xq0cffycayqtdkdbv4d61',
                 'to' => '+30123456789',
-            ]);
+            ])
+        ;
         $this->assertTrue(true); // @phpstan-ignore-line
     }
 
@@ -53,7 +54,8 @@ final class TransactionalTest extends TestCase
                 'from' => 'from',
                 'locale' => 'el-GR',
                 'variables' => ['foo' => 'bar'],
-            ]);
+            ])
+        ;
         $this->assertTrue(true); // @phpstan-ignore-line
     }
 }

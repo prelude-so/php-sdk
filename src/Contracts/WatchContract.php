@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\RequestOptions;
 use Prelude\Models\PredictResponse;
 use Prelude\Models\SendEventsResponse;
 use Prelude\Models\SendFeedbacksResponse;
+use Prelude\RequestOptions;
 
 interface WatchContract
 {
@@ -45,7 +45,7 @@ interface WatchContract
      */
     public function predict(
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): PredictResponse;
 
     /**
@@ -74,7 +74,7 @@ interface WatchContract
      */
     public function sendEvents(
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): SendEventsResponse;
 
     /**
@@ -116,6 +116,6 @@ interface WatchContract
      */
     public function sendFeedbacks(
         array $params,
-        mixed $requestOptions = [],
+        mixed $requestOptions = []
     ): SendFeedbacksResponse;
 }

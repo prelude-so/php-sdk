@@ -2,9 +2,9 @@
 
 namespace Prelude\Tests\Resources;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\TestCase;
 use Prelude\Client;
 
 /**
@@ -33,7 +33,8 @@ final class VerificationTest extends TestCase
             ->verification
             ->create([
                 'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
-            ]);
+            ])
+        ;
         $this->assertTrue(true); // @phpstan-ignore-line
     }
 
@@ -69,7 +70,8 @@ final class VerificationTest extends TestCase
                     'osVersion' => '18.0.1',
                     'userAgent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
                 ],
-            ]);
+            ])
+        ;
         $this->assertTrue(true); // @phpstan-ignore-line
     }
 
@@ -82,7 +84,8 @@ final class VerificationTest extends TestCase
             ->check([
                 'code' => '12345',
                 'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
-            ]);
+            ])
+        ;
         $this->assertTrue(true); // @phpstan-ignore-line
     }
 
@@ -95,7 +98,8 @@ final class VerificationTest extends TestCase
             ->check([
                 'code' => '12345',
                 'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
-            ]);
+            ])
+        ;
         $this->assertTrue(true); // @phpstan-ignore-line
     }
 }
