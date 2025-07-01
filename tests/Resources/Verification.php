@@ -45,7 +45,7 @@ final class VerificationTest extends TestCase
             ->verification
             ->create([
                 'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
-                'dispatchID' => 'dispatch_id',
+                'dispatchID' => '123e4567-e89b-12d3-a456-426614174000',
                 'metadata' => ['correlationID' => 'correlation_id'],
                 'options' => [
                     'appRealm' => ['platform' => 'android', 'value' => 'value'],

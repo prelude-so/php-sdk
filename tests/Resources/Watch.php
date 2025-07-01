@@ -45,7 +45,7 @@ final class WatchTest extends TestCase
             ->watch
             ->predict([
                 'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
-                'dispatchID' => 'dispatch_id',
+                'dispatchID' => '123e4567-e89b-12d3-a456-426614174000',
                 'metadata' => ['correlationID' => 'correlation_id'],
                 'signals' => [
                     'appVersion' => '1.2.34',
@@ -125,7 +125,7 @@ final class WatchTest extends TestCase
                     [
                         'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
                         'type' => 'verification.started',
-                        'dispatchID' => 'dispatch_id',
+                        'dispatchID' => '123e4567-e89b-12d3-a456-426614174000',
                         'metadata' => ['correlationID' => 'correlation_id'],
                         'signals' => [
                             'appVersion' => '1.2.34',
