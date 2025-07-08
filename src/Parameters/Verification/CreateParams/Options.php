@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Verification;
+namespace Prelude\Parameters\Verification\CreateParams;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
@@ -10,7 +10,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 use Prelude\Core\Serde\MapOf;
 
-class VerificationCreateOptions implements BaseModel
+class Options implements BaseModel
 {
     use Model;
 
@@ -87,4 +87,4 @@ class VerificationCreateOptions implements BaseModel
     }
 }
 
-VerificationCreateOptions::_loadMetadata();
+Options::_loadMetadata();

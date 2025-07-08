@@ -2,25 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Verification;
+namespace Prelude\Parameters\Watch\PredictParams;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 
-class VerificationCreateTarget implements BaseModel
+class Metadata implements BaseModel
 {
     use Model;
 
-    #[Api]
-    public string $type;
+    #[Api('correlation_id', optional: true)]
+    public string $correlationID;
 
-    #[Api]
-    public string $value;
-
-    final public function __construct(string $type, string $value)
-    {
+    /**
+     * @param string $correlationID
+     */
+    final public function __construct(
+        None|string $correlationID = None::NOT_SET
+    ) {
         $args = func_get_args();
 
         $data = [];
@@ -34,4 +35,4 @@ class VerificationCreateTarget implements BaseModel
     }
 }
 
-VerificationCreateTarget::_loadMetadata();
+Metadata::_loadMetadata();

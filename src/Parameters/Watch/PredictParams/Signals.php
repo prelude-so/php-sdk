@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Watch;
+namespace Prelude\Parameters\Watch\PredictParams;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 
-class WatchPredictSignals implements BaseModel
+class Signals implements BaseModel
 {
     use Model;
 
@@ -70,4 +70,4 @@ class WatchPredictSignals implements BaseModel
     }
 }
 
-WatchPredictSignals::_loadMetadata();
+Signals::_loadMetadata();

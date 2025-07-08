@@ -2,26 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Watch;
+namespace Prelude\Parameters\Watch\PredictParams;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 
-class WatchPredictMetadata implements BaseModel
+class Target implements BaseModel
 {
     use Model;
 
-    #[Api('correlation_id', optional: true)]
-    public string $correlationID;
+    #[Api]
+    public string $type;
 
-    /**
-     * @param string $correlationID
-     */
-    final public function __construct(
-        None|string $correlationID = None::NOT_SET
-    ) {
+    #[Api]
+    public string $value;
+
+    final public function __construct(string $type, string $value)
+    {
         $args = func_get_args();
 
         $data = [];
@@ -35,4 +34,4 @@ class WatchPredictMetadata implements BaseModel
     }
 }
 
-WatchPredictMetadata::_loadMetadata();
+Target::_loadMetadata();
