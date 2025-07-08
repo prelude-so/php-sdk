@@ -6,6 +6,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
+use Prelude\Models\SendResponse;
 
 /**
  * @internal
@@ -36,7 +37,8 @@ final class TransactionalTest extends TestCase
                 'to' => '+30123456789',
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(SendResponse::class, $result);
     }
 
     #[Test]
@@ -56,6 +58,7 @@ final class TransactionalTest extends TestCase
                 'variables' => ['foo' => 'bar'],
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(SendResponse::class, $result);
     }
 }

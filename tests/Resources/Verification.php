@@ -6,6 +6,8 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
+use Prelude\Models\CheckResponse;
+use Prelude\Models\NewResponse;
 
 /**
  * @internal
@@ -35,7 +37,8 @@ final class VerificationTest extends TestCase
                 'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(NewResponse::class, $result);
     }
 
     #[Test]
@@ -72,7 +75,8 @@ final class VerificationTest extends TestCase
                 ],
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(NewResponse::class, $result);
     }
 
     #[Test]
@@ -86,7 +90,8 @@ final class VerificationTest extends TestCase
                 'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(CheckResponse::class, $result);
     }
 
     #[Test]
@@ -100,6 +105,7 @@ final class VerificationTest extends TestCase
                 'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(CheckResponse::class, $result);
     }
 }

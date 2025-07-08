@@ -6,6 +6,9 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
+use Prelude\Models\PredictResponse;
+use Prelude\Models\SendEventsResponse;
+use Prelude\Models\SendFeedbacksResponse;
 
 /**
  * @internal
@@ -35,7 +38,8 @@ final class WatchTest extends TestCase
                 'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(PredictResponse::class, $result);
     }
 
     #[Test]
@@ -60,7 +64,8 @@ final class WatchTest extends TestCase
                 ],
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(PredictResponse::class, $result);
     }
 
     #[Test]
@@ -79,7 +84,8 @@ final class WatchTest extends TestCase
                 ],
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(SendEventsResponse::class, $result);
     }
 
     #[Test]
@@ -98,7 +104,8 @@ final class WatchTest extends TestCase
                 ],
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(SendEventsResponse::class, $result);
     }
 
     #[Test]
@@ -116,7 +123,8 @@ final class WatchTest extends TestCase
                 ],
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(SendFeedbacksResponse::class, $result);
     }
 
     #[Test]
@@ -146,6 +154,7 @@ final class WatchTest extends TestCase
                 ],
             ])
         ;
-        $this->assertTrue(true); // @phpstan-ignore-line
+
+        $this->assertInstanceOf(SendFeedbacksResponse::class, $result);
     }
 }
