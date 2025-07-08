@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Verification;
+namespace Prelude\Parameters\Verification\CreateParams;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 
-class VerificationCheckTarget implements BaseModel
+class Target implements BaseModel
 {
     use Model;
 
@@ -34,4 +34,4 @@ class VerificationCheckTarget implements BaseModel
     }
 }
 
-VerificationCheckTarget::_loadMetadata();
+Target::_loadMetadata();

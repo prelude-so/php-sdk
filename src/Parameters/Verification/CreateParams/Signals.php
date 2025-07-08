@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Verification;
+namespace Prelude\Parameters\Verification\CreateParams;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 
-class VerificationCreateSignals implements BaseModel
+class Signals implements BaseModel
 {
     use Model;
 
@@ -70,4 +70,4 @@ class VerificationCreateSignals implements BaseModel
     }
 }
 
-VerificationCreateSignals::_loadMetadata();
+Signals::_loadMetadata();
