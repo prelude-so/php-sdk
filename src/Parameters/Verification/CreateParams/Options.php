@@ -9,7 +9,6 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 use Prelude\Core\Serde\MapOf;
-use Prelude\Core\Serde\UnionOf;
 
 class Options implements BaseModel
 {
@@ -44,7 +43,7 @@ class Options implements BaseModel
     public ?string $templateID;
 
     /** @var null|array<string, string> $variables */
-    #[Api(type: new UnionOf([new MapOf('string'), 'null']), optional: true)]
+    #[Api(type: new MapOf('string'), optional: true)]
     public ?array $variables;
 
     /**

@@ -9,7 +9,6 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Serde\MapOf;
-use Prelude\Core\Serde\UnionOf;
 
 class SendParams implements BaseModel
 {
@@ -38,7 +37,7 @@ class SendParams implements BaseModel
     public ?string $locale;
 
     /** @var null|array<string, string> $variables */
-    #[Api(type: new UnionOf([new MapOf('string'), 'null']), optional: true)]
+    #[Api(type: new MapOf('string'), optional: true)]
     public ?array $variables;
 }
 

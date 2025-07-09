@@ -9,7 +9,6 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Serde\ListOf;
-use Prelude\Core\Serde\UnionOf;
 
 class LookupParams implements BaseModel
 {
@@ -17,7 +16,7 @@ class LookupParams implements BaseModel
     use Params;
 
     /** @var null|list<string> $type */
-    #[Api(type: new UnionOf([new ListOf('string'), 'null']), optional: true)]
+    #[Api(type: new ListOf('string'), optional: true)]
     public ?array $type;
 }
 

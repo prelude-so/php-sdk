@@ -9,7 +9,6 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 use Prelude\Core\Serde\ListOf;
-use Prelude\Core\Serde\UnionOf;
 
 class NewResponse implements BaseModel
 {
@@ -25,7 +24,7 @@ class NewResponse implements BaseModel
     public string $status;
 
     /** @var null|list<string> $channels */
-    #[Api(type: new UnionOf([new ListOf('string'), 'null']), optional: true)]
+    #[Api(type: new ListOf('string'), optional: true)]
     public ?array $channels;
 
     /** @var null|array{correlationID?: string} $metadata */
