@@ -9,7 +9,6 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 use Prelude\Core\Serde\ListOf;
-use Prelude\Core\Serde\UnionOf;
 
 class LookupResponse implements BaseModel
 {
@@ -22,7 +21,7 @@ class LookupResponse implements BaseModel
     public ?string $countryCode;
 
     /** @var null|list<string> $flags */
-    #[Api(type: new UnionOf([new ListOf('string'), 'null']), optional: true)]
+    #[Api(type: new ListOf('string'), optional: true)]
     public ?array $flags;
 
     #[Api('line_type', optional: true)]
