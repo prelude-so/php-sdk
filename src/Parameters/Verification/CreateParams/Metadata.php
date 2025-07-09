@@ -14,24 +14,12 @@ class Metadata implements BaseModel
     use Model;
 
     #[Api('correlation_id', optional: true)]
-    public string $correlationID;
+    public ?string $correlationID;
 
-    /**
-     * @param string $correlationID
-     */
-    final public function __construct(
-        None|string $correlationID = None::NOT_SET
-    ) {
-        $args = func_get_args();
-
-        $data = [];
-        for ($i = 0; $i < count($args); ++$i) {
-            if (None::NOT_SET !== $args[$i]) {
-                $data[self::$_constructorArgNames[$i]] = $args[$i] ?? null;
-            }
-        }
-
-        $this->__unserialize($data);
+    /** @param null|string $correlationID */
+    final public function __construct($correlationID = None::NOT_GIVEN)
+    {
+        $this->constructFromArgs(func_get_args());
     }
 }
 

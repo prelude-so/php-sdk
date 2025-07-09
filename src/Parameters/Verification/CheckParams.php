@@ -17,9 +17,7 @@ class CheckParams implements BaseModel
     #[Api]
     public string $code;
 
-    /**
-     * @var array{type?: string, value?: string} $target
-     */
+    /** @var array{type?: string, value?: string} $target */
     #[Api]
     public array $target;
 }

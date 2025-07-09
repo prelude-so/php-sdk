@@ -17,22 +17,11 @@ class Lookup implements LookupContract
 
     /**
      * @param array{phoneNumber?: string, type?: list<string>} $params
-     * @param RequestOptions|array{
-     *
-     *     timeout?: float|null,
-     *     maxRetries?: int|null,
-     *     initialRetryDelay?: float|null,
-     *     maxRetryDelay?: float|null,
-     *     extraHeaders?: list<string>|null,
-     *     extraQueryParams?: list<string>|null,
-     *     extraBodyParams?: list<string>|null,
-     *
-     * }|null $requestOptions
      */
     public function lookup(
         string $phoneNumber,
         array $params,
-        mixed $requestOptions = []
+        ?RequestOptions $requestOptions = null
     ): LookupResponse {
         [$parsed, $options] = LookupParams::parseRequest($params, $requestOptions);
         $resp = $this->client->request(

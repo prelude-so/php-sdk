@@ -42,9 +42,7 @@ class Client extends BaseClient
         $this->watch = new Watch($this);
     }
 
-    /**
-     * @return array<string, string>
-     */
+    /** @return array<string, string> */
     protected function authHeaders(): array
     {
         if (!$this->apiToken) {

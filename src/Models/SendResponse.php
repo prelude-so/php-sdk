@@ -29,48 +29,42 @@ class SendResponse implements BaseModel
     #[Api]
     public string $to;
 
-    /**
-     * @var array<string, string> $variables
-     */
+    /** @var array<string, string> $variables */
     #[Api(type: new MapOf('string'))]
     public array $variables;
 
     #[Api('callback_url', optional: true)]
-    public string $callbackURL;
+    public ?string $callbackURL;
 
     #[Api('correlation_id', optional: true)]
-    public string $correlationID;
+    public ?string $correlationID;
 
     #[Api(optional: true)]
-    public string $from;
+    public ?string $from;
 
     /**
+     * @param string                $id
+     * @param \DateTimeInterface    $createdAt
+     * @param \DateTimeInterface    $expiresAt
+     * @param string                $templateID
+     * @param string                $to
      * @param array<string, string> $variables
-     * @param string                $callbackURL
-     * @param string                $correlationID
-     * @param string                $from
+     * @param null|string           $callbackURL
+     * @param null|string           $correlationID
+     * @param null|string           $from
      */
     final public function __construct(
-        string $id,
-        \DateTimeInterface $createdAt,
-        \DateTimeInterface $expiresAt,
-        string $templateID,
-        string $to,
-        array $variables,
-        None|string $callbackURL = None::NOT_SET,
-        None|string $correlationID = None::NOT_SET,
-        None|string $from = None::NOT_SET
+        $id,
+        $createdAt,
+        $expiresAt,
+        $templateID,
+        $to,
+        $variables,
+        $callbackURL = None::NOT_GIVEN,
+        $correlationID = None::NOT_GIVEN,
+        $from = None::NOT_GIVEN,
     ) {
-        $args = func_get_args();
-
-        $data = [];
-        for ($i = 0; $i < count($args); ++$i) {
-            if (None::NOT_SET !== $args[$i]) {
-                $data[self::$_constructorArgNames[$i]] = $args[$i] ?? null;
-            }
-        }
-
-        $this->__unserialize($data);
+        $this->constructFromArgs(func_get_args());
     }
 }
 

@@ -17,38 +17,28 @@ class CheckResponse implements BaseModel
     public string $status;
 
     #[Api(optional: true)]
-    public string $id;
+    public ?string $id;
 
-    /**
-     * @var array{correlationID?: string} $metadata
-     */
+    /** @var null|array{correlationID?: string} $metadata */
     #[Api(optional: true)]
-    public array $metadata;
+    public ?array $metadata;
 
     #[Api('request_id', optional: true)]
-    public string $requestID;
+    public ?string $requestID;
 
     /**
-     * @param string                        $id
-     * @param array{correlationID?: string} $metadata
-     * @param string                        $requestID
+     * @param string                             $status
+     * @param null|string                        $id
+     * @param null|array{correlationID?: string} $metadata
+     * @param null|string                        $requestID
      */
     final public function __construct(
-        string $status,
-        None|string $id = None::NOT_SET,
-        array|None $metadata = None::NOT_SET,
-        None|string $requestID = None::NOT_SET
+        $status,
+        $id = None::NOT_GIVEN,
+        $metadata = None::NOT_GIVEN,
+        $requestID = None::NOT_GIVEN,
     ) {
-        $args = func_get_args();
-
-        $data = [];
-        for ($i = 0; $i < count($args); ++$i) {
-            if (None::NOT_SET !== $args[$i]) {
-                $data[self::$_constructorArgNames[$i]] = $args[$i] ?? null;
-            }
-        }
-
-        $this->__unserialize($data);
+        $this->constructFromArgs(func_get_args());
     }
 }
 

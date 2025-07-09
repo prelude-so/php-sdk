@@ -17,11 +17,9 @@ class SendEventsParams implements BaseModel
 
     /**
      * @var list<array{
-     *
-     *     confidence?: string,
-     *     label?: string,
-     *     target?: array{type?: string, value?: string},
-     *
+     *   confidence?: string,
+     *   label?: string,
+     *   target?: array{type?: string, value?: string},
      * }> $events
      */
     #[Api(type: new ListOf(new ListOf('mixed')))]

@@ -9,77 +9,63 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 use Prelude\Core\Serde\ListOf;
+use Prelude\Core\Serde\UnionOf;
 
 class LookupResponse implements BaseModel
 {
     use Model;
 
     #[Api('caller_name', optional: true)]
-    public string $callerName;
+    public ?string $callerName;
 
     #[Api('country_code', optional: true)]
-    public string $countryCode;
+    public ?string $countryCode;
 
-    /**
-     * @var list<string> $flags
-     */
-    #[Api(type: new ListOf('string'), optional: true)]
-    public array $flags;
+    /** @var null|list<string> $flags */
+    #[Api(type: new UnionOf([new ListOf('string'), 'null']), optional: true)]
+    public ?array $flags;
 
     #[Api('line_type', optional: true)]
-    public string $lineType;
+    public ?string $lineType;
 
     /**
-     * @var array{carrierName?: string, mcc?: string, mnc?: string} $networkInfo
+     * @var null|array{carrierName?: string, mcc?: string, mnc?: string} $networkInfo
      */
     #[Api('network_info', optional: true)]
-    public array $networkInfo;
+    public ?array $networkInfo;
 
     /**
      * @var array{
-     *
-     * carrierName?: string, mcc?: string, mnc?: string
-     *
-     * } $originalNetworkInfo
+     *   carrierName?: string, mcc?: string, mnc?: string
+     * }|null $originalNetworkInfo
      */
     #[Api('original_network_info', optional: true)]
-    public array $originalNetworkInfo;
+    public ?array $originalNetworkInfo;
 
     #[Api('phone_number', optional: true)]
-    public string $phoneNumber;
+    public ?string $phoneNumber;
 
     /**
-     * @param string                                                  $callerName
-     * @param string                                                  $countryCode
-     * @param list<string>                                            $flags
-     * @param string                                                  $lineType
-     * @param array{carrierName?: string, mcc?: string, mnc?: string} $networkInfo
+     * @param null|string                                                  $callerName
+     * @param null|string                                                  $countryCode
+     * @param null|list<string>                                            $flags
+     * @param null|string                                                  $lineType
+     * @param null|array{carrierName?: string, mcc?: string, mnc?: string} $networkInfo
      * @param array{
-     *
-     * carrierName?: string, mcc?: string, mnc?: string
-     *
-     * } $originalNetworkInfo
-     * @param string $phoneNumber
+     *   carrierName?: string, mcc?: string, mnc?: string
+     * }|null $originalNetworkInfo
+     * @param null|string $phoneNumber
      */
     final public function __construct(
-        None|string $callerName = None::NOT_SET,
-        None|string $countryCode = None::NOT_SET,
-        array|None $flags = None::NOT_SET,
-        None|string $lineType = None::NOT_SET,
-        array|None $networkInfo = None::NOT_SET,
-        array|None $originalNetworkInfo = None::NOT_SET,
-        None|string $phoneNumber = None::NOT_SET
+        $callerName = None::NOT_GIVEN,
+        $countryCode = None::NOT_GIVEN,
+        $flags = None::NOT_GIVEN,
+        $lineType = None::NOT_GIVEN,
+        $networkInfo = None::NOT_GIVEN,
+        $originalNetworkInfo = None::NOT_GIVEN,
+        $phoneNumber = None::NOT_GIVEN,
     ) {
-        $args = func_get_args();
-
-        $data = [];
-        for ($i = 0; $i < count($args); ++$i) {
-            if (None::NOT_SET !== $args[$i]) {
-                $data[self::$_constructorArgNames[$i]] = $args[$i] ?? null;
-            }
-        }
-
-        $this->__unserialize($data);
+        $this->constructFromArgs(func_get_args());
     }
 }
 

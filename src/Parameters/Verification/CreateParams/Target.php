@@ -7,7 +7,6 @@ namespace Prelude\Parameters\Verification\CreateParams;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\None;
 
 class Target implements BaseModel
 {
@@ -19,18 +18,13 @@ class Target implements BaseModel
     #[Api]
     public string $value;
 
-    final public function __construct(string $type, string $value)
+    /**
+     * @param string $type
+     * @param string $value
+     */
+    final public function __construct($type, $value)
     {
-        $args = func_get_args();
-
-        $data = [];
-        for ($i = 0; $i < count($args); ++$i) {
-            if (None::NOT_SET !== $args[$i]) {
-                $data[self::$_constructorArgNames[$i]] = $args[$i] ?? null;
-            }
-        }
-
-        $this->__unserialize($data);
+        $this->constructFromArgs(func_get_args());
     }
 }
 
