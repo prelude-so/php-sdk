@@ -6,7 +6,7 @@ namespace Prelude\Core\Pagination;
 
 use Prelude\Core\BaseClient;
 use Prelude\Core\Concerns\Pager;
-use Prelude\Core\Errors\PreludeError;
+use Prelude\Errors\Error;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -49,13 +49,13 @@ abstract class AbstractPage implements \IteratorAggregate, Pager
      *
      * @return static of AbstractPage<Item>
      *
-     * @throws PreludeError
+     * @throws Error
      */
     public function getNextPage(): static
     {
         $nextOptions = $this->nextPageRequestOptions();
         if (!$nextOptions) {
-            throw new PreludeError(
+            throw new Error(
                 'No next page expected; please check `.hasNextPage()` before calling `.getNextPage()`.'
             );
         }

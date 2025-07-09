@@ -6,6 +6,7 @@ namespace Prelude\Core\Concerns;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\None;
 use Prelude\Core\Serde;
 use Prelude\Core\Serde\CoerceState;
 use Prelude\Core\Serde\DumpState;
@@ -260,6 +261,18 @@ trait Model
                 self::$_properties[$name] = new PropertyInfo($property);
             }
         }
+    }
+
+    /** @param array<mixed> $args */
+    protected function constructFromArgs(array $args): void
+    {
+        $data = [];
+        for ($i = 0; $i < count($args); ++$i) {
+            if (None::NOT_GIVEN !== $args[$i]) {
+                $data[self::$_constructorArgNames[$i]] = $args[$i] ?? null;
+            }
+        }
+        $this->__unserialize($data);
     }
 
     private static function serialize(mixed $value): mixed

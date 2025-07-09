@@ -17,24 +17,20 @@ class SendFeedbacksParams implements BaseModel
 
     /**
      * @var list<array{
-     *
-     *     target?: array{type?: string, value?: string},
-     *     type?: string,
-     *     dispatchID?: string,
-     *     metadata?: array{correlationID?: string},
-     *     signals?: array{
-     *
-     *         appVersion?: string,
-     *         deviceID?: string,
-     *         deviceModel?: string,
-     *         devicePlatform?: string,
-     *         ip?: string,
-     *         isTrustedUser?: bool,
-     *         osVersion?: string,
-     *         userAgent?: string,
-     *
-     * },
-     *
+     *   target?: array{type?: string, value?: string},
+     *   type?: string,
+     *   dispatchID?: string,
+     *   metadata?: array{correlationID?: string},
+     *   signals?: array{
+     *     appVersion?: string,
+     *     deviceID?: string,
+     *     deviceModel?: string,
+     *     devicePlatform?: string,
+     *     ip?: string,
+     *     isTrustedUser?: bool,
+     *     osVersion?: string,
+     *     userAgent?: string,
+     *   },
      * }> $feedbacks
      */
     #[Api(type: new ListOf(new ListOf('mixed')))]

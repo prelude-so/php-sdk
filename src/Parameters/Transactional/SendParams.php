@@ -9,6 +9,7 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Serde\MapOf;
+use Prelude\Core\Serde\UnionOf;
 
 class SendParams implements BaseModel
 {
@@ -22,25 +23,23 @@ class SendParams implements BaseModel
     public string $to;
 
     #[Api('callback_url', optional: true)]
-    public string $callbackURL;
+    public ?string $callbackURL;
 
     #[Api('correlation_id', optional: true)]
-    public string $correlationID;
+    public ?string $correlationID;
 
     #[Api('expires_at', optional: true)]
-    public string $expiresAt;
+    public ?string $expiresAt;
 
     #[Api(optional: true)]
-    public string $from;
+    public ?string $from;
 
     #[Api(optional: true)]
-    public string $locale;
+    public ?string $locale;
 
-    /**
-     * @var array<string, string> $variables
-     */
-    #[Api(type: new MapOf('string'), optional: true)]
-    public array $variables;
+    /** @var null|array<string, string> $variables */
+    #[Api(type: new UnionOf([new MapOf('string'), 'null']), optional: true)]
+    public ?array $variables;
 }
 
 SendParams::_loadMetadata();
