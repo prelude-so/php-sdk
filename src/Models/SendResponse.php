@@ -43,12 +43,17 @@ class SendResponse implements BaseModel
     public ?string $from;
 
     /**
-     * @param string                $id
-     * @param \DateTimeInterface    $createdAt
-     * @param \DateTimeInterface    $expiresAt
-     * @param string                $templateID
-     * @param string                $to
-     * @param array<string, string> $variables
+     * You must use named parameters to construct this object. If an named argument is not
+     * given, it will not be included during JSON serialization. The arguments are untyped
+     * so you can pass any JSON serializable value, but the API expects the types to match
+     * the PHPDoc types.
+     *
+     * @param string                $id            `required`
+     * @param \DateTimeInterface    $createdAt     `required`
+     * @param \DateTimeInterface    $expiresAt     `required`
+     * @param string                $templateID    `required`
+     * @param string                $to            `required`
+     * @param array<string, string> $variables     `required`
      * @param null|string           $callbackURL
      * @param null|string           $correlationID
      * @param null|string           $from

@@ -8,6 +8,9 @@ use Psr\Http\Message\ResponseInterface;
 
 class APIStatusError extends APIError
 {
+    /** @var string */
+    protected const DESC = 'Prelude API Status Error';
+
     public ?int $status;
 
     public function __construct(
