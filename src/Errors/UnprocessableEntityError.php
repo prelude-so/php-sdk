@@ -2,4 +2,8 @@
 
 namespace Prelude\Errors;
 
-class UnprocessableEntityError extends APIStatusError {}
+class UnprocessableEntityError extends APIStatusError
+{
+    /** @var string */
+    protected const DESC = 'Prelude Unprocessable Entity Error';
+}
