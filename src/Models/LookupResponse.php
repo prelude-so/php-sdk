@@ -9,6 +9,8 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 use Prelude\Core\Serde\ListOf;
+use Prelude\Models\LookupResponse\NetworkInfo;
+use Prelude\Models\LookupResponse\OriginalNetworkInfo;
 
 class LookupResponse implements BaseModel
 {
@@ -27,19 +29,11 @@ class LookupResponse implements BaseModel
     #[Api('line_type', optional: true)]
     public ?string $lineType;
 
-    /**
-     * @var null|array{carrierName?: string, mcc?: string, mnc?: string} $networkInfo
-     */
     #[Api('network_info', optional: true)]
-    public ?array $networkInfo;
+    public ?NetworkInfo $networkInfo;
 
-    /**
-     * @var array{
-     *   carrierName?: string, mcc?: string, mnc?: string
-     * }|null $originalNetworkInfo
-     */
     #[Api('original_network_info', optional: true)]
-    public ?array $originalNetworkInfo;
+    public ?OriginalNetworkInfo $originalNetworkInfo;
 
     #[Api('phone_number', optional: true)]
     public ?string $phoneNumber;
@@ -50,15 +44,13 @@ class LookupResponse implements BaseModel
      * so you can pass any JSON serializable value, but the API expects the types to match
      * the PHPDoc types.
      *
-     * @param null|string                                                  $callerName
-     * @param null|string                                                  $countryCode
-     * @param null|list<string>                                            $flags
-     * @param null|string                                                  $lineType
-     * @param null|array{carrierName?: string, mcc?: string, mnc?: string} $networkInfo
-     * @param array{
-     *   carrierName?: string, mcc?: string, mnc?: string
-     * }|null $originalNetworkInfo
-     * @param null|string $phoneNumber
+     * @param null|string              $callerName
+     * @param null|string              $countryCode
+     * @param null|list<string>        $flags
+     * @param null|string              $lineType
+     * @param null|NetworkInfo         $networkInfo
+     * @param null|OriginalNetworkInfo $originalNetworkInfo
+     * @param null|string              $phoneNumber
      */
     final public function __construct(
         $callerName = None::NOT_GIVEN,

@@ -14,9 +14,8 @@ class Options implements BaseModel
 {
     use Model;
 
-    /** @var null|array{platform?: string, value?: string} $appRealm */
     #[Api('app_realm', optional: true)]
-    public ?array $appRealm;
+    public ?AppRealm $appRealm;
 
     #[Api('callback_url', optional: true)]
     public ?string $callbackURL;
@@ -52,16 +51,16 @@ class Options implements BaseModel
      * so you can pass any JSON serializable value, but the API expects the types to match
      * the PHPDoc types.
      *
-     * @param null|array{platform?: string, value?: string} $appRealm
-     * @param null|string                                   $callbackURL
-     * @param null|int                                      $codeSize
-     * @param null|string                                   $customCode
-     * @param null|string                                   $locale
-     * @param null|string                                   $method
-     * @param null|string                                   $preferredChannel
-     * @param null|string                                   $senderID
-     * @param null|string                                   $templateID
-     * @param null|array<string, string>                    $variables
+     * @param null|AppRealm              $appRealm
+     * @param null|string                $callbackURL
+     * @param null|int                   $codeSize
+     * @param null|string                $customCode
+     * @param null|string                $locale
+     * @param null|string                $method
+     * @param null|string                $preferredChannel
+     * @param null|string                $senderID
+     * @param null|string                $templateID
+     * @param null|array<string, string> $variables
      */
     final public function __construct(
         $appRealm = None::NOT_GIVEN,

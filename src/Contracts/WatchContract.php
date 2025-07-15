@@ -7,25 +7,18 @@ namespace Prelude\Contracts;
 use Prelude\Models\PredictResponse;
 use Prelude\Models\SendEventsResponse;
 use Prelude\Models\SendFeedbacksResponse;
+use Prelude\Parameters\Watch\PredictParams\Metadata;
+use Prelude\Parameters\Watch\PredictParams\Signals;
+use Prelude\Parameters\Watch\PredictParams\Target;
+use Prelude\Parameters\Watch\SendEventsParams\Event;
+use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback;
 use Prelude\RequestOptions;
 
 interface WatchContract
 {
     /**
      * @param array{
-     *   target?: array{type?: string, value?: string},
-     *   dispatchID?: string,
-     *   metadata?: array{correlationID?: string},
-     *   signals?: array{
-     *     appVersion?: string,
-     *     deviceID?: string,
-     *     deviceModel?: string,
-     *     devicePlatform?: string,
-     *     ip?: string,
-     *     isTrustedUser?: bool,
-     *     osVersion?: string,
-     *     userAgent?: string,
-     *   },
+     *   target?: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
      * } $params
      */
     public function predict(
@@ -34,13 +27,7 @@ interface WatchContract
     ): PredictResponse;
 
     /**
-     * @param array{
-     *   events?: list<array{
-     *     confidence?: string,
-     *     label?: string,
-     *     target?: array{type?: string, value?: string},
-     *   }>,
-     * } $params
+     * @param array{events?: list<Event>} $params
      */
     public function sendEvents(
         array $params,
@@ -48,24 +35,7 @@ interface WatchContract
     ): SendEventsResponse;
 
     /**
-     * @param array{
-     *   feedbacks?: list<array{
-     *     target?: array{type?: string, value?: string},
-     *     type?: string,
-     *     dispatchID?: string,
-     *     metadata?: array{correlationID?: string},
-     *     signals?: array{
-     *       appVersion?: string,
-     *       deviceID?: string,
-     *       deviceModel?: string,
-     *       devicePlatform?: string,
-     *       ip?: string,
-     *       isTrustedUser?: bool,
-     *       osVersion?: string,
-     *       userAgent?: string,
-     *     },
-     *   }>,
-     * } $params
+     * @param array{feedbacks?: list<Feedback>} $params
      */
     public function sendFeedbacks(
         array $params,

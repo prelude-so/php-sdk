@@ -9,6 +9,8 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 use Prelude\Core\Serde\ListOf;
+use Prelude\Models\NewResponse\Metadata;
+use Prelude\Models\NewResponse\Silent;
 
 class NewResponse implements BaseModel
 {
@@ -27,9 +29,8 @@ class NewResponse implements BaseModel
     #[Api(type: new ListOf('string'), optional: true)]
     public ?array $channels;
 
-    /** @var null|array{correlationID?: string} $metadata */
     #[Api(optional: true)]
-    public ?array $metadata;
+    public ?Metadata $metadata;
 
     #[Api(optional: true)]
     public ?string $reason;
@@ -37,9 +38,8 @@ class NewResponse implements BaseModel
     #[Api('request_id', optional: true)]
     public ?string $requestID;
 
-    /** @var null|array{requestURL?: string} $silent */
     #[Api(optional: true)]
-    public ?array $silent;
+    public ?Silent $silent;
 
     /**
      * You must use named parameters to construct this object. If an named argument is not
@@ -47,14 +47,14 @@ class NewResponse implements BaseModel
      * so you can pass any JSON serializable value, but the API expects the types to match
      * the PHPDoc types.
      *
-     * @param string                             $id        `required`
-     * @param string                             $method    `required`
-     * @param string                             $status    `required`
-     * @param null|list<string>                  $channels
-     * @param null|array{correlationID?: string} $metadata
-     * @param null|string                        $reason
-     * @param null|string                        $requestID
-     * @param null|array{requestURL?: string}    $silent
+     * @param string            $id        `required`
+     * @param string            $method    `required`
+     * @param string            $status    `required`
+     * @param null|list<string> $channels
+     * @param null|Metadata     $metadata
+     * @param null|string       $reason
+     * @param null|string       $requestID
+     * @param null|Silent       $silent
      */
     final public function __construct(
         $id,
