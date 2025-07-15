@@ -8,7 +8,7 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
-class PredictResponse implements BaseModel
+final class PredictResponse implements BaseModel
 {
     use Model;
 

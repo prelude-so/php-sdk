@@ -8,7 +8,7 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
-class Silent implements BaseModel
+final class Silent implements BaseModel
 {
     use Model;
 

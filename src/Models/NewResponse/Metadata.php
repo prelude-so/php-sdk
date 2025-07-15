@@ -9,7 +9,7 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 
-class Metadata implements BaseModel
+final class Metadata implements BaseModel
 {
     use Model;
 

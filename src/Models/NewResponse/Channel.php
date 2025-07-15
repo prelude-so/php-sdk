@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Models\NewResponse;
 
-class Channel
+final class Channel
 {
     final public const SMS = 'sms';
 

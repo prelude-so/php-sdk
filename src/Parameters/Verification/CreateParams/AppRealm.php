@@ -8,7 +8,7 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
-class AppRealm implements BaseModel
+final class AppRealm implements BaseModel
 {
     use Model;
 

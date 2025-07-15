@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Models\PredictResponse;
 
-class Prediction
+final class Prediction
 {
     final public const LEGITIMATE = 'legitimate';
 

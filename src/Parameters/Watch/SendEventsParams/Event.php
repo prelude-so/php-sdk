@@ -8,7 +8,7 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
-class Event implements BaseModel
+final class Event implements BaseModel
 {
     use Model;
 

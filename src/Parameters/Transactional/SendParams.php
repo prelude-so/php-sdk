@@ -8,9 +8,10 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\None;
 use Prelude\Core\Serde\MapOf;
 
-class SendParams implements BaseModel
+final class SendParams implements BaseModel
 {
     use Model;
     use Params;
@@ -39,6 +40,34 @@ class SendParams implements BaseModel
     /** @var null|array<string, string> $variables */
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $variables;
+
+    /**
+     * You must use named parameters to construct this object. If an named argument is not
+     * given, it will not be included during JSON serialization. The arguments are untyped
+     * so you can pass any JSON serializable value, but the API expects the types to match
+     * the PHPDoc types.
+     *
+     * @param string                     $templateID    `required`
+     * @param string                     $to            `required`
+     * @param null|string                $callbackURL
+     * @param null|string                $correlationID
+     * @param null|string                $expiresAt
+     * @param null|string                $from
+     * @param null|string                $locale
+     * @param null|array<string, string> $variables
+     */
+    final public function __construct(
+        $templateID,
+        $to,
+        $callbackURL = None::NOT_GIVEN,
+        $correlationID = None::NOT_GIVEN,
+        $expiresAt = None::NOT_GIVEN,
+        $from = None::NOT_GIVEN,
+        $locale = None::NOT_GIVEN,
+        $variables = None::NOT_GIVEN,
+    ) {
+        $this->constructFromArgs(func_get_args());
+    }
 }
 
 SendParams::_loadMetadata();

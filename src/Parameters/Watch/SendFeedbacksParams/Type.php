@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Parameters\Watch\SendFeedbacksParams;
 
-class Type
+final class Type
 {
     final public const PHONE_NUMBER = 'phone_number';
 

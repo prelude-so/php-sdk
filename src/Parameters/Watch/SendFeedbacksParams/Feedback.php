@@ -9,7 +9,7 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 
-class Feedback implements BaseModel
+final class Feedback implements BaseModel
 {
     use Model;
 

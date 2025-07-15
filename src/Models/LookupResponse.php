@@ -12,7 +12,7 @@ use Prelude\Core\Serde\ListOf;
 use Prelude\Models\LookupResponse\NetworkInfo;
 use Prelude\Models\LookupResponse\OriginalNetworkInfo;
 
-class LookupResponse implements BaseModel
+final class LookupResponse implements BaseModel
 {
     use Model;
 

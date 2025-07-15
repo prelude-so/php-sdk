@@ -11,9 +11,9 @@ use Prelude\Models\SendResponse;
 use Prelude\Parameters\Transactional\SendParams;
 use Prelude\RequestOptions;
 
-class Transactional implements TransactionalContract
+final class Transactional implements TransactionalContract
 {
-    public function __construct(protected Client $client) {}
+    public function __construct(private Client $client) {}
 
     /**
      * @param array{

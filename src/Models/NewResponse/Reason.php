@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Models\NewResponse;
 
-class Reason
+final class Reason
 {
     final public const EXPIRED_SIGNATURE = 'expired_signature';
 

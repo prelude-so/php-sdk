@@ -8,7 +8,7 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
-class SendEventsResponse implements BaseModel
+final class SendEventsResponse implements BaseModel
 {
     use Model;
 
