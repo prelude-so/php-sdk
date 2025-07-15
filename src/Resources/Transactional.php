@@ -16,7 +16,7 @@ final class Transactional implements TransactionalContract
     public function __construct(private Client $client) {}
 
     /**
-     * @param array{
+     * @param SendParams|array{
      *   templateID?: string,
      *   to?: string,
      *   callbackURL?: string,
@@ -28,7 +28,7 @@ final class Transactional implements TransactionalContract
      * } $params
      */
     public function send(
-        array $params,
+        array|SendParams $params,
         ?RequestOptions $requestOptions = null
     ): SendResponse {
         [$parsed, $options] = SendParams::parseRequest($params, $requestOptions);
