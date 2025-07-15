@@ -7,7 +7,6 @@ namespace Prelude\Models;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\None;
 use Prelude\Core\Serde\ListOf;
 use Prelude\Models\NewResponse\Metadata;
 use Prelude\Models\NewResponse\Silent;
@@ -42,31 +41,28 @@ final class NewResponse implements BaseModel
     public ?Silent $silent;
 
     /**
-     * You must use named parameters to construct this object. If an named argument is not
-     * given, it will not be included during JSON serialization. The arguments are untyped
-     * so you can pass any JSON serializable value, but the API expects the types to match
-     * the PHPDoc types.
+     * You must use named parameters to construct this object.
      *
-     * @param string            $id        `required`
-     * @param string            $method    `required`
-     * @param string            $status    `required`
      * @param null|list<string> $channels
-     * @param null|Metadata     $metadata
-     * @param null|string       $reason
-     * @param null|string       $requestID
-     * @param null|Silent       $silent
      */
     final public function __construct(
-        $id,
-        $method,
-        $status,
-        $channels = None::NOT_GIVEN,
-        $metadata = None::NOT_GIVEN,
-        $reason = None::NOT_GIVEN,
-        $requestID = None::NOT_GIVEN,
-        $silent = None::NOT_GIVEN,
+        string $id,
+        string $method,
+        string $status,
+        ?array $channels = null,
+        ?Metadata $metadata = null,
+        ?string $reason = null,
+        ?string $requestID = null,
+        ?Silent $silent = null,
     ) {
-        $this->constructFromArgs(func_get_args());
+        $this->id = $id;
+        $this->method = $method;
+        $this->status = $status;
+        $this->channels = $channels;
+        $this->metadata = $metadata;
+        $this->reason = $reason;
+        $this->requestID = $requestID;
+        $this->silent = $silent;
     }
 }
 

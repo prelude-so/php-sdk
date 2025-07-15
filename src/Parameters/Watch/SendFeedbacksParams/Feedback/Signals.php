@@ -7,7 +7,6 @@ namespace Prelude\Parameters\Watch\SendFeedbacksParams\Feedback;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\None;
 
 final class Signals implements BaseModel
 {
@@ -38,31 +37,26 @@ final class Signals implements BaseModel
     public ?string $userAgent;
 
     /**
-     * You must use named parameters to construct this object. If an named argument is not
-     * given, it will not be included during JSON serialization. The arguments are untyped
-     * so you can pass any JSON serializable value, but the API expects the types to match
-     * the PHPDoc types.
-     *
-     * @param null|string $appVersion
-     * @param null|string $deviceID
-     * @param null|string $deviceModel
-     * @param null|string $devicePlatform
-     * @param null|string $ip
-     * @param null|bool   $isTrustedUser
-     * @param null|string $osVersion
-     * @param null|string $userAgent
+     * You must use named parameters to construct this object.
      */
     final public function __construct(
-        $appVersion = None::NOT_GIVEN,
-        $deviceID = None::NOT_GIVEN,
-        $deviceModel = None::NOT_GIVEN,
-        $devicePlatform = None::NOT_GIVEN,
-        $ip = None::NOT_GIVEN,
-        $isTrustedUser = None::NOT_GIVEN,
-        $osVersion = None::NOT_GIVEN,
-        $userAgent = None::NOT_GIVEN,
+        ?string $appVersion = null,
+        ?string $deviceID = null,
+        ?string $deviceModel = null,
+        ?string $devicePlatform = null,
+        ?string $ip = null,
+        ?bool $isTrustedUser = null,
+        ?string $osVersion = null,
+        ?string $userAgent = null,
     ) {
-        $this->constructFromArgs(func_get_args());
+        $this->appVersion = $appVersion;
+        $this->deviceID = $deviceID;
+        $this->deviceModel = $deviceModel;
+        $this->devicePlatform = $devicePlatform;
+        $this->ip = $ip;
+        $this->isTrustedUser = $isTrustedUser;
+        $this->osVersion = $osVersion;
+        $this->userAgent = $userAgent;
     }
 }
 

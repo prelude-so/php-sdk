@@ -7,7 +7,6 @@ namespace Prelude\Models;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\None;
 use Prelude\Core\Serde\MapOf;
 
 final class SendResponse implements BaseModel
@@ -43,33 +42,30 @@ final class SendResponse implements BaseModel
     public ?string $from;
 
     /**
-     * You must use named parameters to construct this object. If an named argument is not
-     * given, it will not be included during JSON serialization. The arguments are untyped
-     * so you can pass any JSON serializable value, but the API expects the types to match
-     * the PHPDoc types.
+     * You must use named parameters to construct this object.
      *
-     * @param string                $id            `required`
-     * @param \DateTimeInterface    $createdAt     `required`
-     * @param \DateTimeInterface    $expiresAt     `required`
-     * @param string                $templateID    `required`
-     * @param string                $to            `required`
-     * @param array<string, string> $variables     `required`
-     * @param null|string           $callbackURL
-     * @param null|string           $correlationID
-     * @param null|string           $from
+     * @param array<string, string> $variables
      */
     final public function __construct(
-        $id,
-        $createdAt,
-        $expiresAt,
-        $templateID,
-        $to,
-        $variables,
-        $callbackURL = None::NOT_GIVEN,
-        $correlationID = None::NOT_GIVEN,
-        $from = None::NOT_GIVEN,
+        string $id,
+        \DateTimeInterface $createdAt,
+        \DateTimeInterface $expiresAt,
+        string $templateID,
+        string $to,
+        array $variables,
+        ?string $callbackURL = null,
+        ?string $correlationID = null,
+        ?string $from = null,
     ) {
-        $this->constructFromArgs(func_get_args());
+        $this->id = $id;
+        $this->createdAt = $createdAt;
+        $this->expiresAt = $expiresAt;
+        $this->templateID = $templateID;
+        $this->to = $to;
+        $this->variables = $variables;
+        $this->callbackURL = $callbackURL;
+        $this->correlationID = $correlationID;
+        $this->from = $from;
     }
 }
 

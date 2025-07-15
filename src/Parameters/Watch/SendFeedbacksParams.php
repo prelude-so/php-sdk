@@ -21,16 +21,13 @@ final class SendFeedbacksParams implements BaseModel
     public array $feedbacks;
 
     /**
-     * You must use named parameters to construct this object. If an named argument is not
-     * given, it will not be included during JSON serialization. The arguments are untyped
-     * so you can pass any JSON serializable value, but the API expects the types to match
-     * the PHPDoc types.
+     * You must use named parameters to construct this object.
      *
-     * @param list<Feedback> $feedbacks `required`
+     * @param list<Feedback> $feedbacks
      */
-    final public function __construct($feedbacks)
+    final public function __construct(array $feedbacks)
     {
-        $this->constructFromArgs(func_get_args());
+        $this->feedbacks = $feedbacks;
     }
 }
 

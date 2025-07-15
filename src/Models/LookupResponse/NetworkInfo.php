@@ -7,7 +7,6 @@ namespace Prelude\Models\LookupResponse;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\None;
 
 final class NetworkInfo implements BaseModel
 {
@@ -23,21 +22,16 @@ final class NetworkInfo implements BaseModel
     public ?string $mnc;
 
     /**
-     * You must use named parameters to construct this object. If an named argument is not
-     * given, it will not be included during JSON serialization. The arguments are untyped
-     * so you can pass any JSON serializable value, but the API expects the types to match
-     * the PHPDoc types.
-     *
-     * @param null|string $carrierName
-     * @param null|string $mcc
-     * @param null|string $mnc
+     * You must use named parameters to construct this object.
      */
     final public function __construct(
-        $carrierName = None::NOT_GIVEN,
-        $mcc = None::NOT_GIVEN,
-        $mnc = None::NOT_GIVEN,
+        ?string $carrierName = null,
+        ?string $mcc = null,
+        ?string $mnc = null
     ) {
-        $this->constructFromArgs(func_get_args());
+        $this->carrierName = $carrierName;
+        $this->mcc = $mcc;
+        $this->mnc = $mnc;
     }
 }
 

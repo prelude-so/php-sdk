@@ -22,18 +22,16 @@ final class PredictResponse implements BaseModel
     public string $requestID;
 
     /**
-     * You must use named parameters to construct this object. If an named argument is not
-     * given, it will not be included during JSON serialization. The arguments are untyped
-     * so you can pass any JSON serializable value, but the API expects the types to match
-     * the PHPDoc types.
-     *
-     * @param string $id         `required`
-     * @param string $prediction `required`
-     * @param string $requestID  `required`
+     * You must use named parameters to construct this object.
      */
-    final public function __construct($id, $prediction, $requestID)
-    {
-        $this->constructFromArgs(func_get_args());
+    final public function __construct(
+        string $id,
+        string $prediction,
+        string $requestID
+    ) {
+        $this->id = $id;
+        $this->prediction = $prediction;
+        $this->requestID = $requestID;
     }
 }
 
