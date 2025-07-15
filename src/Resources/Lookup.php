@@ -16,12 +16,12 @@ final class Lookup implements LookupContract
     public function __construct(private Client $client) {}
 
     /**
-     * @param array{phoneNumber?: string, type?: list<string>} $params
+     * @param array{type?: list<string>}|LookupParams $params
      */
     public function lookup(
         string $phoneNumber,
-        array $params,
-        ?RequestOptions $requestOptions = null
+        array|LookupParams $params,
+        ?RequestOptions $requestOptions = null,
     ): LookupResponse {
         [$parsed, $options] = LookupParams::parseRequest($params, $requestOptions);
         $resp = $this->client->request(

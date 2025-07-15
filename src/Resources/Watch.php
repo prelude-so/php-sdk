@@ -25,12 +25,12 @@ final class Watch implements WatchContract
     public function __construct(private Client $client) {}
 
     /**
-     * @param array{
+     * @param PredictParams|array{
      *   target?: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
      * } $params
      */
     public function predict(
-        array $params,
+        array|PredictParams $params,
         ?RequestOptions $requestOptions = null
     ): PredictResponse {
         [$parsed, $options] = PredictParams::parseRequest($params, $requestOptions);
@@ -46,10 +46,10 @@ final class Watch implements WatchContract
     }
 
     /**
-     * @param array{events?: list<Event>} $params
+     * @param array{events?: list<Event>}|SendEventsParams $params
      */
     public function sendEvents(
-        array $params,
+        array|SendEventsParams $params,
         ?RequestOptions $requestOptions = null
     ): SendEventsResponse {
         [$parsed, $options] = SendEventsParams::parseRequest(
@@ -68,10 +68,10 @@ final class Watch implements WatchContract
     }
 
     /**
-     * @param array{feedbacks?: list<Feedback>} $params
+     * @param array{feedbacks?: list<Feedback>}|SendFeedbacksParams $params
      */
     public function sendFeedbacks(
-        array $params,
+        array|SendFeedbacksParams $params,
         ?RequestOptions $requestOptions = null
     ): SendFeedbacksResponse {
         [$parsed, $options] = SendFeedbacksParams::parseRequest(

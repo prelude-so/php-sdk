@@ -23,7 +23,7 @@ final class Verification implements VerificationContract
     public function __construct(private Client $client) {}
 
     /**
-     * @param array{
+     * @param CreateParams|array{
      *   target?: Target,
      *   dispatchID?: string,
      *   metadata?: Metadata,
@@ -32,7 +32,7 @@ final class Verification implements VerificationContract
      * } $params
      */
     public function create(
-        array $params,
+        array|CreateParams $params,
         ?RequestOptions $requestOptions = null
     ): NewResponse {
         [$parsed, $options] = CreateParams::parseRequest($params, $requestOptions);
@@ -48,10 +48,10 @@ final class Verification implements VerificationContract
     }
 
     /**
-     * @param array{code?: string, target?: Target1} $params
+     * @param array{code?: string, target?: Target1}|CheckParams $params
      */
     public function check(
-        array $params,
+        array|CheckParams $params,
         ?RequestOptions $requestOptions = null
     ): CheckResponse {
         [$parsed, $options] = CheckParams::parseRequest($params, $requestOptions);
