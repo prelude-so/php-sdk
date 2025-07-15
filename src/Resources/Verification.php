@@ -10,7 +10,12 @@ use Prelude\Core\Serde;
 use Prelude\Models\CheckResponse;
 use Prelude\Models\NewResponse;
 use Prelude\Parameters\Verification\CheckParams;
+use Prelude\Parameters\Verification\CheckParams\Target as Target1;
 use Prelude\Parameters\Verification\CreateParams;
+use Prelude\Parameters\Verification\CreateParams\Metadata;
+use Prelude\Parameters\Verification\CreateParams\Options;
+use Prelude\Parameters\Verification\CreateParams\Signals;
+use Prelude\Parameters\Verification\CreateParams\Target;
 use Prelude\RequestOptions;
 
 class Verification implements VerificationContract
@@ -19,31 +24,11 @@ class Verification implements VerificationContract
 
     /**
      * @param array{
-     *   target?: array{type?: string, value?: string},
+     *   target?: Target,
      *   dispatchID?: string,
-     *   metadata?: array{correlationID?: string},
-     *   options?: array{
-     *     appRealm?: array{platform?: string, value?: string},
-     *     callbackURL?: string,
-     *     codeSize?: int,
-     *     customCode?: string,
-     *     locale?: string,
-     *     method?: string,
-     *     preferredChannel?: string,
-     *     senderID?: string,
-     *     templateID?: string,
-     *     variables?: array<string, string>,
-     *   },
-     *   signals?: array{
-     *     appVersion?: string,
-     *     deviceID?: string,
-     *     deviceModel?: string,
-     *     devicePlatform?: string,
-     *     ip?: string,
-     *     isTrustedUser?: bool,
-     *     osVersion?: string,
-     *     userAgent?: string,
-     *   },
+     *   metadata?: Metadata,
+     *   options?: Options,
+     *   signals?: Signals,
      * } $params
      */
     public function create(
@@ -63,9 +48,7 @@ class Verification implements VerificationContract
     }
 
     /**
-     * @param array{
-     *   code?: string, target?: array{type?: string, value?: string}
-     * } $params
+     * @param array{code?: string, target?: Target1} $params
      */
     public function check(
         array $params,

@@ -2,29 +2,31 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models;
+namespace Prelude\Parameters\Watch\SendFeedbacksParams;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
-use Prelude\Models\CheckResponse\Metadata;
 
-class CheckResponse implements BaseModel
+class Feedback implements BaseModel
 {
     use Model;
 
     #[Api]
-    public string $status;
+    public Target $target;
 
-    #[Api(optional: true)]
-    public ?string $id;
+    #[Api]
+    public string $type;
+
+    #[Api('dispatch_id', optional: true)]
+    public ?string $dispatchID;
 
     #[Api(optional: true)]
     public ?Metadata $metadata;
 
-    #[Api('request_id', optional: true)]
-    public ?string $requestID;
+    #[Api(optional: true)]
+    public ?Signals $signals;
 
     /**
      * You must use named parameters to construct this object. If an named argument is not
@@ -32,19 +34,21 @@ class CheckResponse implements BaseModel
      * so you can pass any JSON serializable value, but the API expects the types to match
      * the PHPDoc types.
      *
-     * @param string        $status    `required`
-     * @param null|string   $id
+     * @param Target        $target     `required`
+     * @param string        $type       `required`
+     * @param null|string   $dispatchID
      * @param null|Metadata $metadata
-     * @param null|string   $requestID
+     * @param null|Signals  $signals
      */
     final public function __construct(
-        $status,
-        $id = None::NOT_GIVEN,
+        $target,
+        $type,
+        $dispatchID = None::NOT_GIVEN,
         $metadata = None::NOT_GIVEN,
-        $requestID = None::NOT_GIVEN,
+        $signals = None::NOT_GIVEN,
     ) {
         $this->constructFromArgs(func_get_args());
     }
 }
 
-CheckResponse::_loadMetadata();
+Feedback::_loadMetadata();

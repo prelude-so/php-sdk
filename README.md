@@ -76,11 +76,12 @@ To use this package, install via Composer by adding the following to your applic
 <?php
 
 use Prelude\Client;
+use Prelude\Parameters\Verification\CreateParams\Target;
 
 $client = new Client(apiToken: getenv("API_TOKEN") ?: null);
 
 $verification = $client->verification->create(
-  ["target" => ["type" => "phone_number", "value" => "+30123456789"]]
+  ["target" => new Target(type: "phone_number", value: "+30123456789")]
 );
 
 var_dump($verification->id);
@@ -94,10 +95,11 @@ When the library is unable to connect to the API, or if the API returns a non-su
 <?php
 
 use Prelude\Errors\APIConnectionError;
+use Prelude\Parameters\Verification\CreateParams\Target;
 
 try {
     $Verification = $client->verification->create(
-      ["target" => ["type" => "phone_number", "value" => "+30123456789"]]
+      ["target" => new Target(type: "phone_number", value: "+30123456789")]
     );
 } catch (APIConnectionError $e) {
     echo "The server could not be reached", PHP_EOL;
@@ -138,13 +140,14 @@ You can use the `max_retries` option to configure or disable this:
 <?php
 
 use Prelude\Client;
+use Prelude\Parameters\Verification\CreateParams\Target;
 
 // Configure the default for all requests:
 $client = new Client(max_retries: 0);
 
 // Or, configure per-request:
 $client->verification->create(
-  ["target" => ["type" => "phone_number", "value" => "+30123456789"]],
+  ["target" => new Target(type: "phone_number", value: "+30123456789")],
   requestOptions: ["max_retries" => 5],
 );
 ```
@@ -157,13 +160,14 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 <?php
 
 use Prelude\Client;
+use Prelude\Parameters\Verification\CreateParams\Target;
 
 // Configure the default for all requests:
 $client = new Client(timeout: nil);
 
 // Or, configure per-request:
 $client->verification->create(
-  ["target" => ["type" => "phone_number", "value" => "+30123456789"]],
+  ["target" => new Target(type: "phone_number", value: "+30123456789")],
   requestOptions: ["timeout" => 5],
 );
 ```
@@ -185,8 +189,10 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```php
 <?php
 
+use Prelude\Parameters\Verification\CreateParams\Target;
+
 $verification = $client->verification->create(
-  ["target" => ["type" => "phone_number", "value" => "+30123456789"]],
+  ["target" => new Target(type: "phone_number", value: "+30123456789")],
   requestOptions: [
     "extraQueryParams" => ["my_query_parameter" => "value"],
     "extraBodyParams" => ["my_body_parameter" => "value"],

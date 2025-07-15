@@ -2,29 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models;
+namespace Prelude\Models\LookupResponse;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
-use Prelude\Models\CheckResponse\Metadata;
 
-class CheckResponse implements BaseModel
+class NetworkInfo implements BaseModel
 {
     use Model;
 
-    #[Api]
-    public string $status;
+    #[Api('carrier_name', optional: true)]
+    public ?string $carrierName;
 
     #[Api(optional: true)]
-    public ?string $id;
+    public ?string $mcc;
 
     #[Api(optional: true)]
-    public ?Metadata $metadata;
-
-    #[Api('request_id', optional: true)]
-    public ?string $requestID;
+    public ?string $mnc;
 
     /**
      * You must use named parameters to construct this object. If an named argument is not
@@ -32,19 +28,17 @@ class CheckResponse implements BaseModel
      * so you can pass any JSON serializable value, but the API expects the types to match
      * the PHPDoc types.
      *
-     * @param string        $status    `required`
-     * @param null|string   $id
-     * @param null|Metadata $metadata
-     * @param null|string   $requestID
+     * @param null|string $carrierName
+     * @param null|string $mcc
+     * @param null|string $mnc
      */
     final public function __construct(
-        $status,
-        $id = None::NOT_GIVEN,
-        $metadata = None::NOT_GIVEN,
-        $requestID = None::NOT_GIVEN,
+        $carrierName = None::NOT_GIVEN,
+        $mcc = None::NOT_GIVEN,
+        $mnc = None::NOT_GIVEN,
     ) {
         $this->constructFromArgs(func_get_args());
     }
 }
 
-CheckResponse::_loadMetadata();
+NetworkInfo::_loadMetadata();

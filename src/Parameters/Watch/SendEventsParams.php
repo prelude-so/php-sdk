@@ -9,20 +9,15 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Serde\ListOf;
+use Prelude\Parameters\Watch\SendEventsParams\Event;
 
 class SendEventsParams implements BaseModel
 {
     use Model;
     use Params;
 
-    /**
-     * @var list<array{
-     *   confidence?: string,
-     *   label?: string,
-     *   target?: array{type?: string, value?: string},
-     * }> $events
-     */
-    #[Api(type: new ListOf(new ListOf('mixed')))]
+    /** @var list<Event> $events */
+    #[Api(type: new ListOf(Event::class))]
     public array $events;
 }
 

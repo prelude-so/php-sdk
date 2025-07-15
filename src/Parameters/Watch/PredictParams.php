@@ -8,37 +8,26 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Parameters\Watch\PredictParams\Metadata;
+use Prelude\Parameters\Watch\PredictParams\Signals;
+use Prelude\Parameters\Watch\PredictParams\Target;
 
 class PredictParams implements BaseModel
 {
     use Model;
     use Params;
 
-    /** @var array{type?: string, value?: string} $target */
     #[Api]
-    public array $target;
+    public Target $target;
 
     #[Api('dispatch_id', optional: true)]
     public ?string $dispatchID;
 
-    /** @var null|array{correlationID?: string} $metadata */
     #[Api(optional: true)]
-    public ?array $metadata;
+    public ?Metadata $metadata;
 
-    /**
-     * @var array{
-     *   appVersion?: string,
-     *   deviceID?: string,
-     *   deviceModel?: string,
-     *   devicePlatform?: string,
-     *   ip?: string,
-     *   isTrustedUser?: bool,
-     *   osVersion?: string,
-     *   userAgent?: string,
-     * }|null $signals
-     */
     #[Api(optional: true)]
-    public ?array $signals;
+    public ?Signals $signals;
 }
 
 PredictParams::_loadMetadata();

@@ -8,6 +8,7 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Parameters\Verification\CheckParams\Target;
 
 class CheckParams implements BaseModel
 {
@@ -17,9 +18,8 @@ class CheckParams implements BaseModel
     #[Api]
     public string $code;
 
-    /** @var array{type?: string, value?: string} $target */
     #[Api]
-    public array $target;
+    public Target $target;
 }
 
 CheckParams::_loadMetadata();
