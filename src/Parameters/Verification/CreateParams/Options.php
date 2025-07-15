@@ -7,7 +7,6 @@ namespace Prelude\Parameters\Verification\CreateParams;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\None;
 use Prelude\Core\Serde\MapOf;
 use Prelude\Parameters\Verification\CreateParams\Options\AppRealm;
 
@@ -47,35 +46,32 @@ final class Options implements BaseModel
     public ?array $variables;
 
     /**
-     * You must use named parameters to construct this object. If an named argument is not
-     * given, it will not be included during JSON serialization. The arguments are untyped
-     * so you can pass any JSON serializable value, but the API expects the types to match
-     * the PHPDoc types.
+     * You must use named parameters to construct this object.
      *
-     * @param null|AppRealm              $appRealm
-     * @param null|string                $callbackURL
-     * @param null|int                   $codeSize
-     * @param null|string                $customCode
-     * @param null|string                $locale
-     * @param null|string                $method
-     * @param null|string                $preferredChannel
-     * @param null|string                $senderID
-     * @param null|string                $templateID
      * @param null|array<string, string> $variables
      */
     final public function __construct(
-        $appRealm = None::NOT_GIVEN,
-        $callbackURL = None::NOT_GIVEN,
-        $codeSize = None::NOT_GIVEN,
-        $customCode = None::NOT_GIVEN,
-        $locale = None::NOT_GIVEN,
-        $method = None::NOT_GIVEN,
-        $preferredChannel = None::NOT_GIVEN,
-        $senderID = None::NOT_GIVEN,
-        $templateID = None::NOT_GIVEN,
-        $variables = None::NOT_GIVEN,
+        ?AppRealm $appRealm = null,
+        ?string $callbackURL = null,
+        ?int $codeSize = null,
+        ?string $customCode = null,
+        ?string $locale = null,
+        ?string $method = null,
+        ?string $preferredChannel = null,
+        ?string $senderID = null,
+        ?string $templateID = null,
+        ?array $variables = null,
     ) {
-        $this->constructFromArgs(func_get_args());
+        $this->appRealm = $appRealm;
+        $this->callbackURL = $callbackURL;
+        $this->codeSize = $codeSize;
+        $this->customCode = $customCode;
+        $this->locale = $locale;
+        $this->method = $method;
+        $this->preferredChannel = $preferredChannel;
+        $this->senderID = $senderID;
+        $this->templateID = $templateID;
+        $this->variables = $variables;
     }
 }
 

@@ -7,7 +7,6 @@ namespace Prelude\Models;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\None;
 use Prelude\Core\Serde\ListOf;
 use Prelude\Models\LookupResponse\NetworkInfo;
 use Prelude\Models\LookupResponse\OriginalNetworkInfo;
@@ -39,29 +38,26 @@ final class LookupResponse implements BaseModel
     public ?string $phoneNumber;
 
     /**
-     * You must use named parameters to construct this object. If an named argument is not
-     * given, it will not be included during JSON serialization. The arguments are untyped
-     * so you can pass any JSON serializable value, but the API expects the types to match
-     * the PHPDoc types.
+     * You must use named parameters to construct this object.
      *
-     * @param null|string              $callerName
-     * @param null|string              $countryCode
-     * @param null|list<string>        $flags
-     * @param null|string              $lineType
-     * @param null|NetworkInfo         $networkInfo
-     * @param null|OriginalNetworkInfo $originalNetworkInfo
-     * @param null|string              $phoneNumber
+     * @param null|list<string> $flags
      */
     final public function __construct(
-        $callerName = None::NOT_GIVEN,
-        $countryCode = None::NOT_GIVEN,
-        $flags = None::NOT_GIVEN,
-        $lineType = None::NOT_GIVEN,
-        $networkInfo = None::NOT_GIVEN,
-        $originalNetworkInfo = None::NOT_GIVEN,
-        $phoneNumber = None::NOT_GIVEN,
+        ?string $callerName = null,
+        ?string $countryCode = null,
+        ?array $flags = null,
+        ?string $lineType = null,
+        ?NetworkInfo $networkInfo = null,
+        ?OriginalNetworkInfo $originalNetworkInfo = null,
+        ?string $phoneNumber = null,
     ) {
-        $this->constructFromArgs(func_get_args());
+        $this->callerName = $callerName;
+        $this->countryCode = $countryCode;
+        $this->flags = $flags;
+        $this->lineType = $lineType;
+        $this->networkInfo = $networkInfo;
+        $this->originalNetworkInfo = $originalNetworkInfo;
+        $this->phoneNumber = $phoneNumber;
     }
 }
 

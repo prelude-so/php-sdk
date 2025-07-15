@@ -8,7 +8,6 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\None;
 use Prelude\Parameters\Verification\CreateParams\Metadata;
 use Prelude\Parameters\Verification\CreateParams\Options;
 use Prelude\Parameters\Verification\CreateParams\Signals;
@@ -35,25 +34,20 @@ final class CreateParams implements BaseModel
     public ?Signals $signals;
 
     /**
-     * You must use named parameters to construct this object. If an named argument is not
-     * given, it will not be included during JSON serialization. The arguments are untyped
-     * so you can pass any JSON serializable value, but the API expects the types to match
-     * the PHPDoc types.
-     *
-     * @param Target        $target     `required`
-     * @param null|string   $dispatchID
-     * @param null|Metadata $metadata
-     * @param null|Options  $options
-     * @param null|Signals  $signals
+     * You must use named parameters to construct this object.
      */
     final public function __construct(
-        $target,
-        $dispatchID = None::NOT_GIVEN,
-        $metadata = None::NOT_GIVEN,
-        $options = None::NOT_GIVEN,
-        $signals = None::NOT_GIVEN,
+        Target $target,
+        ?string $dispatchID = null,
+        ?Metadata $metadata = null,
+        ?Options $options = null,
+        ?Signals $signals = null,
     ) {
-        $this->constructFromArgs(func_get_args());
+        $this->target = $target;
+        $this->dispatchID = $dispatchID;
+        $this->metadata = $metadata;
+        $this->options = $options;
+        $this->signals = $signals;
     }
 }
 

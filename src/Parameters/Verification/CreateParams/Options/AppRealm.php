@@ -19,17 +19,12 @@ final class AppRealm implements BaseModel
     public string $value;
 
     /**
-     * You must use named parameters to construct this object. If an named argument is not
-     * given, it will not be included during JSON serialization. The arguments are untyped
-     * so you can pass any JSON serializable value, but the API expects the types to match
-     * the PHPDoc types.
-     *
-     * @param string $platform `required`
-     * @param string $value    `required`
+     * You must use named parameters to construct this object.
      */
-    final public function __construct($platform, $value)
+    final public function __construct(string $platform, string $value)
     {
-        $this->constructFromArgs(func_get_args());
+        $this->platform = $platform;
+        $this->value = $value;
     }
 }
 
