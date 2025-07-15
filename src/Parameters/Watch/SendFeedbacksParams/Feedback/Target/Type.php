@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Verification\CreateParams;
+namespace Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Target;
 
 final class Type
 {

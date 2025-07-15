@@ -10,11 +10,11 @@ use Prelude\Parameters\Watch\PredictParams\Metadata;
 use Prelude\Parameters\Watch\PredictParams\Signals;
 use Prelude\Parameters\Watch\PredictParams\Target;
 use Prelude\Parameters\Watch\SendEventsParams\Event;
-use Prelude\Parameters\Watch\SendEventsParams\Target as Target1;
+use Prelude\Parameters\Watch\SendEventsParams\Event\Target as Target1;
 use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback;
-use Prelude\Parameters\Watch\SendFeedbacksParams\Metadata as Metadata1;
-use Prelude\Parameters\Watch\SendFeedbacksParams\Signals as Signals1;
-use Prelude\Parameters\Watch\SendFeedbacksParams\Target as Target2;
+use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Metadata as Metadata1;
+use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Signals as Signals1;
+use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Target as Target2;
 
 /**
  * @internal

@@ -2,19 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Watch\SendFeedbacksParams;
+namespace Prelude\Parameters\Watch\SendFeedbacksParams\Feedback;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\None;
 
-final class Metadata implements BaseModel
+final class Target implements BaseModel
 {
     use Model;
 
-    #[Api('correlation_id', optional: true)]
-    public ?string $correlationID;
+    #[Api]
+    public string $type;
+
+    #[Api]
+    public string $value;
 
     /**
      * You must use named parameters to construct this object. If an named argument is not
@@ -22,12 +24,13 @@ final class Metadata implements BaseModel
      * so you can pass any JSON serializable value, but the API expects the types to match
      * the PHPDoc types.
      *
-     * @param null|string $correlationID
+     * @param string $type  `required`
+     * @param string $value `required`
      */
-    final public function __construct($correlationID = None::NOT_GIVEN)
+    final public function __construct($type, $value)
     {
         $this->constructFromArgs(func_get_args());
     }
 }
 
-Metadata::_loadMetadata();
+Target::_loadMetadata();
