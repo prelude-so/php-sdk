@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Models\NewResponse;
 
-class Method
+final class Method
 {
     final public const MESSAGE = 'message';
 

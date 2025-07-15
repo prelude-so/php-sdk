@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Parameters\Watch\SendEventsParams;
 
-class Confidence
+final class Confidence
 {
     final public const MAXIMUM = 'maximum';
 

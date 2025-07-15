@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Models\CheckResponse;
 
-class Status
+final class Status
 {
     final public const SUCCESS = 'success';
 

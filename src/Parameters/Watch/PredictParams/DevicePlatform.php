@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Parameters\Watch\PredictParams;
 
-class DevicePlatform
+final class DevicePlatform
 {
     final public const ANDROID = 'android';
 

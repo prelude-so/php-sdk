@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Models\LookupResponse;
 
-class LineType
+final class LineType
 {
     final public const CALLING_CARDS = 'calling_cards';
 

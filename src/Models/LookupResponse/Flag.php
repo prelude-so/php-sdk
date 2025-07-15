@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Models\LookupResponse;
 
-class Flag
+final class Flag
 {
     final public const PORTED = 'ported';
 

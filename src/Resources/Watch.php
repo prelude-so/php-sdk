@@ -20,9 +20,9 @@ use Prelude\Parameters\Watch\SendFeedbacksParams;
 use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback;
 use Prelude\RequestOptions;
 
-class Watch implements WatchContract
+final class Watch implements WatchContract
 {
-    public function __construct(protected Client $client) {}
+    public function __construct(private Client $client) {}
 
     /**
      * @param array{

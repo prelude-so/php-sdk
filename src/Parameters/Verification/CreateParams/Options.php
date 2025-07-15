@@ -10,7 +10,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 use Prelude\Core\Serde\MapOf;
 
-class Options implements BaseModel
+final class Options implements BaseModel
 {
     use Model;
 
@@ -30,7 +30,7 @@ class Options implements BaseModel
     public ?string $locale;
 
     #[Api(optional: true)]
-    public ?string $method;
+    public ?string $method = 'auto';
 
     #[Api('preferred_channel', optional: true)]
     public ?string $preferredChannel;

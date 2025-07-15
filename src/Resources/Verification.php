@@ -18,9 +18,9 @@ use Prelude\Parameters\Verification\CreateParams\Signals;
 use Prelude\Parameters\Verification\CreateParams\Target;
 use Prelude\RequestOptions;
 
-class Verification implements VerificationContract
+final class Verification implements VerificationContract
 {
-    public function __construct(protected Client $client) {}
+    public function __construct(private Client $client) {}
 
     /**
      * @param array{

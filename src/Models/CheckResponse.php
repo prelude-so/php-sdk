@@ -10,7 +10,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 use Prelude\Models\CheckResponse\Metadata;
 
-class CheckResponse implements BaseModel
+final class CheckResponse implements BaseModel
 {
     use Model;
 

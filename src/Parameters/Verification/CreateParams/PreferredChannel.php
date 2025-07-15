@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Parameters\Verification\CreateParams;
 
-class PreferredChannel
+final class PreferredChannel
 {
     final public const SMS = 'sms';
 

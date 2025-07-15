@@ -9,7 +9,7 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 
-class OriginalNetworkInfo implements BaseModel
+final class OriginalNetworkInfo implements BaseModel
 {
     use Model;
 

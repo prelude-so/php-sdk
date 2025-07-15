@@ -11,9 +11,9 @@ use Prelude\Models\LookupResponse;
 use Prelude\Parameters\Lookup\LookupParams;
 use Prelude\RequestOptions;
 
-class Lookup implements LookupContract
+final class Lookup implements LookupContract
 {
-    public function __construct(protected Client $client) {}
+    public function __construct(private Client $client) {}
 
     /**
      * @param array{phoneNumber?: string, type?: list<string>} $params

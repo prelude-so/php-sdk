@@ -12,7 +12,7 @@ use Prelude\Core\Serde\ListOf;
 use Prelude\Models\NewResponse\Metadata;
 use Prelude\Models\NewResponse\Silent;
 
-class NewResponse implements BaseModel
+final class NewResponse implements BaseModel
 {
     use Model;
 

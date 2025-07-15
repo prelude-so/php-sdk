@@ -10,7 +10,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
 use Prelude\Core\Serde\MapOf;
 
-class SendResponse implements BaseModel
+final class SendResponse implements BaseModel
 {
     use Model;
 
