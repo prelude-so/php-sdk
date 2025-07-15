@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Watch\PredictParams;
+namespace Prelude\Parameters\Watch\PredictParams\Signals;
 
 final class DevicePlatform
 {

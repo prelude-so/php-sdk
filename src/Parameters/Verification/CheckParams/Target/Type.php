@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Watch\SendEventsParams;
+namespace Prelude\Parameters\Verification\CheckParams\Target;
 
 final class Type
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Watch\PredictParams;
+namespace Prelude\Parameters\Watch\SendEventsParams\Event\Target;
 
 final class Type
 {

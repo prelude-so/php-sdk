@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Verification\CheckParams;
+namespace Prelude\Parameters\Verification\CreateParams\Target;
 
 final class Type
 {

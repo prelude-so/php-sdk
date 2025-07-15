@@ -8,6 +8,9 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\None;
+use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Metadata;
+use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Signals;
+use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Target;
 
 final class Feedback implements BaseModel
 {

@@ -7,6 +7,7 @@ namespace Prelude\Parameters\Watch\SendEventsParams;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Parameters\Watch\SendEventsParams\Event\Target;
 
 final class Event implements BaseModel
 {

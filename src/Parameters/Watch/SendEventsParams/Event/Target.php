@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Parameters\Watch\SendFeedbacksParams;
+namespace Prelude\Parameters\Watch\SendEventsParams\Event;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
