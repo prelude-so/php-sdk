@@ -13,5 +13,3 @@ final class Type implements StaticConverter
 
     final public const CNAM = 'cnam';
 }
-
-Type::__introspect();

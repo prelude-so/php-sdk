@@ -37,7 +37,7 @@ final class Event implements BaseModel
         $this->confidence = $confidence;
         $this->label = $label;
         $this->target = $target;
+
+        self::_introspect();
     }
 }
-
-Event::__introspect();

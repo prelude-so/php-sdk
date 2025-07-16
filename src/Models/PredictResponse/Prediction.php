@@ -15,5 +15,3 @@ final class Prediction implements StaticConverter
 
     final public const SUSPICIOUS = 'suspicious';
 }
-
-Prediction::__introspect();

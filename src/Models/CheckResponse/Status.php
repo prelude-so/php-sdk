@@ -17,5 +17,3 @@ final class Status implements StaticConverter
 
     final public const EXPIRED_OR_NOT_FOUND = 'expired_or_not_found';
 }
-
-Status::__introspect();

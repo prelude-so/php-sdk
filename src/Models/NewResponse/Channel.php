@@ -27,5 +27,3 @@ final class Channel implements StaticConverter
 
     final public const VOICE = 'voice';
 }
-
-Channel::__introspect();

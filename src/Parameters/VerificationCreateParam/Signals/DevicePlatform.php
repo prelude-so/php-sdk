@@ -21,5 +21,3 @@ final class DevicePlatform implements StaticConverter
 
     final public const WEB = 'web';
 }
-
-DevicePlatform::__introspect();

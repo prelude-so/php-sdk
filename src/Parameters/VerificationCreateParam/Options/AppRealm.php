@@ -29,7 +29,7 @@ final class AppRealm implements BaseModel
     {
         $this->platform = $platform;
         $this->value = $value;
+
+        self::_introspect();
     }
 }
-
-AppRealm::__introspect();

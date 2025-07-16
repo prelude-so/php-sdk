@@ -15,5 +15,3 @@ final class Type implements StaticConverter
 
     final public const VERIFICATION_COMPLETED = 'verification.completed';
 }
-
-Type::__introspect();

@@ -55,14 +55,15 @@ final class LookupResponse implements BaseModel
         ?OriginalNetworkInfo $originalNetworkInfo = null,
         ?string $phoneNumber = null,
     ) {
-        $this->callerName = $callerName;
-        $this->countryCode = $countryCode;
-        $this->flags = $flags;
-        $this->lineType = $lineType;
-        $this->networkInfo = $networkInfo;
-        $this->originalNetworkInfo = $originalNetworkInfo;
-        $this->phoneNumber = $phoneNumber;
+        self::_introspect();
+        $this->unsetOptionalProperties();
+
+        null != $callerName && $this->callerName = $callerName;
+        null != $countryCode && $this->countryCode = $countryCode;
+        null != $flags && $this->flags = $flags;
+        null != $lineType && $this->lineType = $lineType;
+        null != $networkInfo && $this->networkInfo = $networkInfo;
+        null != $originalNetworkInfo && $this->originalNetworkInfo = $originalNetworkInfo;
+        null != $phoneNumber && $this->phoneNumber = $phoneNumber;
     }
 }
-
-LookupResponse::__introspect();

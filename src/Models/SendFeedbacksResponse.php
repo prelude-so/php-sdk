@@ -29,7 +29,7 @@ final class SendFeedbacksResponse implements BaseModel
     {
         $this->requestID = $requestID;
         $this->status = $status;
+
+        self::_introspect();
     }
 }
-
-SendFeedbacksResponse::__introspect();

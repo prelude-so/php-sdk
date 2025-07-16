@@ -15,5 +15,3 @@ final class Method implements StaticConverter
 
     final public const VOICE = 'voice';
 }
-
-Method::__introspect();

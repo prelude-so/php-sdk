@@ -17,5 +17,3 @@ final class Status implements StaticConverter
 
     final public const BLOCKED = 'blocked';
 }
-
-Status::__introspect();

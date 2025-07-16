@@ -13,5 +13,3 @@ final class Platform implements StaticConverter
 
     final public const ANDROID = 'android';
 }
-
-Platform::__introspect();

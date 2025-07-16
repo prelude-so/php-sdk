@@ -25,5 +25,3 @@ final class Reason implements StaticConverter
 
     final public const SUSPICIOUS = 'suspicious';
 }
-
-Reason::__introspect();

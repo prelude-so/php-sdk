@@ -44,11 +44,13 @@ final class VerificationCreateParam implements BaseModel
         ?Signals $signals = null,
     ) {
         $this->target = $target;
-        $this->dispatchID = $dispatchID;
-        $this->metadata = $metadata;
-        $this->options = $options;
-        $this->signals = $signals;
+
+        self::_introspect();
+        $this->unsetOptionalProperties();
+
+        null != $dispatchID && $this->dispatchID = $dispatchID;
+        null != $metadata && $this->metadata = $metadata;
+        null != $options && $this->options = $options;
+        null != $signals && $this->signals = $signals;
     }
 }
-
-VerificationCreateParam::__introspect();

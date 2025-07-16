@@ -13,5 +13,3 @@ final class Status implements StaticConverter
 
     final public const SUCCESS = 'success';
 }
-
-Status::__introspect();

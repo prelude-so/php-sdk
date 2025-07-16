@@ -39,10 +39,12 @@ final class WatchPredictParam implements BaseModel
         ?Signals $signals = null,
     ) {
         $this->target = $target;
-        $this->dispatchID = $dispatchID;
-        $this->metadata = $metadata;
-        $this->signals = $signals;
+
+        self::_introspect();
+        $this->unsetOptionalProperties();
+
+        null != $dispatchID && $this->dispatchID = $dispatchID;
+        null != $metadata && $this->metadata = $metadata;
+        null != $signals && $this->signals = $signals;
     }
 }
-
-WatchPredictParam::__introspect();

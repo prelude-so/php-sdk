@@ -29,10 +29,11 @@ final class NetworkInfo implements BaseModel
         ?string $mcc = null,
         ?string $mnc = null
     ) {
-        $this->carrierName = $carrierName;
-        $this->mcc = $mcc;
-        $this->mnc = $mnc;
+        self::_introspect();
+        $this->unsetOptionalProperties();
+
+        null != $carrierName && $this->carrierName = $carrierName;
+        null != $mcc && $this->mcc = $mcc;
+        null != $mnc && $this->mnc = $mnc;
     }
 }
-
-NetworkInfo::__introspect();

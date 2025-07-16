@@ -29,7 +29,7 @@ final class SendEventsResponse implements BaseModel
     {
         $this->requestID = $requestID;
         $this->status = $status;
+
+        self::_introspect();
     }
 }
-
-SendEventsResponse::__introspect();

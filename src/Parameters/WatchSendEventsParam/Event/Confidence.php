@@ -21,5 +21,3 @@ final class Confidence implements StaticConverter
 
     final public const MINIMUM = 'minimum';
 }
-
-Confidence::__introspect();
