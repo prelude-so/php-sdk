@@ -7,6 +7,7 @@ namespace Prelude\Models;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Models\PredictResponse\Prediction;
 
 final class PredictResponse implements BaseModel
 {
@@ -15,6 +16,7 @@ final class PredictResponse implements BaseModel
     #[Api]
     public string $id;
 
+    /** @var Prediction::* $prediction */
     #[Api]
     public string $prediction;
 
@@ -23,6 +25,8 @@ final class PredictResponse implements BaseModel
 
     /**
      * You must use named parameters to construct this object.
+     *
+     * @param Prediction::* $prediction
      */
     final public function __construct(
         string $id,

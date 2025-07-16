@@ -8,8 +8,12 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Serde\ListOf;
+use Prelude\Models\NewResponse\Channel;
 use Prelude\Models\NewResponse\Metadata;
+use Prelude\Models\NewResponse\Method;
+use Prelude\Models\NewResponse\Reason;
 use Prelude\Models\NewResponse\Silent;
+use Prelude\Models\NewResponse\Status;
 
 final class NewResponse implements BaseModel
 {
@@ -18,19 +22,22 @@ final class NewResponse implements BaseModel
     #[Api]
     public string $id;
 
+    /** @var Method::* $method */
     #[Api]
     public string $method;
 
+    /** @var Status::* $status */
     #[Api]
     public string $status;
 
-    /** @var null|list<string> $channels */
-    #[Api(type: new ListOf('string'), optional: true)]
+    /** @var null|list<Channel::*> $channels */
+    #[Api(type: new ListOf(Channel::class), optional: true)]
     public ?array $channels;
 
     #[Api(optional: true)]
     public ?Metadata $metadata;
 
+    /** @var null|Reason::* $reason */
     #[Api(optional: true)]
     public ?string $reason;
 
@@ -43,7 +50,10 @@ final class NewResponse implements BaseModel
     /**
      * You must use named parameters to construct this object.
      *
-     * @param null|list<string> $channels
+     * @param Method::*             $method
+     * @param Status::*             $status
+     * @param null|list<Channel::*> $channels
+     * @param null|Reason::*        $reason
      */
     final public function __construct(
         string $id,

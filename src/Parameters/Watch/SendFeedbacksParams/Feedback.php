@@ -10,6 +10,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Metadata;
 use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Signals;
 use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Target;
+use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Type;
 
 final class Feedback implements BaseModel
 {
@@ -18,6 +19,7 @@ final class Feedback implements BaseModel
     #[Api]
     public Target $target;
 
+    /** @var Type::* $type */
     #[Api]
     public string $type;
 
@@ -32,6 +34,8 @@ final class Feedback implements BaseModel
 
     /**
      * You must use named parameters to construct this object.
+     *
+     * @param Type::* $type
      */
     final public function __construct(
         Target $target,

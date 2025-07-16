@@ -9,6 +9,7 @@ use Prelude\Contracts\LookupContract;
 use Prelude\Core\Serde;
 use Prelude\Models\LookupResponse;
 use Prelude\Parameters\Lookup\LookupParams;
+use Prelude\Parameters\Lookup\LookupParams\Type;
 use Prelude\RequestOptions;
 
 final class Lookup implements LookupContract
@@ -16,7 +17,7 @@ final class Lookup implements LookupContract
     public function __construct(private Client $client) {}
 
     /**
-     * @param array{type?: list<string>}|LookupParams $params
+     * @param array{type?: list<Type::*>}|LookupParams $params
      */
     public function lookup(
         string $phoneNumber,

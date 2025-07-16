@@ -7,6 +7,7 @@ namespace Prelude\Parameters\Watch\SendFeedbacksParams\Feedback;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Signals\DevicePlatform;
 
 final class Signals implements BaseModel
 {
@@ -21,6 +22,7 @@ final class Signals implements BaseModel
     #[Api('device_model', optional: true)]
     public ?string $deviceModel;
 
+    /** @var null|DevicePlatform::* $devicePlatform */
     #[Api('device_platform', optional: true)]
     public ?string $devicePlatform;
 
@@ -38,6 +40,8 @@ final class Signals implements BaseModel
 
     /**
      * You must use named parameters to construct this object.
+     *
+     * @param null|DevicePlatform::* $devicePlatform
      */
     final public function __construct(
         ?string $appVersion = null,
