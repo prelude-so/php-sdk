@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Prelude\Contracts;
 
 use Prelude\Models\SendResponse;
-use Prelude\Parameters\Transactional\SendParams;
+use Prelude\Parameters\TransactionalSendParam;
 use Prelude\RequestOptions;
 
 interface TransactionalContract
 {
     /**
-     * @param SendParams|array{
+     * @param TransactionalSendParam|array{
      *   templateID?: string,
      *   to?: string,
      *   callbackURL?: string,
@@ -23,7 +23,7 @@ interface TransactionalContract
      * } $params
      */
     public function send(
-        array|SendParams $params,
-        ?RequestOptions $requestOptions = null
+        array|TransactionalSendParam $params,
+        ?RequestOptions $requestOptions = null,
     ): SendResponse;
 }

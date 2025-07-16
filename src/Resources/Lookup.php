@@ -8,8 +8,8 @@ use Prelude\Client;
 use Prelude\Contracts\LookupContract;
 use Prelude\Core\Serde;
 use Prelude\Models\LookupResponse;
-use Prelude\Parameters\Lookup\LookupParams;
-use Prelude\Parameters\Lookup\LookupParams\Type;
+use Prelude\Parameters\LookupLookupParam;
+use Prelude\Parameters\LookupLookupParam\Type;
 use Prelude\RequestOptions;
 
 final class Lookup implements LookupContract
@@ -17,14 +17,17 @@ final class Lookup implements LookupContract
     public function __construct(private Client $client) {}
 
     /**
-     * @param array{type?: list<Type::*>}|LookupParams $params
+     * @param array{type?: list<Type::*>}|LookupLookupParam $params
      */
     public function lookup(
         string $phoneNumber,
-        array|LookupParams $params,
+        array|LookupLookupParam $params,
         ?RequestOptions $requestOptions = null,
     ): LookupResponse {
-        [$parsed, $options] = LookupParams::parseRequest($params, $requestOptions);
+        [$parsed, $options] = LookupLookupParam::parseRequest(
+            $params,
+            $requestOptions
+        );
         $resp = $this->client->request(
             method: 'get',
             path: ['v2/lookup/%1$s', $phoneNumber],

@@ -9,13 +9,13 @@ use Prelude\Contracts\VerificationContract;
 use Prelude\Core\Serde;
 use Prelude\Models\CheckResponse;
 use Prelude\Models\NewResponse;
-use Prelude\Parameters\Verification\CheckParams;
-use Prelude\Parameters\Verification\CheckParams\Target as Target1;
-use Prelude\Parameters\Verification\CreateParams;
-use Prelude\Parameters\Verification\CreateParams\Metadata;
-use Prelude\Parameters\Verification\CreateParams\Options;
-use Prelude\Parameters\Verification\CreateParams\Signals;
-use Prelude\Parameters\Verification\CreateParams\Target;
+use Prelude\Parameters\VerificationCheckParam;
+use Prelude\Parameters\VerificationCheckParam\Target as Target1;
+use Prelude\Parameters\VerificationCreateParam;
+use Prelude\Parameters\VerificationCreateParam\Metadata;
+use Prelude\Parameters\VerificationCreateParam\Options;
+use Prelude\Parameters\VerificationCreateParam\Signals;
+use Prelude\Parameters\VerificationCreateParam\Target;
 use Prelude\RequestOptions;
 
 final class Verification implements VerificationContract
@@ -23,7 +23,7 @@ final class Verification implements VerificationContract
     public function __construct(private Client $client) {}
 
     /**
-     * @param CreateParams|array{
+     * @param VerificationCreateParam|array{
      *   target?: Target,
      *   dispatchID?: string,
      *   metadata?: Metadata,
@@ -32,10 +32,13 @@ final class Verification implements VerificationContract
      * } $params
      */
     public function create(
-        array|CreateParams $params,
-        ?RequestOptions $requestOptions = null
+        array|VerificationCreateParam $params,
+        ?RequestOptions $requestOptions = null,
     ): NewResponse {
-        [$parsed, $options] = CreateParams::parseRequest($params, $requestOptions);
+        [$parsed, $options] = VerificationCreateParam::parseRequest(
+            $params,
+            $requestOptions
+        );
         $resp = $this->client->request(
             method: 'post',
             path: 'v2/verification',
@@ -48,13 +51,16 @@ final class Verification implements VerificationContract
     }
 
     /**
-     * @param array{code?: string, target?: Target1}|CheckParams $params
+     * @param array{code?: string, target?: Target1}|VerificationCheckParam $params
      */
     public function check(
-        array|CheckParams $params,
+        array|VerificationCheckParam $params,
         ?RequestOptions $requestOptions = null
     ): CheckResponse {
-        [$parsed, $options] = CheckParams::parseRequest($params, $requestOptions);
+        [$parsed, $options] = VerificationCheckParam::parseRequest(
+            $params,
+            $requestOptions
+        );
         $resp = $this->client->request(
             method: 'post',
             path: 'v2/verification/check',
