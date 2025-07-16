@@ -45,4 +45,4 @@ final class CheckResponse implements BaseModel
     }
 }
 
-CheckResponse::_loadMetadata();
+CheckResponse::__introspect();

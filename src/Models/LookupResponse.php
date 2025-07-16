@@ -65,4 +65,4 @@ final class LookupResponse implements BaseModel
     }
 }
 
-LookupResponse::_loadMetadata();
+LookupResponse::__introspect();

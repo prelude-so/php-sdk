@@ -69,4 +69,4 @@ final class SendResponse implements BaseModel
     }
 }
 
-SendResponse::_loadMetadata();
+SendResponse::__introspect();

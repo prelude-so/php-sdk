@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Prelude\Models\NewResponse;
 
-final class Reason
+use Prelude\Core\Concerns\Enum;
+use Prelude\Core\Contracts\StaticConverter;
+
+final class Reason implements StaticConverter
 {
+    use Enum;
+
     final public const EXPIRED_SIGNATURE = 'expired_signature';
 
     final public const IN_BLOCK_LIST = 'in_block_list';
@@ -20,3 +25,5 @@ final class Reason
 
     final public const SUSPICIOUS = 'suspicious';
 }
+
+Reason::__introspect();

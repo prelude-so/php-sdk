@@ -4,11 +4,18 @@ declare(strict_types=1);
 
 namespace Prelude\Models\NewResponse;
 
-final class Status
+use Prelude\Core\Concerns\Enum;
+use Prelude\Core\Contracts\StaticConverter;
+
+final class Status implements StaticConverter
 {
+    use Enum;
+
     final public const SUCCESS = 'success';
 
     final public const RETRY = 'retry';
 
     final public const BLOCKED = 'blocked';
 }
+
+Status::__introspect();

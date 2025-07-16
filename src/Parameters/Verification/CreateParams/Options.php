@@ -81,4 +81,4 @@ final class Options implements BaseModel
     }
 }
 
-Options::_loadMetadata();
+Options::__introspect();

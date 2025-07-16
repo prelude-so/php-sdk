@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Prelude\Parameters\Watch\SendEventsParams\Event;
 
-final class Confidence
+use Prelude\Core\Concerns\Enum;
+use Prelude\Core\Contracts\StaticConverter;
+
+final class Confidence implements StaticConverter
 {
+    use Enum;
+
     final public const MAXIMUM = 'maximum';
 
     final public const HIGH = 'high';
@@ -16,3 +21,5 @@ final class Confidence
 
     final public const MINIMUM = 'minimum';
 }
+
+Confidence::__introspect();

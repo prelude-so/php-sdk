@@ -35,4 +35,4 @@ final class OriginalNetworkInfo implements BaseModel
     }
 }
 
-OriginalNetworkInfo::_loadMetadata();
+OriginalNetworkInfo::__introspect();

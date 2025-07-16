@@ -32,4 +32,4 @@ final class AppRealm implements BaseModel
     }
 }
 
-AppRealm::_loadMetadata();
+AppRealm::__introspect();

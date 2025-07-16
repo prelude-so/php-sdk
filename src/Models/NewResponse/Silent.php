@@ -24,4 +24,4 @@ final class Silent implements BaseModel
     }
 }
 
-Silent::_loadMetadata();
+Silent::__introspect();

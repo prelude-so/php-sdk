@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Prelude\Parameters\Verification\CreateParams\Options;
 
-final class PreferredChannel
+use Prelude\Core\Concerns\Enum;
+use Prelude\Core\Contracts\StaticConverter;
+
+final class PreferredChannel implements StaticConverter
 {
+    use Enum;
+
     final public const SMS = 'sms';
 
     final public const RCS = 'rcs';
@@ -18,3 +23,5 @@ final class PreferredChannel
 
     final public const TELEGRAM = 'telegram';
 }
+
+PreferredChannel::__introspect();
