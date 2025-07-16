@@ -8,7 +8,7 @@ use Prelude\Client;
 use Prelude\Contracts\TransactionalContract;
 use Prelude\Core\Serde;
 use Prelude\Models\SendResponse;
-use Prelude\Parameters\Transactional\SendParams;
+use Prelude\Parameters\TransactionalSendParam;
 use Prelude\RequestOptions;
 
 final class Transactional implements TransactionalContract
@@ -16,7 +16,7 @@ final class Transactional implements TransactionalContract
     public function __construct(private Client $client) {}
 
     /**
-     * @param SendParams|array{
+     * @param TransactionalSendParam|array{
      *   templateID?: string,
      *   to?: string,
      *   callbackURL?: string,
@@ -28,10 +28,13 @@ final class Transactional implements TransactionalContract
      * } $params
      */
     public function send(
-        array|SendParams $params,
+        array|TransactionalSendParam $params,
         ?RequestOptions $requestOptions = null
     ): SendResponse {
-        [$parsed, $options] = SendParams::parseRequest($params, $requestOptions);
+        [$parsed, $options] = TransactionalSendParam::parseRequest(
+            $params,
+            $requestOptions
+        );
         $resp = $this->client->request(
             method: 'post',
             path: 'v2/transactional',

@@ -10,14 +10,14 @@ use Prelude\Core\Serde;
 use Prelude\Models\PredictResponse;
 use Prelude\Models\SendEventsResponse;
 use Prelude\Models\SendFeedbacksResponse;
-use Prelude\Parameters\Watch\PredictParams;
-use Prelude\Parameters\Watch\PredictParams\Metadata;
-use Prelude\Parameters\Watch\PredictParams\Signals;
-use Prelude\Parameters\Watch\PredictParams\Target;
-use Prelude\Parameters\Watch\SendEventsParams;
-use Prelude\Parameters\Watch\SendEventsParams\Event;
-use Prelude\Parameters\Watch\SendFeedbacksParams;
-use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback;
+use Prelude\Parameters\WatchPredictParam;
+use Prelude\Parameters\WatchPredictParam\Metadata;
+use Prelude\Parameters\WatchPredictParam\Signals;
+use Prelude\Parameters\WatchPredictParam\Target;
+use Prelude\Parameters\WatchSendEventsParam;
+use Prelude\Parameters\WatchSendEventsParam\Event;
+use Prelude\Parameters\WatchSendFeedbacksParam;
+use Prelude\Parameters\WatchSendFeedbacksParam\Feedback;
 use Prelude\RequestOptions;
 
 final class Watch implements WatchContract
@@ -25,15 +25,18 @@ final class Watch implements WatchContract
     public function __construct(private Client $client) {}
 
     /**
-     * @param PredictParams|array{
+     * @param WatchPredictParam|array{
      *   target?: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
      * } $params
      */
     public function predict(
-        array|PredictParams $params,
+        array|WatchPredictParam $params,
         ?RequestOptions $requestOptions = null
     ): PredictResponse {
-        [$parsed, $options] = PredictParams::parseRequest($params, $requestOptions);
+        [$parsed, $options] = WatchPredictParam::parseRequest(
+            $params,
+            $requestOptions
+        );
         $resp = $this->client->request(
             method: 'post',
             path: 'v2/watch/predict',
@@ -46,13 +49,13 @@ final class Watch implements WatchContract
     }
 
     /**
-     * @param array{events?: list<Event>}|SendEventsParams $params
+     * @param array{events?: list<Event>}|WatchSendEventsParam $params
      */
     public function sendEvents(
-        array|SendEventsParams $params,
+        array|WatchSendEventsParam $params,
         ?RequestOptions $requestOptions = null
     ): SendEventsResponse {
-        [$parsed, $options] = SendEventsParams::parseRequest(
+        [$parsed, $options] = WatchSendEventsParam::parseRequest(
             $params,
             $requestOptions
         );
@@ -68,13 +71,13 @@ final class Watch implements WatchContract
     }
 
     /**
-     * @param array{feedbacks?: list<Feedback>}|SendFeedbacksParams $params
+     * @param array{feedbacks?: list<Feedback>}|WatchSendFeedbacksParam $params
      */
     public function sendFeedbacks(
-        array|SendFeedbacksParams $params,
-        ?RequestOptions $requestOptions = null
+        array|WatchSendFeedbacksParam $params,
+        ?RequestOptions $requestOptions = null,
     ): SendFeedbacksResponse {
-        [$parsed, $options] = SendFeedbacksParams::parseRequest(
+        [$parsed, $options] = WatchSendFeedbacksParam::parseRequest(
             $params,
             $requestOptions
         );

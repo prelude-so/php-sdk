@@ -6,15 +6,15 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Parameters\Watch\PredictParams\Metadata;
-use Prelude\Parameters\Watch\PredictParams\Signals;
-use Prelude\Parameters\Watch\PredictParams\Target;
-use Prelude\Parameters\Watch\SendEventsParams\Event;
-use Prelude\Parameters\Watch\SendEventsParams\Event\Target as Target1;
-use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback;
-use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Metadata as Metadata1;
-use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Signals as Signals1;
-use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Target as Target2;
+use Prelude\Parameters\WatchPredictParam\Metadata;
+use Prelude\Parameters\WatchPredictParam\Signals;
+use Prelude\Parameters\WatchPredictParam\Target;
+use Prelude\Parameters\WatchSendEventsParam\Event;
+use Prelude\Parameters\WatchSendEventsParam\Event\Target as Target1;
+use Prelude\Parameters\WatchSendFeedbacksParam\Feedback;
+use Prelude\Parameters\WatchSendFeedbacksParam\Feedback\Metadata as Metadata1;
+use Prelude\Parameters\WatchSendFeedbacksParam\Feedback\Signals as Signals1;
+use Prelude\Parameters\WatchSendFeedbacksParam\Feedback\Target as Target2;
 
 /**
  * @internal

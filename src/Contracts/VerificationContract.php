@@ -6,19 +6,19 @@ namespace Prelude\Contracts;
 
 use Prelude\Models\CheckResponse;
 use Prelude\Models\NewResponse;
-use Prelude\Parameters\Verification\CheckParams;
-use Prelude\Parameters\Verification\CheckParams\Target as Target1;
-use Prelude\Parameters\Verification\CreateParams;
-use Prelude\Parameters\Verification\CreateParams\Metadata;
-use Prelude\Parameters\Verification\CreateParams\Options;
-use Prelude\Parameters\Verification\CreateParams\Signals;
-use Prelude\Parameters\Verification\CreateParams\Target;
+use Prelude\Parameters\VerificationCheckParam;
+use Prelude\Parameters\VerificationCheckParam\Target as Target1;
+use Prelude\Parameters\VerificationCreateParam;
+use Prelude\Parameters\VerificationCreateParam\Metadata;
+use Prelude\Parameters\VerificationCreateParam\Options;
+use Prelude\Parameters\VerificationCreateParam\Signals;
+use Prelude\Parameters\VerificationCreateParam\Target;
 use Prelude\RequestOptions;
 
 interface VerificationContract
 {
     /**
-     * @param CreateParams|array{
+     * @param VerificationCreateParam|array{
      *   target?: Target,
      *   dispatchID?: string,
      *   metadata?: Metadata,
@@ -27,15 +27,15 @@ interface VerificationContract
      * } $params
      */
     public function create(
-        array|CreateParams $params,
-        ?RequestOptions $requestOptions = null
+        array|VerificationCreateParam $params,
+        ?RequestOptions $requestOptions = null,
     ): NewResponse;
 
     /**
-     * @param array{code?: string, target?: Target1}|CheckParams $params
+     * @param array{code?: string, target?: Target1}|VerificationCheckParam $params
      */
     public function check(
-        array|CheckParams $params,
-        ?RequestOptions $requestOptions = null
+        array|VerificationCheckParam $params,
+        ?RequestOptions $requestOptions = null,
     ): CheckResponse;
 }
