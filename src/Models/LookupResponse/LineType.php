@@ -49,5 +49,3 @@ final class LineType implements StaticConverter
 
     final public const VOIP = 'voip';
 }
-
-LineType::__introspect();

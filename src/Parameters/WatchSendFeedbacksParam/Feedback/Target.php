@@ -29,7 +29,7 @@ final class Target implements BaseModel
     {
         $this->type = $type;
         $this->value = $value;
+
+        self::_introspect();
     }
 }
-
-Target::__introspect();

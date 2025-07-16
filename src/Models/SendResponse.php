@@ -63,10 +63,12 @@ final class SendResponse implements BaseModel
         $this->templateID = $templateID;
         $this->to = $to;
         $this->variables = $variables;
-        $this->callbackURL = $callbackURL;
-        $this->correlationID = $correlationID;
-        $this->from = $from;
+
+        self::_introspect();
+        $this->unsetOptionalProperties();
+
+        null != $callbackURL && $this->callbackURL = $callbackURL;
+        null != $correlationID && $this->correlationID = $correlationID;
+        null != $from && $this->from = $from;
     }
 }
-
-SendResponse::__introspect();

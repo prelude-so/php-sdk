@@ -39,10 +39,12 @@ final class CheckResponse implements BaseModel
         ?string $requestID = null,
     ) {
         $this->status = $status;
-        $this->id = $id;
-        $this->metadata = $metadata;
-        $this->requestID = $requestID;
+
+        self::_introspect();
+        $this->unsetOptionalProperties();
+
+        null != $id && $this->id = $id;
+        null != $metadata && $this->metadata = $metadata;
+        null != $requestID && $this->requestID = $requestID;
     }
 }
-
-CheckResponse::__introspect();

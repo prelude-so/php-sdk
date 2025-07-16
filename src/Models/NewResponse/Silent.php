@@ -21,7 +21,7 @@ final class Silent implements BaseModel
     final public function __construct(string $requestURL)
     {
         $this->requestURL = $requestURL;
+
+        self::_introspect();
     }
 }
-
-Silent::__introspect();

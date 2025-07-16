@@ -27,8 +27,9 @@ final class LookupLookupParam implements BaseModel
      */
     final public function __construct(?array $type = null)
     {
-        $this->type = $type;
+        self::_introspect();
+        $this->unsetOptionalProperties();
+
+        null != $type && $this->type = $type;
     }
 }
-
-LookupLookupParam::__introspect();

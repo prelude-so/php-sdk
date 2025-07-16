@@ -68,12 +68,14 @@ final class NewResponse implements BaseModel
         $this->id = $id;
         $this->method = $method;
         $this->status = $status;
-        $this->channels = $channels;
-        $this->metadata = $metadata;
-        $this->reason = $reason;
-        $this->requestID = $requestID;
-        $this->silent = $silent;
+
+        self::_introspect();
+        $this->unsetOptionalProperties();
+
+        null != $channels && $this->channels = $channels;
+        null != $metadata && $this->metadata = $metadata;
+        null != $reason && $this->reason = $reason;
+        null != $requestID && $this->requestID = $requestID;
+        null != $silent && $this->silent = $silent;
     }
 }
-
-NewResponse::__introspect();

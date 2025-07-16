@@ -36,7 +36,7 @@ final class PredictResponse implements BaseModel
         $this->id = $id;
         $this->prediction = $prediction;
         $this->requestID = $requestID;
+
+        self::_introspect();
     }
 }
-
-PredictResponse::__introspect();

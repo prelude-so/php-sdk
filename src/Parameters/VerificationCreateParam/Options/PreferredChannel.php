@@ -23,5 +23,3 @@ final class PreferredChannel implements StaticConverter
 
     final public const TELEGRAM = 'telegram';
 }
-
-PreferredChannel::__introspect();

@@ -15,5 +15,3 @@ final class Flag implements StaticConverter
 
     final public const TEMPORARY = 'temporary';
 }
-
-Flag::__introspect();
