@@ -7,11 +7,13 @@ namespace Prelude\Parameters\Watch\SendFeedbacksParams\Feedback;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Parameters\Watch\SendFeedbacksParams\Feedback\Target\Type;
 
 final class Target implements BaseModel
 {
     use Model;
 
+    /** @var Type::* $type */
     #[Api]
     public string $type;
 
@@ -20,6 +22,8 @@ final class Target implements BaseModel
 
     /**
      * You must use named parameters to construct this object.
+     *
+     * @param Type::* $type
      */
     final public function __construct(string $type, string $value)
     {

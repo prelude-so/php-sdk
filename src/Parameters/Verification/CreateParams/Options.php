@@ -9,6 +9,8 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Serde\MapOf;
 use Prelude\Parameters\Verification\CreateParams\Options\AppRealm;
+use Prelude\Parameters\Verification\CreateParams\Options\Method;
+use Prelude\Parameters\Verification\CreateParams\Options\PreferredChannel;
 
 final class Options implements BaseModel
 {
@@ -29,9 +31,11 @@ final class Options implements BaseModel
     #[Api(optional: true)]
     public ?string $locale;
 
+    /** @var null|Method::* $method */
     #[Api(optional: true)]
     public ?string $method = 'auto';
 
+    /** @var null|PreferredChannel::* $preferredChannel */
     #[Api('preferred_channel', optional: true)]
     public ?string $preferredChannel;
 
@@ -48,6 +52,8 @@ final class Options implements BaseModel
     /**
      * You must use named parameters to construct this object.
      *
+     * @param null|Method::*             $method
+     * @param null|PreferredChannel::*   $preferredChannel
      * @param null|array<string, string> $variables
      */
     final public function __construct(

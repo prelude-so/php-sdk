@@ -8,11 +8,13 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Models\CheckResponse\Metadata;
+use Prelude\Models\CheckResponse\Status;
 
 final class CheckResponse implements BaseModel
 {
     use Model;
 
+    /** @var Status::* $status */
     #[Api]
     public string $status;
 
@@ -27,6 +29,8 @@ final class CheckResponse implements BaseModel
 
     /**
      * You must use named parameters to construct this object.
+     *
+     * @param Status::* $status
      */
     final public function __construct(
         string $status,

@@ -8,6 +8,8 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Serde\ListOf;
+use Prelude\Models\LookupResponse\Flag;
+use Prelude\Models\LookupResponse\LineType;
 use Prelude\Models\LookupResponse\NetworkInfo;
 use Prelude\Models\LookupResponse\OriginalNetworkInfo;
 
@@ -21,10 +23,11 @@ final class LookupResponse implements BaseModel
     #[Api('country_code', optional: true)]
     public ?string $countryCode;
 
-    /** @var null|list<string> $flags */
-    #[Api(type: new ListOf('string'), optional: true)]
+    /** @var null|list<Flag::*> $flags */
+    #[Api(type: new ListOf(Flag::class), optional: true)]
     public ?array $flags;
 
+    /** @var null|LineType::* $lineType */
     #[Api('line_type', optional: true)]
     public ?string $lineType;
 
@@ -40,7 +43,8 @@ final class LookupResponse implements BaseModel
     /**
      * You must use named parameters to construct this object.
      *
-     * @param null|list<string> $flags
+     * @param null|list<Flag::*> $flags
+     * @param null|LineType::*   $lineType
      */
     final public function __construct(
         ?string $callerName = null,
