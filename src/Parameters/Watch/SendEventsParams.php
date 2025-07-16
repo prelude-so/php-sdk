@@ -31,4 +31,4 @@ final class SendEventsParams implements BaseModel
     }
 }
 
-SendEventsParams::_loadMetadata();
+SendEventsParams::__introspect();

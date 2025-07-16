@@ -31,4 +31,4 @@ final class SendFeedbacksParams implements BaseModel
     }
 }
 
-SendFeedbacksParams::_loadMetadata();
+SendFeedbacksParams::__introspect();

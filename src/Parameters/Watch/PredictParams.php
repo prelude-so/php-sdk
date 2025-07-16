@@ -45,4 +45,4 @@ final class PredictParams implements BaseModel
     }
 }
 
-PredictParams::_loadMetadata();
+PredictParams::__introspect();

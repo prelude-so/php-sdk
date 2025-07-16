@@ -152,30 +152,6 @@ $client->verification->create(
 );
 ```
 
-### Timeouts
-
-By default, requests will time out after 60 seconds. You can use the timeout option to configure or disable this:
-
-```php
-<?php
-
-use Prelude\Client;
-use Prelude\Parameters\Verification\CreateParams\Target;
-
-// Configure the default for all requests:
-$client = new Client(timeout: nil);
-
-// Or, configure per-request:
-$client->verification->create(
-  ["target" => new Target(type: "phone_number", value: "+30123456789")],
-  requestOptions: ["timeout" => 5],
-);
-```
-
-On timeout, `Prelude\Errors\APITimeoutError` is raised.
-
-Note that requests that time out are retried by default.
-
 ## Advanced concepts
 
 ### Making custom or undocumented requests

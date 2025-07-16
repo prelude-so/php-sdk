@@ -76,4 +76,4 @@ final class NewResponse implements BaseModel
     }
 }
 
-NewResponse::_loadMetadata();
+NewResponse::__introspect();

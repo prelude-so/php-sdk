@@ -31,4 +31,4 @@ final class CheckParams implements BaseModel
     }
 }
 
-CheckParams::_loadMetadata();
+CheckParams::__introspect();

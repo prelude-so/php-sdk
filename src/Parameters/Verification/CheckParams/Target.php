@@ -32,4 +32,4 @@ final class Target implements BaseModel
     }
 }
 
-Target::_loadMetadata();
+Target::__introspect();

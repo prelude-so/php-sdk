@@ -32,4 +32,4 @@ final class SendFeedbacksResponse implements BaseModel
     }
 }
 
-SendFeedbacksResponse::_loadMetadata();
+SendFeedbacksResponse::__introspect();

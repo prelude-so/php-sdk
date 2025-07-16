@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Prelude\Models\LookupResponse;
 
-final class LineType
+use Prelude\Core\Concerns\Enum;
+use Prelude\Core\Contracts\StaticConverter;
+
+final class LineType implements StaticConverter
 {
+    use Enum;
+
     final public const CALLING_CARDS = 'calling_cards';
 
     final public const FIXED_LINE = 'fixed_line';
@@ -44,3 +49,5 @@ final class LineType
 
     final public const VOIP = 'voip';
 }
+
+LineType::__introspect();

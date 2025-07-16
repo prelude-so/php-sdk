@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Prelude\Models\NewResponse;
 
-final class Channel
+use Prelude\Core\Concerns\Enum;
+use Prelude\Core\Contracts\StaticConverter;
+
+final class Channel implements StaticConverter
 {
+    use Enum;
+
     final public const SMS = 'sms';
 
     final public const RCS = 'rcs';
@@ -22,3 +27,5 @@ final class Channel
 
     final public const VOICE = 'voice';
 }
+
+Channel::__introspect();

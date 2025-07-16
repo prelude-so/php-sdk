@@ -39,4 +39,4 @@ final class PredictResponse implements BaseModel
     }
 }
 
-PredictResponse::_loadMetadata();
+PredictResponse::__introspect();

@@ -32,4 +32,4 @@ final class SendEventsResponse implements BaseModel
     }
 }
 
-SendEventsResponse::_loadMetadata();
+SendEventsResponse::__introspect();

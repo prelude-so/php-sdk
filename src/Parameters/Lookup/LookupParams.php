@@ -31,4 +31,4 @@ final class LookupParams implements BaseModel
     }
 }
 
-LookupParams::_loadMetadata();
+LookupParams::__introspect();

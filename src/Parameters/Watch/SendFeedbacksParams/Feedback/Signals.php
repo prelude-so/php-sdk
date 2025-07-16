@@ -64,4 +64,4 @@ final class Signals implements BaseModel
     }
 }
 
-Signals::_loadMetadata();
+Signals::__introspect();

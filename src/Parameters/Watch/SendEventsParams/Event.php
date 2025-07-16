@@ -40,4 +40,4 @@ final class Event implements BaseModel
     }
 }
 
-Event::_loadMetadata();
+Event::__introspect();

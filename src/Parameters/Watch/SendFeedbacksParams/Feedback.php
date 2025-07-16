@@ -52,4 +52,4 @@ final class Feedback implements BaseModel
     }
 }
 
-Feedback::_loadMetadata();
+Feedback::__introspect();
