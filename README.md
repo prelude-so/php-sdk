@@ -78,7 +78,7 @@ To use this package, install via Composer by adding the following to your applic
 use Prelude\Client;
 use Prelude\Parameters\VerificationCreateParam\Target;
 
-$client = new Client(apiToken: getenv("API_TOKEN") ?: null);
+$client = new Client(apiToken: getenv("API_TOKEN") ?: "My API Token");
 
 $verification = $client->verification->create(
   ["target" => new Target(type: "phone_number", value: "+30123456789")]
