@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\Models\LookupResponse;
 use Prelude\Parameters\LookupLookupParam;
 use Prelude\Parameters\LookupLookupParam\Type;
 use Prelude\RequestOptions;
+use Prelude\Responses\LookupLookupResponse;
 
 interface LookupContract
 {
@@ -18,5 +18,5 @@ interface LookupContract
         string $phoneNumber,
         array|LookupLookupParam $params,
         ?RequestOptions $requestOptions = null,
-    ): LookupResponse;
+    ): LookupLookupResponse;
 }

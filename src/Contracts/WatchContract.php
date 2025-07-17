@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\Models\PredictResponse;
-use Prelude\Models\SendEventsResponse;
-use Prelude\Models\SendFeedbacksResponse;
 use Prelude\Parameters\WatchPredictParam;
 use Prelude\Parameters\WatchPredictParam\Metadata;
 use Prelude\Parameters\WatchPredictParam\Signals;
@@ -16,6 +13,9 @@ use Prelude\Parameters\WatchSendEventsParam\Event;
 use Prelude\Parameters\WatchSendFeedbacksParam;
 use Prelude\Parameters\WatchSendFeedbacksParam\Feedback;
 use Prelude\RequestOptions;
+use Prelude\Responses\WatchPredictResponse;
+use Prelude\Responses\WatchSendEventsResponse;
+use Prelude\Responses\WatchSendFeedbacksResponse;
 
 interface WatchContract
 {
@@ -27,7 +27,7 @@ interface WatchContract
     public function predict(
         array|WatchPredictParam $params,
         ?RequestOptions $requestOptions = null
-    ): PredictResponse;
+    ): WatchPredictResponse;
 
     /**
      * @param array{events?: list<Event>}|WatchSendEventsParam $params
@@ -35,7 +35,7 @@ interface WatchContract
     public function sendEvents(
         array|WatchSendEventsParam $params,
         ?RequestOptions $requestOptions = null,
-    ): SendEventsResponse;
+    ): WatchSendEventsResponse;
 
     /**
      * @param array{feedbacks?: list<Feedback>}|WatchSendFeedbacksParam $params
@@ -43,5 +43,5 @@ interface WatchContract
     public function sendFeedbacks(
         array|WatchSendFeedbacksParam $params,
         ?RequestOptions $requestOptions = null,
-    ): SendFeedbacksResponse;
+    ): WatchSendFeedbacksResponse;
 }

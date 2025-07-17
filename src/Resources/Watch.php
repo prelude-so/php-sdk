@@ -7,9 +7,6 @@ namespace Prelude\Resources;
 use Prelude\Client;
 use Prelude\Contracts\WatchContract;
 use Prelude\Core\Serde;
-use Prelude\Models\PredictResponse;
-use Prelude\Models\SendEventsResponse;
-use Prelude\Models\SendFeedbacksResponse;
 use Prelude\Parameters\WatchPredictParam;
 use Prelude\Parameters\WatchPredictParam\Metadata;
 use Prelude\Parameters\WatchPredictParam\Signals;
@@ -19,6 +16,9 @@ use Prelude\Parameters\WatchSendEventsParam\Event;
 use Prelude\Parameters\WatchSendFeedbacksParam;
 use Prelude\Parameters\WatchSendFeedbacksParam\Feedback;
 use Prelude\RequestOptions;
+use Prelude\Responses\WatchPredictResponse;
+use Prelude\Responses\WatchSendEventsResponse;
+use Prelude\Responses\WatchSendFeedbacksResponse;
 
 final class Watch implements WatchContract
 {
@@ -32,7 +32,7 @@ final class Watch implements WatchContract
     public function predict(
         array|WatchPredictParam $params,
         ?RequestOptions $requestOptions = null
-    ): PredictResponse {
+    ): WatchPredictResponse {
         [$parsed, $options] = WatchPredictParam::parseRequest(
             $params,
             $requestOptions
@@ -45,7 +45,7 @@ final class Watch implements WatchContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(PredictResponse::class, value: $resp);
+        return Serde::coerce(WatchPredictResponse::class, value: $resp);
     }
 
     /**
@@ -54,7 +54,7 @@ final class Watch implements WatchContract
     public function sendEvents(
         array|WatchSendEventsParam $params,
         ?RequestOptions $requestOptions = null
-    ): SendEventsResponse {
+    ): WatchSendEventsResponse {
         [$parsed, $options] = WatchSendEventsParam::parseRequest(
             $params,
             $requestOptions
@@ -67,7 +67,7 @@ final class Watch implements WatchContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(SendEventsResponse::class, value: $resp);
+        return Serde::coerce(WatchSendEventsResponse::class, value: $resp);
     }
 
     /**
@@ -76,7 +76,7 @@ final class Watch implements WatchContract
     public function sendFeedbacks(
         array|WatchSendFeedbacksParam $params,
         ?RequestOptions $requestOptions = null,
-    ): SendFeedbacksResponse {
+    ): WatchSendFeedbacksResponse {
         [$parsed, $options] = WatchSendFeedbacksParam::parseRequest(
             $params,
             $requestOptions
@@ -89,6 +89,6 @@ final class Watch implements WatchContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(SendFeedbacksResponse::class, value: $resp);
+        return Serde::coerce(WatchSendFeedbacksResponse::class, value: $resp);
     }
 }

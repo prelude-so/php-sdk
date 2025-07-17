@@ -7,10 +7,10 @@ namespace Prelude\Resources;
 use Prelude\Client;
 use Prelude\Contracts\LookupContract;
 use Prelude\Core\Serde;
-use Prelude\Models\LookupResponse;
 use Prelude\Parameters\LookupLookupParam;
 use Prelude\Parameters\LookupLookupParam\Type;
 use Prelude\RequestOptions;
+use Prelude\Responses\LookupLookupResponse;
 
 final class Lookup implements LookupContract
 {
@@ -23,7 +23,7 @@ final class Lookup implements LookupContract
         string $phoneNumber,
         array|LookupLookupParam $params,
         ?RequestOptions $requestOptions = null,
-    ): LookupResponse {
+    ): LookupLookupResponse {
         [$parsed, $options] = LookupLookupParam::parseRequest(
             $params,
             $requestOptions
@@ -36,6 +36,6 @@ final class Lookup implements LookupContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(LookupResponse::class, value: $resp);
+        return Serde::coerce(LookupLookupResponse::class, value: $resp);
     }
 }

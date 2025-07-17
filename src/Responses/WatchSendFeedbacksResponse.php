@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models;
+namespace Prelude\Responses;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Models\SendFeedbacksResponse\Status;
+use Prelude\Responses\WatchSendFeedbacksResponse\Status;
 
-final class SendFeedbacksResponse implements BaseModel
+final class WatchSendFeedbacksResponse implements BaseModel
 {
     use Model;
 

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models;
+namespace Prelude\Responses;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Models\PredictResponse\Prediction;
+use Prelude\Responses\WatchPredictResponse\Prediction;
 
-final class PredictResponse implements BaseModel
+final class WatchPredictResponse implements BaseModel
 {
     use Model;
 

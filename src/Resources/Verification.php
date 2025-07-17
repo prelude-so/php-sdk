@@ -7,8 +7,6 @@ namespace Prelude\Resources;
 use Prelude\Client;
 use Prelude\Contracts\VerificationContract;
 use Prelude\Core\Serde;
-use Prelude\Models\CheckResponse;
-use Prelude\Models\NewResponse;
 use Prelude\Parameters\VerificationCheckParam;
 use Prelude\Parameters\VerificationCheckParam\Target as Target1;
 use Prelude\Parameters\VerificationCreateParam;
@@ -17,6 +15,8 @@ use Prelude\Parameters\VerificationCreateParam\Options;
 use Prelude\Parameters\VerificationCreateParam\Signals;
 use Prelude\Parameters\VerificationCreateParam\Target;
 use Prelude\RequestOptions;
+use Prelude\Responses\VerificationCheckResponse;
+use Prelude\Responses\VerificationNewResponse;
 
 final class Verification implements VerificationContract
 {
@@ -34,7 +34,7 @@ final class Verification implements VerificationContract
     public function create(
         array|VerificationCreateParam $params,
         ?RequestOptions $requestOptions = null,
-    ): NewResponse {
+    ): VerificationNewResponse {
         [$parsed, $options] = VerificationCreateParam::parseRequest(
             $params,
             $requestOptions
@@ -47,7 +47,7 @@ final class Verification implements VerificationContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(NewResponse::class, value: $resp);
+        return Serde::coerce(VerificationNewResponse::class, value: $resp);
     }
 
     /**
@@ -56,7 +56,7 @@ final class Verification implements VerificationContract
     public function check(
         array|VerificationCheckParam $params,
         ?RequestOptions $requestOptions = null
-    ): CheckResponse {
+    ): VerificationCheckResponse {
         [$parsed, $options] = VerificationCheckParam::parseRequest(
             $params,
             $requestOptions
@@ -69,6 +69,6 @@ final class Verification implements VerificationContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(CheckResponse::class, value: $resp);
+        return Serde::coerce(VerificationCheckResponse::class, value: $resp);
     }
 }

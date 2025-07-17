@@ -7,9 +7,9 @@ namespace Prelude\Resources;
 use Prelude\Client;
 use Prelude\Contracts\TransactionalContract;
 use Prelude\Core\Serde;
-use Prelude\Models\SendResponse;
 use Prelude\Parameters\TransactionalSendParam;
 use Prelude\RequestOptions;
+use Prelude\Responses\TransactionalSendResponse;
 
 final class Transactional implements TransactionalContract
 {
@@ -30,7 +30,7 @@ final class Transactional implements TransactionalContract
     public function send(
         array|TransactionalSendParam $params,
         ?RequestOptions $requestOptions = null
-    ): SendResponse {
+    ): TransactionalSendResponse {
         [$parsed, $options] = TransactionalSendParam::parseRequest(
             $params,
             $requestOptions
@@ -43,6 +43,6 @@ final class Transactional implements TransactionalContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(SendResponse::class, value: $resp);
+        return Serde::coerce(TransactionalSendResponse::class, value: $resp);
     }
 }

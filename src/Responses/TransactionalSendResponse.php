@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models;
+namespace Prelude\Responses;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Serde\MapOf;
 
-final class SendResponse implements BaseModel
+final class TransactionalSendResponse implements BaseModel
 {
     use Model;
 
