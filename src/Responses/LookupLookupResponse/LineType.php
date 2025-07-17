@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models\LookupResponse;
+namespace Prelude\Responses\LookupLookupResponse;
 
 use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Contracts\StaticConverter;

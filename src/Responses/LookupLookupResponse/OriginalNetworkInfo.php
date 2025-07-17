@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models\LookupResponse;
+namespace Prelude\Responses\LookupLookupResponse;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
-final class NetworkInfo implements BaseModel
+final class OriginalNetworkInfo implements BaseModel
 {
     use Model;
 

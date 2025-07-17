@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models\CheckResponse;
+namespace Prelude\Responses\VerificationNewResponse;
 
 use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Contracts\StaticConverter;
@@ -13,7 +13,7 @@ final class Status implements StaticConverter
 
     final public const SUCCESS = 'success';
 
-    final public const FAILURE = 'failure';
+    final public const RETRY = 'retry';
 
-    final public const EXPIRED_OR_NOT_FOUND = 'expired_or_not_found';
+    final public const BLOCKED = 'blocked';
 }

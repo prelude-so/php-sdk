@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models;
+namespace Prelude\Responses;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Serde\ListOf;
-use Prelude\Models\LookupResponse\Flag;
-use Prelude\Models\LookupResponse\LineType;
-use Prelude\Models\LookupResponse\NetworkInfo;
-use Prelude\Models\LookupResponse\OriginalNetworkInfo;
+use Prelude\Responses\LookupLookupResponse\Flag;
+use Prelude\Responses\LookupLookupResponse\LineType;
+use Prelude\Responses\LookupLookupResponse\NetworkInfo;
+use Prelude\Responses\LookupLookupResponse\OriginalNetworkInfo;
 
-final class LookupResponse implements BaseModel
+final class LookupLookupResponse implements BaseModel
 {
     use Model;
 

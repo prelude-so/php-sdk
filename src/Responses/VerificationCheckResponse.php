@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models;
+namespace Prelude\Responses;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Models\CheckResponse\Metadata;
-use Prelude\Models\CheckResponse\Status;
+use Prelude\Responses\VerificationCheckResponse\Metadata;
+use Prelude\Responses\VerificationCheckResponse\Status;
 
-final class CheckResponse implements BaseModel
+final class VerificationCheckResponse implements BaseModel
 {
     use Model;
 

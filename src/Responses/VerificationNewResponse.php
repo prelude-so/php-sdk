@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models;
+namespace Prelude\Responses;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Serde\ListOf;
-use Prelude\Models\NewResponse\Channel;
-use Prelude\Models\NewResponse\Metadata;
-use Prelude\Models\NewResponse\Method;
-use Prelude\Models\NewResponse\Reason;
-use Prelude\Models\NewResponse\Silent;
-use Prelude\Models\NewResponse\Status;
+use Prelude\Responses\VerificationNewResponse\Channel;
+use Prelude\Responses\VerificationNewResponse\Metadata;
+use Prelude\Responses\VerificationNewResponse\Method;
+use Prelude\Responses\VerificationNewResponse\Reason;
+use Prelude\Responses\VerificationNewResponse\Silent;
+use Prelude\Responses\VerificationNewResponse\Status;
 
-final class NewResponse implements BaseModel
+final class VerificationNewResponse implements BaseModel
 {
     use Model;
 

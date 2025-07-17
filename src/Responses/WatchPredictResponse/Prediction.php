@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models\PredictResponse;
+namespace Prelude\Responses\WatchPredictResponse;
 
 use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Contracts\StaticConverter;

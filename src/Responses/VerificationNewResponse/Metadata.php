@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Models\NewResponse;
+namespace Prelude\Responses\VerificationNewResponse;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
