@@ -20,7 +20,7 @@ final class Metadata implements BaseModel
      */
     final public function __construct(?string $correlationID = null)
     {
-        self::_introspect();
+        self::introspect();
         $this->unsetOptionalProperties();
 
         null !== $correlationID && $this->correlationID = $correlationID;

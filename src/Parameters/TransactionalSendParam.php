@@ -55,11 +55,11 @@ final class TransactionalSendParam implements BaseModel
         ?string $locale = null,
         ?array $variables = null,
     ) {
+        self::introspect();
+        $this->unsetOptionalProperties();
+
         $this->templateID = $templateID;
         $this->to = $to;
-
-        self::_introspect();
-        $this->unsetOptionalProperties();
 
         null !== $callbackURL && $this->callbackURL = $callbackURL;
         null !== $correlationID && $this->correlationID = $correlationID;

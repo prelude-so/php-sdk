@@ -68,7 +68,7 @@ final class Options implements BaseModel
         ?string $templateID = null,
         ?array $variables = null,
     ) {
-        self::_introspect();
+        self::introspect();
         $this->unsetOptionalProperties();
 
         null !== $appRealm && $this->appRealm = $appRealm;

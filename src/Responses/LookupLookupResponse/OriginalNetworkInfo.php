@@ -29,7 +29,7 @@ final class OriginalNetworkInfo implements BaseModel
         ?string $mcc = null,
         ?string $mnc = null
     ) {
-        self::_introspect();
+        self::introspect();
         $this->unsetOptionalProperties();
 
         null !== $carrierName && $this->carrierName = $carrierName;

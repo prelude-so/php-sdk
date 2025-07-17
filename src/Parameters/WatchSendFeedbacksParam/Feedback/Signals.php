@@ -53,7 +53,7 @@ final class Signals implements BaseModel
         ?string $osVersion = null,
         ?string $userAgent = null,
     ) {
-        self::_introspect();
+        self::introspect();
         $this->unsetOptionalProperties();
 
         null !== $appVersion && $this->appVersion = $appVersion;

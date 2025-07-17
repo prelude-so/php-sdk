@@ -34,10 +34,10 @@ final class Event implements BaseModel
         string $label,
         Target $target
     ) {
+        self::introspect();
+
         $this->confidence = $confidence;
         $this->label = $label;
         $this->target = $target;
-
-        self::_introspect();
     }
 }

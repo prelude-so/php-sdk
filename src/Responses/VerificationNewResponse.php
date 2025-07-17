@@ -65,12 +65,12 @@ final class VerificationNewResponse implements BaseModel
         ?string $requestID = null,
         ?Silent $silent = null,
     ) {
+        self::introspect();
+        $this->unsetOptionalProperties();
+
         $this->id = $id;
         $this->method = $method;
         $this->status = $status;
-
-        self::_introspect();
-        $this->unsetOptionalProperties();
 
         null !== $channels && $this->channels = $channels;
         null !== $metadata && $this->metadata = $metadata;

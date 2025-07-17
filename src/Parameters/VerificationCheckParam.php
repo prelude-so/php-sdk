@@ -26,9 +26,9 @@ final class VerificationCheckParam implements BaseModel
      */
     final public function __construct(string $code, Target $target)
     {
+        self::introspect();
+
         $this->code = $code;
         $this->target = $target;
-
-        self::_introspect();
     }
 }

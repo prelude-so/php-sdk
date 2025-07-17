@@ -27,8 +27,8 @@ final class WatchSendFeedbacksParam implements BaseModel
      */
     final public function __construct(array $feedbacks)
     {
-        $this->feedbacks = $feedbacks;
+        self::introspect();
 
-        self::_introspect();
+        $this->feedbacks = $feedbacks;
     }
 }

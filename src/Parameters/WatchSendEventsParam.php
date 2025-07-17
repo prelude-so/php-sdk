@@ -27,8 +27,8 @@ final class WatchSendEventsParam implements BaseModel
      */
     final public function __construct(array $events)
     {
-        $this->events = $events;
+        self::introspect();
 
-        self::_introspect();
+        $this->events = $events;
     }
 }
