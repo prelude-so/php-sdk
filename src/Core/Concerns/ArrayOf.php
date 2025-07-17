@@ -10,6 +10,9 @@ use Prelude\Core\Serde;
 use Prelude\Core\Serde\CoerceState;
 use Prelude\Core\Serde\DumpState;
 
+/**
+ * @internal
+ */
 trait ArrayOf
 {
     private readonly null|Converter|StaticConverter|string $type;
@@ -56,8 +59,7 @@ trait ArrayOf
         return array_map(fn ($v) => Serde::dump($this->type, value: $v, state: $state), array: $value);
     }
 
-    // @phpstan-ignore-next-line
-    private function empty(): array|object
+    private function empty(): array|object // @phpstan-ignore-line
     {
         return (object) [];
     }

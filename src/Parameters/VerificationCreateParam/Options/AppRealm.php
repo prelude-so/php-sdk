@@ -27,9 +27,9 @@ final class AppRealm implements BaseModel
      */
     final public function __construct(string $platform, string $value)
     {
+        self::introspect();
+
         $this->platform = $platform;
         $this->value = $value;
-
-        self::_introspect();
     }
 }

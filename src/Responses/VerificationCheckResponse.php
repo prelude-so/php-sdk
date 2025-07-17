@@ -38,10 +38,10 @@ final class VerificationCheckResponse implements BaseModel
         ?Metadata $metadata = null,
         ?string $requestID = null,
     ) {
-        $this->status = $status;
-
-        self::_introspect();
+        self::introspect();
         $this->unsetOptionalProperties();
+
+        $this->status = $status;
 
         null !== $id && $this->id = $id;
         null !== $metadata && $this->metadata = $metadata;

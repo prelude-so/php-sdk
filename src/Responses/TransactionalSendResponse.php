@@ -57,15 +57,15 @@ final class TransactionalSendResponse implements BaseModel
         ?string $correlationID = null,
         ?string $from = null,
     ) {
+        self::introspect();
+        $this->unsetOptionalProperties();
+
         $this->id = $id;
         $this->createdAt = $createdAt;
         $this->expiresAt = $expiresAt;
         $this->templateID = $templateID;
         $this->to = $to;
         $this->variables = $variables;
-
-        self::_introspect();
-        $this->unsetOptionalProperties();
 
         null !== $callbackURL && $this->callbackURL = $callbackURL;
         null !== $correlationID && $this->correlationID = $correlationID;

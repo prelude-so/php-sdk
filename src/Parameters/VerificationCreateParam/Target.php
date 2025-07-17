@@ -27,9 +27,9 @@ final class Target implements BaseModel
      */
     final public function __construct(string $type, string $value)
     {
+        self::introspect();
+
         $this->type = $type;
         $this->value = $value;
-
-        self::_introspect();
     }
 }

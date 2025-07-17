@@ -27,9 +27,9 @@ final class WatchSendEventsResponse implements BaseModel
      */
     final public function __construct(string $requestID, string $status)
     {
+        self::introspect();
+
         $this->requestID = $requestID;
         $this->status = $status;
-
-        self::_introspect();
     }
 }

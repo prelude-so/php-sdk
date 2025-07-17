@@ -55,7 +55,7 @@ final class LookupLookupResponse implements BaseModel
         ?OriginalNetworkInfo $originalNetworkInfo = null,
         ?string $phoneNumber = null,
     ) {
-        self::_introspect();
+        self::introspect();
         $this->unsetOptionalProperties();
 
         null !== $callerName && $this->callerName = $callerName;

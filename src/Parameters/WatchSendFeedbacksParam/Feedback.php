@@ -44,11 +44,11 @@ final class Feedback implements BaseModel
         ?Metadata $metadata = null,
         ?Signals $signals = null,
     ) {
+        self::introspect();
+        $this->unsetOptionalProperties();
+
         $this->target = $target;
         $this->type = $type;
-
-        self::_introspect();
-        $this->unsetOptionalProperties();
 
         null !== $dispatchID && $this->dispatchID = $dispatchID;
         null !== $metadata && $this->metadata = $metadata;

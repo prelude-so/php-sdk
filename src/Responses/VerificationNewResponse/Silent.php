@@ -20,8 +20,8 @@ final class Silent implements BaseModel
      */
     final public function __construct(string $requestURL)
     {
-        $this->requestURL = $requestURL;
+        self::introspect();
 
-        self::_introspect();
+        $this->requestURL = $requestURL;
     }
 }

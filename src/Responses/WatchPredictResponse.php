@@ -33,10 +33,10 @@ final class WatchPredictResponse implements BaseModel
         string $prediction,
         string $requestID
     ) {
+        self::introspect();
+
         $this->id = $id;
         $this->prediction = $prediction;
         $this->requestID = $requestID;
-
-        self::_introspect();
     }
 }
