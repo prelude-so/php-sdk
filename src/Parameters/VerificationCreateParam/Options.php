@@ -71,15 +71,15 @@ final class Options implements BaseModel
         self::_introspect();
         $this->unsetOptionalProperties();
 
-        null != $appRealm && $this->appRealm = $appRealm;
-        null != $callbackURL && $this->callbackURL = $callbackURL;
-        null != $codeSize && $this->codeSize = $codeSize;
-        null != $customCode && $this->customCode = $customCode;
-        null != $locale && $this->locale = $locale;
-        null != $method && $this->method = $method;
-        null != $preferredChannel && $this->preferredChannel = $preferredChannel;
-        null != $senderID && $this->senderID = $senderID;
-        null != $templateID && $this->templateID = $templateID;
-        null != $variables && $this->variables = $variables;
+        null !== $appRealm && $this->appRealm = $appRealm;
+        null !== $callbackURL && $this->callbackURL = $callbackURL;
+        null !== $codeSize && $this->codeSize = $codeSize;
+        null !== $customCode && $this->customCode = $customCode;
+        null !== $locale && $this->locale = $locale;
+        null !== $method && $this->method = $method;
+        null !== $preferredChannel && $this->preferredChannel = $preferredChannel;
+        null !== $senderID && $this->senderID = $senderID;
+        null !== $templateID && $this->templateID = $templateID;
+        null !== $variables && $this->variables = $variables;
     }
 }

@@ -61,11 +61,11 @@ final class TransactionalSendParam implements BaseModel
         self::_introspect();
         $this->unsetOptionalProperties();
 
-        null != $callbackURL && $this->callbackURL = $callbackURL;
-        null != $correlationID && $this->correlationID = $correlationID;
-        null != $expiresAt && $this->expiresAt = $expiresAt;
-        null != $from && $this->from = $from;
-        null != $locale && $this->locale = $locale;
-        null != $variables && $this->variables = $variables;
+        null !== $callbackURL && $this->callbackURL = $callbackURL;
+        null !== $correlationID && $this->correlationID = $correlationID;
+        null !== $expiresAt && $this->expiresAt = $expiresAt;
+        null !== $from && $this->from = $from;
+        null !== $locale && $this->locale = $locale;
+        null !== $variables && $this->variables = $variables;
     }
 }

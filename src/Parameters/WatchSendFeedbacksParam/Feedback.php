@@ -50,8 +50,8 @@ final class Feedback implements BaseModel
         self::_introspect();
         $this->unsetOptionalProperties();
 
-        null != $dispatchID && $this->dispatchID = $dispatchID;
-        null != $metadata && $this->metadata = $metadata;
-        null != $signals && $this->signals = $signals;
+        null !== $dispatchID && $this->dispatchID = $dispatchID;
+        null !== $metadata && $this->metadata = $metadata;
+        null !== $signals && $this->signals = $signals;
     }
 }

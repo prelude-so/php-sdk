@@ -43,8 +43,8 @@ final class VerificationCheckResponse implements BaseModel
         self::_introspect();
         $this->unsetOptionalProperties();
 
-        null != $id && $this->id = $id;
-        null != $metadata && $this->metadata = $metadata;
-        null != $requestID && $this->requestID = $requestID;
+        null !== $id && $this->id = $id;
+        null !== $metadata && $this->metadata = $metadata;
+        null !== $requestID && $this->requestID = $requestID;
     }
 }
