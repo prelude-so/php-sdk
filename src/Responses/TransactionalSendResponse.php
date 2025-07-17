@@ -67,8 +67,8 @@ final class TransactionalSendResponse implements BaseModel
         self::_introspect();
         $this->unsetOptionalProperties();
 
-        null != $callbackURL && $this->callbackURL = $callbackURL;
-        null != $correlationID && $this->correlationID = $correlationID;
-        null != $from && $this->from = $from;
+        null !== $callbackURL && $this->callbackURL = $callbackURL;
+        null !== $correlationID && $this->correlationID = $correlationID;
+        null !== $from && $this->from = $from;
     }
 }

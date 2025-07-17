@@ -48,9 +48,9 @@ final class VerificationCreateParam implements BaseModel
         self::_introspect();
         $this->unsetOptionalProperties();
 
-        null != $dispatchID && $this->dispatchID = $dispatchID;
-        null != $metadata && $this->metadata = $metadata;
-        null != $options && $this->options = $options;
-        null != $signals && $this->signals = $signals;
+        null !== $dispatchID && $this->dispatchID = $dispatchID;
+        null !== $metadata && $this->metadata = $metadata;
+        null !== $options && $this->options = $options;
+        null !== $signals && $this->signals = $signals;
     }
 }

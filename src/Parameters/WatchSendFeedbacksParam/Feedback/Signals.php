@@ -56,13 +56,13 @@ final class Signals implements BaseModel
         self::_introspect();
         $this->unsetOptionalProperties();
 
-        null != $appVersion && $this->appVersion = $appVersion;
-        null != $deviceID && $this->deviceID = $deviceID;
-        null != $deviceModel && $this->deviceModel = $deviceModel;
-        null != $devicePlatform && $this->devicePlatform = $devicePlatform;
-        null != $ip && $this->ip = $ip;
-        null != $isTrustedUser && $this->isTrustedUser = $isTrustedUser;
-        null != $osVersion && $this->osVersion = $osVersion;
-        null != $userAgent && $this->userAgent = $userAgent;
+        null !== $appVersion && $this->appVersion = $appVersion;
+        null !== $deviceID && $this->deviceID = $deviceID;
+        null !== $deviceModel && $this->deviceModel = $deviceModel;
+        null !== $devicePlatform && $this->devicePlatform = $devicePlatform;
+        null !== $ip && $this->ip = $ip;
+        null !== $isTrustedUser && $this->isTrustedUser = $isTrustedUser;
+        null !== $osVersion && $this->osVersion = $osVersion;
+        null !== $userAgent && $this->userAgent = $userAgent;
     }
 }

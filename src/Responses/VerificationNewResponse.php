@@ -31,7 +31,7 @@ final class VerificationNewResponse implements BaseModel
     public string $status;
 
     /** @var null|list<Channel::*> $channels */
-    #[Api(type: new ListOf(Channel::class), optional: true)]
+    #[Api(type: new ListOf(enum: Channel::class), optional: true)]
     public ?array $channels;
 
     #[Api(optional: true)]
@@ -72,10 +72,10 @@ final class VerificationNewResponse implements BaseModel
         self::_introspect();
         $this->unsetOptionalProperties();
 
-        null != $channels && $this->channels = $channels;
-        null != $metadata && $this->metadata = $metadata;
-        null != $reason && $this->reason = $reason;
-        null != $requestID && $this->requestID = $requestID;
-        null != $silent && $this->silent = $silent;
+        null !== $channels && $this->channels = $channels;
+        null !== $metadata && $this->metadata = $metadata;
+        null !== $reason && $this->reason = $reason;
+        null !== $requestID && $this->requestID = $requestID;
+        null !== $silent && $this->silent = $silent;
     }
 }

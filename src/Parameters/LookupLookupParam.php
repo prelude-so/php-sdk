@@ -17,7 +17,7 @@ final class LookupLookupParam implements BaseModel
     use Params;
 
     /** @var null|list<Type::*> $type */
-    #[Api(type: new ListOf(Type::class), optional: true)]
+    #[Api(type: new ListOf(enum: Type::class), optional: true)]
     public ?array $type;
 
     /**
@@ -30,6 +30,6 @@ final class LookupLookupParam implements BaseModel
         self::_introspect();
         $this->unsetOptionalProperties();
 
-        null != $type && $this->type = $type;
+        null !== $type && $this->type = $type;
     }
 }

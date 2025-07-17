@@ -24,7 +24,7 @@ final class LookupLookupResponse implements BaseModel
     public ?string $countryCode;
 
     /** @var null|list<Flag::*> $flags */
-    #[Api(type: new ListOf(Flag::class), optional: true)]
+    #[Api(type: new ListOf(enum: Flag::class), optional: true)]
     public ?array $flags;
 
     /** @var null|LineType::* $lineType */
@@ -58,12 +58,14 @@ final class LookupLookupResponse implements BaseModel
         self::_introspect();
         $this->unsetOptionalProperties();
 
-        null != $callerName && $this->callerName = $callerName;
-        null != $countryCode && $this->countryCode = $countryCode;
-        null != $flags && $this->flags = $flags;
-        null != $lineType && $this->lineType = $lineType;
-        null != $networkInfo && $this->networkInfo = $networkInfo;
-        null != $originalNetworkInfo && $this->originalNetworkInfo = $originalNetworkInfo;
-        null != $phoneNumber && $this->phoneNumber = $phoneNumber;
+        null !== $callerName && $this->callerName = $callerName;
+        null !== $countryCode && $this->countryCode = $countryCode;
+        null !== $flags && $this->flags = $flags;
+        null !== $lineType && $this->lineType = $lineType;
+        null !== $networkInfo && $this->networkInfo = $networkInfo;
+        null !== $originalNetworkInfo && $this
+            ->originalNetworkInfo = $originalNetworkInfo
+        ;
+        null !== $phoneNumber && $this->phoneNumber = $phoneNumber;
     }
 }

@@ -23,6 +23,6 @@ final class Metadata implements BaseModel
         self::_introspect();
         $this->unsetOptionalProperties();
 
-        null != $correlationID && $this->correlationID = $correlationID;
+        null !== $correlationID && $this->correlationID = $correlationID;
     }
 }
