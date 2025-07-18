@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Prelude\Responses\WatchPredictResponse;
 
 use Prelude\Core\Concerns\Enum;
-use Prelude\Core\Contracts\StaticConverter;
+use Prelude\Core\Conversion\Contracts\ConverterSource;
 
-final class Prediction implements StaticConverter
+final class Prediction implements ConverterSource
 {
     use Enum;
 

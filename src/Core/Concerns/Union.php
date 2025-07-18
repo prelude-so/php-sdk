@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Prelude\Core\Concerns;
 
-use Prelude\Core\Conversion\CoerceState;
-use Prelude\Core\Conversion\DumpState;
+use Prelude\Core\Conversion\Contracts\Converter;
+use Prelude\Core\Conversion\Contracts\ConverterSource;
+use Prelude\Core\Conversion\UnionOf;
 
 /**
  * @internal
  */
 trait Union
 {
-    public static function introspect(): void {}
+    private static Converter $converter;
 
     public static function discriminator(): ?string // @phpstan-ignore-line
     {
@@ -20,22 +21,20 @@ trait Union
     }
 
     /**
-     * @return list<string|Converter|StaticConverter>|array<
-     *   string, string|Converter|StaticConverter
-     * >
+     * @return array<string, Converter|ConverterSource|string>|list<Converter|ConverterSource|string>
      */
     public static function variants(): array
     {
         return [];
     }
 
-    public static function coerce(mixed $value, CoerceState $state): mixed
+    public static function converter(): Converter
     {
-        return $value;
-    }
+        if (isset(static::$converter)) {
+            return static::$converter;
+        }
 
-    public static function dump(mixed $value, DumpState $state): mixed
-    {
-        return $value;
+        // @phpstan-ignore-next-line
+        return static::$converter = new UnionOf($this->discriminator(), variants: $this->variants());
     }
 }

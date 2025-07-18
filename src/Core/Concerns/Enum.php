@@ -4,20 +4,27 @@ declare(strict_types=1);
 
 namespace Prelude\Core\Concerns;
 
-use Prelude\Core\Conversion\CoerceState;
-use Prelude\Core\Conversion\DumpState;
+use Prelude\Core\Conversion\Contracts\Converter;
+use Prelude\Core\Conversion\EnumOf;
 
 trait Enum
 {
-    public static function introspect(): void {}
+    private static Converter $converter;
 
-    public static function coerce(mixed $value, CoerceState $state): mixed
+    public static function converter(): Converter
     {
-        return $value;
-    }
+        if (isset(static::$converter)) {
+            return static::$converter;
+        }
 
-    public static function dump(mixed $value, DumpState $state): mixed
-    {
-        return $value;
+        $class = new \ReflectionClass(static::class);
+        $acc = [];
+        foreach ($class->getReflectionConstants() as $constant) {
+            if ($constant->isPublic()) {
+                array_push($acc, $constant->getValue());
+            }
+        }
+
+        return static::$converter = new EnumOf($acc); // @phpstan-ignore-line
     }
 }

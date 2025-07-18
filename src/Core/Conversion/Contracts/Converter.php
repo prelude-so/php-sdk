@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Core\Contracts;
+namespace Prelude\Core\Conversion\Contracts;
 
 use Prelude\Core\Conversion\CoerceState;
 use Prelude\Core\Conversion\DumpState;
