@@ -143,12 +143,12 @@ use Prelude\Client;
 use Prelude\Parameters\VerificationCreateParam\Target;
 
 // Configure the default for all requests:
-$client = new Client(max_retries: 0);
+$client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
 $client->verification->create(
   ["target" => new Target(type: "phone_number", value: "+30123456789")],
-  requestOptions: ["max_retries" => 5],
+  requestOptions: ["maxRetries" => 5],
 );
 ```
 
