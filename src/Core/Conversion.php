@@ -6,10 +6,10 @@ namespace Prelude\Core;
 
 use Prelude\Core\Contracts\Converter;
 use Prelude\Core\Contracts\StaticConverter;
-use Prelude\Core\Serde\CoerceState;
-use Prelude\Core\Serde\DumpState;
+use Prelude\Core\Conversion\CoerceState;
+use Prelude\Core\Conversion\DumpState;
 
-final class Serde
+final class Conversion
 {
     public static function dump_unknown(mixed $value, DumpState $state): mixed
     {

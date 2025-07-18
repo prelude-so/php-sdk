@@ -8,7 +8,7 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Serde\MapOf;
+use Prelude\Core\Conversion\MapOf;
 
 final class TransactionalSendParam implements BaseModel
 {

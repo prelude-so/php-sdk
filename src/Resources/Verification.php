@@ -6,7 +6,7 @@ namespace Prelude\Resources;
 
 use Prelude\Client;
 use Prelude\Contracts\VerificationContract;
-use Prelude\Core\Serde;
+use Prelude\Core\Conversion;
 use Prelude\Parameters\VerificationCheckParam;
 use Prelude\Parameters\VerificationCheckParam\Target as Target1;
 use Prelude\Parameters\VerificationCreateParam;
@@ -47,7 +47,7 @@ final class Verification implements VerificationContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(VerificationNewResponse::class, value: $resp);
+        return Conversion::coerce(VerificationNewResponse::class, value: $resp);
     }
 
     /**
@@ -69,6 +69,6 @@ final class Verification implements VerificationContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(VerificationCheckResponse::class, value: $resp);
+        return Conversion::coerce(VerificationCheckResponse::class, value: $resp);
     }
 }

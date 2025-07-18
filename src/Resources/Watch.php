@@ -6,7 +6,7 @@ namespace Prelude\Resources;
 
 use Prelude\Client;
 use Prelude\Contracts\WatchContract;
-use Prelude\Core\Serde;
+use Prelude\Core\Conversion;
 use Prelude\Parameters\WatchPredictParam;
 use Prelude\Parameters\WatchPredictParam\Metadata;
 use Prelude\Parameters\WatchPredictParam\Signals;
@@ -45,7 +45,7 @@ final class Watch implements WatchContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(WatchPredictResponse::class, value: $resp);
+        return Conversion::coerce(WatchPredictResponse::class, value: $resp);
     }
 
     /**
@@ -67,7 +67,7 @@ final class Watch implements WatchContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(WatchSendEventsResponse::class, value: $resp);
+        return Conversion::coerce(WatchSendEventsResponse::class, value: $resp);
     }
 
     /**
@@ -89,6 +89,6 @@ final class Watch implements WatchContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(WatchSendFeedbacksResponse::class, value: $resp);
+        return Conversion::coerce(WatchSendFeedbacksResponse::class, value: $resp);
     }
 }
