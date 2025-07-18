@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Core\Concerns;
 
-use Prelude\Core\Serde;
-use Prelude\Core\Serde\DumpState;
+use Prelude\Core\Conversion;
+use Prelude\Core\Conversion\DumpState;
 use Prelude\RequestOptions;
 
 /**
@@ -32,7 +32,7 @@ trait Params
         static::introspect();
 
         $state = new DumpState();
-        $dumped = (array) Serde::dump(self::class, value: $params, state: $state);
+        $dumped = (array) Conversion::dump(self::class, value: $params, state: $state);
         $opts = RequestOptions::parse($options); // @phpstan-ignore-line
 
         if (!$state->canRetry) {

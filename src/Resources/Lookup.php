@@ -6,7 +6,7 @@ namespace Prelude\Resources;
 
 use Prelude\Client;
 use Prelude\Contracts\LookupContract;
-use Prelude\Core\Serde;
+use Prelude\Core\Conversion;
 use Prelude\Parameters\LookupLookupParam;
 use Prelude\Parameters\LookupLookupParam\Type;
 use Prelude\RequestOptions;
@@ -36,6 +36,6 @@ final class Lookup implements LookupContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(LookupLookupResponse::class, value: $resp);
+        return Conversion::coerce(LookupLookupResponse::class, value: $resp);
     }
 }

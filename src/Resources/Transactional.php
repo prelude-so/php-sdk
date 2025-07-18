@@ -6,7 +6,7 @@ namespace Prelude\Resources;
 
 use Prelude\Client;
 use Prelude\Contracts\TransactionalContract;
-use Prelude\Core\Serde;
+use Prelude\Core\Conversion;
 use Prelude\Parameters\TransactionalSendParam;
 use Prelude\RequestOptions;
 use Prelude\Responses\TransactionalSendResponse;
@@ -43,6 +43,6 @@ final class Transactional implements TransactionalContract
         );
 
         // @phpstan-ignore-next-line;
-        return Serde::coerce(TransactionalSendResponse::class, value: $resp);
+        return Conversion::coerce(TransactionalSendResponse::class, value: $resp);
     }
 }

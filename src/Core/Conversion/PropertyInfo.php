@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Core\Serde;
+namespace Prelude\Core\Conversion;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Contracts\Converter;

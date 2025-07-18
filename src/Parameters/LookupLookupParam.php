@@ -8,7 +8,7 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Serde\ListOf;
+use Prelude\Core\Conversion\ListOf;
 use Prelude\Parameters\LookupLookupParam\Type;
 
 final class LookupLookupParam implements BaseModel

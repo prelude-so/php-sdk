@@ -7,7 +7,7 @@ namespace Prelude\Parameters\VerificationCreateParam;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Serde\MapOf;
+use Prelude\Core\Conversion\MapOf;
 use Prelude\Parameters\VerificationCreateParam\Options\AppRealm;
 use Prelude\Parameters\VerificationCreateParam\Options\Method;
 use Prelude\Parameters\VerificationCreateParam\Options\PreferredChannel;

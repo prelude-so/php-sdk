@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Core\Concerns;
 
-use Prelude\Core\Serde\CoerceState;
-use Prelude\Core\Serde\DumpState;
+use Prelude\Core\Conversion\CoerceState;
+use Prelude\Core\Conversion\DumpState;
 
 /**
  * @internal

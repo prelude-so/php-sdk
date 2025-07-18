@@ -7,7 +7,7 @@ namespace Prelude\Responses;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Serde\ListOf;
+use Prelude\Core\Conversion\ListOf;
 use Prelude\Responses\VerificationNewResponse\Channel;
 use Prelude\Responses\VerificationNewResponse\Metadata;
 use Prelude\Responses\VerificationNewResponse\Method;

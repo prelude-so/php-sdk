@@ -7,7 +7,7 @@ namespace Prelude\Responses;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Serde\ListOf;
+use Prelude\Core\Conversion\ListOf;
 use Prelude\Responses\LookupLookupResponse\Flag;
 use Prelude\Responses\LookupLookupResponse\LineType;
 use Prelude\Responses\LookupLookupResponse\NetworkInfo;
