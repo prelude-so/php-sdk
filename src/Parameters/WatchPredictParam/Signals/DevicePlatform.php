@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Prelude\Parameters\WatchPredictParam\Signals;
 
 use Prelude\Core\Concerns\Enum;
-use Prelude\Core\Contracts\StaticConverter;
+use Prelude\Core\Conversion\Contracts\ConverterSource;
 
-final class DevicePlatform implements StaticConverter
+final class DevicePlatform implements ConverterSource
 {
     use Enum;
 

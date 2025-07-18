@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Prelude\Parameters\WatchSendEventsParam\Event;
 
 use Prelude\Core\Concerns\Enum;
-use Prelude\Core\Contracts\StaticConverter;
+use Prelude\Core\Conversion\Contracts\ConverterSource;
 
-final class Confidence implements StaticConverter
+final class Confidence implements ConverterSource
 {
     use Enum;
 

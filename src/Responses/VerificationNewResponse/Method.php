@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Prelude\Responses\VerificationNewResponse;
 
 use Prelude\Core\Concerns\Enum;
-use Prelude\Core\Contracts\StaticConverter;
+use Prelude\Core\Conversion\Contracts\ConverterSource;
 
-final class Method implements StaticConverter
+final class Method implements ConverterSource
 {
     use Enum;
 

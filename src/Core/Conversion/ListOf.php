@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Core\Conversion;
 
-use Prelude\Core\Concerns\ArrayOf;
-use Prelude\Core\Contracts\Converter;
+use Prelude\Core\Conversion\Concerns\ArrayOf;
+use Prelude\Core\Conversion\Contracts\Converter;
 
 /**
  * @internal

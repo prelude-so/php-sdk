@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Core\Concerns;
+namespace Prelude\Core\Conversion\Concerns;
 
-use Prelude\Core\Contracts\Converter;
-use Prelude\Core\Contracts\StaticConverter;
 use Prelude\Core\Conversion;
 use Prelude\Core\Conversion\CoerceState;
+use Prelude\Core\Conversion\Contracts\Converter;
+use Prelude\Core\Conversion\Contracts\ConverterSource;
 use Prelude\Core\Conversion\DumpState;
 
 /**
@@ -15,12 +15,12 @@ use Prelude\Core\Conversion\DumpState;
  */
 trait ArrayOf
 {
-    private readonly null|Converter|StaticConverter|string $type;
+    private readonly null|Converter|ConverterSource|string $type;
 
     public function __construct(
-        null|Converter|StaticConverter|string $type = null,
-        null|Converter|StaticConverter|string $enum = null,
-        null|Converter|StaticConverter|string $union = null,
+        null|Converter|ConverterSource|string $type = null,
+        null|Converter|ConverterSource|string $enum = null,
+        null|Converter|ConverterSource|string $union = null,
         private readonly bool $nullable = false,
     ) {
         $this->type = $type ?? $enum ?? $union;

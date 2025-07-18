@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Prelude\Parameters\WatchSendFeedbacksParam\Feedback\Target;
 
 use Prelude\Core\Concerns\Enum;
-use Prelude\Core\Contracts\StaticConverter;
+use Prelude\Core\Conversion\Contracts\ConverterSource;
 
-final class Type implements StaticConverter
+final class Type implements ConverterSource
 {
     use Enum;
 

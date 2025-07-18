@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Anthropic\Core;
+namespace Prelude\Core;
 
 use Psr\Http\Message\StreamInterface;
 

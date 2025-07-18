@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Prelude\Parameters\VerificationCreateParam\Options;
 
 use Prelude\Core\Concerns\Enum;
-use Prelude\Core\Contracts\StaticConverter;
+use Prelude\Core\Conversion\Contracts\ConverterSource;
 
-final class PreferredChannel implements StaticConverter
+final class PreferredChannel implements ConverterSource
 {
     use Enum;
 
