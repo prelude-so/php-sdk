@@ -33,7 +33,7 @@ final class Options implements BaseModel
 
     /** @var null|Method::* $method */
     #[Api(optional: true)]
-    public ?string $method = 'auto';
+    public ?string $method;
 
     /** @var null|PreferredChannel::* $preferredChannel */
     #[Api('preferred_channel', optional: true)]
