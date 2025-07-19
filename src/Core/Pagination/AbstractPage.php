@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Core\Pagination;
 
 use Prelude\Core\BaseClient;
-use Prelude\Core\Concerns\Pager;
+use Prelude\Core\Concerns\Page;
 use Prelude\Errors\Error;
 use Psr\Http\Message\ResponseInterface;
 
@@ -16,7 +16,7 @@ use Psr\Http\Message\ResponseInterface;
  *
  * @implements \IteratorAggregate<Item>
  */
-abstract class AbstractPage implements \IteratorAggregate, Pager
+abstract class AbstractPage implements \IteratorAggregate, Page
 {
     public function __construct(
         protected BaseClient $client,
