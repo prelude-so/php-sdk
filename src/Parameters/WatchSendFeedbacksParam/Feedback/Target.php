@@ -9,6 +9,9 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Parameters\WatchSendFeedbacksParam\Feedback\Target\Type;
 
+/**
+ * @phpstan-type target_alias = array{type: Type::*, value: string}
+ */
 final class Target implements BaseModel
 {
     use Model;

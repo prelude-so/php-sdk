@@ -26,7 +26,7 @@ final class Watch implements WatchContract
 
     /**
      * @param WatchPredictParam|array{
-     *   target?: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
+     *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
      * } $params
      */
     public function predict(
@@ -49,7 +49,7 @@ final class Watch implements WatchContract
     }
 
     /**
-     * @param array{events?: list<Event>}|WatchSendEventsParam $params
+     * @param array{events: list<Event>}|WatchSendEventsParam $params
      */
     public function sendEvents(
         array|WatchSendEventsParam $params,
@@ -71,7 +71,7 @@ final class Watch implements WatchContract
     }
 
     /**
-     * @param array{feedbacks?: list<Feedback>}|WatchSendFeedbacksParam $params
+     * @param array{feedbacks: list<Feedback>}|WatchSendFeedbacksParam $params
      */
     public function sendFeedbacks(
         array|WatchSendFeedbacksParam $params,

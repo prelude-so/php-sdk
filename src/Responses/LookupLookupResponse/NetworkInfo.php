@@ -8,6 +8,11 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type network_info_alias = array{
+ *   carrierName?: string, mcc?: string, mnc?: string
+ * }
+ */
 final class NetworkInfo implements BaseModel
 {
     use Model;

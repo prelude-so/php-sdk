@@ -10,6 +10,18 @@ use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\MapOf;
 
+/**
+ * @phpstan-type send_params = array{
+ *   templateID: string,
+ *   to: string,
+ *   callbackURL?: string,
+ *   correlationID?: string,
+ *   expiresAt?: string,
+ *   from?: string,
+ *   locale?: string,
+ *   variables?: array<string, string>,
+ * }
+ */
 final class TransactionalSendParam implements BaseModel
 {
     use Model;

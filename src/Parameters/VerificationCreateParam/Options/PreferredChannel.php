@@ -7,6 +7,9 @@ namespace Prelude\Parameters\VerificationCreateParam\Options;
 use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @phpstan-type preferred_channel_alias = PreferredChannel::*
+ */
 final class PreferredChannel implements ConverterSource
 {
     use Enum;

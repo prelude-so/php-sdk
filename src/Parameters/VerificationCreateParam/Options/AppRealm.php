@@ -9,6 +9,9 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Parameters\VerificationCreateParam\Options\AppRealm\Platform;
 
+/**
+ * @phpstan-type app_realm_alias = array{platform: Platform::*, value: string}
+ */
 final class AppRealm implements BaseModel
 {
     use Model;

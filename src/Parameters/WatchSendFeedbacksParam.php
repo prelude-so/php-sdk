@@ -11,6 +11,9 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\ListOf;
 use Prelude\Parameters\WatchSendFeedbacksParam\Feedback;
 
+/**
+ * @phpstan-type send_feedbacks_params = array{feedbacks: list<Feedback>}
+ */
 final class WatchSendFeedbacksParam implements BaseModel
 {
     use Model;

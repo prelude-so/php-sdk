@@ -24,7 +24,7 @@ final class Verification implements VerificationContract
 
     /**
      * @param VerificationCreateParam|array{
-     *   target?: Target,
+     *   target: Target,
      *   dispatchID?: string,
      *   metadata?: Metadata,
      *   options?: Options,
@@ -51,7 +51,7 @@ final class Verification implements VerificationContract
     }
 
     /**
-     * @param array{code?: string, target?: Target1}|VerificationCheckParam $params
+     * @param array{code: string, target: Target1}|VerificationCheckParam $params
      */
     public function check(
         array|VerificationCheckParam $params,

@@ -7,6 +7,9 @@ namespace Prelude\Responses\VerificationCheckResponse;
 use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @phpstan-type status_alias = Status::*
+ */
 final class Status implements ConverterSource
 {
     use Enum;

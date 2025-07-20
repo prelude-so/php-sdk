@@ -21,7 +21,7 @@ interface WatchContract
 {
     /**
      * @param WatchPredictParam|array{
-     *   target?: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
+     *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
      * } $params
      */
     public function predict(
@@ -30,7 +30,7 @@ interface WatchContract
     ): WatchPredictResponse;
 
     /**
-     * @param array{events?: list<Event>}|WatchSendEventsParam $params
+     * @param array{events: list<Event>}|WatchSendEventsParam $params
      */
     public function sendEvents(
         array|WatchSendEventsParam $params,
@@ -38,7 +38,7 @@ interface WatchContract
     ): WatchSendEventsResponse;
 
     /**
-     * @param array{feedbacks?: list<Feedback>}|WatchSendFeedbacksParam $params
+     * @param array{feedbacks: list<Feedback>}|WatchSendFeedbacksParam $params
      */
     public function sendFeedbacks(
         array|WatchSendFeedbacksParam $params,

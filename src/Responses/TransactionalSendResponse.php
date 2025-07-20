@@ -9,6 +9,19 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\MapOf;
 
+/**
+ * @phpstan-type transactional_send_response_alias = array{
+ *   id: string,
+ *   createdAt: \DateTimeInterface,
+ *   expiresAt: \DateTimeInterface,
+ *   templateID: string,
+ *   to: string,
+ *   variables: array<string, string>,
+ *   callbackURL?: string,
+ *   correlationID?: string,
+ *   from?: string,
+ * }
+ */
 final class TransactionalSendResponse implements BaseModel
 {
     use Model;

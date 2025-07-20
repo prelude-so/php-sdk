@@ -7,6 +7,9 @@ namespace Prelude\Parameters\WatchPredictParam\Signals;
 use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @phpstan-type device_platform_alias = DevicePlatform::*
+ */
 final class DevicePlatform implements ConverterSource
 {
     use Enum;

@@ -11,6 +11,9 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\ListOf;
 use Prelude\Parameters\LookupLookupParam\Type;
 
+/**
+ * @phpstan-type lookup_params = array{type?: list<Type::*>}
+ */
 final class LookupLookupParam implements BaseModel
 {
     use Model;

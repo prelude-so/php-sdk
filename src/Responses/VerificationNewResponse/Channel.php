@@ -7,6 +7,9 @@ namespace Prelude\Responses\VerificationNewResponse;
 use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @phpstan-type channel_alias = Channel::*
+ */
 final class Channel implements ConverterSource
 {
     use Enum;

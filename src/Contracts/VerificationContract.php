@@ -19,7 +19,7 @@ interface VerificationContract
 {
     /**
      * @param VerificationCreateParam|array{
-     *   target?: Target,
+     *   target: Target,
      *   dispatchID?: string,
      *   metadata?: Metadata,
      *   options?: Options,
@@ -32,7 +32,7 @@ interface VerificationContract
     ): VerificationNewResponse;
 
     /**
-     * @param array{code?: string, target?: Target1}|VerificationCheckParam $params
+     * @param array{code: string, target: Target1}|VerificationCheckParam $params
      */
     public function check(
         array|VerificationCheckParam $params,

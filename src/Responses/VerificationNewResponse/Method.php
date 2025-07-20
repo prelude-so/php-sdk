@@ -7,6 +7,9 @@ namespace Prelude\Responses\VerificationNewResponse;
 use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @phpstan-type method_alias = Method::*
+ */
 final class Method implements ConverterSource
 {
     use Enum;

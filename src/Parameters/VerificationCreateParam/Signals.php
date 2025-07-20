@@ -9,6 +9,18 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Parameters\VerificationCreateParam\Signals\DevicePlatform;
 
+/**
+ * @phpstan-type signals_alias = array{
+ *   appVersion?: string,
+ *   deviceID?: string,
+ *   deviceModel?: string,
+ *   devicePlatform?: DevicePlatform::*,
+ *   ip?: string,
+ *   isTrustedUser?: bool,
+ *   osVersion?: string,
+ *   userAgent?: string,
+ * }
+ */
 final class Signals implements BaseModel
 {
     use Model;

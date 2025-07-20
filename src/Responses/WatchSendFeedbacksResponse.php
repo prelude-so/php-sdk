@@ -9,6 +9,11 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Responses\WatchSendFeedbacksResponse\Status;
 
+/**
+ * @phpstan-type watch_send_feedbacks_response_alias = array{
+ *   requestID: string, status: Status::*
+ * }
+ */
 final class WatchSendFeedbacksResponse implements BaseModel
 {
     use Model;

@@ -7,6 +7,9 @@ namespace Prelude\Responses\LookupLookupResponse;
 use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @phpstan-type line_type_alias = LineType::*
+ */
 final class LineType implements ConverterSource
 {
     use Enum;
