@@ -8,6 +8,9 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type silent_alias = array{requestURL: string}
+ */
 final class Silent implements BaseModel
 {
     use Model;

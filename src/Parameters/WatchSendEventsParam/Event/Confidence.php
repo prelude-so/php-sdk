@@ -7,6 +7,9 @@ namespace Prelude\Parameters\WatchSendEventsParam\Event;
 use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @phpstan-type confidence_alias = Confidence::*
+ */
 final class Confidence implements ConverterSource
 {
     use Enum;

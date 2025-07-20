@@ -7,6 +7,9 @@ namespace Prelude\Responses\VerificationNewResponse;
 use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @phpstan-type reason_alias = Reason::*
+ */
 final class Reason implements ConverterSource
 {
     use Enum;

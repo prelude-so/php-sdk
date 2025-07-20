@@ -11,6 +11,9 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\ListOf;
 use Prelude\Parameters\WatchSendEventsParam\Event;
 
+/**
+ * @phpstan-type send_events_params = array{events: list<Event>}
+ */
 final class WatchSendEventsParam implements BaseModel
 {
     use Model;

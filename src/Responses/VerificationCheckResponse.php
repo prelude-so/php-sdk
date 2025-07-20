@@ -10,6 +10,11 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Responses\VerificationCheckResponse\Metadata;
 use Prelude\Responses\VerificationCheckResponse\Status;
 
+/**
+ * @phpstan-type verification_check_response_alias = array{
+ *   status: Status::*, id?: string, metadata?: Metadata, requestID?: string
+ * }
+ */
 final class VerificationCheckResponse implements BaseModel
 {
     use Model;

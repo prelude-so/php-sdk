@@ -8,6 +8,9 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type metadata_alias = array{correlationID?: string}
+ */
 final class Metadata implements BaseModel
 {
     use Model;

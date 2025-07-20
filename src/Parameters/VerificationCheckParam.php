@@ -10,6 +10,9 @@ use Prelude\Core\Concerns\Params;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Parameters\VerificationCheckParam\Target;
 
+/**
+ * @phpstan-type check_params = array{code: string, target: Target}
+ */
 final class VerificationCheckParam implements BaseModel
 {
     use Model;

@@ -13,6 +13,15 @@ use Prelude\Parameters\VerificationCreateParam\Options;
 use Prelude\Parameters\VerificationCreateParam\Signals;
 use Prelude\Parameters\VerificationCreateParam\Target;
 
+/**
+ * @phpstan-type create_params = array{
+ *   target: Target,
+ *   dispatchID?: string,
+ *   metadata?: Metadata,
+ *   options?: Options,
+ *   signals?: Signals,
+ * }
+ */
 final class VerificationCreateParam implements BaseModel
 {
     use Model;

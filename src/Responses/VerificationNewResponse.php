@@ -15,6 +15,18 @@ use Prelude\Responses\VerificationNewResponse\Reason;
 use Prelude\Responses\VerificationNewResponse\Silent;
 use Prelude\Responses\VerificationNewResponse\Status;
 
+/**
+ * @phpstan-type verification_new_response_alias = array{
+ *   id: string,
+ *   method: Method::*,
+ *   status: Status::*,
+ *   channels?: list<Channel::*>,
+ *   metadata?: Metadata,
+ *   reason?: Reason::*,
+ *   requestID?: string,
+ *   silent?: Silent,
+ * }
+ */
 final class VerificationNewResponse implements BaseModel
 {
     use Model;

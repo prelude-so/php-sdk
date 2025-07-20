@@ -12,8 +12,8 @@ interface TransactionalContract
 {
     /**
      * @param TransactionalSendParam|array{
-     *   templateID?: string,
-     *   to?: string,
+     *   templateID: string,
+     *   to: string,
      *   callbackURL?: string,
      *   correlationID?: string,
      *   expiresAt?: string,

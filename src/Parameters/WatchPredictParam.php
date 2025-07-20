@@ -12,6 +12,11 @@ use Prelude\Parameters\WatchPredictParam\Metadata;
 use Prelude\Parameters\WatchPredictParam\Signals;
 use Prelude\Parameters\WatchPredictParam\Target;
 
+/**
+ * @phpstan-type predict_params = array{
+ *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
+ * }
+ */
 final class WatchPredictParam implements BaseModel
 {
     use Model;
