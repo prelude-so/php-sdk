@@ -9,12 +9,17 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
 /**
+ * The metadata for this verification.
+ *
  * @phpstan-type metadata_alias = array{correlationID?: string}
  */
 final class Metadata implements BaseModel
 {
     use Model;
 
+    /**
+     * A user-defined identifier to correlate this verification with. It is returned in the response and any webhook events that refer to this verification.
+     */
     #[Api('correlation_id', optional: true)]
     public ?string $correlationID;
 

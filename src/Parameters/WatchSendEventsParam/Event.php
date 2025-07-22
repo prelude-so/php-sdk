@@ -19,13 +19,23 @@ final class Event implements BaseModel
 {
     use Model;
 
-    /** @var Confidence::* $confidence */
+    /**
+     * A confidence level you want to assign to the event.
+     *
+     * @var Confidence::* $confidence
+     */
     #[Api]
     public string $confidence;
 
+    /**
+     * A label to describe what the event refers to.
+     */
     #[Api]
     public string $label;
 
+    /**
+     * The event target. Only supports phone numbers for now.
+     */
     #[Api]
     public Target $target;
 

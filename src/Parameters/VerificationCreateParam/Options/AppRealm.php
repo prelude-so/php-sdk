@@ -10,16 +10,25 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Parameters\VerificationCreateParam\Options\AppRealm\Platform;
 
 /**
+ * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
+ *
  * @phpstan-type app_realm_alias = array{platform: Platform::*, value: string}
  */
 final class AppRealm implements BaseModel
 {
     use Model;
 
-    /** @var Platform::* $platform */
+    /**
+     * The platform the SMS will be sent to. We are currently only supporting "android".
+     *
+     * @var Platform::* $platform
+     */
     #[Api]
     public string $platform;
 
+    /**
+     * The Android SMS Retriever API hash code that identifies your app.
+     */
     #[Api]
     public string $value;
 

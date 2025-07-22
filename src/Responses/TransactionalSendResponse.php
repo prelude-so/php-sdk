@@ -26,31 +26,59 @@ final class TransactionalSendResponse implements BaseModel
 {
     use Model;
 
+    /**
+     * The message identifier.
+     */
     #[Api]
     public string $id;
 
+    /**
+     * The message creation date.
+     */
     #[Api('created_at')]
     public \DateTimeInterface $createdAt;
 
+    /**
+     * The message expiration date.
+     */
     #[Api('expires_at')]
     public \DateTimeInterface $expiresAt;
 
+    /**
+     * The template identifier.
+     */
     #[Api('template_id')]
     public string $templateID;
 
+    /**
+     * The recipient's phone number.
+     */
     #[Api]
     public string $to;
 
-    /** @var array<string, string> $variables */
+    /**
+     * The variables to be replaced in the template.
+     *
+     * @var array<string, string> $variables
+     */
     #[Api(type: new MapOf('string'))]
     public array $variables;
 
+    /**
+     * The callback URL.
+     */
     #[Api('callback_url', optional: true)]
     public ?string $callbackURL;
 
+    /**
+     * A user-defined identifier to correlate this transactional message with. It is returned in the response and any webhook events that refer to this transactional message.
+     */
     #[Api('correlation_id', optional: true)]
     public ?string $correlationID;
 
+    /**
+     * The Sender ID.
+     */
     #[Api(optional: true)]
     public ?string $from;
 

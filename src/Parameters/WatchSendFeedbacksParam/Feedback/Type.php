@@ -8,6 +8,8 @@ use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
 /**
+ * The type of feedback.
+ *
  * @phpstan-type type_alias = Type::*
  */
 final class Type implements ConverterSource

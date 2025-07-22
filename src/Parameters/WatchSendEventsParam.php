@@ -12,6 +12,8 @@ use Prelude\Core\Conversion\ListOf;
 use Prelude\Parameters\WatchSendEventsParam\Event;
 
 /**
+ * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
+ *
  * @phpstan-type send_events_params = array{events: list<Event>}
  */
 final class WatchSendEventsParam implements BaseModel
@@ -19,7 +21,11 @@ final class WatchSendEventsParam implements BaseModel
     use Model;
     use Params;
 
-    /** @var list<Event> $events */
+    /**
+     * A list of events to dispatch.
+     *
+     * @var list<Event> $events
+     */
     #[Api(type: new ListOf(Event::class))]
     public array $events;
 

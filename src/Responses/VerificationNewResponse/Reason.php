@@ -8,6 +8,8 @@ use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
 /**
+ * The reason why the verification was blocked. Only present when status is "blocked".
+ *
  * @phpstan-type reason_alias = Reason::*
  */
 final class Reason implements ConverterSource

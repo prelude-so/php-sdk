@@ -17,6 +17,8 @@ final class Lookup implements LookupContract
     public function __construct(private Client $client) {}
 
     /**
+     * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
+     *
      * @param array{type?: list<Type::*>}|LookupLookupParam $params
      */
     public function lookup(

@@ -9,12 +9,17 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
 /**
+ * The metadata for this prediction.
+ *
  * @phpstan-type metadata_alias = array{correlationID?: string}
  */
 final class Metadata implements BaseModel
 {
     use Model;
 
+    /**
+     * A user-defined identifier to correlate this prediction with. It is returned in the response and any webhook events that refer to this prediction.
+     */
     #[Api('correlation_id', optional: true)]
     public ?string $correlationID;
 

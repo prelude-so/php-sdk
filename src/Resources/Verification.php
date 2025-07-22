@@ -23,6 +23,8 @@ final class Verification implements VerificationContract
     public function __construct(private Client $client) {}
 
     /**
+     * Create a new verification for a specific phone number. If another non-expired verification exists (the request is performed within the verification window), this endpoint will perform a retry instead.
+     *
      * @param VerificationCreateParam|array{
      *   target: Target,
      *   dispatchID?: string,
@@ -51,6 +53,8 @@ final class Verification implements VerificationContract
     }
 
     /**
+     * Check the validity of a verification code.
+     *
      * @param array{code: string, target: Target1}|VerificationCheckParam $params
      */
     public function check(

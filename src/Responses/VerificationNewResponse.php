@@ -31,31 +31,56 @@ final class VerificationNewResponse implements BaseModel
 {
     use Model;
 
+    /**
+     * The verification identifier.
+     */
     #[Api]
     public string $id;
 
-    /** @var Method::* $method */
+    /**
+     * The method used for verifying this phone number.
+     *
+     * @var Method::* $method
+     */
     #[Api]
     public string $method;
 
-    /** @var Status::* $status */
+    /**
+     * The status of the verification.
+     *
+     * @var Status::* $status
+     */
     #[Api]
     public string $status;
 
-    /** @var null|list<Channel::*> $channels */
+    /**
+     * The ordered sequence of channels to be used for verification.
+     *
+     * @var null|list<Channel::*> $channels
+     */
     #[Api(type: new ListOf(enum: Channel::class), optional: true)]
     public ?array $channels;
 
+    /**
+     * The metadata for this verification.
+     */
     #[Api(optional: true)]
     public ?Metadata $metadata;
 
-    /** @var null|Reason::* $reason */
+    /**
+     * The reason why the verification was blocked. Only present when status is "blocked".
+     *
+     * @var null|Reason::* $reason
+     */
     #[Api(optional: true)]
     public ?string $reason;
 
     #[Api('request_id', optional: true)]
     public ?string $requestID;
 
+    /**
+     * The silent verification specific properties.
+     */
     #[Api(optional: true)]
     public ?Silent $silent;
 

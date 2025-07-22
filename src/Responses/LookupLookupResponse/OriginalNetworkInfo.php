@@ -9,6 +9,8 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
 /**
+ * The original carrier information.
+ *
  * @phpstan-type original_network_info_alias = array{
  *   carrierName?: string, mcc?: string, mnc?: string
  * }
@@ -17,12 +19,21 @@ final class OriginalNetworkInfo implements BaseModel
 {
     use Model;
 
+    /**
+     * The name of the original carrier.
+     */
     #[Api('carrier_name', optional: true)]
     public ?string $carrierName;
 
+    /**
+     * Mobile Country Code.
+     */
     #[Api(optional: true)]
     public ?string $mcc;
 
+    /**
+     * Mobile Network Code.
+     */
     #[Api(optional: true)]
     public ?string $mnc;
 
