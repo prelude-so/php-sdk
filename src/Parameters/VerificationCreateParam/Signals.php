@@ -50,7 +50,7 @@ final class Signals implements BaseModel
      *
      * @var null|DevicePlatform::* $devicePlatform
      */
-    #[Api('device_platform', optional: true)]
+    #[Api('device_platform', enum: DevicePlatform::class, optional: true)]
     public ?string $devicePlatform;
 
     /**

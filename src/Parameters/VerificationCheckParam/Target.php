@@ -23,7 +23,7 @@ final class Target implements BaseModel
      *
      * @var Type::* $type
      */
-    #[Api]
+    #[Api(enum: Type::class)]
     public string $type;
 
     /**

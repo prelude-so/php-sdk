@@ -74,7 +74,7 @@ final class LookupLookupResponse implements BaseModel
      *
      * @var null|LineType::* $lineType
      */
-    #[Api('line_type', optional: true)]
+    #[Api('line_type', enum: LineType::class, optional: true)]
     public ?string $lineType;
 
     /**

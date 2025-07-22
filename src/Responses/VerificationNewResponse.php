@@ -42,7 +42,7 @@ final class VerificationNewResponse implements BaseModel
      *
      * @var Method::* $method
      */
-    #[Api]
+    #[Api(enum: Method::class)]
     public string $method;
 
     /**
@@ -50,7 +50,7 @@ final class VerificationNewResponse implements BaseModel
      *
      * @var Status::* $status
      */
-    #[Api]
+    #[Api(enum: Status::class)]
     public string $status;
 
     /**
@@ -72,7 +72,7 @@ final class VerificationNewResponse implements BaseModel
      *
      * @var null|Reason::* $reason
      */
-    #[Api(optional: true)]
+    #[Api(enum: Reason::class, optional: true)]
     public ?string $reason;
 
     #[Api('request_id', optional: true)]

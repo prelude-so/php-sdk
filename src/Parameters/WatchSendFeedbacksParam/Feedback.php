@@ -36,7 +36,7 @@ final class Feedback implements BaseModel
      *
      * @var Type::* $type
      */
-    #[Api]
+    #[Api(enum: Type::class)]
     public string $type;
 
     /**

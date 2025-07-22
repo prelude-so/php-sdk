@@ -67,7 +67,7 @@ final class Options implements BaseModel
      *
      * @var null|Method::* $method
      */
-    #[Api(optional: true)]
+    #[Api(enum: Method::class, optional: true)]
     public ?string $method;
 
     /**
@@ -75,7 +75,7 @@ final class Options implements BaseModel
      *
      * @var null|PreferredChannel::* $preferredChannel
      */
-    #[Api('preferred_channel', optional: true)]
+    #[Api('preferred_channel', enum: PreferredChannel::class, optional: true)]
     public ?string $preferredChannel;
 
     /**

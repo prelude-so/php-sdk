@@ -24,7 +24,7 @@ final class Event implements BaseModel
      *
      * @var Confidence::* $confidence
      */
-    #[Api]
+    #[Api(enum: Confidence::class)]
     public string $confidence;
 
     /**

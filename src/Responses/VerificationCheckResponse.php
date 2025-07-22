@@ -24,7 +24,7 @@ final class VerificationCheckResponse implements BaseModel
      *
      * @var Status::* $status
      */
-    #[Api]
+    #[Api(enum: Status::class)]
     public string $status;
 
     /**
