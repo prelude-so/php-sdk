@@ -9,12 +9,17 @@ use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
 
 /**
+ * The silent verification specific properties.
+ *
  * @phpstan-type silent_alias = array{requestURL: string}
  */
 final class Silent implements BaseModel
 {
     use Model;
 
+    /**
+     * The URL to start the silent verification towards.
+     */
     #[Api('request_url')]
     public string $requestURL;
 

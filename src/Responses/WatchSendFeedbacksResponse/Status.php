@@ -8,6 +8,8 @@ use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
 /**
+ * The status of the feedbacks sending.
+ *
  * @phpstan-type status_alias = Status::*
  */
 final class Status implements ConverterSource

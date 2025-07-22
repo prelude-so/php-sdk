@@ -25,19 +25,35 @@ final class Feedback implements BaseModel
 {
     use Model;
 
+    /**
+     * The feedback target. Only supports phone numbers for now.
+     */
     #[Api]
     public Target $target;
 
-    /** @var Type::* $type */
+    /**
+     * The type of feedback.
+     *
+     * @var Type::* $type
+     */
     #[Api]
     public string $type;
 
+    /**
+     * The identifier of the dispatch that came from the front-end SDK.
+     */
     #[Api('dispatch_id', optional: true)]
     public ?string $dispatchID;
 
+    /**
+     * The metadata for this feedback.
+     */
     #[Api(optional: true)]
     public ?Metadata $metadata;
 
+    /**
+     * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     */
     #[Api(optional: true)]
     public ?Signals $signals;
 

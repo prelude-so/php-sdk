@@ -25,6 +25,8 @@ final class Watch implements WatchContract
     public function __construct(private Client $client) {}
 
     /**
+     * Predict the outcome of a verification based on Prelude’s anti-fraud system.
+     *
      * @param WatchPredictParam|array{
      *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
      * } $params
@@ -49,6 +51,8 @@ final class Watch implements WatchContract
     }
 
     /**
+     * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
+     *
      * @param array{events: list<Event>}|WatchSendEventsParam $params
      */
     public function sendEvents(
@@ -71,6 +75,8 @@ final class Watch implements WatchContract
     }
 
     /**
+     * Send feedback regarding your end-users verification funnel. Events will be analyzed for proactive fraud prevention and risk scoring.
+     *
      * @param array{feedbacks: list<Feedback>}|WatchSendFeedbacksParam $params
      */
     public function sendFeedbacks(

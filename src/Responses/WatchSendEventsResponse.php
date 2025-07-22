@@ -18,10 +18,17 @@ final class WatchSendEventsResponse implements BaseModel
 {
     use Model;
 
+    /**
+     * A string that identifies this specific request. Report it back to us to help us diagnose your issues.
+     */
     #[Api('request_id')]
     public string $requestID;
 
-    /** @var Status::* $status */
+    /**
+     * The status of the events dispatch.
+     *
+     * @var Status::* $status
+     */
     #[Api]
     public string $status;
 

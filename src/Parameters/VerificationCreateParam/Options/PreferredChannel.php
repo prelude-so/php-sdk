@@ -8,6 +8,8 @@ use Prelude\Core\Concerns\Enum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
 /**
+ * The preferred channel to be used in priority for verification.
+ *
  * @phpstan-type preferred_channel_alias = PreferredChannel::*
  */
 final class PreferredChannel implements ConverterSource

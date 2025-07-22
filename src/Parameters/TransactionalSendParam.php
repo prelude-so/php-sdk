@@ -11,6 +11,8 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\MapOf;
 
 /**
+ * Send a transactional message to your user.
+ *
  * @phpstan-type send_params = array{
  *   templateID: string,
  *   to: string,
@@ -27,28 +29,53 @@ final class TransactionalSendParam implements BaseModel
     use Model;
     use Params;
 
+    /**
+     * The template identifier.
+     */
     #[Api('template_id')]
     public string $templateID;
 
+    /**
+     * The recipient's phone number.
+     */
     #[Api]
     public string $to;
 
+    /**
+     * The callback URL.
+     */
     #[Api('callback_url', optional: true)]
     public ?string $callbackURL;
 
+    /**
+     * A user-defined identifier to correlate this transactional message with. It is returned in the response and any webhook events that refer to this transactionalmessage.
+     */
     #[Api('correlation_id', optional: true)]
     public ?string $correlationID;
 
+    /**
+     * The message expiration date.
+     */
     #[Api('expires_at', optional: true)]
     public ?string $expiresAt;
 
+    /**
+     * The Sender ID.
+     */
     #[Api(optional: true)]
     public ?string $from;
 
+    /**
+     * A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, the default set on the template will be used.
+     */
     #[Api(optional: true)]
     public ?string $locale;
 
-    /** @var null|array<string, string> $variables */
+    /**
+     * The variables to be replaced in the template.
+     *
+     * @var null|array<string, string> $variables
+     */
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $variables;
 

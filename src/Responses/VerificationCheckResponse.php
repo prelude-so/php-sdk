@@ -19,13 +19,23 @@ final class VerificationCheckResponse implements BaseModel
 {
     use Model;
 
-    /** @var Status::* $status */
+    /**
+     * The status of the check.
+     *
+     * @var Status::* $status
+     */
     #[Api]
     public string $status;
 
+    /**
+     * The verification identifier.
+     */
     #[Api(optional: true)]
     public ?string $id;
 
+    /**
+     * The metadata for this verification.
+     */
     #[Api(optional: true)]
     public ?Metadata $metadata;
 

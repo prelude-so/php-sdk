@@ -12,6 +12,8 @@ use Prelude\Core\Conversion\ListOf;
 use Prelude\Parameters\WatchSendFeedbacksParam\Feedback;
 
 /**
+ * Send feedback regarding your end-users verification funnel. Events will be analyzed for proactive fraud prevention and risk scoring.
+ *
  * @phpstan-type send_feedbacks_params = array{feedbacks: list<Feedback>}
  */
 final class WatchSendFeedbacksParam implements BaseModel
@@ -19,7 +21,11 @@ final class WatchSendFeedbacksParam implements BaseModel
     use Model;
     use Params;
 
-    /** @var list<Feedback> $feedbacks */
+    /**
+     * A list of feedbacks to send.
+     *
+     * @var list<Feedback> $feedbacks
+     */
     #[Api(type: new ListOf(Feedback::class))]
     public array $feedbacks;
 

@@ -18,13 +18,23 @@ final class WatchPredictResponse implements BaseModel
 {
     use Model;
 
+    /**
+     * The prediction identifier.
+     */
     #[Api]
     public string $id;
 
-    /** @var Prediction::* $prediction */
+    /**
+     * The prediction outcome.
+     *
+     * @var Prediction::* $prediction
+     */
     #[Api]
     public string $prediction;
 
+    /**
+     * A string that identifies this specific request. Report it back to us to help us diagnose your issues.
+     */
     #[Api('request_id')]
     public string $requestID;
 
