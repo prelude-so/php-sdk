@@ -29,7 +29,7 @@ final class WatchPredictResponse implements BaseModel
      *
      * @var Prediction::* $prediction
      */
-    #[Api]
+    #[Api(enum: Prediction::class)]
     public string $prediction;
 
     /**

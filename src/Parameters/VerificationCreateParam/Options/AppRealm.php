@@ -23,7 +23,7 @@ final class AppRealm implements BaseModel
      *
      * @var Platform::* $platform
      */
-    #[Api]
+    #[Api(enum: Platform::class)]
     public string $platform;
 
     /**
