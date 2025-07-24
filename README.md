@@ -1,5 +1,10 @@
 # Prelude PHP API library
 
+> [!NOTE]
+> The Prelude PHP API Library is currently in alpha.
+>
+> There may be frequent breaking changes.
+
 The Prelude PHP library provides convenient access to the Prelude REST API from any PHP 8.1.0+ application.
 
 It is generated with [Stainless](https://www.stainless.com/).
