@@ -32,7 +32,7 @@ final class LookupTest extends TestCase
         $result = $this
             ->client
             ->lookup
-            ->lookup('+12065550100', new LookupLookupParam())
+            ->lookup('+12065550100', new LookupLookupParam)
         ;
 
         $this->assertTrue(true); // @phpstan-ignore-line

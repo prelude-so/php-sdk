@@ -86,7 +86,7 @@ use Prelude\Parameters\VerificationCreateParam\Target;
 $client = new Client(apiToken: getenv("API_TOKEN") ?: "My API Token");
 
 $verification = $client->verification->create(
-  ["target" => new Target(type: "phone_number", value: "+30123456789")]
+  ["target" => Target::new(type: "phone_number", value: "+30123456789")]
 );
 
 var_dump($verification->id);
@@ -104,7 +104,7 @@ use Prelude\Parameters\VerificationCreateParam\Target;
 
 try {
     $Verification = $client->verification->create(
-      ["target" => new Target(type: "phone_number", value: "+30123456789")]
+      ["target" => Target::new(type: "phone_number", value: "+30123456789")]
     );
 } catch (APIConnectionError $e) {
     echo "The server could not be reached", PHP_EOL;
@@ -152,7 +152,7 @@ $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
 $client->verification->create(
-  ["target" => new Target(type: "phone_number", value: "+30123456789")],
+  ["target" => Target::new(type: "phone_number", value: "+30123456789")],
   requestOptions: ["maxRetries" => 5],
 );
 ```
@@ -173,7 +173,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 use Prelude\Parameters\VerificationCreateParam\Target;
 
 $verification = $client->verification->create(
-  ["target" => new Target(type: "phone_number", value: "+30123456789")],
+  ["target" => Target::new(type: "phone_number", value: "+30123456789")],
   requestOptions: [
     "extraQueryParams" => ["my_query_parameter" => "value"],
     "extraBodyParams" => ["my_body_parameter" => "value"],

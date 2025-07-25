@@ -57,26 +57,87 @@ final class Feedback implements BaseModel
     #[Api(optional: true)]
     public ?Signals $signals;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type::* $type
      */
-    final public function __construct(
+    public static function new(
         Target $target,
         string $type,
         ?string $dispatchID = null,
         ?Metadata $metadata = null,
         ?Signals $signals = null,
-    ) {
-        self::introspect();
-        $this->unsetOptionalProperties();
+    ): self {
+        $obj = new self;
 
+        $obj->target = $target;
+        $obj->type = $type;
+
+        null !== $dispatchID && $obj->dispatchID = $dispatchID;
+        null !== $metadata && $obj->metadata = $metadata;
+        null !== $signals && $obj->signals = $signals;
+
+        return $obj;
+    }
+
+    /**
+     * The feedback target. Only supports phone numbers for now.
+     */
+    public function setTarget(Target $target): self
+    {
         $this->target = $target;
+
+        return $this;
+    }
+
+    /**
+     * The type of feedback.
+     *
+     * @param Type::* $type
+     */
+    public function setType(string $type): self
+    {
         $this->type = $type;
 
-        null !== $dispatchID && $this->dispatchID = $dispatchID;
-        null !== $metadata && $this->metadata = $metadata;
-        null !== $signals && $this->signals = $signals;
+        return $this;
+    }
+
+    /**
+     * The identifier of the dispatch that came from the front-end SDK.
+     */
+    public function setDispatchID(string $dispatchID): self
+    {
+        $this->dispatchID = $dispatchID;
+
+        return $this;
+    }
+
+    /**
+     * The metadata for this feedback.
+     */
+    public function setMetadata(Metadata $metadata): self
+    {
+        $this->metadata = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     */
+    public function setSignals(Signals $signals): self
+    {
+        $this->signals = $signals;
+
+        return $this;
     }
 }

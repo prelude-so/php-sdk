@@ -37,19 +37,58 @@ final class NetworkInfo implements BaseModel
     #[Api(optional: true)]
     public ?string $mnc;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
      */
-    final public function __construct(
+    public static function new(
         ?string $carrierName = null,
         ?string $mcc = null,
         ?string $mnc = null
-    ) {
-        self::introspect();
-        $this->unsetOptionalProperties();
+    ): self {
+        $obj = new self;
 
-        null !== $carrierName && $this->carrierName = $carrierName;
-        null !== $mcc && $this->mcc = $mcc;
-        null !== $mnc && $this->mnc = $mnc;
+        null !== $carrierName && $obj->carrierName = $carrierName;
+        null !== $mcc && $obj->mcc = $mcc;
+        null !== $mnc && $obj->mnc = $mnc;
+
+        return $obj;
+    }
+
+    /**
+     * The name of the carrier.
+     */
+    public function setCarrierName(string $carrierName): self
+    {
+        $this->carrierName = $carrierName;
+
+        return $this;
+    }
+
+    /**
+     * Mobile Country Code.
+     */
+    public function setMcc(string $mcc): self
+    {
+        $this->mcc = $mcc;
+
+        return $this;
+    }
+
+    /**
+     * Mobile Network Code.
+     */
+    public function setMnc(string $mnc): self
+    {
+        $this->mnc = $mnc;
+
+        return $this;
     }
 }

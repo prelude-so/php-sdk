@@ -84,15 +84,23 @@ final class VerificationNewResponse implements BaseModel
     #[Api(optional: true)]
     public ?Silent $silent;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
      *
-     * @param Method::*             $method
-     * @param Status::*             $status
+     * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Method::* $method
+     * @param Status::* $status
      * @param null|list<Channel::*> $channels
-     * @param null|Reason::*        $reason
+     * @param null|Reason::* $reason
      */
-    final public function __construct(
+    public static function new(
         string $id,
         string $method,
         string $status,
@@ -101,18 +109,104 @@ final class VerificationNewResponse implements BaseModel
         ?string $reason = null,
         ?string $requestID = null,
         ?Silent $silent = null,
-    ) {
-        self::introspect();
-        $this->unsetOptionalProperties();
+    ): self {
+        $obj = new self;
 
+        $obj->id = $id;
+        $obj->method = $method;
+        $obj->status = $status;
+
+        null !== $channels && $obj->channels = $channels;
+        null !== $metadata && $obj->metadata = $metadata;
+        null !== $reason && $obj->reason = $reason;
+        null !== $requestID && $obj->requestID = $requestID;
+        null !== $silent && $obj->silent = $silent;
+
+        return $obj;
+    }
+
+    /**
+     * The verification identifier.
+     */
+    public function setID(string $id): self
+    {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * The method used for verifying this phone number.
+     *
+     * @param Method::* $method
+     */
+    public function setMethod(string $method): self
+    {
         $this->method = $method;
+
+        return $this;
+    }
+
+    /**
+     * The status of the verification.
+     *
+     * @param Status::* $status
+     */
+    public function setStatus(string $status): self
+    {
         $this->status = $status;
 
-        null !== $channels && $this->channels = $channels;
-        null !== $metadata && $this->metadata = $metadata;
-        null !== $reason && $this->reason = $reason;
-        null !== $requestID && $this->requestID = $requestID;
-        null !== $silent && $this->silent = $silent;
+        return $this;
+    }
+
+    /**
+     * The ordered sequence of channels to be used for verification.
+     *
+     * @param list<Channel::*> $channels
+     */
+    public function setChannels(array $channels): self
+    {
+        $this->channels = $channels;
+
+        return $this;
+    }
+
+    /**
+     * The metadata for this verification.
+     */
+    public function setMetadata(Metadata $metadata): self
+    {
+        $this->metadata = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * The reason why the verification was blocked. Only present when status is "blocked".
+     *
+     * @param Reason::* $reason
+     */
+    public function setReason(string $reason): self
+    {
+        $this->reason = $reason;
+
+        return $this;
+    }
+
+    public function setRequestID(string $requestID): self
+    {
+        $this->requestID = $requestID;
+
+        return $this;
+    }
+
+    /**
+     * The silent verification specific properties.
+     */
+    public function setSilent(Silent $silent): self
+    {
+        $this->silent = $silent;
+
+        return $this;
     }
 }

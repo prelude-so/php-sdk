@@ -29,15 +29,25 @@ final class WatchSendEventsParam implements BaseModel
     #[Api(type: new ListOf(Event::class))]
     public array $events;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<Event> $events
      */
-    final public function __construct(array $events)
+    public static function new(array $events): self
     {
-        self::introspect();
+        $obj = new self;
 
-        $this->events = $events;
+        $obj->events = $events;
+
+        return $obj;
     }
 }

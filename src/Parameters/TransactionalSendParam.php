@@ -79,12 +79,20 @@ final class TransactionalSendParam implements BaseModel
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $variables;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
      *
      * @param null|array<string, string> $variables
      */
-    final public function __construct(
+    public static function new(
         string $templateID,
         string $to,
         ?string $callbackURL = null,
@@ -93,18 +101,19 @@ final class TransactionalSendParam implements BaseModel
         ?string $from = null,
         ?string $locale = null,
         ?array $variables = null,
-    ) {
-        self::introspect();
-        $this->unsetOptionalProperties();
+    ): self {
+        $obj = new self;
 
-        $this->templateID = $templateID;
-        $this->to = $to;
+        $obj->templateID = $templateID;
+        $obj->to = $to;
 
-        null !== $callbackURL && $this->callbackURL = $callbackURL;
-        null !== $correlationID && $this->correlationID = $correlationID;
-        null !== $expiresAt && $this->expiresAt = $expiresAt;
-        null !== $from && $this->from = $from;
-        null !== $locale && $this->locale = $locale;
-        null !== $variables && $this->variables = $variables;
+        null !== $callbackURL && $obj->callbackURL = $callbackURL;
+        null !== $correlationID && $obj->correlationID = $correlationID;
+        null !== $expiresAt && $obj->expiresAt = $expiresAt;
+        null !== $from && $obj->from = $from;
+        null !== $locale && $obj->locale = $locale;
+        null !== $variables && $obj->variables = $variables;
+
+        return $obj;
     }
 }

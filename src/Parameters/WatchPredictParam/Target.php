@@ -32,16 +32,48 @@ final class Target implements BaseModel
     #[Api]
     public string $value;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type::* $type
      */
-    final public function __construct(string $type, string $value)
+    public static function new(string $type, string $value): self
     {
-        self::introspect();
+        $obj = new self;
 
+        $obj->type = $type;
+        $obj->value = $value;
+
+        return $obj;
+    }
+
+    /**
+     * The type of the target. Either "phone_number" or "email_address".
+     *
+     * @param Type::* $type
+     */
+    public function setType(string $type): self
+    {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * An E.164 formatted phone number or an email address.
+     */
+    public function setValue(string $value): self
+    {
         $this->value = $value;
+
+        return $this;
     }
 }

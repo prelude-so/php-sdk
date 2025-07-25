@@ -23,14 +23,33 @@ final class Metadata implements BaseModel
     #[Api('correlation_id', optional: true)]
     public ?string $correlationID;
 
-    /**
-     * You must use named parameters to construct this object.
-     */
-    final public function __construct(?string $correlationID = null)
+    public function __construct()
     {
         self::introspect();
         $this->unsetOptionalProperties();
+    }
 
-        null !== $correlationID && $this->correlationID = $correlationID;
+    /**
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
+     */
+    public static function new(?string $correlationID = null): self
+    {
+        $obj = new self;
+
+        null !== $correlationID && $obj->correlationID = $correlationID;
+
+        return $obj;
+    }
+
+    /**
+     * A user-defined identifier to correlate this verification with. It is returned in the response and any webhook events that refer to this verification.
+     */
+    public function setCorrelationID(string $correlationID): self
+    {
+        $this->correlationID = $correlationID;
+
+        return $this;
     }
 }

@@ -32,16 +32,48 @@ final class AppRealm implements BaseModel
     #[Api]
     public string $value;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
      *
      * @param Platform::* $platform
      */
-    final public function __construct(string $platform, string $value)
+    public static function new(string $platform, string $value): self
     {
-        self::introspect();
+        $obj = new self;
 
+        $obj->platform = $platform;
+        $obj->value = $value;
+
+        return $obj;
+    }
+
+    /**
+     * The platform the SMS will be sent to. We are currently only supporting "android".
+     *
+     * @param Platform::* $platform
+     */
+    public function setPlatform(string $platform): self
+    {
         $this->platform = $platform;
+
+        return $this;
+    }
+
+    /**
+     * The Android SMS Retriever API hash code that identifies your app.
+     */
+    public function setValue(string $value): self
+    {
         $this->value = $value;
+
+        return $this;
     }
 }
