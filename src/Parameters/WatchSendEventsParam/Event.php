@@ -39,20 +39,62 @@ final class Event implements BaseModel
     #[Api]
     public Target $target;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
      *
      * @param Confidence::* $confidence
      */
-    final public function __construct(
+    public static function new(
         string $confidence,
         string $label,
         Target $target
-    ) {
-        self::introspect();
+    ): self {
+        $obj = new self;
 
+        $obj->confidence = $confidence;
+        $obj->label = $label;
+        $obj->target = $target;
+
+        return $obj;
+    }
+
+    /**
+     * A confidence level you want to assign to the event.
+     *
+     * @param Confidence::* $confidence
+     */
+    public function setConfidence(string $confidence): self
+    {
         $this->confidence = $confidence;
+
+        return $this;
+    }
+
+    /**
+     * A label to describe what the event refers to.
+     */
+    public function setLabel(string $label): self
+    {
         $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * The event target. Only supports phone numbers for now.
+     */
+    public function setTarget(Target $target): self
+    {
         $this->target = $target;
+
+        return $this;
     }
 }

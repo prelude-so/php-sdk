@@ -29,15 +29,25 @@ final class WatchSendFeedbacksParam implements BaseModel
     #[Api(type: new ListOf(Feedback::class))]
     public array $feedbacks;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<Feedback> $feedbacks
      */
-    final public function __construct(array $feedbacks)
+    public static function new(array $feedbacks): self
     {
-        self::introspect();
+        $obj = new self;
 
-        $this->feedbacks = $feedbacks;
+        $obj->feedbacks = $feedbacks;
+
+        return $obj;
     }
 }

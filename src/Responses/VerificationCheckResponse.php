@@ -42,24 +42,72 @@ final class VerificationCheckResponse implements BaseModel
     #[Api('request_id', optional: true)]
     public ?string $requestID;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
      *
      * @param Status::* $status
      */
-    final public function __construct(
+    public static function new(
         string $status,
         ?string $id = null,
         ?Metadata $metadata = null,
         ?string $requestID = null,
-    ) {
-        self::introspect();
-        $this->unsetOptionalProperties();
+    ): self {
+        $obj = new self;
 
+        $obj->status = $status;
+
+        null !== $id && $obj->id = $id;
+        null !== $metadata && $obj->metadata = $metadata;
+        null !== $requestID && $obj->requestID = $requestID;
+
+        return $obj;
+    }
+
+    /**
+     * The status of the check.
+     *
+     * @param Status::* $status
+     */
+    public function setStatus(string $status): self
+    {
         $this->status = $status;
 
-        null !== $id && $this->id = $id;
-        null !== $metadata && $this->metadata = $metadata;
-        null !== $requestID && $this->requestID = $requestID;
+        return $this;
+    }
+
+    /**
+     * The verification identifier.
+     */
+    public function setID(string $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * The metadata for this verification.
+     */
+    public function setMetadata(Metadata $metadata): self
+    {
+        $this->metadata = $metadata;
+
+        return $this;
+    }
+
+    public function setRequestID(string $requestID): self
+    {
+        $this->requestID = $requestID;
+
+        return $this;
     }
 }

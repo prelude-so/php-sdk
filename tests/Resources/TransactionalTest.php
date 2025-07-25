@@ -33,7 +33,7 @@ final class TransactionalTest extends TestCase
             ->client
             ->transactional
             ->send(
-                new TransactionalSendParam(
+                TransactionalSendParam::new(
                     templateID: 'template_01jd1xq0cffycayqtdkdbv4d61',
                     to: '+30123456789'
                 )
@@ -50,7 +50,7 @@ final class TransactionalTest extends TestCase
             ->client
             ->transactional
             ->send(
-                new TransactionalSendParam(
+                TransactionalSendParam::new(
                     templateID: 'template_01jd1xq0cffycayqtdkdbv4d61',
                     to: '+30123456789',
                     callbackURL: 'callback_url',

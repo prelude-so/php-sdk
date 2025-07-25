@@ -44,8 +44,8 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->predict(
-                new WatchPredictParam(
-                    target: new Target(type: 'phone_number', value: '+30123456789')
+                WatchPredictParam::new(
+                    target: Target::new(type: 'phone_number', value: '+30123456789')
                 )
             )
         ;
@@ -60,20 +60,21 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->predict(
-                new WatchPredictParam(
-                    target: new Target(type: 'phone_number', value: '+30123456789'),
+                WatchPredictParam::new(
+                    target: Target::new(type: 'phone_number', value: '+30123456789'),
                     dispatchID: '123e4567-e89b-12d3-a456-426614174000',
-                    metadata: new Metadata(correlationID: 'correlation_id'),
-                    signals: new Signals(
-                        appVersion: '1.2.34',
-                        deviceID: '8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2',
-                        deviceModel: 'iPhone17,2',
-                        devicePlatform: 'ios',
-                        ip: '192.0.2.1',
-                        isTrustedUser: false,
-                        osVersion: '18.0.1',
-                        userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
-                    ),
+                    metadata: (new Metadata)->setCorrelationID('correlation_id'),
+                    signals: (new Signals)
+                        ->setAppVersion('1.2.34')
+                        ->setDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
+                        ->setDeviceModel('iPhone17,2')
+                        ->setDevicePlatform('ios')
+                        ->setIP('192.0.2.1')
+                        ->setIsTrustedUser(false)
+                        ->setOsVersion('18.0.1')
+                        ->setUserAgent(
+                            'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
+                        ),
                 )
             )
         ;
@@ -88,12 +89,12 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->sendEvents(
-                new WatchSendEventsParam(
+                WatchSendEventsParam::new(
                     events: [
-                        new Event(
+                        Event::new(
                             confidence: 'maximum',
                             label: 'onboarding.start',
-                            target: new Target1(type: 'phone_number', value: '+30123456789'),
+                            target: Target1::new(type: 'phone_number', value: '+30123456789'),
                         ),
                     ],
                 )
@@ -110,12 +111,12 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->sendEvents(
-                new WatchSendEventsParam(
+                WatchSendEventsParam::new(
                     events: [
-                        new Event(
+                        Event::new(
                             confidence: 'maximum',
                             label: 'onboarding.start',
-                            target: new Target1(type: 'phone_number', value: '+30123456789'),
+                            target: Target1::new(type: 'phone_number', value: '+30123456789'),
                         ),
                     ],
                 )
@@ -132,10 +133,10 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->sendFeedbacks(
-                new WatchSendFeedbacksParam(
+                WatchSendFeedbacksParam::new(
                     feedbacks: [
-                        new Feedback(
-                            target: new Target2(type: 'phone_number', value: '+30123456789'),
+                        Feedback::new(
+                            target: Target2::new(type: 'phone_number', value: '+30123456789'),
                             type: 'verification.started',
                         ),
                     ],
@@ -153,24 +154,27 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->sendFeedbacks(
-                new WatchSendFeedbacksParam(
+                WatchSendFeedbacksParam::new(
                     feedbacks: [
-                        new Feedback(
-                            target: new Target2(type: 'phone_number', value: '+30123456789'),
+                        Feedback::new(
+                            target: Target2::new(type: 'phone_number', value: '+30123456789'),
                             type: 'verification.started',
-                            dispatchID: '123e4567-e89b-12d3-a456-426614174000',
-                            metadata: new Metadata1(correlationID: 'correlation_id'),
-                            signals: new Signals1(
-                                appVersion: '1.2.34',
-                                deviceID: '8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2',
-                                deviceModel: 'iPhone17,2',
-                                devicePlatform: 'ios',
-                                ip: '192.0.2.1',
-                                isTrustedUser: false,
-                                osVersion: '18.0.1',
-                                userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
+                        )
+                            ->setDispatchID('123e4567-e89b-12d3-a456-426614174000')
+                            ->setMetadata((new Metadata1)->setCorrelationID('correlation_id'))
+                            ->setSignals(
+                                (new Signals1)
+                                    ->setAppVersion('1.2.34')
+                                    ->setDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
+                                    ->setDeviceModel('iPhone17,2')
+                                    ->setDevicePlatform('ios')
+                                    ->setIP('192.0.2.1')
+                                    ->setIsTrustedUser(false)
+                                    ->setOsVersion('18.0.1')
+                                    ->setUserAgent(
+                                        'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
+                                    ),
                             ),
-                        ),
                     ],
                 )
             )

@@ -38,20 +38,62 @@ final class WatchPredictResponse implements BaseModel
     #[Api('request_id')]
     public string $requestID;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
      *
      * @param Prediction::* $prediction
      */
-    final public function __construct(
+    public static function new(
         string $id,
         string $prediction,
         string $requestID
-    ) {
-        self::introspect();
+    ): self {
+        $obj = new self;
 
+        $obj->id = $id;
+        $obj->prediction = $prediction;
+        $obj->requestID = $requestID;
+
+        return $obj;
+    }
+
+    /**
+     * The prediction identifier.
+     */
+    public function setID(string $id): self
+    {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * The prediction outcome.
+     *
+     * @param Prediction::* $prediction
+     */
+    public function setPrediction(string $prediction): self
+    {
         $this->prediction = $prediction;
+
+        return $this;
+    }
+
+    /**
+     * A string that identifies this specific request. Report it back to us to help us diagnose your issues.
+     */
+    public function setRequestID(string $requestID): self
+    {
         $this->requestID = $requestID;
+
+        return $this;
     }
 }

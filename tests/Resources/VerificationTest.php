@@ -40,8 +40,8 @@ final class VerificationTest extends TestCase
             ->client
             ->verification
             ->create(
-                new VerificationCreateParam(
-                    target: new Target(type: 'phone_number', value: '+30123456789')
+                VerificationCreateParam::new(
+                    target: Target::new(type: 'phone_number', value: '+30123456789')
                 )
             )
         ;
@@ -56,32 +56,32 @@ final class VerificationTest extends TestCase
             ->client
             ->verification
             ->create(
-                new VerificationCreateParam(
-                    target: new Target(type: 'phone_number', value: '+30123456789'),
+                VerificationCreateParam::new(
+                    target: Target::new(type: 'phone_number', value: '+30123456789'),
                     dispatchID: '123e4567-e89b-12d3-a456-426614174000',
-                    metadata: new Metadata(correlationID: 'correlation_id'),
-                    options: new Options(
-                        appRealm: new AppRealm(platform: 'android', value: 'value'),
-                        callbackURL: 'callback_url',
-                        codeSize: 5,
-                        customCode: '123456',
-                        locale: 'el-GR',
-                        method: 'auto',
-                        preferredChannel: 'sms',
-                        senderID: 'sender_id',
-                        templateID: 'prelude:psd2',
-                        variables: ['foo' => 'bar'],
-                    ),
-                    signals: new Signals(
-                        appVersion: '1.2.34',
-                        deviceID: '8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2',
-                        deviceModel: 'iPhone17,2',
-                        devicePlatform: 'ios',
-                        ip: '192.0.2.1',
-                        isTrustedUser: false,
-                        osVersion: '18.0.1',
-                        userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
-                    ),
+                    metadata: (new Metadata)->setCorrelationID('correlation_id'),
+                    options: (new Options)
+                        ->setAppRealm(AppRealm::new(platform: 'android', value: 'value'))
+                        ->setCallbackURL('callback_url')
+                        ->setCodeSize(5)
+                        ->setCustomCode('123456')
+                        ->setLocale('el-GR')
+                        ->setMethod('auto')
+                        ->setPreferredChannel('sms')
+                        ->setSenderID('sender_id')
+                        ->setTemplateID('prelude:psd2')
+                        ->setVariables(['foo' => 'bar']),
+                    signals: (new Signals)
+                        ->setAppVersion('1.2.34')
+                        ->setDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
+                        ->setDeviceModel('iPhone17,2')
+                        ->setDevicePlatform('ios')
+                        ->setIP('192.0.2.1')
+                        ->setIsTrustedUser(false)
+                        ->setOsVersion('18.0.1')
+                        ->setUserAgent(
+                            'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
+                        ),
                 )
             )
         ;
@@ -96,9 +96,9 @@ final class VerificationTest extends TestCase
             ->client
             ->verification
             ->check(
-                new VerificationCheckParam(
+                VerificationCheckParam::new(
                     code: '12345',
-                    target: new Target1(type: 'phone_number', value: '+30123456789'),
+                    target: Target1::new(type: 'phone_number', value: '+30123456789'),
                 )
             )
         ;
@@ -113,9 +113,9 @@ final class VerificationTest extends TestCase
             ->client
             ->verification
             ->check(
-                new VerificationCheckParam(
+                VerificationCheckParam::new(
                     code: '12345',
-                    target: new Target1(type: 'phone_number', value: '+30123456789'),
+                    target: Target1::new(type: 'phone_number', value: '+30123456789'),
                 )
             )
         ;

@@ -32,14 +32,24 @@ final class VerificationCheckParam implements BaseModel
     #[Api]
     public Target $target;
 
-    /**
-     * You must use named parameters to construct this object.
-     */
-    final public function __construct(string $code, Target $target)
+    public function __construct()
     {
         self::introspect();
+        $this->unsetOptionalProperties();
+    }
 
-        $this->code = $code;
-        $this->target = $target;
+    /**
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
+     */
+    public static function new(string $code, Target $target): self
+    {
+        $obj = new self;
+
+        $obj->code = $code;
+        $obj->target = $target;
+
+        return $obj;
     }
 }

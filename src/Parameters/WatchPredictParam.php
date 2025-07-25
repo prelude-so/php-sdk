@@ -48,22 +48,31 @@ final class WatchPredictParam implements BaseModel
     #[Api(optional: true)]
     public ?Signals $signals;
 
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
     /**
-     * You must use named parameters to construct this object.
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
      */
-    final public function __construct(
+    public static function new(
         Target $target,
         ?string $dispatchID = null,
         ?Metadata $metadata = null,
         ?Signals $signals = null,
-    ) {
-        self::introspect();
-        $this->unsetOptionalProperties();
+    ): self {
+        $obj = new self;
 
-        $this->target = $target;
+        $obj->target = $target;
 
-        null !== $dispatchID && $this->dispatchID = $dispatchID;
-        null !== $metadata && $this->metadata = $metadata;
-        null !== $signals && $this->signals = $signals;
+        null !== $dispatchID && $obj->dispatchID = $dispatchID;
+        null !== $metadata && $obj->metadata = $metadata;
+        null !== $signals && $obj->signals = $signals;
+
+        return $obj;
     }
 }

@@ -30,16 +30,25 @@ final class LookupLookupParam implements BaseModel
     #[Api(type: new ListOf(enum: Type::class), optional: true)]
     public ?array $type;
 
-    /**
-     * You must use named parameters to construct this object.
-     *
-     * @param null|list<Type::*> $type
-     */
-    final public function __construct(?array $type = null)
+    public function __construct()
     {
         self::introspect();
         $this->unsetOptionalProperties();
+    }
 
-        null !== $type && $this->type = $type;
+    /**
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param null|list<Type::*> $type
+     */
+    public static function new(?array $type = null): self
+    {
+        $obj = new self;
+
+        null !== $type && $obj->type = $type;
+
+        return $obj;
     }
 }
