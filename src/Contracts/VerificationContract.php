@@ -18,13 +18,13 @@ use Prelude\Responses\VerificationNewResponse;
 interface VerificationContract
 {
     /**
-     * @param VerificationCreateParam|array{
+     * @param array{
      *   target: Target,
      *   dispatchID?: string,
      *   metadata?: Metadata,
      *   options?: Options,
      *   signals?: Signals,
-     * } $params
+     * }|VerificationCreateParam $params
      */
     public function create(
         array|VerificationCreateParam $params,
