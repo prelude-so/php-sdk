@@ -18,7 +18,7 @@ final class Transactional implements TransactionalContract
     /**
      * Send a transactional message to your user.
      *
-     * @param TransactionalSendParam|array{
+     * @param array{
      *   templateID: string,
      *   to: string,
      *   callbackURL?: string,
@@ -27,7 +27,7 @@ final class Transactional implements TransactionalContract
      *   from?: string,
      *   locale?: string,
      *   variables?: array<string, string>,
-     * } $params
+     * }|TransactionalSendParam $params
      */
     public function send(
         array|TransactionalSendParam $params,

@@ -11,7 +11,7 @@ use Prelude\Responses\TransactionalSendResponse;
 interface TransactionalContract
 {
     /**
-     * @param TransactionalSendParam|array{
+     * @param array{
      *   templateID: string,
      *   to: string,
      *   callbackURL?: string,
@@ -20,7 +20,7 @@ interface TransactionalContract
      *   from?: string,
      *   locale?: string,
      *   variables?: array<string, string>,
-     * } $params
+     * }|TransactionalSendParam $params
      */
     public function send(
         array|TransactionalSendParam $params,

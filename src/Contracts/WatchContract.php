@@ -20,9 +20,9 @@ use Prelude\Responses\WatchSendFeedbacksResponse;
 interface WatchContract
 {
     /**
-     * @param WatchPredictParam|array{
+     * @param array{
      *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
-     * } $params
+     * }|WatchPredictParam $params
      */
     public function predict(
         array|WatchPredictParam $params,

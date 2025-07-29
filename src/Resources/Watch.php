@@ -27,9 +27,9 @@ final class Watch implements WatchContract
     /**
      * Predict the outcome of a verification based on Prelude’s anti-fraud system.
      *
-     * @param WatchPredictParam|array{
+     * @param array{
      *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
-     * } $params
+     * }|WatchPredictParam $params
      */
     public function predict(
         array|WatchPredictParam $params,
