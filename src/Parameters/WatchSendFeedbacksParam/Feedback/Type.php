@@ -16,7 +16,7 @@ final class Type implements ConverterSource
 {
     use Enum;
 
-    final public const VERIFICATION_STARTED = 'verification.started';
+    public const VERIFICATION_STARTED = 'verification.started';
 
-    final public const VERIFICATION_COMPLETED = 'verification.completed';
+    public const VERIFICATION_COMPLETED = 'verification.completed';
 }

@@ -16,13 +16,13 @@ final class Confidence implements ConverterSource
 {
     use Enum;
 
-    final public const MAXIMUM = 'maximum';
+    public const MAXIMUM = 'maximum';
 
-    final public const HIGH = 'high';
+    public const HIGH = 'high';
 
-    final public const NEUTRAL = 'neutral';
+    public const NEUTRAL = 'neutral';
 
-    final public const LOW = 'low';
+    public const LOW = 'low';
 
-    final public const MINIMUM = 'minimum';
+    public const MINIMUM = 'minimum';
 }

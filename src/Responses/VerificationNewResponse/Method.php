@@ -16,9 +16,9 @@ final class Method implements ConverterSource
 {
     use Enum;
 
-    final public const MESSAGE = 'message';
+    public const MESSAGE = 'message';
 
-    final public const SILENT = 'silent';
+    public const SILENT = 'silent';
 
-    final public const VOICE = 'voice';
+    public const VOICE = 'voice';
 }

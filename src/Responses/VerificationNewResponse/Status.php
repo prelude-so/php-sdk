@@ -16,9 +16,9 @@ final class Status implements ConverterSource
 {
     use Enum;
 
-    final public const SUCCESS = 'success';
+    public const SUCCESS = 'success';
 
-    final public const RETRY = 'retry';
+    public const RETRY = 'retry';
 
-    final public const BLOCKED = 'blocked';
+    public const BLOCKED = 'blocked';
 }

@@ -16,13 +16,13 @@ final class DevicePlatform implements ConverterSource
 {
     use Enum;
 
-    final public const ANDROID = 'android';
+    public const ANDROID = 'android';
 
-    final public const IOS = 'ios';
+    public const IOS = 'ios';
 
-    final public const IPADOS = 'ipados';
+    public const IPADOS = 'ipados';
 
-    final public const TVOS = 'tvos';
+    public const TVOS = 'tvos';
 
-    final public const WEB = 'web';
+    public const WEB = 'web';
 }

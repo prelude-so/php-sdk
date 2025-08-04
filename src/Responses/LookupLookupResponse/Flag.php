@@ -14,7 +14,7 @@ final class Flag implements ConverterSource
 {
     use Enum;
 
-    final public const PORTED = 'ported';
+    public const PORTED = 'ported';
 
-    final public const TEMPORARY = 'temporary';
+    public const TEMPORARY = 'temporary';
 }

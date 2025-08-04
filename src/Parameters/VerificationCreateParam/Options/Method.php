@@ -16,7 +16,7 @@ final class Method implements ConverterSource
 {
     use Enum;
 
-    final public const AUTO = 'auto';
+    public const AUTO = 'auto';
 
-    final public const VOICE = 'voice';
+    public const VOICE = 'voice';
 }
