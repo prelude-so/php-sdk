@@ -16,7 +16,7 @@ final class Prediction implements ConverterSource
 {
     use Enum;
 
-    final public const LEGITIMATE = 'legitimate';
+    public const LEGITIMATE = 'legitimate';
 
-    final public const SUSPICIOUS = 'suspicious';
+    public const SUSPICIOUS = 'suspicious';
 }

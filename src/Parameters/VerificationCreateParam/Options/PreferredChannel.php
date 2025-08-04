@@ -16,15 +16,15 @@ final class PreferredChannel implements ConverterSource
 {
     use Enum;
 
-    final public const SMS = 'sms';
+    public const SMS = 'sms';
 
-    final public const RCS = 'rcs';
+    public const RCS = 'rcs';
 
-    final public const WHATSAPP = 'whatsapp';
+    public const WHATSAPP = 'whatsapp';
 
-    final public const VIBER = 'viber';
+    public const VIBER = 'viber';
 
-    final public const ZALO = 'zalo';
+    public const ZALO = 'zalo';
 
-    final public const TELEGRAM = 'telegram';
+    public const TELEGRAM = 'telegram';
 }

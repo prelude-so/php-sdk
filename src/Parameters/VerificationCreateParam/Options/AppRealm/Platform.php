@@ -16,5 +16,5 @@ final class Platform implements ConverterSource
 {
     use Enum;
 
-    final public const ANDROID = 'android';
+    public const ANDROID = 'android';
 }

@@ -14,5 +14,5 @@ final class Type implements ConverterSource
 {
     use Enum;
 
-    final public const CNAM = 'cnam';
+    public const CNAM = 'cnam';
 }

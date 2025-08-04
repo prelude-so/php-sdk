@@ -16,5 +16,5 @@ final class Status implements ConverterSource
 {
     use Enum;
 
-    final public const SUCCESS = 'success';
+    public const SUCCESS = 'success';
 }

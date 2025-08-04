@@ -35,41 +35,41 @@ final class LineType implements ConverterSource
 {
     use Enum;
 
-    final public const CALLING_CARDS = 'calling_cards';
+    public const CALLING_CARDS = 'calling_cards';
 
-    final public const FIXED_LINE = 'fixed_line';
+    public const FIXED_LINE = 'fixed_line';
 
-    final public const ISP = 'isp';
+    public const ISP = 'isp';
 
-    final public const LOCAL_RATE = 'local_rate';
+    public const LOCAL_RATE = 'local_rate';
 
-    final public const MOBILE = 'mobile';
+    public const MOBILE = 'mobile';
 
-    final public const OTHER = 'other';
+    public const OTHER = 'other';
 
-    final public const PAGER = 'pager';
+    public const PAGER = 'pager';
 
-    final public const PAYPHONE = 'payphone';
+    public const PAYPHONE = 'payphone';
 
-    final public const PREMIUM_RATE = 'premium_rate';
+    public const PREMIUM_RATE = 'premium_rate';
 
-    final public const SATELLITE = 'satellite';
+    public const SATELLITE = 'satellite';
 
-    final public const SERVICE = 'service';
+    public const SERVICE = 'service';
 
-    final public const SHARED_COST = 'shared_cost';
+    public const SHARED_COST = 'shared_cost';
 
-    final public const SHORT_CODES_COMMERCIAL = 'short_codes_commercial';
+    public const SHORT_CODES_COMMERCIAL = 'short_codes_commercial';
 
-    final public const TOLL_FREE = 'toll_free';
+    public const TOLL_FREE = 'toll_free';
 
-    final public const UNIVERSAL_ACCESS = 'universal_access';
+    public const UNIVERSAL_ACCESS = 'universal_access';
 
-    final public const UNKNOWN = 'unknown';
+    public const UNKNOWN = 'unknown';
 
-    final public const VPN = 'vpn';
+    public const VPN = 'vpn';
 
-    final public const VOICE_MAIL = 'voice_mail';
+    public const VOICE_MAIL = 'voice_mail';
 
-    final public const VOIP = 'voip';
+    public const VOIP = 'voip';
 }

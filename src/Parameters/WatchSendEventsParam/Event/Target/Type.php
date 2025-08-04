@@ -16,7 +16,7 @@ final class Type implements ConverterSource
 {
     use Enum;
 
-    final public const PHONE_NUMBER = 'phone_number';
+    public const PHONE_NUMBER = 'phone_number';
 
-    final public const EMAIL_ADDRESS = 'email_address';
+    public const EMAIL_ADDRESS = 'email_address';
 }
