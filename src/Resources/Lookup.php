@@ -7,8 +7,8 @@ namespace Prelude\Resources;
 use Prelude\Client;
 use Prelude\Contracts\LookupContract;
 use Prelude\Core\Conversion;
-use Prelude\Parameters\LookupLookupParam;
-use Prelude\Parameters\LookupLookupParam\Type;
+use Prelude\Parameters\LookupLookupParams;
+use Prelude\Parameters\LookupLookupParams\Type;
 use Prelude\RequestOptions;
 use Prelude\Responses\LookupLookupResponse;
 
@@ -19,14 +19,14 @@ final class Lookup implements LookupContract
     /**
      * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
      *
-     * @param array{type?: list<Type::*>}|LookupLookupParam $params
+     * @param array{type?: list<Type::*>}|LookupLookupParams $params
      */
     public function lookup(
         string $phoneNumber,
-        array|LookupLookupParam $params,
+        array|LookupLookupParams $params,
         ?RequestOptions $requestOptions = null,
     ): LookupLookupResponse {
-        [$parsed, $options] = LookupLookupParam::parseRequest(
+        [$parsed, $options] = LookupLookupParams::parseRequest(
             $params,
             $requestOptions
         );

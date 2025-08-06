@@ -7,13 +7,13 @@ namespace Prelude\Resources;
 use Prelude\Client;
 use Prelude\Contracts\VerificationContract;
 use Prelude\Core\Conversion;
-use Prelude\Parameters\VerificationCheckParam;
-use Prelude\Parameters\VerificationCheckParam\Target as Target1;
-use Prelude\Parameters\VerificationCreateParam;
-use Prelude\Parameters\VerificationCreateParam\Metadata;
-use Prelude\Parameters\VerificationCreateParam\Options;
-use Prelude\Parameters\VerificationCreateParam\Signals;
-use Prelude\Parameters\VerificationCreateParam\Target;
+use Prelude\Parameters\VerificationCheckParams;
+use Prelude\Parameters\VerificationCheckParams\Target as Target1;
+use Prelude\Parameters\VerificationCreateParams;
+use Prelude\Parameters\VerificationCreateParams\Metadata;
+use Prelude\Parameters\VerificationCreateParams\Options;
+use Prelude\Parameters\VerificationCreateParams\Signals;
+use Prelude\Parameters\VerificationCreateParams\Target;
 use Prelude\RequestOptions;
 use Prelude\Responses\VerificationCheckResponse;
 use Prelude\Responses\VerificationNewResponse;
@@ -31,13 +31,13 @@ final class Verification implements VerificationContract
      *   metadata?: Metadata,
      *   options?: Options,
      *   signals?: Signals,
-     * }|VerificationCreateParam $params
+     * }|VerificationCreateParams $params
      */
     public function create(
-        array|VerificationCreateParam $params,
+        array|VerificationCreateParams $params,
         ?RequestOptions $requestOptions = null,
     ): VerificationNewResponse {
-        [$parsed, $options] = VerificationCreateParam::parseRequest(
+        [$parsed, $options] = VerificationCreateParams::parseRequest(
             $params,
             $requestOptions
         );
@@ -55,13 +55,13 @@ final class Verification implements VerificationContract
     /**
      * Check the validity of a verification code.
      *
-     * @param array{code: string, target: Target1}|VerificationCheckParam $params
+     * @param array{code: string, target: Target1}|VerificationCheckParams $params
      */
     public function check(
-        array|VerificationCheckParam $params,
-        ?RequestOptions $requestOptions = null
+        array|VerificationCheckParams $params,
+        ?RequestOptions $requestOptions = null,
     ): VerificationCheckResponse {
-        [$parsed, $options] = VerificationCheckParam::parseRequest(
+        [$parsed, $options] = VerificationCheckParams::parseRequest(
             $params,
             $requestOptions
         );
