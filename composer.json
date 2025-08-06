@@ -27,7 +27,7 @@
   },
   "license": "APACHE-2.0",
   "description": "Prelude PHP SDK",
-  "name": "prelude/prelude",
+  "name": "placeholder/placeholder",
   "require": {
     "php": "^8.1",
     "php-http/discovery": "^1",
