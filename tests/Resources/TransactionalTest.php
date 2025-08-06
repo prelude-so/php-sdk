@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Parameters\TransactionalSendParam;
+use Prelude\Parameters\TransactionalSendParams;
 
 /**
  * @internal
@@ -33,7 +33,7 @@ final class TransactionalTest extends TestCase
             ->client
             ->transactional
             ->send(
-                TransactionalSendParam::new(
+                TransactionalSendParams::new(
                     templateID: 'template_01jd1xq0cffycayqtdkdbv4d61',
                     to: '+30123456789'
                 )
@@ -50,7 +50,7 @@ final class TransactionalTest extends TestCase
             ->client
             ->transactional
             ->send(
-                TransactionalSendParam::new(
+                TransactionalSendParams::new(
                     templateID: 'template_01jd1xq0cffycayqtdkdbv4d61',
                     to: '+30123456789',
                     callbackURL: 'callback_url',

@@ -7,14 +7,14 @@ namespace Prelude\Resources;
 use Prelude\Client;
 use Prelude\Contracts\WatchContract;
 use Prelude\Core\Conversion;
-use Prelude\Parameters\WatchPredictParam;
-use Prelude\Parameters\WatchPredictParam\Metadata;
-use Prelude\Parameters\WatchPredictParam\Signals;
-use Prelude\Parameters\WatchPredictParam\Target;
-use Prelude\Parameters\WatchSendEventsParam;
-use Prelude\Parameters\WatchSendEventsParam\Event;
-use Prelude\Parameters\WatchSendFeedbacksParam;
-use Prelude\Parameters\WatchSendFeedbacksParam\Feedback;
+use Prelude\Parameters\WatchPredictParams;
+use Prelude\Parameters\WatchPredictParams\Metadata;
+use Prelude\Parameters\WatchPredictParams\Signals;
+use Prelude\Parameters\WatchPredictParams\Target;
+use Prelude\Parameters\WatchSendEventsParams;
+use Prelude\Parameters\WatchSendEventsParams\Event;
+use Prelude\Parameters\WatchSendFeedbacksParams;
+use Prelude\Parameters\WatchSendFeedbacksParams\Feedback;
 use Prelude\RequestOptions;
 use Prelude\Responses\WatchPredictResponse;
 use Prelude\Responses\WatchSendEventsResponse;
@@ -29,13 +29,13 @@ final class Watch implements WatchContract
      *
      * @param array{
      *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
-     * }|WatchPredictParam $params
+     * }|WatchPredictParams $params
      */
     public function predict(
-        array|WatchPredictParam $params,
+        array|WatchPredictParams $params,
         ?RequestOptions $requestOptions = null
     ): WatchPredictResponse {
-        [$parsed, $options] = WatchPredictParam::parseRequest(
+        [$parsed, $options] = WatchPredictParams::parseRequest(
             $params,
             $requestOptions
         );
@@ -53,13 +53,13 @@ final class Watch implements WatchContract
     /**
      * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
      *
-     * @param array{events: list<Event>}|WatchSendEventsParam $params
+     * @param array{events: list<Event>}|WatchSendEventsParams $params
      */
     public function sendEvents(
-        array|WatchSendEventsParam $params,
+        array|WatchSendEventsParams $params,
         ?RequestOptions $requestOptions = null
     ): WatchSendEventsResponse {
-        [$parsed, $options] = WatchSendEventsParam::parseRequest(
+        [$parsed, $options] = WatchSendEventsParams::parseRequest(
             $params,
             $requestOptions
         );
@@ -77,13 +77,13 @@ final class Watch implements WatchContract
     /**
      * Send feedback regarding your end-users verification funnel. Events will be analyzed for proactive fraud prevention and risk scoring.
      *
-     * @param array{feedbacks: list<Feedback>}|WatchSendFeedbacksParam $params
+     * @param array{feedbacks: list<Feedback>}|WatchSendFeedbacksParams $params
      */
     public function sendFeedbacks(
-        array|WatchSendFeedbacksParam $params,
+        array|WatchSendFeedbacksParams $params,
         ?RequestOptions $requestOptions = null,
     ): WatchSendFeedbacksResponse {
-        [$parsed, $options] = WatchSendFeedbacksParam::parseRequest(
+        [$parsed, $options] = WatchSendFeedbacksParams::parseRequest(
             $params,
             $requestOptions
         );

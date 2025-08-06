@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\Parameters\TransactionalSendParam;
+use Prelude\Parameters\TransactionalSendParams;
 use Prelude\RequestOptions;
 use Prelude\Responses\TransactionalSendResponse;
 
@@ -20,10 +20,10 @@ interface TransactionalContract
      *   from?: string,
      *   locale?: string,
      *   variables?: array<string, string>,
-     * }|TransactionalSendParam $params
+     * }|TransactionalSendParams $params
      */
     public function send(
-        array|TransactionalSendParam $params,
+        array|TransactionalSendParams $params,
         ?RequestOptions $requestOptions = null,
     ): TransactionalSendResponse;
 }

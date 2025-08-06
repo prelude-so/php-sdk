@@ -6,18 +6,18 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Parameters\WatchPredictParam;
-use Prelude\Parameters\WatchPredictParam\Metadata;
-use Prelude\Parameters\WatchPredictParam\Signals;
-use Prelude\Parameters\WatchPredictParam\Target;
-use Prelude\Parameters\WatchSendEventsParam;
-use Prelude\Parameters\WatchSendEventsParam\Event;
-use Prelude\Parameters\WatchSendEventsParam\Event\Target as Target1;
-use Prelude\Parameters\WatchSendFeedbacksParam;
-use Prelude\Parameters\WatchSendFeedbacksParam\Feedback;
-use Prelude\Parameters\WatchSendFeedbacksParam\Feedback\Metadata as Metadata1;
-use Prelude\Parameters\WatchSendFeedbacksParam\Feedback\Signals as Signals1;
-use Prelude\Parameters\WatchSendFeedbacksParam\Feedback\Target as Target2;
+use Prelude\Parameters\WatchPredictParams;
+use Prelude\Parameters\WatchPredictParams\Metadata;
+use Prelude\Parameters\WatchPredictParams\Signals;
+use Prelude\Parameters\WatchPredictParams\Target;
+use Prelude\Parameters\WatchSendEventsParams;
+use Prelude\Parameters\WatchSendEventsParams\Event;
+use Prelude\Parameters\WatchSendEventsParams\Event\Target as Target1;
+use Prelude\Parameters\WatchSendFeedbacksParams;
+use Prelude\Parameters\WatchSendFeedbacksParams\Feedback;
+use Prelude\Parameters\WatchSendFeedbacksParams\Feedback\Metadata as Metadata1;
+use Prelude\Parameters\WatchSendFeedbacksParams\Feedback\Signals as Signals1;
+use Prelude\Parameters\WatchSendFeedbacksParams\Feedback\Target as Target2;
 
 /**
  * @internal
@@ -44,7 +44,7 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->predict(
-                WatchPredictParam::new(
+                WatchPredictParams::new(
                     target: Target::new(type: 'phone_number', value: '+30123456789')
                 )
             )
@@ -60,7 +60,7 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->predict(
-                WatchPredictParam::new(
+                WatchPredictParams::new(
                     target: Target::new(type: 'phone_number', value: '+30123456789'),
                     dispatchID: '123e4567-e89b-12d3-a456-426614174000',
                     metadata: (new Metadata)->setCorrelationID('correlation_id'),
@@ -89,7 +89,7 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->sendEvents(
-                WatchSendEventsParam::new(
+                WatchSendEventsParams::new(
                     events: [
                         Event::new(
                             confidence: 'maximum',
@@ -111,7 +111,7 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->sendEvents(
-                WatchSendEventsParam::new(
+                WatchSendEventsParams::new(
                     events: [
                         Event::new(
                             confidence: 'maximum',
@@ -133,7 +133,7 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->sendFeedbacks(
-                WatchSendFeedbacksParam::new(
+                WatchSendFeedbacksParams::new(
                     feedbacks: [
                         Feedback::new(
                             target: Target2::new(type: 'phone_number', value: '+30123456789'),
@@ -154,7 +154,7 @@ final class WatchTest extends TestCase
             ->client
             ->watch
             ->sendFeedbacks(
-                WatchSendFeedbacksParam::new(
+                WatchSendFeedbacksParams::new(
                     feedbacks: [
                         Feedback::new(
                             target: Target2::new(type: 'phone_number', value: '+30123456789'),

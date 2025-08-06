@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Parameters\LookupLookupParam;
+use Prelude\Parameters\LookupLookupParams;
 
 /**
  * @internal
@@ -32,7 +32,7 @@ final class LookupTest extends TestCase
         $result = $this
             ->client
             ->lookup
-            ->lookup('+12065550100', new LookupLookupParam)
+            ->lookup('+12065550100', new LookupLookupParams)
         ;
 
         $this->assertTrue(true); // @phpstan-ignore-line

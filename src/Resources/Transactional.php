@@ -7,7 +7,7 @@ namespace Prelude\Resources;
 use Prelude\Client;
 use Prelude\Contracts\TransactionalContract;
 use Prelude\Core\Conversion;
-use Prelude\Parameters\TransactionalSendParam;
+use Prelude\Parameters\TransactionalSendParams;
 use Prelude\RequestOptions;
 use Prelude\Responses\TransactionalSendResponse;
 
@@ -27,13 +27,13 @@ final class Transactional implements TransactionalContract
      *   from?: string,
      *   locale?: string,
      *   variables?: array<string, string>,
-     * }|TransactionalSendParam $params
+     * }|TransactionalSendParams $params
      */
     public function send(
-        array|TransactionalSendParam $params,
-        ?RequestOptions $requestOptions = null
+        array|TransactionalSendParams $params,
+        ?RequestOptions $requestOptions = null,
     ): TransactionalSendResponse {
-        [$parsed, $options] = TransactionalSendParam::parseRequest(
+        [$parsed, $options] = TransactionalSendParams::parseRequest(
             $params,
             $requestOptions
         );

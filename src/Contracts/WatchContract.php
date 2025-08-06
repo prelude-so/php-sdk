@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\Parameters\WatchPredictParam;
-use Prelude\Parameters\WatchPredictParam\Metadata;
-use Prelude\Parameters\WatchPredictParam\Signals;
-use Prelude\Parameters\WatchPredictParam\Target;
-use Prelude\Parameters\WatchSendEventsParam;
-use Prelude\Parameters\WatchSendEventsParam\Event;
-use Prelude\Parameters\WatchSendFeedbacksParam;
-use Prelude\Parameters\WatchSendFeedbacksParam\Feedback;
+use Prelude\Parameters\WatchPredictParams;
+use Prelude\Parameters\WatchPredictParams\Metadata;
+use Prelude\Parameters\WatchPredictParams\Signals;
+use Prelude\Parameters\WatchPredictParams\Target;
+use Prelude\Parameters\WatchSendEventsParams;
+use Prelude\Parameters\WatchSendEventsParams\Event;
+use Prelude\Parameters\WatchSendFeedbacksParams;
+use Prelude\Parameters\WatchSendFeedbacksParams\Feedback;
 use Prelude\RequestOptions;
 use Prelude\Responses\WatchPredictResponse;
 use Prelude\Responses\WatchSendEventsResponse;
@@ -22,26 +22,26 @@ interface WatchContract
     /**
      * @param array{
      *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
-     * }|WatchPredictParam $params
+     * }|WatchPredictParams $params
      */
     public function predict(
-        array|WatchPredictParam $params,
+        array|WatchPredictParams $params,
         ?RequestOptions $requestOptions = null
     ): WatchPredictResponse;
 
     /**
-     * @param array{events: list<Event>}|WatchSendEventsParam $params
+     * @param array{events: list<Event>}|WatchSendEventsParams $params
      */
     public function sendEvents(
-        array|WatchSendEventsParam $params,
+        array|WatchSendEventsParams $params,
         ?RequestOptions $requestOptions = null,
     ): WatchSendEventsResponse;
 
     /**
-     * @param array{feedbacks: list<Feedback>}|WatchSendFeedbacksParam $params
+     * @param array{feedbacks: list<Feedback>}|WatchSendFeedbacksParams $params
      */
     public function sendFeedbacks(
-        array|WatchSendFeedbacksParam $params,
+        array|WatchSendFeedbacksParams $params,
         ?RequestOptions $requestOptions = null,
     ): WatchSendFeedbacksResponse;
 }

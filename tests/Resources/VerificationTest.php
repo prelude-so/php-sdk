@@ -6,14 +6,14 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Parameters\VerificationCheckParam;
-use Prelude\Parameters\VerificationCheckParam\Target as Target1;
-use Prelude\Parameters\VerificationCreateParam;
-use Prelude\Parameters\VerificationCreateParam\Metadata;
-use Prelude\Parameters\VerificationCreateParam\Options;
-use Prelude\Parameters\VerificationCreateParam\Options\AppRealm;
-use Prelude\Parameters\VerificationCreateParam\Signals;
-use Prelude\Parameters\VerificationCreateParam\Target;
+use Prelude\Parameters\VerificationCheckParams;
+use Prelude\Parameters\VerificationCheckParams\Target as Target1;
+use Prelude\Parameters\VerificationCreateParams;
+use Prelude\Parameters\VerificationCreateParams\Metadata;
+use Prelude\Parameters\VerificationCreateParams\Options;
+use Prelude\Parameters\VerificationCreateParams\Options\AppRealm;
+use Prelude\Parameters\VerificationCreateParams\Signals;
+use Prelude\Parameters\VerificationCreateParams\Target;
 
 /**
  * @internal
@@ -40,7 +40,7 @@ final class VerificationTest extends TestCase
             ->client
             ->verification
             ->create(
-                VerificationCreateParam::new(
+                VerificationCreateParams::new(
                     target: Target::new(type: 'phone_number', value: '+30123456789')
                 )
             )
@@ -56,7 +56,7 @@ final class VerificationTest extends TestCase
             ->client
             ->verification
             ->create(
-                VerificationCreateParam::new(
+                VerificationCreateParams::new(
                     target: Target::new(type: 'phone_number', value: '+30123456789'),
                     dispatchID: '123e4567-e89b-12d3-a456-426614174000',
                     metadata: (new Metadata)->setCorrelationID('correlation_id'),
@@ -96,7 +96,7 @@ final class VerificationTest extends TestCase
             ->client
             ->verification
             ->check(
-                VerificationCheckParam::new(
+                VerificationCheckParams::new(
                     code: '12345',
                     target: Target1::new(type: 'phone_number', value: '+30123456789'),
                 )
@@ -113,7 +113,7 @@ final class VerificationTest extends TestCase
             ->client
             ->verification
             ->check(
-                VerificationCheckParam::new(
+                VerificationCheckParams::new(
                     code: '12345',
                     target: Target1::new(type: 'phone_number', value: '+30123456789'),
                 )
