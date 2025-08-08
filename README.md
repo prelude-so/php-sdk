@@ -39,7 +39,7 @@ To use this package, install via Composer by adding the following to your applic
 <?php
 
 use Prelude\Client;
-use Prelude\Parameters\VerificationCreateParams\Target;
+use Prelude\Models\VerificationCreateParams\Target;
 
 $client = new Client(apiToken: getenv("API_TOKEN") ?: "My API Token");
 
@@ -58,7 +58,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 <?php
 
 use Prelude\Errors\APIConnectionError;
-use Prelude\Parameters\VerificationCreateParams\Target;
+use Prelude\Models\VerificationCreateParams\Target;
 
 try {
     $Verification = $client->verification->create(
@@ -103,7 +103,7 @@ You can use the `max_retries` option to configure or disable this:
 <?php
 
 use Prelude\Client;
-use Prelude\Parameters\VerificationCreateParams\Target;
+use Prelude\Models\VerificationCreateParams\Target;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
@@ -128,7 +128,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```php
 <?php
 
-use Prelude\Parameters\VerificationCreateParams\Target;
+use Prelude\Models\VerificationCreateParams\Target;
 
 $verification = $client->verification->create(
   ["target" => Target::new(type: "phone_number", value: "+30123456789")],

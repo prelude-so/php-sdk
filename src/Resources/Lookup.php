@@ -7,8 +7,8 @@ namespace Prelude\Resources;
 use Prelude\Client;
 use Prelude\Contracts\LookupContract;
 use Prelude\Core\Conversion;
-use Prelude\Parameters\LookupLookupParams;
-use Prelude\Parameters\LookupLookupParams\Type;
+use Prelude\Models\LookupLookupParams;
+use Prelude\Models\LookupLookupParams\Type;
 use Prelude\RequestOptions;
 use Prelude\Responses\LookupLookupResponse;
 

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\Parameters\VerificationCheckParams;
-use Prelude\Parameters\VerificationCheckParams\Target as Target1;
-use Prelude\Parameters\VerificationCreateParams;
-use Prelude\Parameters\VerificationCreateParams\Metadata;
-use Prelude\Parameters\VerificationCreateParams\Options;
-use Prelude\Parameters\VerificationCreateParams\Signals;
-use Prelude\Parameters\VerificationCreateParams\Target;
+use Prelude\Models\VerificationCheckParams;
+use Prelude\Models\VerificationCheckParams\Target as Target1;
+use Prelude\Models\VerificationCreateParams;
+use Prelude\Models\VerificationCreateParams\Metadata;
+use Prelude\Models\VerificationCreateParams\Options;
+use Prelude\Models\VerificationCreateParams\Signals;
+use Prelude\Models\VerificationCreateParams\Target;
 use Prelude\RequestOptions;
 use Prelude\Responses\VerificationCheckResponse;
 use Prelude\Responses\VerificationNewResponse;
