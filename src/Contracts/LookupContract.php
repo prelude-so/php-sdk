@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\Parameters\LookupLookupParams;
-use Prelude\Parameters\LookupLookupParams\Type;
+use Prelude\Models\LookupLookupParams;
+use Prelude\Models\LookupLookupParams\Type;
 use Prelude\RequestOptions;
 use Prelude\Responses\LookupLookupResponse;
 

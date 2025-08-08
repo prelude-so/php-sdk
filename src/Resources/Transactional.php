@@ -7,7 +7,7 @@ namespace Prelude\Resources;
 use Prelude\Client;
 use Prelude\Contracts\TransactionalContract;
 use Prelude\Core\Conversion;
-use Prelude\Parameters\TransactionalSendParams;
+use Prelude\Models\TransactionalSendParams;
 use Prelude\RequestOptions;
 use Prelude\Responses\TransactionalSendResponse;
 
