@@ -14,6 +14,7 @@ use Prelude\Models\VerificationCreateParams\Options;
 use Prelude\Models\VerificationCreateParams\Options\AppRealm;
 use Prelude\Models\VerificationCreateParams\Signals;
 use Prelude\Models\VerificationCreateParams\Target;
+use Tests\UnsupportedMockTests;
 
 /**
  * @internal
@@ -36,6 +37,10 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCreate(): void
     {
+        if (UnsupportedMockTests::$skip) {
+            $this->markTestSkipped("Prism doesn't support callbacks yet");
+        }
+
         $result = $this
             ->client
             ->verification
@@ -52,6 +57,10 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCreateWithOptionalParams(): void
     {
+        if (UnsupportedMockTests::$skip) {
+            $this->markTestSkipped("Prism doesn't support callbacks yet");
+        }
+
         $result = $this
             ->client
             ->verification
