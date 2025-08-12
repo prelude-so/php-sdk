@@ -34,7 +34,7 @@ final class Metadata implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(?string $correlationID = null): self
+    public static function from(?string $correlationID = null): self
     {
         $obj = new self;
 

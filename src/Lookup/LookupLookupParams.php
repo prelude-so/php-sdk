@@ -43,12 +43,25 @@ final class LookupLookupParams implements BaseModel
      *
      * @param null|list<Type::*> $type
      */
-    public static function new(?array $type = null): self
+    public static function from(?array $type = null): self
     {
         $obj = new self;
 
         null !== $type && $obj->type = $type;
 
         return $obj;
+    }
+
+    /**
+     * Optional features. Possible values are:
+     *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
+     *
+     * @param list<Type::*> $type
+     */
+    public function setType(array $type): self
+    {
+        $this->type = $type;
+
+        return $this;
     }
 }

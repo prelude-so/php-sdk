@@ -95,7 +95,7 @@ final class TransactionalSendResponse implements BaseModel
      *
      * @param array<string, string> $variables
      */
-    public static function new(
+    public static function from1(
         string $id,
         \DateTimeInterface $createdAt,
         \DateTimeInterface $expiresAt,

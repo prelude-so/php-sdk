@@ -45,7 +45,7 @@ final class WatchSendEventsResponse implements BaseModel
      *
      * @param Status::* $status
      */
-    public static function new(string $requestID, string $status): self
+    public static function from(string $requestID, string $status): self
     {
         $obj = new self;
 

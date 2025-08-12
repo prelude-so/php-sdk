@@ -42,12 +42,24 @@ final class WatchSendEventsParams implements BaseModel
      *
      * @param list<Event> $events
      */
-    public static function new(array $events): self
+    public static function from(array $events): self
     {
         $obj = new self;
 
         $obj->events = $events;
 
         return $obj;
+    }
+
+    /**
+     * A list of events to dispatch.
+     *
+     * @param list<Event> $events
+     */
+    public function setEvents(array $events): self
+    {
+        $this->events = $events;
+
+        return $this;
     }
 }

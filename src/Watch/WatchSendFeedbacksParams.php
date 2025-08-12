@@ -42,12 +42,24 @@ final class WatchSendFeedbacksParams implements BaseModel
      *
      * @param list<Feedback> $feedbacks
      */
-    public static function new(array $feedbacks): self
+    public static function from(array $feedbacks): self
     {
         $obj = new self;
 
         $obj->feedbacks = $feedbacks;
 
         return $obj;
+    }
+
+    /**
+     * A list of feedbacks to send.
+     *
+     * @param list<Feedback> $feedbacks
+     */
+    public function setFeedbacks(array $feedbacks): self
+    {
+        $this->feedbacks = $feedbacks;
+
+        return $this;
     }
 }

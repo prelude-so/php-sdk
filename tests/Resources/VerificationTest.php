@@ -41,8 +41,8 @@ final class VerificationTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $params = VerificationCreateParams::new(
-            target: Target::new(type: 'phone_number', value: '+30123456789')
+        $params = VerificationCreateParams::from(
+            target: Target::from(type: 'phone_number', value: '+30123456789')
         );
         $result = $this->client->verification->create($params);
 
@@ -56,12 +56,12 @@ final class VerificationTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $params = VerificationCreateParams::new(
-            target: Target::new(type: 'phone_number', value: '+30123456789'),
+        $params = VerificationCreateParams::from(
+            target: Target::from(type: 'phone_number', value: '+30123456789'),
             dispatchID: '123e4567-e89b-12d3-a456-426614174000',
             metadata: (new Metadata)->setCorrelationID('correlation_id'),
             options: (new Options)
-                ->setAppRealm(AppRealm::new(platform: 'android', value: 'value'))
+                ->setAppRealm(AppRealm::from(platform: 'android', value: 'value'))
                 ->setCallbackURL('callback_url')
                 ->setCodeSize(5)
                 ->setCustomCode('123456')
@@ -91,9 +91,9 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCheck(): void
     {
-        $params = VerificationCheckParams::new(
+        $params = VerificationCheckParams::from(
             code: '12345',
-            target: Target1::new(type: 'phone_number', value: '+30123456789'),
+            target: Target1::from(type: 'phone_number', value: '+30123456789'),
         );
         $result = $this->client->verification->check($params);
 
@@ -103,9 +103,9 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCheckWithOptionalParams(): void
     {
-        $params = VerificationCheckParams::new(
+        $params = VerificationCheckParams::from(
             code: '12345',
-            target: Target1::new(type: 'phone_number', value: '+30123456789'),
+            target: Target1::from(type: 'phone_number', value: '+30123456789'),
         );
         $result = $this->client->verification->check($params);
 

@@ -45,7 +45,7 @@ final class AppRealm implements BaseModel
      *
      * @param Platform::* $platform
      */
-    public static function new(string $platform, string $value): self
+    public static function from(string $platform, string $value): self
     {
         $obj = new self;
 

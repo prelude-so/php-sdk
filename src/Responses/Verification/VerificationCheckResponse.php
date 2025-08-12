@@ -55,7 +55,7 @@ final class VerificationCheckResponse implements BaseModel
      *
      * @param Status::* $status
      */
-    public static function new(
+    public static function from(
         string $status,
         ?string $id = null,
         ?Metadata $metadata = null,

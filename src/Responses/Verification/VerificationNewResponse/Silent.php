@@ -34,7 +34,7 @@ final class Silent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(string $requestURL): self
+    public static function from(string $requestURL): self
     {
         $obj = new self;
 

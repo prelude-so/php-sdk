@@ -70,7 +70,7 @@ final class VerificationCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         Target $target,
         ?string $dispatchID = null,
         ?Metadata $metadata = null,
@@ -87,5 +87,55 @@ final class VerificationCreateParams implements BaseModel
         null !== $signals && $obj->signals = $signals;
 
         return $obj;
+    }
+
+    /**
+     * The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     */
+    public function setTarget(Target $target): self
+    {
+        $this->target = $target;
+
+        return $this;
+    }
+
+    /**
+     * The identifier of the dispatch that came from the front-end SDK.
+     */
+    public function setDispatchID(string $dispatchID): self
+    {
+        $this->dispatchID = $dispatchID;
+
+        return $this;
+    }
+
+    /**
+     * The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
+     */
+    public function setMetadata(Metadata $metadata): self
+    {
+        $this->metadata = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Verification options.
+     */
+    public function setOptions(Options $options): self
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     */
+    public function setSignals(Signals $signals): self
+    {
+        $this->signals = $signals;
+
+        return $this;
     }
 }

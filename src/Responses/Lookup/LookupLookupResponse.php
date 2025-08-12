@@ -109,7 +109,7 @@ final class LookupLookupResponse implements BaseModel
      * @param null|list<Flag::*> $flags
      * @param null|LineType::* $lineType
      */
-    public static function new(
+    public static function from(
         ?string $callerName = null,
         ?string $countryCode = null,
         ?array $flags = null,
