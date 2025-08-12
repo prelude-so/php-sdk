@@ -6,14 +6,14 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Models\VerificationCheckParams;
-use Prelude\Models\VerificationCheckParams\Target as Target1;
-use Prelude\Models\VerificationCreateParams;
-use Prelude\Models\VerificationCreateParams\Metadata;
-use Prelude\Models\VerificationCreateParams\Options;
-use Prelude\Models\VerificationCreateParams\Options\AppRealm;
-use Prelude\Models\VerificationCreateParams\Signals;
-use Prelude\Models\VerificationCreateParams\Target;
+use Prelude\Verification\VerificationCheckParams;
+use Prelude\Verification\VerificationCheckParams\Target as Target1;
+use Prelude\Verification\VerificationCreateParams;
+use Prelude\Verification\VerificationCreateParams\Metadata;
+use Prelude\Verification\VerificationCreateParams\Options;
+use Prelude\Verification\VerificationCreateParams\Options\AppRealm;
+use Prelude\Verification\VerificationCreateParams\Signals;
+use Prelude\Verification\VerificationCreateParams\Target;
 use Tests\UnsupportedMockTests;
 
 /**

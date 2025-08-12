@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\Models\TransactionalSendParams;
 use Prelude\RequestOptions;
-use Prelude\Responses\TransactionalSendResponse;
+use Prelude\Responses\Transactional\TransactionalSendResponse;
+use Prelude\Transactional\TransactionalSendParams;
 
 interface TransactionalContract
 {

@@ -5,22 +5,22 @@ declare(strict_types=1);
 namespace Prelude;
 
 use Prelude\Core\BaseClient;
-use Prelude\Resources\Lookup;
-use Prelude\Resources\Transactional;
-use Prelude\Resources\Verification;
-use Prelude\Resources\Watch;
+use Prelude\Lookup\LookupService;
+use Prelude\Transactional\TransactionalService;
+use Prelude\Verification\VerificationService;
+use Prelude\Watch\WatchService;
 
 class Client extends BaseClient
 {
     public string $apiToken;
 
-    public Lookup $lookup;
+    public LookupService $lookup;
 
-    public Transactional $transactional;
+    public TransactionalService $transactional;
 
-    public Verification $verification;
+    public VerificationService $verification;
 
-    public Watch $watch;
+    public WatchService $watch;
 
     public function __construct(?string $apiToken = null, ?string $baseUrl = null)
     {
@@ -36,10 +36,10 @@ class Client extends BaseClient
             options: new RequestOptions,
         );
 
-        $this->lookup = new Lookup($this);
-        $this->transactional = new Transactional($this);
-        $this->verification = new Verification($this);
-        $this->watch = new Watch($this);
+        $this->lookup = new LookupService($this);
+        $this->transactional = new TransactionalService($this);
+        $this->verification = new VerificationService($this);
+        $this->watch = new WatchService($this);
     }
 
     /** @return array<string, string> */
