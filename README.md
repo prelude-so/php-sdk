@@ -44,8 +44,8 @@ use Prelude\Verification\VerificationCreateParams\Target;
 
 $client = new Client(apiToken: getenv("API_TOKEN") ?: "My API Token");
 
-$params = VerificationCreateParams::new(
-  target: Target::new(type: "phone_number", value: "+30123456789")
+$params = VerificationCreateParams::from(
+  target: Target::from(type: "phone_number", value: "+30123456789")
 );
 $verification = $client->verification->create($params);
 
@@ -64,8 +64,8 @@ use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Target;
 
 try {
-    $params = VerificationCreateParams::new(
-      target: Target::new(type: "phone_number", value: "+30123456789")
+    $params = VerificationCreateParams::from(
+      target: Target::from(type: "phone_number", value: "+30123456789")
     );
     $Verification = $client->verification->create($params);
 } catch (APIConnectionError $e) {
@@ -113,8 +113,8 @@ use Prelude\Verification\VerificationCreateParams\Target;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
-$params = VerificationCreateParams::new(
-  target: Target::new(type: "phone_number", value: "+30123456789")
+$params = VerificationCreateParams::from(
+  target: Target::from(type: "phone_number", value: "+30123456789")
 );
 
 // Or, configure per-request:
@@ -140,8 +140,8 @@ use Prelude\RequestOptions;
 use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Target;
 
-$params = VerificationCreateParams::new(
-  target: Target::new(type: "phone_number", value: "+30123456789")
+$params = VerificationCreateParams::from(
+  target: Target::from(type: "phone_number", value: "+30123456789")
 );
 $verification = $client
   ->verification

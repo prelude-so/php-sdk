@@ -40,8 +40,8 @@ final class WatchTest extends TestCase
     #[Test]
     public function testPredict(): void
     {
-        $params = WatchPredictParams::new(
-            target: Target::new(type: 'phone_number', value: '+30123456789')
+        $params = WatchPredictParams::from(
+            target: Target::from(type: 'phone_number', value: '+30123456789')
         );
         $result = $this->client->watch->predict($params);
 
@@ -51,8 +51,8 @@ final class WatchTest extends TestCase
     #[Test]
     public function testPredictWithOptionalParams(): void
     {
-        $params = WatchPredictParams::new(
-            target: Target::new(type: 'phone_number', value: '+30123456789'),
+        $params = WatchPredictParams::from(
+            target: Target::from(type: 'phone_number', value: '+30123456789'),
             dispatchID: '123e4567-e89b-12d3-a456-426614174000',
             metadata: (new Metadata)->setCorrelationID('correlation_id'),
             signals: (new Signals)
@@ -75,12 +75,12 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendEvents(): void
     {
-        $params = WatchSendEventsParams::new(
+        $params = WatchSendEventsParams::from(
             events: [
-                Event::new(
+                Event::from(
                     confidence: 'maximum',
                     label: 'onboarding.start',
-                    target: Target1::new(type: 'phone_number', value: '+30123456789'),
+                    target: Target1::from(type: 'phone_number', value: '+30123456789'),
                 ),
             ],
         );
@@ -92,12 +92,12 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendEventsWithOptionalParams(): void
     {
-        $params = WatchSendEventsParams::new(
+        $params = WatchSendEventsParams::from(
             events: [
-                Event::new(
+                Event::from(
                     confidence: 'maximum',
                     label: 'onboarding.start',
-                    target: Target1::new(type: 'phone_number', value: '+30123456789'),
+                    target: Target1::from(type: 'phone_number', value: '+30123456789'),
                 ),
             ],
         );
@@ -109,10 +109,10 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendFeedbacks(): void
     {
-        $params = WatchSendFeedbacksParams::new(
+        $params = WatchSendFeedbacksParams::from(
             feedbacks: [
-                Feedback::new(
-                    target: Target2::new(type: 'phone_number', value: '+30123456789'),
+                Feedback::from(
+                    target: Target2::from(type: 'phone_number', value: '+30123456789'),
                     type: 'verification.started',
                 ),
             ],
@@ -125,10 +125,10 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendFeedbacksWithOptionalParams(): void
     {
-        $params = WatchSendFeedbacksParams::new(
+        $params = WatchSendFeedbacksParams::from(
             feedbacks: [
-                Feedback::new(
-                    target: Target2::new(type: 'phone_number', value: '+30123456789'),
+                Feedback::from(
+                    target: Target2::from(type: 'phone_number', value: '+30123456789'),
                     type: 'verification.started',
                 )
                     ->setDispatchID('123e4567-e89b-12d3-a456-426614174000')

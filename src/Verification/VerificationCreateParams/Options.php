@@ -113,7 +113,7 @@ final class Options implements BaseModel
      * @param null|PreferredChannel::* $preferredChannel
      * @param null|array<string, string> $variables
      */
-    public static function new(
+    public static function from(
         ?AppRealm $appRealm = null,
         ?string $callbackURL = null,
         ?int $codeSize = null,

@@ -90,7 +90,7 @@ final class Signals implements BaseModel
      *
      * @param null|DevicePlatform::* $devicePlatform
      */
-    public static function new(
+    public static function from(
         ?string $appVersion = null,
         ?string $deviceID = null,
         ?string $deviceModel = null,

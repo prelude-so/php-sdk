@@ -51,7 +51,7 @@ final class WatchPredictResponse implements BaseModel
      *
      * @param Prediction::* $prediction
      */
-    public static function new(
+    public static function from(
         string $id,
         string $prediction,
         string $requestID

@@ -45,7 +45,7 @@ final class Target implements BaseModel
      *
      * @param Type::* $type
      */
-    public static function new(string $type, string $value): self
+    public static function from(string $type, string $value): self
     {
         $obj = new self;
 

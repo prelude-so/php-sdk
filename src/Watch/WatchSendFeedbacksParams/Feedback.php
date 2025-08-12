@@ -70,7 +70,7 @@ final class Feedback implements BaseModel
      *
      * @param Type::* $type
      */
-    public static function new(
+    public static function from(
         Target $target,
         string $type,
         ?string $dispatchID = null,

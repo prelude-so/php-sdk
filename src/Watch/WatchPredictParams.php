@@ -59,7 +59,7 @@ final class WatchPredictParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         Target $target,
         ?string $dispatchID = null,
         ?Metadata $metadata = null,
@@ -74,5 +74,45 @@ final class WatchPredictParams implements BaseModel
         null !== $signals && $obj->signals = $signals;
 
         return $obj;
+    }
+
+    /**
+     * The prediction target. Only supports phone numbers for now.
+     */
+    public function setTarget(Target $target): self
+    {
+        $this->target = $target;
+
+        return $this;
+    }
+
+    /**
+     * The identifier of the dispatch that came from the front-end SDK.
+     */
+    public function setDispatchID(string $dispatchID): self
+    {
+        $this->dispatchID = $dispatchID;
+
+        return $this;
+    }
+
+    /**
+     * The metadata for this prediction.
+     */
+    public function setMetadata(Metadata $metadata): self
+    {
+        $this->metadata = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     */
+    public function setSignals(Signals $signals): self
+    {
+        $this->signals = $signals;
+
+        return $this;
     }
 }

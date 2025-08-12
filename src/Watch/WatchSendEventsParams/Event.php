@@ -52,7 +52,7 @@ final class Event implements BaseModel
      *
      * @param Confidence::* $confidence
      */
-    public static function new(
+    public static function from(
         string $confidence,
         string $label,
         Target $target

@@ -43,7 +43,7 @@ final class VerificationCheckParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(string $code, Target $target): self
+    public static function from(string $code, Target $target): self
     {
         $obj = new self;
 
@@ -51,5 +51,25 @@ final class VerificationCheckParams implements BaseModel
         $obj->target = $target;
 
         return $obj;
+    }
+
+    /**
+     * The OTP code to validate.
+     */
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     */
+    public function setTarget(Target $target): self
+    {
+        $this->target = $target;
+
+        return $this;
     }
 }

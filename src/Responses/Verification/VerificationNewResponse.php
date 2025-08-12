@@ -100,7 +100,7 @@ final class VerificationNewResponse implements BaseModel
      * @param null|list<Channel::*> $channels
      * @param null|Reason::* $reason
      */
-    public static function new(
+    public static function from(
         string $id,
         string $method,
         string $status,
