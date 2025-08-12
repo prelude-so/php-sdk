@@ -6,18 +6,18 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Models\WatchPredictParams;
-use Prelude\Models\WatchPredictParams\Metadata;
-use Prelude\Models\WatchPredictParams\Signals;
-use Prelude\Models\WatchPredictParams\Target;
-use Prelude\Models\WatchSendEventsParams;
-use Prelude\Models\WatchSendEventsParams\Event;
-use Prelude\Models\WatchSendEventsParams\Event\Target as Target1;
-use Prelude\Models\WatchSendFeedbacksParams;
-use Prelude\Models\WatchSendFeedbacksParams\Feedback;
-use Prelude\Models\WatchSendFeedbacksParams\Feedback\Metadata as Metadata1;
-use Prelude\Models\WatchSendFeedbacksParams\Feedback\Signals as Signals1;
-use Prelude\Models\WatchSendFeedbacksParams\Feedback\Target as Target2;
+use Prelude\Watch\WatchPredictParams;
+use Prelude\Watch\WatchPredictParams\Metadata;
+use Prelude\Watch\WatchPredictParams\Signals;
+use Prelude\Watch\WatchPredictParams\Target;
+use Prelude\Watch\WatchSendEventsParams;
+use Prelude\Watch\WatchSendEventsParams\Event;
+use Prelude\Watch\WatchSendEventsParams\Event\Target as Target1;
+use Prelude\Watch\WatchSendFeedbacksParams;
+use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
+use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata as Metadata1;
+use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals as Signals1;
+use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target as Target2;
 
 /**
  * @internal

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\Models\WatchPredictParams;
-use Prelude\Models\WatchPredictParams\Metadata;
-use Prelude\Models\WatchPredictParams\Signals;
-use Prelude\Models\WatchPredictParams\Target;
-use Prelude\Models\WatchSendEventsParams;
-use Prelude\Models\WatchSendEventsParams\Event;
-use Prelude\Models\WatchSendFeedbacksParams;
-use Prelude\Models\WatchSendFeedbacksParams\Feedback;
 use Prelude\RequestOptions;
-use Prelude\Responses\WatchPredictResponse;
-use Prelude\Responses\WatchSendEventsResponse;
-use Prelude\Responses\WatchSendFeedbacksResponse;
+use Prelude\Responses\Watch\WatchPredictResponse;
+use Prelude\Responses\Watch\WatchSendEventsResponse;
+use Prelude\Responses\Watch\WatchSendFeedbacksResponse;
+use Prelude\Watch\WatchPredictParams;
+use Prelude\Watch\WatchPredictParams\Metadata;
+use Prelude\Watch\WatchPredictParams\Signals;
+use Prelude\Watch\WatchPredictParams\Target;
+use Prelude\Watch\WatchSendEventsParams;
+use Prelude\Watch\WatchSendEventsParams\Event;
+use Prelude\Watch\WatchSendFeedbacksParams;
+use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 
 interface WatchContract
 {

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Contracts;
 
-use Prelude\Models\LookupLookupParams;
-use Prelude\Models\LookupLookupParams\Type;
+use Prelude\Lookup\LookupLookupParams;
+use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\RequestOptions;
-use Prelude\Responses\LookupLookupResponse;
+use Prelude\Responses\Lookup\LookupLookupResponse;
 
 interface LookupContract
 {

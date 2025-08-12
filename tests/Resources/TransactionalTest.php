@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Models\TransactionalSendParams;
+use Prelude\Transactional\TransactionalSendParams;
 use Tests\UnsupportedMockTests;
 
 /**
