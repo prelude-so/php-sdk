@@ -40,15 +40,10 @@ final class WatchTest extends TestCase
     #[Test]
     public function testPredict(): void
     {
-        $result = $this
-            ->client
-            ->watch
-            ->predict(
-                WatchPredictParams::new(
-                    target: Target::new(type: 'phone_number', value: '+30123456789')
-                )
-            )
-        ;
+        $params = WatchPredictParams::new(
+            target: Target::new(type: 'phone_number', value: '+30123456789')
+        );
+        $result = $this->client->watch->predict($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -56,28 +51,23 @@ final class WatchTest extends TestCase
     #[Test]
     public function testPredictWithOptionalParams(): void
     {
-        $result = $this
-            ->client
-            ->watch
-            ->predict(
-                WatchPredictParams::new(
-                    target: Target::new(type: 'phone_number', value: '+30123456789'),
-                    dispatchID: '123e4567-e89b-12d3-a456-426614174000',
-                    metadata: (new Metadata)->setCorrelationID('correlation_id'),
-                    signals: (new Signals)
-                        ->setAppVersion('1.2.34')
-                        ->setDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
-                        ->setDeviceModel('iPhone17,2')
-                        ->setDevicePlatform('ios')
-                        ->setIP('192.0.2.1')
-                        ->setIsTrustedUser(false)
-                        ->setOsVersion('18.0.1')
-                        ->setUserAgent(
-                            'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
-                        ),
-                )
-            )
-        ;
+        $params = WatchPredictParams::new(
+            target: Target::new(type: 'phone_number', value: '+30123456789'),
+            dispatchID: '123e4567-e89b-12d3-a456-426614174000',
+            metadata: (new Metadata)->setCorrelationID('correlation_id'),
+            signals: (new Signals)
+                ->setAppVersion('1.2.34')
+                ->setDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
+                ->setDeviceModel('iPhone17,2')
+                ->setDevicePlatform('ios')
+                ->setIP('192.0.2.1')
+                ->setIsTrustedUser(false)
+                ->setOsVersion('18.0.1')
+                ->setUserAgent(
+                    'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
+                ),
+        );
+        $result = $this->client->watch->predict($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -85,21 +75,16 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendEvents(): void
     {
-        $result = $this
-            ->client
-            ->watch
-            ->sendEvents(
-                WatchSendEventsParams::new(
-                    events: [
-                        Event::new(
-                            confidence: 'maximum',
-                            label: 'onboarding.start',
-                            target: Target1::new(type: 'phone_number', value: '+30123456789'),
-                        ),
-                    ],
-                )
-            )
-        ;
+        $params = WatchSendEventsParams::new(
+            events: [
+                Event::new(
+                    confidence: 'maximum',
+                    label: 'onboarding.start',
+                    target: Target1::new(type: 'phone_number', value: '+30123456789'),
+                ),
+            ],
+        );
+        $result = $this->client->watch->sendEvents($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -107,21 +92,16 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendEventsWithOptionalParams(): void
     {
-        $result = $this
-            ->client
-            ->watch
-            ->sendEvents(
-                WatchSendEventsParams::new(
-                    events: [
-                        Event::new(
-                            confidence: 'maximum',
-                            label: 'onboarding.start',
-                            target: Target1::new(type: 'phone_number', value: '+30123456789'),
-                        ),
-                    ],
-                )
-            )
-        ;
+        $params = WatchSendEventsParams::new(
+            events: [
+                Event::new(
+                    confidence: 'maximum',
+                    label: 'onboarding.start',
+                    target: Target1::new(type: 'phone_number', value: '+30123456789'),
+                ),
+            ],
+        );
+        $result = $this->client->watch->sendEvents($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -129,20 +109,15 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendFeedbacks(): void
     {
-        $result = $this
-            ->client
-            ->watch
-            ->sendFeedbacks(
-                WatchSendFeedbacksParams::new(
-                    feedbacks: [
-                        Feedback::new(
-                            target: Target2::new(type: 'phone_number', value: '+30123456789'),
-                            type: 'verification.started',
-                        ),
-                    ],
-                )
-            )
-        ;
+        $params = WatchSendFeedbacksParams::new(
+            feedbacks: [
+                Feedback::new(
+                    target: Target2::new(type: 'phone_number', value: '+30123456789'),
+                    type: 'verification.started',
+                ),
+            ],
+        );
+        $result = $this->client->watch->sendFeedbacks($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -150,35 +125,30 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendFeedbacksWithOptionalParams(): void
     {
-        $result = $this
-            ->client
-            ->watch
-            ->sendFeedbacks(
-                WatchSendFeedbacksParams::new(
-                    feedbacks: [
-                        Feedback::new(
-                            target: Target2::new(type: 'phone_number', value: '+30123456789'),
-                            type: 'verification.started',
-                        )
-                            ->setDispatchID('123e4567-e89b-12d3-a456-426614174000')
-                            ->setMetadata((new Metadata1)->setCorrelationID('correlation_id'))
-                            ->setSignals(
-                                (new Signals1)
-                                    ->setAppVersion('1.2.34')
-                                    ->setDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
-                                    ->setDeviceModel('iPhone17,2')
-                                    ->setDevicePlatform('ios')
-                                    ->setIP('192.0.2.1')
-                                    ->setIsTrustedUser(false)
-                                    ->setOsVersion('18.0.1')
-                                    ->setUserAgent(
-                                        'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
-                                    ),
-                            ),
-                    ],
+        $params = WatchSendFeedbacksParams::new(
+            feedbacks: [
+                Feedback::new(
+                    target: Target2::new(type: 'phone_number', value: '+30123456789'),
+                    type: 'verification.started',
                 )
-            )
-        ;
+                    ->setDispatchID('123e4567-e89b-12d3-a456-426614174000')
+                    ->setMetadata((new Metadata1)->setCorrelationID('correlation_id'))
+                    ->setSignals(
+                        (new Signals1)
+                            ->setAppVersion('1.2.34')
+                            ->setDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
+                            ->setDeviceModel('iPhone17,2')
+                            ->setDevicePlatform('ios')
+                            ->setIP('192.0.2.1')
+                            ->setIsTrustedUser(false)
+                            ->setOsVersion('18.0.1')
+                            ->setUserAgent(
+                                'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
+                            ),
+                    ),
+            ],
+        );
+        $result = $this->client->watch->sendFeedbacks($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

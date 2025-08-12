@@ -29,11 +29,8 @@ final class LookupTest extends TestCase
     #[Test]
     public function testLookup(): void
     {
-        $result = $this
-            ->client
-            ->lookup
-            ->lookup('+12065550100', new LookupLookupParams)
-        ;
+        $params = (new LookupLookupParams);
+        $result = $this->client->lookup->lookup('+12065550100', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
