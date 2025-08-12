@@ -39,13 +39,15 @@ To use this package, install via Composer by adding the following to your applic
 <?php
 
 use Prelude\Client;
+use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Target;
 
 $client = new Client(apiToken: getenv("API_TOKEN") ?: "My API Token");
 
-$verification = $client->verification->create(
-  ["target" => Target::new(type: "phone_number", value: "+30123456789")]
+$params = VerificationCreateParams::new(
+  target: Target::new(type: "phone_number", value: "+30123456789")
 );
+$verification = $client->verification->create($params);
 
 var_dump($verification->id);
 ```
@@ -58,12 +60,14 @@ When the library is unable to connect to the API, or if the API returns a non-su
 <?php
 
 use Prelude\Errors\APIConnectionError;
+use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Target;
 
 try {
-    $Verification = $client->verification->create(
-      ["target" => Target::new(type: "phone_number", value: "+30123456789")]
+    $params = VerificationCreateParams::new(
+      target: Target::new(type: "phone_number", value: "+30123456789")
     );
+    $Verification = $client->verification->create($params);
 } catch (APIConnectionError $e) {
     echo "The server could not be reached", PHP_EOL;
     var_dump($e->getPrevious());
@@ -103,16 +107,20 @@ You can use the `max_retries` option to configure or disable this:
 <?php
 
 use Prelude\Client;
+use Prelude\RequestOptions;
+use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Target;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
+$params = VerificationCreateParams::new(
+  target: Target::new(type: "phone_number", value: "+30123456789")
+);
 
 // Or, configure per-request:
-$client->verification->create(
-  ["target" => Target::new(type: "phone_number", value: "+30123456789")],
-  requestOptions: ["maxRetries" => 5],
-);
+$result = $client
+  ->verification
+  ->create($params, new RequestOptions(maxRetries: 5));
 ```
 
 ## Advanced concepts
@@ -128,15 +136,22 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```php
 <?php
 
+use Prelude\RequestOptions;
+use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Target;
 
-$verification = $client->verification->create(
-  ["target" => Target::new(type: "phone_number", value: "+30123456789")],
-  requestOptions: [
-    "extraQueryParams" => ["my_query_parameter" => "value"],
-    "extraBodyParams" => ["my_body_parameter" => "value"],
-    "extraHeaders" => ["my-header" => "value"],
-  ],
+$params = VerificationCreateParams::new(
+  target: Target::new(type: "phone_number", value: "+30123456789")
+);
+$verification = $client
+  ->verification
+  ->create(
+  $params,
+  new RequestOptions(
+    extraQueryParams: ["my_query_parameter" => "value"],
+    extraBodyParams: ["my_body_parameter" => "value"],
+    extraHeaders: ["my-header" => "value"],
+  ),
 );
 
 var_dump($verification["my_undocumented_property"]);
