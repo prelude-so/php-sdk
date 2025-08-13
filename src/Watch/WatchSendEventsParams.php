@@ -29,6 +29,20 @@ final class WatchSendEventsParams implements BaseModel
     #[Api(type: new ListOf(Event::class))]
     public array $events;
 
+    /**
+     * `new WatchSendEventsParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * WatchSendEventsParams::with(events: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new WatchSendEventsParams)->withEvents(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -42,7 +56,7 @@ final class WatchSendEventsParams implements BaseModel
      *
      * @param list<Event> $events
      */
-    public static function from(array $events): self
+    public static function with(array $events): self
     {
         $obj = new self;
 
@@ -56,10 +70,11 @@ final class WatchSendEventsParams implements BaseModel
      *
      * @param list<Event> $events
      */
-    public function setEvents(array $events): self
+    public function withEvents(array $events): self
     {
-        $this->events = $events;
+        $obj = clone $this;
+        $obj->events = $events;
 
-        return $this;
+        return $obj;
     }
 }

@@ -32,6 +32,20 @@ final class Target implements BaseModel
     #[Api]
     public string $value;
 
+    /**
+     * `new Target()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * Target::with(type: ..., value: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new Target)->withType(...)->withValue(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -45,7 +59,7 @@ final class Target implements BaseModel
      *
      * @param Type1::* $type
      */
-    public static function from(string $type, string $value): self
+    public static function with(string $type, string $value): self
     {
         $obj = new self;
 
@@ -60,20 +74,22 @@ final class Target implements BaseModel
      *
      * @param Type1::* $type
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * An E.164 formatted phone number or an email address.
      */
-    public function setValue(string $value): self
+    public function withValue(string $value): self
     {
-        $this->value = $value;
+        $obj = clone $this;
+        $obj->value = $value;
 
-        return $this;
+        return $obj;
     }
 }

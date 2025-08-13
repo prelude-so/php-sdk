@@ -84,6 +84,20 @@ final class VerificationNewResponse implements BaseModel
     #[Api(optional: true)]
     public ?Silent $silent;
 
+    /**
+     * `new VerificationNewResponse()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * VerificationNewResponse::with(id: ..., method: ..., status: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new VerificationNewResponse)->withID(...)->withMethod(...)->withStatus(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -100,7 +114,7 @@ final class VerificationNewResponse implements BaseModel
      * @param null|list<Channel::*> $channels
      * @param null|Reason::* $reason
      */
-    public static function from(
+    public static function with(
         string $id,
         string $method,
         string $status,
@@ -128,11 +142,12 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The verification identifier.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -140,11 +155,12 @@ final class VerificationNewResponse implements BaseModel
      *
      * @param Method::* $method
      */
-    public function setMethod(string $method): self
+    public function withMethod(string $method): self
     {
-        $this->method = $method;
+        $obj = clone $this;
+        $obj->method = $method;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -152,11 +168,12 @@ final class VerificationNewResponse implements BaseModel
      *
      * @param Status::* $status
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -164,21 +181,23 @@ final class VerificationNewResponse implements BaseModel
      *
      * @param list<Channel::*> $channels
      */
-    public function setChannels(array $channels): self
+    public function withChannels(array $channels): self
     {
-        $this->channels = $channels;
+        $obj = clone $this;
+        $obj->channels = $channels;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The metadata for this verification.
      */
-    public function setMetadata(Metadata $metadata): self
+    public function withMetadata(Metadata $metadata): self
     {
-        $this->metadata = $metadata;
+        $obj = clone $this;
+        $obj->metadata = $metadata;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -186,27 +205,30 @@ final class VerificationNewResponse implements BaseModel
      *
      * @param Reason::* $reason
      */
-    public function setReason(string $reason): self
+    public function withReason(string $reason): self
     {
-        $this->reason = $reason;
+        $obj = clone $this;
+        $obj->reason = $reason;
 
-        return $this;
+        return $obj;
     }
 
-    public function setRequestID(string $requestID): self
+    public function withRequestID(string $requestID): self
     {
-        $this->requestID = $requestID;
+        $obj = clone $this;
+        $obj->requestID = $requestID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The silent verification specific properties.
      */
-    public function setSilent(Silent $silent): self
+    public function withSilent(Silent $silent): self
     {
-        $this->silent = $silent;
+        $obj = clone $this;
+        $obj->silent = $silent;
 
-        return $this;
+        return $obj;
     }
 }

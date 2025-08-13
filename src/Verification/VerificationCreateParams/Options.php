@@ -113,7 +113,7 @@ final class Options implements BaseModel
      * @param null|PreferredChannel::* $preferredChannel
      * @param null|array<string, string> $variables
      */
-    public static function from(
+    public static function with(
         ?AppRealm $appRealm = null,
         ?string $callbackURL = null,
         ?int $codeSize = null,
@@ -144,51 +144,56 @@ final class Options implements BaseModel
     /**
      * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
      */
-    public function setAppRealm(AppRealm $appRealm): self
+    public function withAppRealm(AppRealm $appRealm): self
     {
-        $this->appRealm = $appRealm;
+        $obj = clone $this;
+        $obj->appRealm = $appRealm;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The URL where webhooks will be sent when verification events occur, including verification creation, attempt creation, and delivery status changes. For more details, refer to [Webhook](/verify/v2/documentation/webhook).
      */
-    public function setCallbackURL(string $callbackURL): self
+    public function withCallbackURL(string $callbackURL): self
     {
-        $this->callbackURL = $callbackURL;
+        $obj = clone $this;
+        $obj->callbackURL = $callbackURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The size of the code generated. It should be between 4 and 8. Defaults to the code size specified from the Dashboard.
      */
-    public function setCodeSize(int $codeSize): self
+    public function withCodeSize(int $codeSize): self
     {
-        $this->codeSize = $codeSize;
+        $obj = clone $this;
+        $obj->codeSize = $codeSize;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The custom code to use for OTP verification. To use the custom code feature, contact us to enable it for your account. For more details, refer to [Custom Code](/verify/v2/documentation/custom-codes).
      */
-    public function setCustomCode(string $customCode): self
+    public function withCustomCode(string $customCode): self
     {
-        $this->customCode = $customCode;
+        $obj = clone $this;
+        $obj->customCode = $customCode;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, it defaults to US English.
      */
-    public function setLocale(string $locale): self
+    public function withLocale(string $locale): self
     {
-        $this->locale = $locale;
+        $obj = clone $this;
+        $obj->locale = $locale;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -196,11 +201,12 @@ final class Options implements BaseModel
      *
      * @param Method::* $method
      */
-    public function setMethod(string $method): self
+    public function withMethod(string $method): self
     {
-        $this->method = $method;
+        $obj = clone $this;
+        $obj->method = $method;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -208,31 +214,34 @@ final class Options implements BaseModel
      *
      * @param PreferredChannel::* $preferredChannel
      */
-    public function setPreferredChannel(string $preferredChannel): self
+    public function withPreferredChannel(string $preferredChannel): self
     {
-        $this->preferredChannel = $preferredChannel;
+        $obj = clone $this;
+        $obj->preferredChannel = $preferredChannel;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The Sender ID to use for this message. The Sender ID needs to be enabled by Prelude.
      */
-    public function setSenderID(string $senderID): self
+    public function withSenderID(string $senderID): self
     {
-        $this->senderID = $senderID;
+        $obj = clone $this;
+        $obj->senderID = $senderID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The identifier of a verification template. It applies use case-specific settings, such as the message content or certain verification parameters.
      */
-    public function setTemplateID(string $templateID): self
+    public function withTemplateID(string $templateID): self
     {
-        $this->templateID = $templateID;
+        $obj = clone $this;
+        $obj->templateID = $templateID;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -240,10 +249,11 @@ final class Options implements BaseModel
      *
      * @param array<string, string> $variables
      */
-    public function setVariables(array $variables): self
+    public function withVariables(array $variables): self
     {
-        $this->variables = $variables;
+        $obj = clone $this;
+        $obj->variables = $variables;
 
-        return $this;
+        return $obj;
     }
 }

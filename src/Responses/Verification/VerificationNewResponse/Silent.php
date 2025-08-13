@@ -23,6 +23,20 @@ final class Silent implements BaseModel
     #[Api('request_url')]
     public string $requestURL;
 
+    /**
+     * `new Silent()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * Silent::with(requestURL: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new Silent)->withRequestURL(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -34,7 +48,7 @@ final class Silent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(string $requestURL): self
+    public static function with(string $requestURL): self
     {
         $obj = new self;
 
@@ -46,10 +60,11 @@ final class Silent implements BaseModel
     /**
      * The URL to start the silent verification towards.
      */
-    public function setRequestURL(string $requestURL): self
+    public function withRequestURL(string $requestURL): self
     {
-        $this->requestURL = $requestURL;
+        $obj = clone $this;
+        $obj->requestURL = $requestURL;
 
-        return $this;
+        return $obj;
     }
 }

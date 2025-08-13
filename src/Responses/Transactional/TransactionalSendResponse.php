@@ -82,6 +82,33 @@ final class TransactionalSendResponse implements BaseModel
     #[Api(optional: true)]
     public ?string $from;
 
+    /**
+     * `new TransactionalSendResponse()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * TransactionalSendResponse::with(
+     *   id: ...,
+     *   createdAt: ...,
+     *   expiresAt: ...,
+     *   templateID: ...,
+     *   to: ...,
+     *   variables: ...,
+     * )
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new TransactionalSendResponse)
+     *   ->withID(...)
+     *   ->withCreatedAt(...)
+     *   ->withExpiresAt(...)
+     *   ->withTemplateID(...)
+     *   ->withTo(...)
+     *   ->withVariables(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -95,7 +122,7 @@ final class TransactionalSendResponse implements BaseModel
      *
      * @param array<string, string> $variables
      */
-    public static function from1(
+    public static function with(
         string $id,
         \DateTimeInterface $createdAt,
         \DateTimeInterface $expiresAt,
@@ -125,51 +152,56 @@ final class TransactionalSendResponse implements BaseModel
     /**
      * The message identifier.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The message creation date.
      */
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $obj = clone $this;
+        $obj->createdAt = $createdAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The message expiration date.
      */
-    public function setExpiresAt(\DateTimeInterface $expiresAt): self
+    public function withExpiresAt(\DateTimeInterface $expiresAt): self
     {
-        $this->expiresAt = $expiresAt;
+        $obj = clone $this;
+        $obj->expiresAt = $expiresAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The template identifier.
      */
-    public function setTemplateID(string $templateID): self
+    public function withTemplateID(string $templateID): self
     {
-        $this->templateID = $templateID;
+        $obj = clone $this;
+        $obj->templateID = $templateID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The recipient's phone number.
      */
-    public function setTo(string $to): self
+    public function withTo(string $to): self
     {
-        $this->to = $to;
+        $obj = clone $this;
+        $obj->to = $to;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -177,40 +209,44 @@ final class TransactionalSendResponse implements BaseModel
      *
      * @param array<string, string> $variables
      */
-    public function setVariables(array $variables): self
+    public function withVariables(array $variables): self
     {
-        $this->variables = $variables;
+        $obj = clone $this;
+        $obj->variables = $variables;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The callback URL.
      */
-    public function setCallbackURL(string $callbackURL): self
+    public function withCallbackURL(string $callbackURL): self
     {
-        $this->callbackURL = $callbackURL;
+        $obj = clone $this;
+        $obj->callbackURL = $callbackURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * A user-defined identifier to correlate this transactional message with. It is returned in the response and any webhook events that refer to this transactional message.
      */
-    public function setCorrelationID(string $correlationID): self
+    public function withCorrelationID(string $correlationID): self
     {
-        $this->correlationID = $correlationID;
+        $obj = clone $this;
+        $obj->correlationID = $correlationID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The Sender ID.
      */
-    public function setFrom(string $from): self
+    public function withFrom(string $from): self
     {
-        $this->from = $from;
+        $obj = clone $this;
+        $obj->from = $from;
 
-        return $this;
+        return $obj;
     }
 }

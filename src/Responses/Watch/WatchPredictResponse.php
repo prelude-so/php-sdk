@@ -38,6 +38,20 @@ final class WatchPredictResponse implements BaseModel
     #[Api('request_id')]
     public string $requestID;
 
+    /**
+     * `new WatchPredictResponse()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * WatchPredictResponse::with(id: ..., prediction: ..., requestID: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new WatchPredictResponse)->withID(...)->withPrediction(...)->withRequestID(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -51,7 +65,7 @@ final class WatchPredictResponse implements BaseModel
      *
      * @param Prediction::* $prediction
      */
-    public static function from(
+    public static function with(
         string $id,
         string $prediction,
         string $requestID
@@ -68,11 +82,12 @@ final class WatchPredictResponse implements BaseModel
     /**
      * The prediction identifier.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -80,20 +95,22 @@ final class WatchPredictResponse implements BaseModel
      *
      * @param Prediction::* $prediction
      */
-    public function setPrediction(string $prediction): self
+    public function withPrediction(string $prediction): self
     {
-        $this->prediction = $prediction;
+        $obj = clone $this;
+        $obj->prediction = $prediction;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * A string that identifies this specific request. Report it back to us to help us diagnose your issues.
      */
-    public function setRequestID(string $requestID): self
+    public function withRequestID(string $requestID): self
     {
-        $this->requestID = $requestID;
+        $obj = clone $this;
+        $obj->requestID = $requestID;
 
-        return $this;
+        return $obj;
     }
 }

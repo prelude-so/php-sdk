@@ -32,6 +32,20 @@ final class AppRealm implements BaseModel
     #[Api]
     public string $value;
 
+    /**
+     * `new AppRealm()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * AppRealm::with(platform: ..., value: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new AppRealm)->withPlatform(...)->withValue(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -45,7 +59,7 @@ final class AppRealm implements BaseModel
      *
      * @param Platform::* $platform
      */
-    public static function from(string $platform, string $value): self
+    public static function with(string $platform, string $value): self
     {
         $obj = new self;
 
@@ -60,20 +74,22 @@ final class AppRealm implements BaseModel
      *
      * @param Platform::* $platform
      */
-    public function setPlatform(string $platform): self
+    public function withPlatform(string $platform): self
     {
-        $this->platform = $platform;
+        $obj = clone $this;
+        $obj->platform = $platform;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The Android SMS Retriever API hash code that identifies your app.
      */
-    public function setValue(string $value): self
+    public function withValue(string $value): self
     {
-        $this->value = $value;
+        $obj = clone $this;
+        $obj->value = $value;
 
-        return $this;
+        return $obj;
     }
 }

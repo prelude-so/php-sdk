@@ -40,8 +40,8 @@ final class WatchTest extends TestCase
     #[Test]
     public function testPredict(): void
     {
-        $params = WatchPredictParams::from(
-            target: Target::from(type: 'phone_number', value: '+30123456789')
+        $params = WatchPredictParams::with(
+            target: Target::with(type: 'phone_number', value: '+30123456789')
         );
         $result = $this->client->watch->predict($params);
 
@@ -51,19 +51,19 @@ final class WatchTest extends TestCase
     #[Test]
     public function testPredictWithOptionalParams(): void
     {
-        $params = WatchPredictParams::from(
-            target: Target::from(type: 'phone_number', value: '+30123456789'),
+        $params = WatchPredictParams::with(
+            target: Target::with(type: 'phone_number', value: '+30123456789'),
             dispatchID: '123e4567-e89b-12d3-a456-426614174000',
-            metadata: (new Metadata)->setCorrelationID('correlation_id'),
+            metadata: (new Metadata)->withCorrelationID('correlation_id'),
             signals: (new Signals)
-                ->setAppVersion('1.2.34')
-                ->setDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
-                ->setDeviceModel('iPhone17,2')
-                ->setDevicePlatform('ios')
-                ->setIP('192.0.2.1')
-                ->setIsTrustedUser(false)
-                ->setOsVersion('18.0.1')
-                ->setUserAgent(
+                ->withAppVersion('1.2.34')
+                ->withDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
+                ->withDeviceModel('iPhone17,2')
+                ->withDevicePlatform('ios')
+                ->withIP('192.0.2.1')
+                ->withIsTrustedUser(false)
+                ->withOsVersion('18.0.1')
+                ->withUserAgent(
                     'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
                 ),
         );
@@ -75,12 +75,12 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendEvents(): void
     {
-        $params = WatchSendEventsParams::from(
+        $params = WatchSendEventsParams::with(
             events: [
-                Event::from(
+                Event::with(
                     confidence: 'maximum',
                     label: 'onboarding.start',
-                    target: Target1::from(type: 'phone_number', value: '+30123456789'),
+                    target: Target1::with(type: 'phone_number', value: '+30123456789'),
                 ),
             ],
         );
@@ -92,12 +92,12 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendEventsWithOptionalParams(): void
     {
-        $params = WatchSendEventsParams::from(
+        $params = WatchSendEventsParams::with(
             events: [
-                Event::from(
+                Event::with(
                     confidence: 'maximum',
                     label: 'onboarding.start',
-                    target: Target1::from(type: 'phone_number', value: '+30123456789'),
+                    target: Target1::with(type: 'phone_number', value: '+30123456789'),
                 ),
             ],
         );
@@ -109,10 +109,10 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendFeedbacks(): void
     {
-        $params = WatchSendFeedbacksParams::from(
+        $params = WatchSendFeedbacksParams::with(
             feedbacks: [
-                Feedback::from(
-                    target: Target2::from(type: 'phone_number', value: '+30123456789'),
+                Feedback::with(
+                    target: Target2::with(type: 'phone_number', value: '+30123456789'),
                     type: 'verification.started',
                 ),
             ],
@@ -125,24 +125,24 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendFeedbacksWithOptionalParams(): void
     {
-        $params = WatchSendFeedbacksParams::from(
+        $params = WatchSendFeedbacksParams::with(
             feedbacks: [
-                Feedback::from(
-                    target: Target2::from(type: 'phone_number', value: '+30123456789'),
+                Feedback::with(
+                    target: Target2::with(type: 'phone_number', value: '+30123456789'),
                     type: 'verification.started',
                 )
-                    ->setDispatchID('123e4567-e89b-12d3-a456-426614174000')
-                    ->setMetadata((new Metadata1)->setCorrelationID('correlation_id'))
-                    ->setSignals(
+                    ->withDispatchID('123e4567-e89b-12d3-a456-426614174000')
+                    ->withMetadata((new Metadata1)->withCorrelationID('correlation_id'))
+                    ->withSignals(
                         (new Signals1)
-                            ->setAppVersion('1.2.34')
-                            ->setDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
-                            ->setDeviceModel('iPhone17,2')
-                            ->setDevicePlatform('ios')
-                            ->setIP('192.0.2.1')
-                            ->setIsTrustedUser(false)
-                            ->setOsVersion('18.0.1')
-                            ->setUserAgent(
+                            ->withAppVersion('1.2.34')
+                            ->withDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
+                            ->withDeviceModel('iPhone17,2')
+                            ->withDevicePlatform('ios')
+                            ->withIP('192.0.2.1')
+                            ->withIsTrustedUser(false)
+                            ->withOsVersion('18.0.1')
+                            ->withUserAgent(
                                 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
                             ),
                     ),

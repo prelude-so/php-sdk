@@ -41,8 +41,8 @@ final class VerificationTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $params = VerificationCreateParams::from(
-            target: Target::from(type: 'phone_number', value: '+30123456789')
+        $params = VerificationCreateParams::with(
+            target: Target::with(type: 'phone_number', value: '+30123456789')
         );
         $result = $this->client->verification->create($params);
 
@@ -56,30 +56,30 @@ final class VerificationTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $params = VerificationCreateParams::from(
-            target: Target::from(type: 'phone_number', value: '+30123456789'),
+        $params = VerificationCreateParams::with(
+            target: Target::with(type: 'phone_number', value: '+30123456789'),
             dispatchID: '123e4567-e89b-12d3-a456-426614174000',
-            metadata: (new Metadata)->setCorrelationID('correlation_id'),
+            metadata: (new Metadata)->withCorrelationID('correlation_id'),
             options: (new Options)
-                ->setAppRealm(AppRealm::from(platform: 'android', value: 'value'))
-                ->setCallbackURL('callback_url')
-                ->setCodeSize(5)
-                ->setCustomCode('123456')
-                ->setLocale('el-GR')
-                ->setMethod('auto')
-                ->setPreferredChannel('sms')
-                ->setSenderID('sender_id')
-                ->setTemplateID('prelude:psd2')
-                ->setVariables(['foo' => 'bar']),
+                ->withAppRealm(AppRealm::with(platform: 'android', value: 'value'))
+                ->withCallbackURL('callback_url')
+                ->withCodeSize(5)
+                ->withCustomCode('123456')
+                ->withLocale('el-GR')
+                ->withMethod('auto')
+                ->withPreferredChannel('sms')
+                ->withSenderID('sender_id')
+                ->withTemplateID('prelude:psd2')
+                ->withVariables(['foo' => 'bar']),
             signals: (new Signals)
-                ->setAppVersion('1.2.34')
-                ->setDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
-                ->setDeviceModel('iPhone17,2')
-                ->setDevicePlatform('ios')
-                ->setIP('192.0.2.1')
-                ->setIsTrustedUser(false)
-                ->setOsVersion('18.0.1')
-                ->setUserAgent(
+                ->withAppVersion('1.2.34')
+                ->withDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
+                ->withDeviceModel('iPhone17,2')
+                ->withDevicePlatform('ios')
+                ->withIP('192.0.2.1')
+                ->withIsTrustedUser(false)
+                ->withOsVersion('18.0.1')
+                ->withUserAgent(
                     'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
                 ),
         );
@@ -91,9 +91,9 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCheck(): void
     {
-        $params = VerificationCheckParams::from(
+        $params = VerificationCheckParams::with(
             code: '12345',
-            target: Target1::from(type: 'phone_number', value: '+30123456789'),
+            target: Target1::with(type: 'phone_number', value: '+30123456789'),
         );
         $result = $this->client->verification->check($params);
 
@@ -103,9 +103,9 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCheckWithOptionalParams(): void
     {
-        $params = VerificationCheckParams::from(
+        $params = VerificationCheckParams::with(
             code: '12345',
-            target: Target1::from(type: 'phone_number', value: '+30123456789'),
+            target: Target1::with(type: 'phone_number', value: '+30123456789'),
         );
         $result = $this->client->verification->check($params);
 

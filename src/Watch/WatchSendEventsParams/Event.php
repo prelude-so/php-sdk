@@ -39,6 +39,20 @@ final class Event implements BaseModel
     #[Api]
     public Target $target;
 
+    /**
+     * `new Event()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * Event::with(confidence: ..., label: ..., target: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new Event)->withConfidence(...)->withLabel(...)->withTarget(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -52,7 +66,7 @@ final class Event implements BaseModel
      *
      * @param Confidence::* $confidence
      */
-    public static function from(
+    public static function with(
         string $confidence,
         string $label,
         Target $target
@@ -71,30 +85,33 @@ final class Event implements BaseModel
      *
      * @param Confidence::* $confidence
      */
-    public function setConfidence(string $confidence): self
+    public function withConfidence(string $confidence): self
     {
-        $this->confidence = $confidence;
+        $obj = clone $this;
+        $obj->confidence = $confidence;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * A label to describe what the event refers to.
      */
-    public function setLabel(string $label): self
+    public function withLabel(string $label): self
     {
-        $this->label = $label;
+        $obj = clone $this;
+        $obj->label = $label;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The event target. Only supports phone numbers for now.
      */
-    public function setTarget(Target $target): self
+    public function withTarget(Target $target): self
     {
-        $this->target = $target;
+        $obj = clone $this;
+        $obj->target = $target;
 
-        return $this;
+        return $obj;
     }
 }

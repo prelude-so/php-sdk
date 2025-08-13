@@ -79,6 +79,20 @@ final class TransactionalSendParams implements BaseModel
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $variables;
 
+    /**
+     * `new TransactionalSendParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * TransactionalSendParams::with(templateID: ..., to: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new TransactionalSendParams)->withTemplateID(...)->withTo(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -92,7 +106,7 @@ final class TransactionalSendParams implements BaseModel
      *
      * @param null|array<string, string> $variables
      */
-    public static function from1(
+    public static function with(
         string $templateID,
         string $to,
         ?string $callbackURL = null,
@@ -120,71 +134,78 @@ final class TransactionalSendParams implements BaseModel
     /**
      * The template identifier.
      */
-    public function setTemplateID(string $templateID): self
+    public function withTemplateID(string $templateID): self
     {
-        $this->templateID = $templateID;
+        $obj = clone $this;
+        $obj->templateID = $templateID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The recipient's phone number.
      */
-    public function setTo(string $to): self
+    public function withTo(string $to): self
     {
-        $this->to = $to;
+        $obj = clone $this;
+        $obj->to = $to;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The callback URL.
      */
-    public function setCallbackURL(string $callbackURL): self
+    public function withCallbackURL(string $callbackURL): self
     {
-        $this->callbackURL = $callbackURL;
+        $obj = clone $this;
+        $obj->callbackURL = $callbackURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * A user-defined identifier to correlate this transactional message with. It is returned in the response and any webhook events that refer to this transactionalmessage.
      */
-    public function setCorrelationID(string $correlationID): self
+    public function withCorrelationID(string $correlationID): self
     {
-        $this->correlationID = $correlationID;
+        $obj = clone $this;
+        $obj->correlationID = $correlationID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The message expiration date.
      */
-    public function setExpiresAt(string $expiresAt): self
+    public function withExpiresAt(string $expiresAt): self
     {
-        $this->expiresAt = $expiresAt;
+        $obj = clone $this;
+        $obj->expiresAt = $expiresAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The Sender ID.
      */
-    public function setFrom(string $from): self
+    public function withFrom(string $from): self
     {
-        $this->from = $from;
+        $obj = clone $this;
+        $obj->from = $from;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, the default set on the template will be used.
      */
-    public function setLocale(string $locale): self
+    public function withLocale(string $locale): self
     {
-        $this->locale = $locale;
+        $obj = clone $this;
+        $obj->locale = $locale;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -192,10 +213,11 @@ final class TransactionalSendParams implements BaseModel
      *
      * @param array<string, string> $variables
      */
-    public function setVariables(array $variables): self
+    public function withVariables(array $variables): self
     {
-        $this->variables = $variables;
+        $obj = clone $this;
+        $obj->variables = $variables;
 
-        return $this;
+        return $obj;
     }
 }
