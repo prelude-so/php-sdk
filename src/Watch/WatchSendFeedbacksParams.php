@@ -29,6 +29,20 @@ final class WatchSendFeedbacksParams implements BaseModel
     #[Api(type: new ListOf(Feedback::class))]
     public array $feedbacks;
 
+    /**
+     * `new WatchSendFeedbacksParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * WatchSendFeedbacksParams::with(feedbacks: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new WatchSendFeedbacksParams)->withFeedbacks(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -42,7 +56,7 @@ final class WatchSendFeedbacksParams implements BaseModel
      *
      * @param list<Feedback> $feedbacks
      */
-    public static function from(array $feedbacks): self
+    public static function with(array $feedbacks): self
     {
         $obj = new self;
 
@@ -56,10 +70,11 @@ final class WatchSendFeedbacksParams implements BaseModel
      *
      * @param list<Feedback> $feedbacks
      */
-    public function setFeedbacks(array $feedbacks): self
+    public function withFeedbacks(array $feedbacks): self
     {
-        $this->feedbacks = $feedbacks;
+        $obj = clone $this;
+        $obj->feedbacks = $feedbacks;
 
-        return $this;
+        return $obj;
     }
 }

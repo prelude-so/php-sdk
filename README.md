@@ -44,8 +44,8 @@ use Prelude\Verification\VerificationCreateParams\Target;
 
 $client = new Client(apiToken: getenv("API_TOKEN") ?: "My API Token");
 
-$params = VerificationCreateParams::from(
-  target: Target::from(type: "phone_number", value: "+30123456789")
+$params = VerificationCreateParams::with(
+  target: Target::with(type: "phone_number", value: "+30123456789")
 );
 $verification = $client->verification->create($params);
 
@@ -63,11 +63,11 @@ use Prelude\Errors\APIConnectionError;
 use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Target;
 
+$params = VerificationCreateParams::with(
+  target: Target::with(type: "phone_number", value: "+30123456789")
+);
 try {
-    $params = VerificationCreateParams::from(
-      target: Target::from(type: "phone_number", value: "+30123456789")
-    );
-    $Verification = $client->verification->create($params);
+  $Verification = $client->verification->create($params);
 } catch (APIConnectionError $e) {
     echo "The server could not be reached", PHP_EOL;
     var_dump($e->getPrevious());
@@ -113,12 +113,11 @@ use Prelude\Verification\VerificationCreateParams\Target;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
-$params = VerificationCreateParams::from(
-  target: Target::from(type: "phone_number", value: "+30123456789")
+$params = VerificationCreateParams::with(
+  target: Target::with(type: "phone_number", value: "+30123456789")
 );
 
-// Or, configure per-request:
-$result = $client
+// Or, configure per-request:$result = $client
   ->verification
   ->create($params, new RequestOptions(maxRetries: 5));
 ```
@@ -140,8 +139,8 @@ use Prelude\RequestOptions;
 use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Target;
 
-$params = VerificationCreateParams::from(
-  target: Target::from(type: "phone_number", value: "+30123456789")
+$params = VerificationCreateParams::with(
+  target: Target::with(type: "phone_number", value: "+30123456789")
 );
 $verification = $client
   ->verification

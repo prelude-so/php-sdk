@@ -34,7 +34,7 @@ final class Metadata implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(?string $correlationID = null): self
+    public static function with(?string $correlationID = null): self
     {
         $obj = new self;
 
@@ -46,10 +46,11 @@ final class Metadata implements BaseModel
     /**
      * A user-defined identifier to correlate this verification with. It is returned in the response and any webhook events that refer to this verification.
      */
-    public function setCorrelationID(string $correlationID): self
+    public function withCorrelationID(string $correlationID): self
     {
-        $this->correlationID = $correlationID;
+        $obj = clone $this;
+        $obj->correlationID = $correlationID;
 
-        return $this;
+        return $obj;
     }
 }

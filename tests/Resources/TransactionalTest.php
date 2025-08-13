@@ -34,7 +34,7 @@ final class TransactionalTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $params = TransactionalSendParams::from(
+        $params = TransactionalSendParams::with(
             templateID: 'template_01jd1xq0cffycayqtdkdbv4d61',
             to: '+30123456789'
         );
@@ -50,7 +50,7 @@ final class TransactionalTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $params = TransactionalSendParams::from(
+        $params = TransactionalSendParams::with(
             templateID: 'template_01jd1xq0cffycayqtdkdbv4d61',
             to: '+30123456789',
             callbackURL: 'callback_url',

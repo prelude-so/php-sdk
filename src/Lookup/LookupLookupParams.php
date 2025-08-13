@@ -43,7 +43,7 @@ final class LookupLookupParams implements BaseModel
      *
      * @param null|list<Type::*> $type
      */
-    public static function from(?array $type = null): self
+    public static function with(?array $type = null): self
     {
         $obj = new self;
 
@@ -58,10 +58,11 @@ final class LookupLookupParams implements BaseModel
      *
      * @param list<Type::*> $type
      */
-    public function setType(array $type): self
+    public function withType(array $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 }

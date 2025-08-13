@@ -48,6 +48,20 @@ final class WatchPredictParams implements BaseModel
     #[Api(optional: true)]
     public ?Signals $signals;
 
+    /**
+     * `new WatchPredictParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * WatchPredictParams::with(target: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new WatchPredictParams)->withTarget(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -59,7 +73,7 @@ final class WatchPredictParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         Target $target,
         ?string $dispatchID = null,
         ?Metadata $metadata = null,
@@ -79,40 +93,44 @@ final class WatchPredictParams implements BaseModel
     /**
      * The prediction target. Only supports phone numbers for now.
      */
-    public function setTarget(Target $target): self
+    public function withTarget(Target $target): self
     {
-        $this->target = $target;
+        $obj = clone $this;
+        $obj->target = $target;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The identifier of the dispatch that came from the front-end SDK.
      */
-    public function setDispatchID(string $dispatchID): self
+    public function withDispatchID(string $dispatchID): self
     {
-        $this->dispatchID = $dispatchID;
+        $obj = clone $this;
+        $obj->dispatchID = $dispatchID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The metadata for this prediction.
      */
-    public function setMetadata(Metadata $metadata): self
+    public function withMetadata(Metadata $metadata): self
     {
-        $this->metadata = $metadata;
+        $obj = clone $this;
+        $obj->metadata = $metadata;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      */
-    public function setSignals(Signals $signals): self
+    public function withSignals(Signals $signals): self
     {
-        $this->signals = $signals;
+        $obj = clone $this;
+        $obj->signals = $signals;
 
-        return $this;
+        return $obj;
     }
 }

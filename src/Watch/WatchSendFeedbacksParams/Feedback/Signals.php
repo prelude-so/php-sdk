@@ -90,7 +90,7 @@ final class Signals implements BaseModel
      *
      * @param null|DevicePlatform::* $devicePlatform
      */
-    public static function from(
+    public static function with(
         ?string $appVersion = null,
         ?string $deviceID = null,
         ?string $deviceModel = null,
@@ -117,31 +117,34 @@ final class Signals implements BaseModel
     /**
      * The version of your application.
      */
-    public function setAppVersion(string $appVersion): self
+    public function withAppVersion(string $appVersion): self
     {
-        $this->appVersion = $appVersion;
+        $obj = clone $this;
+        $obj->appVersion = $appVersion;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The unique identifier for the user's device. For Android, this corresponds to the `ANDROID_ID` and for iOS, this corresponds to the `identifierForVendor`.
      */
-    public function setDeviceID(string $deviceID): self
+    public function withDeviceID(string $deviceID): self
     {
-        $this->deviceID = $deviceID;
+        $obj = clone $this;
+        $obj->deviceID = $deviceID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The model of the user's device.
      */
-    public function setDeviceModel(string $deviceModel): self
+    public function withDeviceModel(string $deviceModel): self
     {
-        $this->deviceModel = $deviceModel;
+        $obj = clone $this;
+        $obj->deviceModel = $deviceModel;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -149,50 +152,55 @@ final class Signals implements BaseModel
      *
      * @param DevicePlatform::* $devicePlatform
      */
-    public function setDevicePlatform(string $devicePlatform): self
+    public function withDevicePlatform(string $devicePlatform): self
     {
-        $this->devicePlatform = $devicePlatform;
+        $obj = clone $this;
+        $obj->devicePlatform = $devicePlatform;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The IP address of the user's device.
      */
-    public function setIP(string $ip): self
+    public function withIP(string $ip): self
     {
-        $this->ip = $ip;
+        $obj = clone $this;
+        $obj->ip = $ip;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * This signal should provide a higher level of trust, indicating that the user is genuine. Contact us to discuss your use case. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      */
-    public function setIsTrustedUser(bool $isTrustedUser): self
+    public function withIsTrustedUser(bool $isTrustedUser): self
     {
-        $this->isTrustedUser = $isTrustedUser;
+        $obj = clone $this;
+        $obj->isTrustedUser = $isTrustedUser;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The version of the user's device operating system.
      */
-    public function setOsVersion(string $osVersion): self
+    public function withOsVersion(string $osVersion): self
     {
-        $this->osVersion = $osVersion;
+        $obj = clone $this;
+        $obj->osVersion = $osVersion;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The user agent of the user's device. If the individual fields (os_version, device_platform, device_model) are provided, we will prioritize those values instead of parsing them from the user agent string.
      */
-    public function setUserAgent(string $userAgent): self
+    public function withUserAgent(string $userAgent): self
     {
-        $this->userAgent = $userAgent;
+        $obj = clone $this;
+        $obj->userAgent = $userAgent;
 
-        return $this;
+        return $obj;
     }
 }

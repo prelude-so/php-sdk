@@ -109,7 +109,7 @@ final class LookupLookupResponse implements BaseModel
      * @param null|list<Flag::*> $flags
      * @param null|LineType::* $lineType
      */
-    public static function from(
+    public static function with(
         ?string $callerName = null,
         ?string $countryCode = null,
         ?array $flags = null,
@@ -134,21 +134,23 @@ final class LookupLookupResponse implements BaseModel
     /**
      * The CNAM (Caller ID Name) associated with the phone number. Contact us if you need to use this functionality. Once enabled, put `cnam` option to `type` query parameter.
      */
-    public function setCallerName(string $callerName): self
+    public function withCallerName(string $callerName): self
     {
-        $this->callerName = $callerName;
+        $obj = clone $this;
+        $obj->callerName = $callerName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The country code of the phone number.
      */
-    public function setCountryCode(string $countryCode): self
+    public function withCountryCode(string $countryCode): self
     {
-        $this->countryCode = $countryCode;
+        $obj = clone $this;
+        $obj->countryCode = $countryCode;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -158,11 +160,12 @@ final class LookupLookupResponse implements BaseModel
      *
      * @param list<Flag::*> $flags
      */
-    public function setFlags(array $flags): self
+    public function withFlags(array $flags): self
     {
-        $this->flags = $flags;
+        $obj = clone $this;
+        $obj->flags = $flags;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -189,41 +192,45 @@ final class LookupLookupResponse implements BaseModel
      *
      * @param LineType::* $lineType
      */
-    public function setLineType(string $lineType): self
+    public function withLineType(string $lineType): self
     {
-        $this->lineType = $lineType;
+        $obj = clone $this;
+        $obj->lineType = $lineType;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The current carrier information.
      */
-    public function setNetworkInfo(NetworkInfo $networkInfo): self
+    public function withNetworkInfo(NetworkInfo $networkInfo): self
     {
-        $this->networkInfo = $networkInfo;
+        $obj = clone $this;
+        $obj->networkInfo = $networkInfo;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The original carrier information.
      */
-    public function setOriginalNetworkInfo(
+    public function withOriginalNetworkInfo(
         OriginalNetworkInfo $originalNetworkInfo
     ): self {
-        $this->originalNetworkInfo = $originalNetworkInfo;
+        $obj = clone $this;
+        $obj->originalNetworkInfo = $originalNetworkInfo;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The phone number.
      */
-    public function setPhoneNumber(string $phoneNumber): self
+    public function withPhoneNumber(string $phoneNumber): self
     {
-        $this->phoneNumber = $phoneNumber;
+        $obj = clone $this;
+        $obj->phoneNumber = $phoneNumber;
 
-        return $this;
+        return $obj;
     }
 }

@@ -32,6 +32,20 @@ final class WatchSendFeedbacksResponse implements BaseModel
     #[Api(enum: Status::class)]
     public string $status;
 
+    /**
+     * `new WatchSendFeedbacksResponse()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * WatchSendFeedbacksResponse::with(requestID: ..., status: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new WatchSendFeedbacksResponse)->withRequestID(...)->withStatus(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -45,7 +59,7 @@ final class WatchSendFeedbacksResponse implements BaseModel
      *
      * @param Status::* $status
      */
-    public static function from(string $requestID, string $status): self
+    public static function with(string $requestID, string $status): self
     {
         $obj = new self;
 
@@ -58,11 +72,12 @@ final class WatchSendFeedbacksResponse implements BaseModel
     /**
      * A string that identifies this specific request. Report it back to us to help us diagnose your issues.
      */
-    public function setRequestID(string $requestID): self
+    public function withRequestID(string $requestID): self
     {
-        $this->requestID = $requestID;
+        $obj = clone $this;
+        $obj->requestID = $requestID;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -70,10 +85,11 @@ final class WatchSendFeedbacksResponse implements BaseModel
      *
      * @param Status::* $status
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 }

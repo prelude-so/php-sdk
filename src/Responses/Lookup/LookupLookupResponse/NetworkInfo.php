@@ -48,7 +48,7 @@ final class NetworkInfo implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $carrierName = null,
         ?string $mcc = null,
         ?string $mnc = null
@@ -65,30 +65,33 @@ final class NetworkInfo implements BaseModel
     /**
      * The name of the carrier.
      */
-    public function setCarrierName(string $carrierName): self
+    public function withCarrierName(string $carrierName): self
     {
-        $this->carrierName = $carrierName;
+        $obj = clone $this;
+        $obj->carrierName = $carrierName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Mobile Country Code.
      */
-    public function setMcc(string $mcc): self
+    public function withMcc(string $mcc): self
     {
-        $this->mcc = $mcc;
+        $obj = clone $this;
+        $obj->mcc = $mcc;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Mobile Network Code.
      */
-    public function setMnc(string $mnc): self
+    public function withMnc(string $mnc): self
     {
-        $this->mnc = $mnc;
+        $obj = clone $this;
+        $obj->mnc = $mnc;
 
-        return $this;
+        return $obj;
     }
 }

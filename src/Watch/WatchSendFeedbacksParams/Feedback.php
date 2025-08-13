@@ -57,6 +57,20 @@ final class Feedback implements BaseModel
     #[Api(optional: true)]
     public ?Signals $signals;
 
+    /**
+     * `new Feedback()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * Feedback::with(target: ..., type: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new Feedback)->withTarget(...)->withType(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -70,7 +84,7 @@ final class Feedback implements BaseModel
      *
      * @param Type::* $type
      */
-    public static function from(
+    public static function with(
         Target $target,
         string $type,
         ?string $dispatchID = null,
@@ -92,11 +106,12 @@ final class Feedback implements BaseModel
     /**
      * The feedback target. Only supports phone numbers for now.
      */
-    public function setTarget(Target $target): self
+    public function withTarget(Target $target): self
     {
-        $this->target = $target;
+        $obj = clone $this;
+        $obj->target = $target;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -104,40 +119,44 @@ final class Feedback implements BaseModel
      *
      * @param Type::* $type
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The identifier of the dispatch that came from the front-end SDK.
      */
-    public function setDispatchID(string $dispatchID): self
+    public function withDispatchID(string $dispatchID): self
     {
-        $this->dispatchID = $dispatchID;
+        $obj = clone $this;
+        $obj->dispatchID = $dispatchID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The metadata for this feedback.
      */
-    public function setMetadata(Metadata $metadata): self
+    public function withMetadata(Metadata $metadata): self
     {
-        $this->metadata = $metadata;
+        $obj = clone $this;
+        $obj->metadata = $metadata;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      */
-    public function setSignals(Signals $signals): self
+    public function withSignals(Signals $signals): self
     {
-        $this->signals = $signals;
+        $obj = clone $this;
+        $obj->signals = $signals;
 
-        return $this;
+        return $obj;
     }
 }

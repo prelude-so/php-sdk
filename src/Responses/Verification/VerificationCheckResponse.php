@@ -42,6 +42,20 @@ final class VerificationCheckResponse implements BaseModel
     #[Api('request_id', optional: true)]
     public ?string $requestID;
 
+    /**
+     * `new VerificationCheckResponse()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * VerificationCheckResponse::with(status: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new VerificationCheckResponse)->withStatus(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -55,7 +69,7 @@ final class VerificationCheckResponse implements BaseModel
      *
      * @param Status::* $status
      */
-    public static function from(
+    public static function with(
         string $status,
         ?string $id = null,
         ?Metadata $metadata = null,
@@ -77,37 +91,41 @@ final class VerificationCheckResponse implements BaseModel
      *
      * @param Status::* $status
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The verification identifier.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The metadata for this verification.
      */
-    public function setMetadata(Metadata $metadata): self
+    public function withMetadata(Metadata $metadata): self
     {
-        $this->metadata = $metadata;
+        $obj = clone $this;
+        $obj->metadata = $metadata;
 
-        return $this;
+        return $obj;
     }
 
-    public function setRequestID(string $requestID): self
+    public function withRequestID(string $requestID): self
     {
-        $this->requestID = $requestID;
+        $obj = clone $this;
+        $obj->requestID = $requestID;
 
-        return $this;
+        return $obj;
     }
 }
