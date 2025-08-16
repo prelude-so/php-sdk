@@ -7,12 +7,12 @@ namespace Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\Model;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type as Type1;
+use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type;
 
 /**
  * The feedback target. Only supports phone numbers for now.
  *
- * @phpstan-type target_alias = array{type: Type1::*, value: string}
+ * @phpstan-type target_alias = array{type: Type::*, value: string}
  */
 final class Target implements BaseModel
 {
@@ -21,9 +21,9 @@ final class Target implements BaseModel
     /**
      * The type of the target. Either "phone_number" or "email_address".
      *
-     * @var Type1::* $type
+     * @var Type::* $type
      */
-    #[Api(enum: Type1::class)]
+    #[Api(enum: Type::class)]
     public string $type;
 
     /**
@@ -57,7 +57,7 @@ final class Target implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type1::* $type
+     * @param Type::* $type
      */
     public static function with(string $type, string $value): self
     {
@@ -72,7 +72,7 @@ final class Target implements BaseModel
     /**
      * The type of the target. Either "phone_number" or "email_address".
      *
-     * @param Type1::* $type
+     * @param Type::* $type
      */
     public function withType(string $type): self
     {
