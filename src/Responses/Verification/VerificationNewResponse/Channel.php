@@ -14,19 +14,19 @@ final class Channel implements ConverterSource
 {
     use Enum;
 
-    public const SMS = 'sms';
-
     public const RCS = 'rcs';
-
-    public const WHATSAPP = 'whatsapp';
-
-    public const VIBER = 'viber';
-
-    public const ZALO = 'zalo';
-
-    public const TELEGRAM = 'telegram';
 
     public const SILENT = 'silent';
 
+    public const SMS = 'sms';
+
+    public const TELEGRAM = 'telegram';
+
+    public const VIBER = 'viber';
+
     public const VOICE = 'voice';
+
+    public const WHATSAPP = 'whatsapp';
+
+    public const ZALO = 'zalo';
 }
