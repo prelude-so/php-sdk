@@ -16,6 +16,8 @@ final class Method implements ConverterSource
 {
     use Enum;
 
+    public const EMAIL = 'email';
+
     public const MESSAGE = 'message';
 
     public const SILENT = 'silent';
