@@ -47,8 +47,8 @@ $client = new Client(apiToken: getenv("API_TOKEN") ?: "My API Token");
 $params = VerificationCreateParams::with(
   target: Target::with(type: "phone_number", value: "+30123456789")
 );
-$verification = $client->verification->create($params);
 
+$verification = $client->verification->create($params);
 var_dump($verification->id);
 ```
 
@@ -75,7 +75,7 @@ try {
     echo "A 429 status code was received; we should back off a bit.", PHP_EOL;
 } catch (APIStatusError $e) {
     echo "Another non-200-range status code was received", PHP_EOL;
-    var_dump($e->status);
+    echo $e->getMessage();
 }
 ```
 
