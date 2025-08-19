@@ -7,9 +7,7 @@ namespace Prelude\Contracts;
 use Prelude\RequestOptions;
 use Prelude\Responses\Verification\VerificationCheckResponse;
 use Prelude\Responses\Verification\VerificationNewResponse;
-use Prelude\Verification\VerificationCheckParams;
 use Prelude\Verification\VerificationCheckParams\Target as Target1;
-use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Metadata;
 use Prelude\Verification\VerificationCreateParams\Options;
 use Prelude\Verification\VerificationCreateParams\Signals;
@@ -18,24 +16,28 @@ use Prelude\Verification\VerificationCreateParams\Target;
 interface VerificationContract
 {
     /**
-     * @param array{
-     *   target: Target,
-     *   dispatchID?: string,
-     *   metadata?: Metadata,
-     *   options?: Options,
-     *   signals?: Signals,
-     * }|VerificationCreateParams $params
+     * @param Target $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     * @param string $dispatchID the identifier of the dispatch that came from the front-end SDK
+     * @param Metadata $metadata The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
+     * @param Options $options Verification options
+     * @param Signals $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      */
     public function create(
-        array|VerificationCreateParams $params,
+        $target,
+        $dispatchID = null,
+        $metadata = null,
+        $options = null,
+        $signals = null,
         ?RequestOptions $requestOptions = null,
     ): VerificationNewResponse;
 
     /**
-     * @param array{code: string, target: Target1}|VerificationCheckParams $params
+     * @param string $code the OTP code to validate
+     * @param Target1 $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      */
     public function check(
-        array|VerificationCheckParams $params,
-        ?RequestOptions $requestOptions = null,
+        $code,
+        $target,
+        ?RequestOptions $requestOptions = null
     ): VerificationCheckResponse;
 }

@@ -18,15 +18,16 @@ final class LookupService implements LookupContract
     /**
      * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
      *
-     * @param array{type?: list<Type::*>}|LookupLookupParams $params
+     * @param list<Type::*> $type Optional features. Possible values are:
+     *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
      */
     public function lookup(
         string $phoneNumber,
-        array|LookupLookupParams $params,
-        ?RequestOptions $requestOptions = null,
+        $type = null,
+        ?RequestOptions $requestOptions = null
     ): LookupLookupResponse {
         [$parsed, $options] = LookupLookupParams::parseRequest(
-            $params,
+            ['type' => $type],
             $requestOptions
         );
         $resp = $this->client->request(

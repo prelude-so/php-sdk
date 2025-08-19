@@ -6,9 +6,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Verification\VerificationCheckParams;
 use Prelude\Verification\VerificationCheckParams\Target as Target1;
-use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Metadata;
 use Prelude\Verification\VerificationCreateParams\Options;
 use Prelude\Verification\VerificationCreateParams\Options\AppRealm;
@@ -41,10 +39,9 @@ final class VerificationTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $params = VerificationCreateParams::with(
+        $result = $this->client->verification->create(
             target: Target::with(type: 'phone_number', value: '+30123456789')
         );
-        $result = $this->client->verification->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -56,7 +53,7 @@ final class VerificationTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $params = VerificationCreateParams::with(
+        $result = $this->client->verification->create(
             target: Target::with(type: 'phone_number', value: '+30123456789'),
             dispatchID: '123e4567-e89b-12d3-a456-426614174000',
             metadata: (new Metadata)->withCorrelationID('correlation_id'),
@@ -83,7 +80,6 @@ final class VerificationTest extends TestCase
                     'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
                 ),
         );
-        $result = $this->client->verification->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -91,11 +87,10 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCheck(): void
     {
-        $params = VerificationCheckParams::with(
+        $result = $this->client->verification->check(
             code: '12345',
             target: Target1::with(type: 'phone_number', value: '+30123456789'),
         );
-        $result = $this->client->verification->check($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -103,11 +98,10 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCheckWithOptionalParams(): void
     {
-        $params = VerificationCheckParams::with(
+        $result = $this->client->verification->check(
             code: '12345',
             target: Target1::with(type: 'phone_number', value: '+30123456789'),
         );
-        $result = $this->client->verification->check($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

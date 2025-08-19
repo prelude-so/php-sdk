@@ -17,24 +17,39 @@ final class TransactionalService implements TransactionalContract
     /**
      * Send a transactional message to your user.
      *
-     * @param array{
-     *   templateID: string,
-     *   to: string,
-     *   callbackURL?: string,
-     *   correlationID?: string,
-     *   expiresAt?: string,
-     *   from?: string,
-     *   locale?: string,
-     *   variables?: array<string, string>,
-     * }|TransactionalSendParams $params
+     * @param string $templateID the template identifier
+     * @param string $to the recipient's phone number
+     * @param string $callbackURL the callback URL
+     * @param string $correlationID A user-defined identifier to correlate this transactional message with. It is returned in the response and any webhook events that refer to this transactionalmessage.
+     * @param string $expiresAt the message expiration date
+     * @param string $from the Sender ID
+     * @param string $locale A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, the default set on the template will be used.
+     * @param array<string,
+     * string,> $variables The variables to be replaced in the template
      */
     public function send(
-        array|TransactionalSendParams $params,
+        $templateID,
+        $to,
+        $callbackURL = null,
+        $correlationID = null,
+        $expiresAt = null,
+        $from = null,
+        $locale = null,
+        $variables = null,
         ?RequestOptions $requestOptions = null,
     ): TransactionalSendResponse {
         [$parsed, $options] = TransactionalSendParams::parseRequest(
-            $params,
-            $requestOptions
+            [
+                'templateID' => $templateID,
+                'to' => $to,
+                'callbackURL' => $callbackURL,
+                'correlationID' => $correlationID,
+                'expiresAt' => $expiresAt,
+                'from' => $from,
+                'locale' => $locale,
+                'variables' => $variables,
+            ],
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
