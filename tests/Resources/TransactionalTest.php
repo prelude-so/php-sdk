@@ -6,7 +6,6 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Transactional\TransactionalSendParams;
 use Tests\UnsupportedMockTests;
 
 /**
@@ -34,11 +33,10 @@ final class TransactionalTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $params = TransactionalSendParams::with(
+        $result = $this->client->transactional->send(
             templateID: 'template_01jd1xq0cffycayqtdkdbv4d61',
             to: '+30123456789'
         );
-        $result = $this->client->transactional->send($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -50,7 +48,7 @@ final class TransactionalTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $params = TransactionalSendParams::with(
+        $result = $this->client->transactional->send(
             templateID: 'template_01jd1xq0cffycayqtdkdbv4d61',
             to: '+30123456789',
             callbackURL: 'callback_url',
@@ -60,7 +58,6 @@ final class TransactionalTest extends TestCase
             locale: 'el-GR',
             variables: ['foo' => 'bar'],
         );
-        $result = $this->client->transactional->send($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

@@ -8,40 +8,41 @@ use Prelude\RequestOptions;
 use Prelude\Responses\Watch\WatchPredictResponse;
 use Prelude\Responses\Watch\WatchSendEventsResponse;
 use Prelude\Responses\Watch\WatchSendFeedbacksResponse;
-use Prelude\Watch\WatchPredictParams;
 use Prelude\Watch\WatchPredictParams\Metadata;
 use Prelude\Watch\WatchPredictParams\Signals;
 use Prelude\Watch\WatchPredictParams\Target;
-use Prelude\Watch\WatchSendEventsParams;
 use Prelude\Watch\WatchSendEventsParams\Event;
-use Prelude\Watch\WatchSendFeedbacksParams;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 
 interface WatchContract
 {
     /**
-     * @param array{
-     *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
-     * }|WatchPredictParams $params
+     * @param Target $target The prediction target. Only supports phone numbers for now.
+     * @param string $dispatchID the identifier of the dispatch that came from the front-end SDK
+     * @param Metadata $metadata the metadata for this prediction
+     * @param Signals $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      */
     public function predict(
-        array|WatchPredictParams $params,
-        ?RequestOptions $requestOptions = null
+        $target,
+        $dispatchID = null,
+        $metadata = null,
+        $signals = null,
+        ?RequestOptions $requestOptions = null,
     ): WatchPredictResponse;
 
     /**
-     * @param array{events: list<Event>}|WatchSendEventsParams $params
+     * @param list<Event> $events a list of events to dispatch
      */
     public function sendEvents(
-        array|WatchSendEventsParams $params,
-        ?RequestOptions $requestOptions = null,
+        $events,
+        ?RequestOptions $requestOptions = null
     ): WatchSendEventsResponse;
 
     /**
-     * @param array{feedbacks: list<Feedback>}|WatchSendFeedbacksParams $params
+     * @param list<Feedback> $feedbacks a list of feedbacks to send
      */
     public function sendFeedbacks(
-        array|WatchSendFeedbacksParams $params,
-        ?RequestOptions $requestOptions = null,
+        $feedbacks,
+        ?RequestOptions $requestOptions = null
     ): WatchSendFeedbacksResponse;
 }

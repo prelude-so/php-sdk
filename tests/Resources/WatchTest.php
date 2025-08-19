@@ -6,14 +6,11 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Watch\WatchPredictParams;
 use Prelude\Watch\WatchPredictParams\Metadata;
 use Prelude\Watch\WatchPredictParams\Signals;
 use Prelude\Watch\WatchPredictParams\Target;
-use Prelude\Watch\WatchSendEventsParams;
 use Prelude\Watch\WatchSendEventsParams\Event;
 use Prelude\Watch\WatchSendEventsParams\Event\Target as Target1;
-use Prelude\Watch\WatchSendFeedbacksParams;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata as Metadata1;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals as Signals1;
@@ -40,10 +37,9 @@ final class WatchTest extends TestCase
     #[Test]
     public function testPredict(): void
     {
-        $params = WatchPredictParams::with(
+        $result = $this->client->watch->predict(
             target: Target::with(type: 'phone_number', value: '+30123456789')
         );
-        $result = $this->client->watch->predict($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -51,7 +47,7 @@ final class WatchTest extends TestCase
     #[Test]
     public function testPredictWithOptionalParams(): void
     {
-        $params = WatchPredictParams::with(
+        $result = $this->client->watch->predict(
             target: Target::with(type: 'phone_number', value: '+30123456789'),
             dispatchID: '123e4567-e89b-12d3-a456-426614174000',
             metadata: (new Metadata)->withCorrelationID('correlation_id'),
@@ -67,7 +63,6 @@ final class WatchTest extends TestCase
                     'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
                 ),
         );
-        $result = $this->client->watch->predict($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -75,8 +70,8 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendEvents(): void
     {
-        $params = WatchSendEventsParams::with(
-            events: [
+        $result = $this->client->watch->sendEvents(
+            [
                 Event::with(
                     confidence: 'maximum',
                     label: 'onboarding.start',
@@ -84,7 +79,6 @@ final class WatchTest extends TestCase
                 ),
             ],
         );
-        $result = $this->client->watch->sendEvents($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -92,8 +86,8 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendEventsWithOptionalParams(): void
     {
-        $params = WatchSendEventsParams::with(
-            events: [
+        $result = $this->client->watch->sendEvents(
+            [
                 Event::with(
                     confidence: 'maximum',
                     label: 'onboarding.start',
@@ -101,7 +95,6 @@ final class WatchTest extends TestCase
                 ),
             ],
         );
-        $result = $this->client->watch->sendEvents($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -109,15 +102,14 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendFeedbacks(): void
     {
-        $params = WatchSendFeedbacksParams::with(
-            feedbacks: [
+        $result = $this->client->watch->sendFeedbacks(
+            [
                 Feedback::with(
                     target: Target2::with(type: 'phone_number', value: '+30123456789'),
                     type: 'verification.started',
                 ),
             ],
         );
-        $result = $this->client->watch->sendFeedbacks($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -125,8 +117,8 @@ final class WatchTest extends TestCase
     #[Test]
     public function testSendFeedbacksWithOptionalParams(): void
     {
-        $params = WatchSendFeedbacksParams::with(
-            feedbacks: [
+        $result = $this->client->watch->sendFeedbacks(
+            [
                 Feedback::with(
                     target: Target2::with(type: 'phone_number', value: '+30123456789'),
                     type: 'verification.started',
@@ -148,7 +140,6 @@ final class WatchTest extends TestCase
                     ),
             ],
         );
-        $result = $this->client->watch->sendFeedbacks($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
