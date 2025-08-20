@@ -6,14 +6,12 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Watch\WatchPredictParams\Metadata;
-use Prelude\Watch\WatchPredictParams\Signals;
 use Prelude\Watch\WatchPredictParams\Target;
 use Prelude\Watch\WatchSendEventsParams\Event;
 use Prelude\Watch\WatchSendEventsParams\Event\Target as Target1;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata as Metadata1;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals as Signals1;
+use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata;
+use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target as Target2;
 
 /**
@@ -48,20 +46,7 @@ final class WatchTest extends TestCase
     public function testPredictWithOptionalParams(): void
     {
         $result = $this->client->watch->predict(
-            target: Target::with(type: 'phone_number', value: '+30123456789'),
-            dispatchID: '123e4567-e89b-12d3-a456-426614174000',
-            metadata: (new Metadata)->withCorrelationID('correlation_id'),
-            signals: (new Signals)
-                ->withAppVersion('1.2.34')
-                ->withDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
-                ->withDeviceModel('iPhone17,2')
-                ->withDevicePlatform('ios')
-                ->withIP('192.0.2.1')
-                ->withIsTrustedUser(false)
-                ->withOsVersion('18.0.1')
-                ->withUserAgent(
-                    'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
-                ),
+            target: Target::with(type: 'phone_number', value: '+30123456789')
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -124,9 +109,9 @@ final class WatchTest extends TestCase
                     type: 'verification.started',
                 )
                     ->withDispatchID('123e4567-e89b-12d3-a456-426614174000')
-                    ->withMetadata((new Metadata1)->withCorrelationID('correlation_id'))
+                    ->withMetadata((new Metadata)->withCorrelationID('correlation_id'))
                     ->withSignals(
-                        (new Signals1)
+                        (new Signals)
                             ->withAppVersion('1.2.34')
                             ->withDeviceID('8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2')
                             ->withDeviceModel('iPhone17,2')

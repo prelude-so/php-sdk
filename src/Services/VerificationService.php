@@ -2,15 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Verification;
+namespace Prelude\Services;
 
 use Prelude\Client;
 use Prelude\Contracts\VerificationContract;
 use Prelude\Core\Conversion;
+use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\Responses\Verification\VerificationCheckResponse;
 use Prelude\Responses\Verification\VerificationNewResponse;
+use Prelude\Verification\VerificationCheckParams;
 use Prelude\Verification\VerificationCheckParams\Target as Target1;
+use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Metadata;
 use Prelude\Verification\VerificationCreateParams\Options;
 use Prelude\Verification\VerificationCreateParams\Signals;
@@ -37,15 +40,20 @@ final class VerificationService implements VerificationContract
         $signals = null,
         ?RequestOptions $requestOptions = null,
     ): VerificationNewResponse {
+        $args = [
+            'target' => $target,
+            'dispatchID' => $dispatchID,
+            'metadata' => $metadata,
+            'options' => $options,
+            'signals' => $signals,
+        ];
+        $args = Util::array_filter_null(
+            $args,
+            ['dispatchID', 'metadata', 'options', 'signals']
+        );
         [$parsed, $options1] = VerificationCreateParams::parseRequest(
-            [
-                'target' => $target,
-                'dispatchID' => $dispatchID,
-                'metadata' => $metadata,
-                'options' => $options,
-                'signals' => $signals,
-            ],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'post',
@@ -69,8 +77,9 @@ final class VerificationService implements VerificationContract
         $target,
         ?RequestOptions $requestOptions = null
     ): VerificationCheckResponse {
+        $args = ['code' => $code, 'target' => $target];
         [$parsed, $options] = VerificationCheckParams::parseRequest(
-            ['code' => $code, 'target' => $target],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(

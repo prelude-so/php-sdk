@@ -49,7 +49,6 @@ $client = new Client(apiToken: getenv("API_TOKEN") ?: "My API Token");
 $verification = $client->verification->create(
   target: Target::with(type: "phone_number", value: "+30123456789")
 );
-
 var_dump($verification->id);
 ```
 
