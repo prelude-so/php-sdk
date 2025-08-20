@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Verification\VerificationCreateParams\Target;
 
-use Prelude\Core\Concerns\Enum;
+use Prelude\Core\Concerns\SdkEnum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
 /**
@@ -14,7 +14,7 @@ use Prelude\Core\Conversion\Contracts\ConverterSource;
  */
 final class Type implements ConverterSource
 {
-    use Enum;
+    use SdkEnum;
 
     public const PHONE_NUMBER = 'phone_number';
 

@@ -7,7 +7,10 @@ namespace Prelude\Core\Concerns;
 use Prelude\Core\Conversion\Contracts\Converter;
 use Prelude\Core\Conversion\EnumOf;
 
-trait Enum
+/**
+ * @internal
+ */
+trait SdkEnum
 {
     private static Converter $converter;
 

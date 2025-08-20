@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
+use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
 /**
@@ -15,7 +15,7 @@ use Prelude\Core\Contracts\BaseModel;
  */
 final class Metadata implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * A user-defined identifier to correlate this feedback with. It is returned in the response and any webhook events that refer to this feedback.

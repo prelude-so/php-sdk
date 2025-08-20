@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Prelude\Watch;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
-use Prelude\Core\Concerns\Params;
+use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\ListOf;
 use Prelude\Watch\WatchSendEventsParams\Event;
@@ -18,8 +18,8 @@ use Prelude\Watch\WatchSendEventsParams\Event;
  */
 final class WatchSendEventsParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * A list of events to dispatch.

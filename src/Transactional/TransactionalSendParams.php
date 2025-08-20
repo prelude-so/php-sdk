@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Prelude\Transactional;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
-use Prelude\Core\Concerns\Params;
+use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\MapOf;
 
@@ -26,8 +26,8 @@ use Prelude\Core\Conversion\MapOf;
  */
 final class TransactionalSendParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * The template identifier.

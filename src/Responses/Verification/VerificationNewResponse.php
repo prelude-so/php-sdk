@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Responses\Verification;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
+use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\ListOf;
 use Prelude\Responses\Verification\VerificationNewResponse\Channel;
@@ -29,7 +29,7 @@ use Prelude\Responses\Verification\VerificationNewResponse\Status;
  */
 final class VerificationNewResponse implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * The verification identifier.

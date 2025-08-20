@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Verification\VerificationCheckParams;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
+use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCheckParams\Target\Type;
 
@@ -16,7 +16,7 @@ use Prelude\Verification\VerificationCheckParams\Target\Type;
  */
 final class Target implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * The type of the target. Either "phone_number" or "email_address".

@@ -14,7 +14,7 @@ use Prelude\Core\Util;
 /**
  * @internal
  */
-trait Model
+trait SdkModel
 {
     private static ModelOf $converter;
 

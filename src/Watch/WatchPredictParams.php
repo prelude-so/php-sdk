@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Prelude\Watch;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
-use Prelude\Core\Concerns\Params;
+use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchPredictParams\Metadata;
 use Prelude\Watch\WatchPredictParams\Signals;
@@ -21,8 +21,8 @@ use Prelude\Watch\WatchPredictParams\Target;
  */
 final class WatchPredictParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * The prediction target. Only supports phone numbers for now.

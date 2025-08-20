@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Prelude\Verification;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
-use Prelude\Core\Concerns\Params;
+use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCreateParams\Metadata;
 use Prelude\Verification\VerificationCreateParams\Options;
@@ -26,8 +26,8 @@ use Prelude\Verification\VerificationCreateParams\Target;
  */
 final class VerificationCreateParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.

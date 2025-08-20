@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Verification\VerificationCreateParams;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
+use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\MapOf;
 use Prelude\Verification\VerificationCreateParams\Options\AppRealm;
@@ -30,7 +30,7 @@ use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
  */
 final class Options implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.

@@ -53,7 +53,7 @@ $verification = $client->verification->create(
 var_dump($verification->id);
 ```
 
-## Value Objects
+### Value Objects
 
 It is recommended to use the static `with` constructor `Dog::with(name: "Joey")`
 and named parameters to initialize value objects.
