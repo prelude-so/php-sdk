@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Responses\Verification;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
+use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Responses\Verification\VerificationCheckResponse\Metadata;
 use Prelude\Responses\Verification\VerificationCheckResponse\Status;
@@ -17,7 +17,7 @@ use Prelude\Responses\Verification\VerificationCheckResponse\Status;
  */
 final class VerificationCheckResponse implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * The status of the check.

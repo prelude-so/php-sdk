@@ -6,12 +6,12 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
+use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
 class TestModel implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     #[Api]
     public string $name;

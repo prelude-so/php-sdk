@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Prelude\Lookup;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
-use Prelude\Core\Concerns\Params;
+use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\ListOf;
 use Prelude\Lookup\LookupLookupParams\Type;
@@ -18,8 +18,8 @@ use Prelude\Lookup\LookupLookupParams\Type;
  */
 final class LookupLookupParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * Optional features. Possible values are:

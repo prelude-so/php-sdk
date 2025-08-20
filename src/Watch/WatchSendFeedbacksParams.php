@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Prelude\Watch;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
-use Prelude\Core\Concerns\Params;
+use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\ListOf;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
@@ -18,8 +18,8 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
  */
 final class WatchSendFeedbacksParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * A list of feedbacks to send.

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Verification\VerificationCreateParams\Options;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
+use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCreateParams\Options\AppRealm\Platform;
 
@@ -16,7 +16,7 @@ use Prelude\Verification\VerificationCreateParams\Options\AppRealm\Platform;
  */
 final class AppRealm implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * The platform the SMS will be sent to. We are currently only supporting "android".

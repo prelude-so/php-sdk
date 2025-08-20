@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Responses\Verification\VerificationNewResponse;
 
-use Prelude\Core\Concerns\Enum;
+use Prelude\Core\Concerns\SdkEnum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
 /**
@@ -12,7 +12,7 @@ use Prelude\Core\Conversion\Contracts\ConverterSource;
  */
 final class Channel implements ConverterSource
 {
-    use Enum;
+    use SdkEnum;
 
     public const RCS = 'rcs';
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Watch\WatchSendEventsParams;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
+use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendEventsParams\Event\Confidence;
 use Prelude\Watch\WatchSendEventsParams\Event\Target;
@@ -17,7 +17,7 @@ use Prelude\Watch\WatchSendEventsParams\Event\Target;
  */
 final class Event implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * A confidence level you want to assign to the event.

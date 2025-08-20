@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Responses\Watch;
 
 use Prelude\Core\Attributes\Api;
-use Prelude\Core\Concerns\Model;
+use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Responses\Watch\WatchPredictResponse\Prediction;
 
@@ -16,7 +16,7 @@ use Prelude\Responses\Watch\WatchPredictResponse\Prediction;
  */
 final class WatchPredictResponse implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * The prediction identifier.
