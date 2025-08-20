@@ -25,7 +25,7 @@ final class LookupLookupParams implements BaseModel
      * Optional features. Possible values are:
      *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
      *
-     * @var null|list<Type::*> $type
+     * @var list<Type::*>|null $type
      */
     #[Api(type: new ListOf(enum: Type::class), optional: true)]
     public ?array $type;
@@ -41,7 +41,7 @@ final class LookupLookupParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<Type::*> $type
+     * @param list<Type::*>|null $type
      */
     public static function with(?array $type = null): self
     {

@@ -48,7 +48,7 @@ final class Signals implements BaseModel
     /**
      * The type of the user's device.
      *
-     * @var null|DevicePlatform::* $devicePlatform
+     * @var DevicePlatform::*|null $devicePlatform
      */
     #[Api('device_platform', enum: DevicePlatform::class, optional: true)]
     public ?string $devicePlatform;
@@ -88,7 +88,7 @@ final class Signals implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|DevicePlatform::* $devicePlatform
+     * @param DevicePlatform::*|null $devicePlatform
      */
     public static function with(
         ?string $appVersion = null,

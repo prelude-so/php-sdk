@@ -74,7 +74,7 @@ final class TransactionalSendParams implements BaseModel
     /**
      * The variables to be replaced in the template.
      *
-     * @var null|array<string, string> $variables
+     * @var array<string, string>|null $variables
      */
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $variables;
@@ -104,7 +104,7 @@ final class TransactionalSendParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|array<string, string> $variables
+     * @param array<string, string>|null $variables
      */
     public static function with(
         string $templateID,

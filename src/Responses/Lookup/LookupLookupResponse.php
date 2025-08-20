@@ -45,7 +45,7 @@ final class LookupLookupResponse implements BaseModel
      *   * `ported` - Indicates the phone number has been transferred from one carrier to another.
      *   * `temporary` - Indicates the phone number is likely a temporary or virtual number, often used for verification services or burner phones.
      *
-     * @var null|list<Flag::*> $flags
+     * @var list<Flag::*>|null $flags
      */
     #[Api(type: new ListOf(enum: Flag::class), optional: true)]
     public ?array $flags;
@@ -72,7 +72,7 @@ final class LookupLookupResponse implements BaseModel
      *   * `voice_mail` - A specific category of Interactive Voice Response (IVR) services.
      *   * `voip` - Specific ranges for providers of VoIP services to allow incoming calls from the regular telephony network.
      *
-     * @var null|LineType::* $lineType
+     * @var LineType::*|null $lineType
      */
     #[Api('line_type', enum: LineType::class, optional: true)]
     public ?string $lineType;
@@ -106,8 +106,8 @@ final class LookupLookupResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<Flag::*> $flags
-     * @param null|LineType::* $lineType
+     * @param list<Flag::*>|null $flags
+     * @param LineType::*|null $lineType
      */
     public static function with(
         ?string $callerName = null,

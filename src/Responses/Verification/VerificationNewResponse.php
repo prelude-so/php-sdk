@@ -56,7 +56,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The ordered sequence of channels to be used for verification.
      *
-     * @var null|list<Channel::*> $channels
+     * @var list<Channel::*>|null $channels
      */
     #[Api(type: new ListOf(enum: Channel::class), optional: true)]
     public ?array $channels;
@@ -70,7 +70,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The reason why the verification was blocked. Only present when status is "blocked".
      *
-     * @var null|Reason::* $reason
+     * @var Reason::*|null $reason
      */
     #[Api(enum: Reason::class, optional: true)]
     public ?string $reason;
@@ -111,8 +111,8 @@ final class VerificationNewResponse implements BaseModel
      *
      * @param Method::* $method
      * @param Status::* $status
-     * @param null|list<Channel::*> $channels
-     * @param null|Reason::* $reason
+     * @param list<Channel::*>|null $channels
+     * @param Reason::*|null $reason
      */
     public static function with(
         string $id,
