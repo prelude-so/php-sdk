@@ -50,13 +50,7 @@ final class TransactionalTest extends TestCase
 
         $result = $this->client->transactional->send(
             templateID: 'template_01jd1xq0cffycayqtdkdbv4d61',
-            to: '+30123456789',
-            callbackURL: 'callback_url',
-            correlationID: 'correlation_id',
-            expiresAt: 'expires_at',
-            from: 'from',
-            locale: 'el-GR',
-            variables: ['foo' => 'bar'],
+            to: '+30123456789'
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line

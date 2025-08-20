@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Prelude;
 
 use Prelude\Core\BaseClient;
-use Prelude\Lookup\LookupService;
-use Prelude\Transactional\TransactionalService;
-use Prelude\Verification\VerificationService;
-use Prelude\Watch\WatchService;
+use Prelude\Services\LookupService;
+use Prelude\Services\TransactionalService;
+use Prelude\Services\VerificationService;
+use Prelude\Services\WatchService;
 
 class Client extends BaseClient
 {

@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Transactional;
+namespace Prelude\Services;
 
 use Prelude\Client;
 use Prelude\Contracts\TransactionalContract;
 use Prelude\Core\Conversion;
+use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\Responses\Transactional\TransactionalSendResponse;
+use Prelude\Transactional\TransactionalSendParams;
 
 final class TransactionalService implements TransactionalContract
 {
@@ -38,18 +40,30 @@ final class TransactionalService implements TransactionalContract
         $variables = null,
         ?RequestOptions $requestOptions = null,
     ): TransactionalSendResponse {
-        [$parsed, $options] = TransactionalSendParams::parseRequest(
+        $args = [
+            'templateID' => $templateID,
+            'to' => $to,
+            'callbackURL' => $callbackURL,
+            'correlationID' => $correlationID,
+            'expiresAt' => $expiresAt,
+            'from' => $from,
+            'locale' => $locale,
+            'variables' => $variables,
+        ];
+        $args = Util::array_filter_null(
+            $args,
             [
-                'templateID' => $templateID,
-                'to' => $to,
-                'callbackURL' => $callbackURL,
-                'correlationID' => $correlationID,
-                'expiresAt' => $expiresAt,
-                'from' => $from,
-                'locale' => $locale,
-                'variables' => $variables,
+                'callbackURL',
+                'correlationID',
+                'expiresAt',
+                'from',
+                'locale',
+                'variables',
             ],
-            $requestOptions,
+        );
+        [$parsed, $options] = TransactionalSendParams::parseRequest(
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'post',

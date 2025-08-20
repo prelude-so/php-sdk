@@ -2,19 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Watch;
+namespace Prelude\Services;
 
 use Prelude\Client;
 use Prelude\Contracts\WatchContract;
 use Prelude\Core\Conversion;
+use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\Responses\Watch\WatchPredictResponse;
 use Prelude\Responses\Watch\WatchSendEventsResponse;
 use Prelude\Responses\Watch\WatchSendFeedbacksResponse;
+use Prelude\Watch\WatchPredictParams;
 use Prelude\Watch\WatchPredictParams\Metadata;
 use Prelude\Watch\WatchPredictParams\Signals;
 use Prelude\Watch\WatchPredictParams\Target;
+use Prelude\Watch\WatchSendEventsParams;
 use Prelude\Watch\WatchSendEventsParams\Event;
+use Prelude\Watch\WatchSendFeedbacksParams;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 
 final class WatchService implements WatchContract
@@ -36,14 +40,19 @@ final class WatchService implements WatchContract
         $signals = null,
         ?RequestOptions $requestOptions = null,
     ): WatchPredictResponse {
+        $args = [
+            'target' => $target,
+            'dispatchID' => $dispatchID,
+            'metadata' => $metadata,
+            'signals' => $signals,
+        ];
+        $args = Util::array_filter_null(
+            $args,
+            ['dispatchID', 'metadata', 'signals']
+        );
         [$parsed, $options] = WatchPredictParams::parseRequest(
-            [
-                'target' => $target,
-                'dispatchID' => $dispatchID,
-                'metadata' => $metadata,
-                'signals' => $signals,
-            ],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'post',
@@ -65,8 +74,9 @@ final class WatchService implements WatchContract
         $events,
         ?RequestOptions $requestOptions = null
     ): WatchSendEventsResponse {
+        $args = ['events' => $events];
         [$parsed, $options] = WatchSendEventsParams::parseRequest(
-            ['events' => $events],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(
@@ -89,8 +99,9 @@ final class WatchService implements WatchContract
         $feedbacks,
         ?RequestOptions $requestOptions = null
     ): WatchSendFeedbacksResponse {
+        $args = ['feedbacks' => $feedbacks];
         [$parsed, $options] = WatchSendFeedbacksParams::parseRequest(
-            ['feedbacks' => $feedbacks],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(
