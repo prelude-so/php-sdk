@@ -65,7 +65,7 @@ final class Options implements BaseModel
     /**
      * The method used for verifying this phone number. The 'voice' option provides an accessible alternative for visually impaired users by delivering the verification code through a phone call rather than a text message. It also allows verification of landline numbers that cannot receive SMS messages.
      *
-     * @var null|Method::* $method
+     * @var Method::*|null $method
      */
     #[Api(enum: Method::class, optional: true)]
     public ?string $method;
@@ -73,7 +73,7 @@ final class Options implements BaseModel
     /**
      * The preferred channel to be used in priority for verification.
      *
-     * @var null|PreferredChannel::* $preferredChannel
+     * @var PreferredChannel::*|null $preferredChannel
      */
     #[Api('preferred_channel', enum: PreferredChannel::class, optional: true)]
     public ?string $preferredChannel;
@@ -93,7 +93,7 @@ final class Options implements BaseModel
     /**
      * The variables to be replaced in the template.
      *
-     * @var null|array<string, string> $variables
+     * @var array<string, string>|null $variables
      */
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $variables;
@@ -109,9 +109,9 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|Method::* $method
-     * @param null|PreferredChannel::* $preferredChannel
-     * @param null|array<string, string> $variables
+     * @param Method::*|null $method
+     * @param PreferredChannel::*|null $preferredChannel
+     * @param array<string, string>|null $variables
      */
     public static function with(
         ?AppRealm $appRealm = null,
