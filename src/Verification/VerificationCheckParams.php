@@ -12,8 +12,6 @@ use Prelude\Verification\VerificationCheckParams\Target;
 
 /**
  * Check the validity of a verification code.
- *
- * @phpstan-type check_params = array{code: string, target: Target}
  */
 final class VerificationCheckParams implements BaseModel
 {

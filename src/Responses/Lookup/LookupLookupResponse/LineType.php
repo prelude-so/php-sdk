@@ -28,8 +28,6 @@ use Prelude\Core\Conversion\Contracts\ConverterSource;
  *   * `vpn` - Numbers are used exclusively within a private telecommunications network, connecting the operator's terminals internally and not accessible via the public telephone network.
  *   * `voice_mail` - A specific category of Interactive Voice Response (IVR) services.
  *   * `voip` - Specific ranges for providers of VoIP services to allow incoming calls from the regular telephony network.
- *
- * @phpstan-type line_type_alias = LineType::*
  */
 final class LineType implements ConverterSource
 {

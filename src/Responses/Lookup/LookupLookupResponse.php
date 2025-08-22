@@ -13,17 +13,6 @@ use Prelude\Responses\Lookup\LookupLookupResponse\LineType;
 use Prelude\Responses\Lookup\LookupLookupResponse\NetworkInfo;
 use Prelude\Responses\Lookup\LookupLookupResponse\OriginalNetworkInfo;
 
-/**
- * @phpstan-type lookup_lookup_response_alias = array{
- *   callerName?: string,
- *   countryCode?: string,
- *   flags?: list<Flag::*>,
- *   lineType?: LineType::*,
- *   networkInfo?: NetworkInfo,
- *   originalNetworkInfo?: OriginalNetworkInfo,
- *   phoneNumber?: string,
- * }
- */
 final class LookupLookupResponse implements BaseModel
 {
     use SdkModel;

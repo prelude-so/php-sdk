@@ -9,8 +9,6 @@ use Prelude\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * The type of the user's device.
- *
- * @phpstan-type device_platform_alias = DevicePlatform::*
  */
 final class DevicePlatform implements ConverterSource
 {

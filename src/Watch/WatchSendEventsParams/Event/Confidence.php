@@ -9,8 +9,6 @@ use Prelude\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * A confidence level you want to assign to the event.
- *
- * @phpstan-type confidence_alias = Confidence::*
  */
 final class Confidence implements ConverterSource
 {
