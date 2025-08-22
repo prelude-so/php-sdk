@@ -11,8 +11,6 @@ use Prelude\Verification\VerificationCreateParams\Options\AppRealm\Platform;
 
 /**
  * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
- *
- * @phpstan-type app_realm_alias = array{platform: Platform::*, value: string}
  */
 final class AppRealm implements BaseModel
 {

@@ -10,11 +10,6 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendEventsParams\Event\Confidence;
 use Prelude\Watch\WatchSendEventsParams\Event\Target;
 
-/**
- * @phpstan-type event_alias = array{
- *   confidence: Confidence::*, label: string, target: Target
- * }
- */
 final class Event implements BaseModel
 {
     use SdkModel;

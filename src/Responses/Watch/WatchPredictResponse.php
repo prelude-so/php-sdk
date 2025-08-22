@@ -9,11 +9,6 @@ use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Responses\Watch\WatchPredictResponse\Prediction;
 
-/**
- * @phpstan-type watch_predict_response_alias = array{
- *   id: string, prediction: Prediction::*, requestID: string
- * }
- */
 final class WatchPredictResponse implements BaseModel
 {
     use SdkModel;

@@ -12,17 +12,6 @@ use Prelude\Core\Conversion\MapOf;
 
 /**
  * Send a transactional message to your user.
- *
- * @phpstan-type send_params = array{
- *   templateID: string,
- *   to: string,
- *   callbackURL?: string,
- *   correlationID?: string,
- *   expiresAt?: string,
- *   from?: string,
- *   locale?: string,
- *   variables?: array<string, string>,
- * }
  */
 final class TransactionalSendParams implements BaseModel
 {

@@ -13,8 +13,6 @@ use Prelude\Lookup\LookupLookupParams\Type;
 
 /**
  * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
- *
- * @phpstan-type lookup_params = array{type?: list<Type::*>}
  */
 final class LookupLookupParams implements BaseModel
 {

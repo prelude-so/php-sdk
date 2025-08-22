@@ -9,11 +9,6 @@ use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Responses\Watch\WatchSendEventsResponse\Status;
 
-/**
- * @phpstan-type watch_send_events_response_alias = array{
- *   requestID: string, status: Status::*
- * }
- */
 final class WatchSendEventsResponse implements BaseModel
 {
     use SdkModel;

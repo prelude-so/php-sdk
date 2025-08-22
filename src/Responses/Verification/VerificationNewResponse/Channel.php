@@ -7,9 +7,6 @@ namespace Prelude\Responses\Verification\VerificationNewResponse;
 use Prelude\Core\Concerns\SdkEnum;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type channel_alias = Channel::*
- */
 final class Channel implements ConverterSource
 {
     use SdkEnum;

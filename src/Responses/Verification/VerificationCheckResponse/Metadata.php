@@ -10,8 +10,6 @@ use Prelude\Core\Contracts\BaseModel;
 
 /**
  * The metadata for this verification.
- *
- * @phpstan-type metadata_alias = array{correlationID?: string}
  */
 final class Metadata implements BaseModel
 {

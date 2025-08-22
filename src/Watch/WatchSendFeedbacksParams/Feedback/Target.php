@@ -11,8 +11,6 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type;
 
 /**
  * The feedback target. Only supports phone numbers for now.
- *
- * @phpstan-type target_alias = array{type: Type::*, value: string}
  */
 final class Target implements BaseModel
 {

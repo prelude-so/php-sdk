@@ -9,8 +9,6 @@ use Prelude\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * The type of the target. Either "phone_number" or "email_address".
- *
- * @phpstan-type type_alias = Type::*
  */
 final class Type implements ConverterSource
 {
