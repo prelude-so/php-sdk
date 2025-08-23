@@ -8,7 +8,6 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\ListOf;
 use Prelude\Watch\WatchSendEventsParams\Event;
 
 /**
@@ -24,7 +23,7 @@ final class WatchSendEventsParams implements BaseModel
      *
      * @var list<Event> $events
      */
-    #[Api(type: new ListOf(Event::class))]
+    #[Api(list: Event::class)]
     public array $events;
 
     /**

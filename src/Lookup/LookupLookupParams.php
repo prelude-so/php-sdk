@@ -8,7 +8,6 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\ListOf;
 use Prelude\Lookup\LookupLookupParams\Type;
 
 /**
@@ -25,7 +24,7 @@ final class LookupLookupParams implements BaseModel
      *
      * @var list<Type::*>|null $type
      */
-    #[Api(type: new ListOf(enum: Type::class), optional: true)]
+    #[Api(list: Type::class, optional: true)]
     public ?array $type;
 
     public function __construct()
@@ -39,7 +38,7 @@ final class LookupLookupParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Type::*>|null $type
+     * @param list<Type::*> $type
      */
     public static function with(?array $type = null): self
     {

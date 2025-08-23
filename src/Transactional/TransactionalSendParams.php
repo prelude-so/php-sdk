@@ -8,7 +8,6 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\MapOf;
 
 /**
  * Send a transactional message to your user.
@@ -65,7 +64,7 @@ final class TransactionalSendParams implements BaseModel
      *
      * @var array<string, string>|null $variables
      */
-    #[Api(type: new MapOf('string'), optional: true)]
+    #[Api(map: 'string', optional: true)]
     public ?array $variables;
 
     /**
@@ -93,7 +92,7 @@ final class TransactionalSendParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string, string>|null $variables
+     * @param array<string, string> $variables
      */
     public static function with(
         string $templateID,

@@ -7,7 +7,6 @@ namespace Prelude\Responses\Lookup;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\ListOf;
 use Prelude\Responses\Lookup\LookupLookupResponse\Flag;
 use Prelude\Responses\Lookup\LookupLookupResponse\LineType;
 use Prelude\Responses\Lookup\LookupLookupResponse\NetworkInfo;
@@ -36,7 +35,7 @@ final class LookupLookupResponse implements BaseModel
      *
      * @var list<Flag::*>|null $flags
      */
-    #[Api(type: new ListOf(enum: Flag::class), optional: true)]
+    #[Api(list: Flag::class, optional: true)]
     public ?array $flags;
 
     /**
@@ -95,8 +94,8 @@ final class LookupLookupResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Flag::*>|null $flags
-     * @param LineType::*|null $lineType
+     * @param list<Flag::*> $flags
+     * @param LineType::* $lineType
      */
     public static function with(
         ?string $callerName = null,

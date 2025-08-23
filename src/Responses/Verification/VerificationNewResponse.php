@@ -7,7 +7,6 @@ namespace Prelude\Responses\Verification;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\ListOf;
 use Prelude\Responses\Verification\VerificationNewResponse\Channel;
 use Prelude\Responses\Verification\VerificationNewResponse\Metadata;
 use Prelude\Responses\Verification\VerificationNewResponse\Method;
@@ -46,7 +45,7 @@ final class VerificationNewResponse implements BaseModel
      *
      * @var list<Channel::*>|null $channels
      */
-    #[Api(type: new ListOf(enum: Channel::class), optional: true)]
+    #[Api(list: Channel::class, optional: true)]
     public ?array $channels;
 
     /**
@@ -99,8 +98,8 @@ final class VerificationNewResponse implements BaseModel
      *
      * @param Method::* $method
      * @param Status::* $status
-     * @param list<Channel::*>|null $channels
-     * @param Reason::*|null $reason
+     * @param list<Channel::*> $channels
+     * @param Reason::* $reason
      */
     public static function with(
         string $id,
