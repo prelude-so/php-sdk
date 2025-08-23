@@ -8,7 +8,6 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\ListOf;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 
 /**
@@ -24,7 +23,7 @@ final class WatchSendFeedbacksParams implements BaseModel
      *
      * @var list<Feedback> $feedbacks
      */
-    #[Api(type: new ListOf(Feedback::class))]
+    #[Api(list: Feedback::class)]
     public array $feedbacks;
 
     /**

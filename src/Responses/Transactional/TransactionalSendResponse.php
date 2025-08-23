@@ -7,7 +7,6 @@ namespace Prelude\Responses\Transactional;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\MapOf;
 
 final class TransactionalSendResponse implements BaseModel
 {
@@ -48,7 +47,7 @@ final class TransactionalSendResponse implements BaseModel
      *
      * @var array<string, string> $variables
      */
-    #[Api(type: new MapOf('string'))]
+    #[Api(map: 'string')]
     public array $variables;
 
     /**

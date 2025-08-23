@@ -7,7 +7,6 @@ namespace Prelude\Verification\VerificationCreateParams;
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\MapOf;
 use Prelude\Verification\VerificationCreateParams\Options\AppRealm;
 use Prelude\Verification\VerificationCreateParams\Options\Method;
 use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
@@ -82,7 +81,7 @@ final class Options implements BaseModel
      *
      * @var array<string, string>|null $variables
      */
-    #[Api(type: new MapOf('string'), optional: true)]
+    #[Api(map: 'string', optional: true)]
     public ?array $variables;
 
     public function __construct()
@@ -96,9 +95,9 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Method::*|null $method
-     * @param PreferredChannel::*|null $preferredChannel
-     * @param array<string, string>|null $variables
+     * @param Method::* $method
+     * @param PreferredChannel::* $preferredChannel
+     * @param array<string, string> $variables
      */
     public static function with(
         ?AppRealm $appRealm = null,
