@@ -21,6 +21,8 @@ use Prelude\Watch\WatchSendEventsParams\Event;
 use Prelude\Watch\WatchSendFeedbacksParams;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 
+use const Prelude\Core\OMIT as omit;
+
 final class WatchService implements WatchContract
 {
     public function __construct(private Client $client) {}
@@ -35,20 +37,18 @@ final class WatchService implements WatchContract
      */
     public function predict(
         $target,
-        $dispatchID = null,
-        $metadata = null,
-        $signals = null,
+        $dispatchID = omit,
+        $metadata = omit,
+        $signals = omit,
         ?RequestOptions $requestOptions = null,
     ): WatchPredictResponse {
-        $args = [
-            'target' => $target,
-            'dispatchID' => $dispatchID,
-            'metadata' => $metadata,
-            'signals' => $signals,
-        ];
-        $args = Util::array_filter_null(
-            $args,
-            ['dispatchID', 'metadata', 'signals']
+        $args = Util::array_filter_omit(
+            [
+                'target' => $target,
+                'dispatchID' => $dispatchID,
+                'metadata' => $metadata,
+                'signals' => $signals,
+            ],
         );
         [$parsed, $options] = WatchPredictParams::parseRequest(
             $args,

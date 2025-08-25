@@ -14,6 +14,8 @@ use Prelude\Watch\WatchPredictParams\Target;
 use Prelude\Watch\WatchSendEventsParams\Event;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 
+use const Prelude\Core\OMIT as omit;
+
 interface WatchContract
 {
     /**
@@ -24,9 +26,9 @@ interface WatchContract
      */
     public function predict(
         $target,
-        $dispatchID = null,
-        $metadata = null,
-        $signals = null,
+        $dispatchID = omit,
+        $metadata = omit,
+        $signals = omit,
         ?RequestOptions $requestOptions = null,
     ): WatchPredictResponse;
 
