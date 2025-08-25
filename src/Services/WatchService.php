@@ -7,7 +7,6 @@ namespace Prelude\Services;
 use Prelude\Client;
 use Prelude\Contracts\WatchContract;
 use Prelude\Core\Conversion;
-use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\Responses\Watch\WatchPredictResponse;
 use Prelude\Responses\Watch\WatchSendEventsResponse;
@@ -42,17 +41,14 @@ final class WatchService implements WatchContract
         $signals = omit,
         ?RequestOptions $requestOptions = null,
     ): WatchPredictResponse {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = WatchPredictParams::parseRequest(
             [
                 'target' => $target,
                 'dispatchID' => $dispatchID,
                 'metadata' => $metadata,
                 'signals' => $signals,
             ],
-        );
-        [$parsed, $options] = WatchPredictParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
@@ -74,9 +70,8 @@ final class WatchService implements WatchContract
         $events,
         ?RequestOptions $requestOptions = null
     ): WatchSendEventsResponse {
-        $args = ['events' => $events];
         [$parsed, $options] = WatchSendEventsParams::parseRequest(
-            $args,
+            ['events' => $events],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -99,9 +94,8 @@ final class WatchService implements WatchContract
         $feedbacks,
         ?RequestOptions $requestOptions = null
     ): WatchSendFeedbacksResponse {
-        $args = ['feedbacks' => $feedbacks];
         [$parsed, $options] = WatchSendFeedbacksParams::parseRequest(
-            $args,
+            ['feedbacks' => $feedbacks],
             $requestOptions
         );
         $resp = $this->client->request(

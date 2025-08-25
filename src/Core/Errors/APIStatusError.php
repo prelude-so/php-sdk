@@ -1,6 +1,6 @@
 <?php
 
-namespace Prelude\Errors;
+namespace Prelude\Core\Errors;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;

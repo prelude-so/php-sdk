@@ -7,7 +7,6 @@ namespace Prelude\Services;
 use Prelude\Client;
 use Prelude\Contracts\VerificationContract;
 use Prelude\Core\Conversion;
-use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\Responses\Verification\VerificationCheckResponse;
 use Prelude\Responses\Verification\VerificationNewResponse;
@@ -42,7 +41,7 @@ final class VerificationService implements VerificationContract
         $signals = omit,
         ?RequestOptions $requestOptions = null,
     ): VerificationNewResponse {
-        $args = Util::array_filter_omit(
+        [$parsed, $options1] = VerificationCreateParams::parseRequest(
             [
                 'target' => $target,
                 'dispatchID' => $dispatchID,
@@ -50,10 +49,7 @@ final class VerificationService implements VerificationContract
                 'options' => $options,
                 'signals' => $signals,
             ],
-        );
-        [$parsed, $options1] = VerificationCreateParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
@@ -77,9 +73,8 @@ final class VerificationService implements VerificationContract
         $target,
         ?RequestOptions $requestOptions = null
     ): VerificationCheckResponse {
-        $args = ['code' => $code, 'target' => $target];
         [$parsed, $options] = VerificationCheckParams::parseRequest(
-            $args,
+            ['code' => $code, 'target' => $target],
             $requestOptions
         );
         $resp = $this->client->request(

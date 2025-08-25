@@ -66,7 +66,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 ```php
 <?php
 
-use Prelude\Errors\APIConnectionError;
+use Prelude\Core\Errors\APIConnectionError;
 use Prelude\Verification\VerificationCreateParams\Target;
 
 try {

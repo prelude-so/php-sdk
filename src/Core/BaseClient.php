@@ -6,7 +6,7 @@ namespace Prelude\Core;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
-use Prelude\Errors\APIStatusError;
+use Prelude\Core\Errors\APIStatusError;
 use Prelude\RequestOptions;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
