@@ -1,6 +1,6 @@
 <?php
 
-namespace Prelude\Errors;
+namespace Prelude\Core\Errors;
 
 class AuthenticationError extends APIStatusError
 {

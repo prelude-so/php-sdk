@@ -7,7 +7,6 @@ namespace Prelude\Services;
 use Prelude\Client;
 use Prelude\Contracts\LookupContract;
 use Prelude\Core\Conversion;
-use Prelude\Core\Util;
 use Prelude\Lookup\LookupLookupParams;
 use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\RequestOptions;
@@ -30,9 +29,8 @@ final class LookupService implements LookupContract
         $type = omit,
         ?RequestOptions $requestOptions = null
     ): LookupLookupResponse {
-        $args = Util::array_filter_omit(['type' => $type]);
         [$parsed, $options] = LookupLookupParams::parseRequest(
-            $args,
+            ['type' => $type],
             $requestOptions
         );
         $resp = $this->client->request(

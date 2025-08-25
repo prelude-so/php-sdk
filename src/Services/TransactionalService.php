@@ -7,7 +7,6 @@ namespace Prelude\Services;
 use Prelude\Client;
 use Prelude\Contracts\TransactionalContract;
 use Prelude\Core\Conversion;
-use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\Responses\Transactional\TransactionalSendResponse;
 use Prelude\Transactional\TransactionalSendParams;
@@ -42,7 +41,7 @@ final class TransactionalService implements TransactionalContract
         $variables = omit,
         ?RequestOptions $requestOptions = null,
     ): TransactionalSendResponse {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = TransactionalSendParams::parseRequest(
             [
                 'templateID' => $templateID,
                 'to' => $to,
@@ -53,10 +52,7 @@ final class TransactionalService implements TransactionalContract
                 'locale' => $locale,
                 'variables' => $variables,
             ],
-        );
-        [$parsed, $options] = TransactionalSendParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
