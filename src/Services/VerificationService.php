@@ -19,6 +19,8 @@ use Prelude\Verification\VerificationCreateParams\Options;
 use Prelude\Verification\VerificationCreateParams\Signals;
 use Prelude\Verification\VerificationCreateParams\Target;
 
+use const Prelude\Core\OMIT as omit;
+
 final class VerificationService implements VerificationContract
 {
     public function __construct(private Client $client) {}
@@ -34,22 +36,20 @@ final class VerificationService implements VerificationContract
      */
     public function create(
         $target,
-        $dispatchID = null,
-        $metadata = null,
-        $options = null,
-        $signals = null,
+        $dispatchID = omit,
+        $metadata = omit,
+        $options = omit,
+        $signals = omit,
         ?RequestOptions $requestOptions = null,
     ): VerificationNewResponse {
-        $args = [
-            'target' => $target,
-            'dispatchID' => $dispatchID,
-            'metadata' => $metadata,
-            'options' => $options,
-            'signals' => $signals,
-        ];
-        $args = Util::array_filter_null(
-            $args,
-            ['dispatchID', 'metadata', 'options', 'signals']
+        $args = Util::array_filter_omit(
+            [
+                'target' => $target,
+                'dispatchID' => $dispatchID,
+                'metadata' => $metadata,
+                'options' => $options,
+                'signals' => $signals,
+            ],
         );
         [$parsed, $options1] = VerificationCreateParams::parseRequest(
             $args,

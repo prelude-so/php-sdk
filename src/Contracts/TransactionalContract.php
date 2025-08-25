@@ -7,6 +7,8 @@ namespace Prelude\Contracts;
 use Prelude\RequestOptions;
 use Prelude\Responses\Transactional\TransactionalSendResponse;
 
+use const Prelude\Core\OMIT as omit;
+
 interface TransactionalContract
 {
     /**
@@ -23,12 +25,12 @@ interface TransactionalContract
     public function send(
         $templateID,
         $to,
-        $callbackURL = null,
-        $correlationID = null,
-        $expiresAt = null,
-        $from = null,
-        $locale = null,
-        $variables = null,
+        $callbackURL = omit,
+        $correlationID = omit,
+        $expiresAt = omit,
+        $from = omit,
+        $locale = omit,
+        $variables = omit,
         ?RequestOptions $requestOptions = null,
     ): TransactionalSendResponse;
 }

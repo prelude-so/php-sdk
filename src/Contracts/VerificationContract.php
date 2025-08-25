@@ -13,6 +13,8 @@ use Prelude\Verification\VerificationCreateParams\Options;
 use Prelude\Verification\VerificationCreateParams\Signals;
 use Prelude\Verification\VerificationCreateParams\Target;
 
+use const Prelude\Core\OMIT as omit;
+
 interface VerificationContract
 {
     /**
@@ -24,10 +26,10 @@ interface VerificationContract
      */
     public function create(
         $target,
-        $dispatchID = null,
-        $metadata = null,
-        $options = null,
-        $signals = null,
+        $dispatchID = omit,
+        $metadata = omit,
+        $options = omit,
+        $signals = omit,
         ?RequestOptions $requestOptions = null,
     ): VerificationNewResponse;
 

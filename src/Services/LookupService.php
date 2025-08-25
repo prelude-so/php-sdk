@@ -13,6 +13,8 @@ use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\RequestOptions;
 use Prelude\Responses\Lookup\LookupLookupResponse;
 
+use const Prelude\Core\OMIT as omit;
+
 final class LookupService implements LookupContract
 {
     public function __construct(private Client $client) {}
@@ -25,11 +27,10 @@ final class LookupService implements LookupContract
      */
     public function lookup(
         string $phoneNumber,
-        $type = null,
+        $type = omit,
         ?RequestOptions $requestOptions = null
     ): LookupLookupResponse {
-        $args = ['type' => $type];
-        $args = Util::array_filter_null($args, ['type']);
+        $args = Util::array_filter_omit(['type' => $type]);
         [$parsed, $options] = LookupLookupParams::parseRequest(
             $args,
             $requestOptions

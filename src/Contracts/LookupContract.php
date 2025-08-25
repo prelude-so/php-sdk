@@ -8,6 +8,8 @@ use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\RequestOptions;
 use Prelude\Responses\Lookup\LookupLookupResponse;
 
+use const Prelude\Core\OMIT as omit;
+
 interface LookupContract
 {
     /**
@@ -16,7 +18,7 @@ interface LookupContract
      */
     public function lookup(
         string $phoneNumber,
-        $type = null,
+        $type = omit,
         ?RequestOptions $requestOptions = null,
     ): LookupLookupResponse;
 }

@@ -12,6 +12,8 @@ use Prelude\RequestOptions;
 use Prelude\Responses\Transactional\TransactionalSendResponse;
 use Prelude\Transactional\TransactionalSendParams;
 
+use const Prelude\Core\OMIT as omit;
+
 final class TransactionalService implements TransactionalContract
 {
     public function __construct(private Client $client) {}
@@ -32,33 +34,24 @@ final class TransactionalService implements TransactionalContract
     public function send(
         $templateID,
         $to,
-        $callbackURL = null,
-        $correlationID = null,
-        $expiresAt = null,
-        $from = null,
-        $locale = null,
-        $variables = null,
+        $callbackURL = omit,
+        $correlationID = omit,
+        $expiresAt = omit,
+        $from = omit,
+        $locale = omit,
+        $variables = omit,
         ?RequestOptions $requestOptions = null,
     ): TransactionalSendResponse {
-        $args = [
-            'templateID' => $templateID,
-            'to' => $to,
-            'callbackURL' => $callbackURL,
-            'correlationID' => $correlationID,
-            'expiresAt' => $expiresAt,
-            'from' => $from,
-            'locale' => $locale,
-            'variables' => $variables,
-        ];
-        $args = Util::array_filter_null(
-            $args,
+        $args = Util::array_filter_omit(
             [
-                'callbackURL',
-                'correlationID',
-                'expiresAt',
-                'from',
-                'locale',
-                'variables',
+                'templateID' => $templateID,
+                'to' => $to,
+                'callbackURL' => $callbackURL,
+                'correlationID' => $correlationID,
+                'expiresAt' => $expiresAt,
+                'from' => $from,
+                'locale' => $locale,
+                'variables' => $variables,
             ],
         );
         [$parsed, $options] = TransactionalSendParams::parseRequest(
