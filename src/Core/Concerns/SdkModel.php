@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Core\Concerns;
 
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\Contracts\BasePage;
 use Prelude\Core\Conversion;
 use Prelude\Core\Conversion\CoerceState;
 use Prelude\Core\Conversion\Contracts\Converter;
@@ -244,7 +245,7 @@ trait SdkModel
      */
     private static function serialize(mixed $value): mixed
     {
-        if ($value instanceof BaseModel) {
+        if ($value instanceof BaseModel || $value instanceof BasePage) {
             return $value->toArray();
         }
 
