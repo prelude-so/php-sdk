@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Prelude\Core\Services;
 
 use Prelude\Client;
-use Prelude\Core\Conversion;
 use Prelude\Core\ServiceContracts\LookupContract;
 use Prelude\Lookup\LookupLookupParams;
 use Prelude\Lookup\LookupLookupParams\Type;
@@ -33,14 +32,14 @@ final class LookupService implements LookupContract
             ['type' => $type],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: ['v2/lookup/%1$s', $phoneNumber],
             query: $parsed,
             options: $options,
+            convert: LookupLookupResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(LookupLookupResponse::class, value: $resp);
     }
 }

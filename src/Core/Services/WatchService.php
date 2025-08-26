@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Prelude\Core\Services;
 
 use Prelude\Client;
-use Prelude\Core\Conversion;
 use Prelude\Core\ServiceContracts\WatchContract;
 use Prelude\RequestOptions;
 use Prelude\Watch\WatchPredictParams;
@@ -50,15 +49,15 @@ final class WatchService implements WatchContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v2/watch/predict',
             body: (object) $parsed,
             options: $options,
+            convert: WatchPredictResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(WatchPredictResponse::class, value: $resp);
     }
 
     /**
@@ -74,15 +73,15 @@ final class WatchService implements WatchContract
             ['events' => $events],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v2/watch/event',
             body: (object) $parsed,
             options: $options,
+            convert: WatchSendEventsResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(WatchSendEventsResponse::class, value: $resp);
     }
 
     /**
@@ -98,14 +97,14 @@ final class WatchService implements WatchContract
             ['feedbacks' => $feedbacks],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v2/watch/feedback',
             body: (object) $parsed,
             options: $options,
+            convert: WatchSendFeedbacksResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(WatchSendFeedbacksResponse::class, value: $resp);
     }
 }

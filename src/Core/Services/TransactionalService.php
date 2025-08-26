@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Prelude\Core\Services;
 
 use Prelude\Client;
-use Prelude\Core\Conversion;
 use Prelude\Core\ServiceContracts\TransactionalContract;
 use Prelude\RequestOptions;
 use Prelude\Transactional\TransactionalSendParams;
@@ -54,14 +53,14 @@ final class TransactionalService implements TransactionalContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v2/transactional',
             body: (object) $parsed,
             options: $options,
+            convert: TransactionalSendResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(TransactionalSendResponse::class, value: $resp);
     }
 }
