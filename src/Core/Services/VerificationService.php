@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Prelude\Core\Services;
 
 use Prelude\Client;
-use Prelude\Core\Conversion;
 use Prelude\Core\ServiceContracts\VerificationContract;
 use Prelude\RequestOptions;
 use Prelude\Verification\VerificationCheckParams;
@@ -51,15 +50,15 @@ final class VerificationService implements VerificationContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v2/verification',
             body: (object) $parsed,
             options: $options1,
+            convert: VerificationNewResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(VerificationNewResponse::class, value: $resp);
     }
 
     /**
@@ -77,14 +76,14 @@ final class VerificationService implements VerificationContract
             ['code' => $code, 'target' => $target],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v2/verification/check',
             body: (object) $parsed,
             options: $options,
+            convert: VerificationCheckResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(VerificationCheckResponse::class, value: $resp);
     }
 }
