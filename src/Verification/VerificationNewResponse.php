@@ -14,8 +14,21 @@ use Prelude\Verification\VerificationNewResponse\Reason;
 use Prelude\Verification\VerificationNewResponse\Silent;
 use Prelude\Verification\VerificationNewResponse\Status;
 
+/**
+ * @phpstan-type verification_new_response = array{
+ *   id: string,
+ *   method: Method::*,
+ *   status: Status::*,
+ *   channels?: list<Channel::*>|null,
+ *   metadata?: Metadata|null,
+ *   reason?: Reason::*|null,
+ *   requestID?: string|null,
+ *   silent?: Silent|null,
+ * }
+ */
 final class VerificationNewResponse implements BaseModel
 {
+    /** @use SdkModel<verification_new_response> */
     use SdkModel;
 
     /**

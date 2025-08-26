@@ -12,9 +12,12 @@ use Prelude\Verification\VerificationCheckParams\Target;
 
 /**
  * Check the validity of a verification code.
+ *
+ * @phpstan-type verification_check_params = array{code: string, target: Target}
  */
 final class VerificationCheckParams implements BaseModel
 {
+    /** @use SdkModel<verification_check_params> */
     use SdkModel;
     use SdkParams;
 

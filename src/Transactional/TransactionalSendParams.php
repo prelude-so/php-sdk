@@ -11,9 +11,21 @@ use Prelude\Core\Contracts\BaseModel;
 
 /**
  * Send a transactional message to your user.
+ *
+ * @phpstan-type transactional_send_params = array{
+ *   templateID: string,
+ *   to: string,
+ *   callbackURL?: string,
+ *   correlationID?: string,
+ *   expiresAt?: string,
+ *   from?: string,
+ *   locale?: string,
+ *   variables?: array<string, string>,
+ * }
  */
 final class TransactionalSendParams implements BaseModel
 {
+    /** @use SdkModel<transactional_send_params> */
     use SdkModel;
     use SdkParams;
 
