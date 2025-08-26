@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Core\Pagination;
+namespace Prelude\Core\Concerns;
 
 use Prelude\Client;
-use Prelude\Core\Contracts\BasePage;
 use Prelude\Core\Conversion\Contracts\Converter;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 use Prelude\Core\Errors\APIStatusError;
@@ -16,19 +15,20 @@ use Prelude\RequestOptions;
  *
  * @template Item
  *
- * @implements BasePage<Item>
- *
  * @phpstan-import-type normalized_request from \Prelude\Core\BaseClient
  */
-abstract class AbstractPage implements BasePage
+trait SdkPage
 {
-    public function __construct(
-        protected Converter|ConverterSource|string $convert,
-        protected Client $client,
-        protected array $request,
-        protected RequestOptions $options,
-        protected mixed $data,
-    ) {}
+    private Converter|ConverterSource|string $convert;
+
+    private Client $client;
+
+    /**
+     * normalized_request $request.
+     */
+    private array $request;
+
+    private RequestOptions $options;
 
     /**
      * @return list<Item>
