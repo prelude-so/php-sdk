@@ -11,9 +11,12 @@ use Prelude\Verification\VerificationCreateParams\Target\Type;
 
 /**
  * The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+ *
+ * @phpstan-type target_alias = array{type: Type::*, value: string}
  */
 final class Target implements BaseModel
 {
+    /** @use SdkModel<target_alias> */
     use SdkModel;
 
     /**

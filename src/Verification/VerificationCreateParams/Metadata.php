@@ -10,9 +10,12 @@ use Prelude\Core\Contracts\BaseModel;
 
 /**
  * The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
+ *
+ * @phpstan-type metadata_alias = array{correlationID?: string|null}
  */
 final class Metadata implements BaseModel
 {
+    /** @use SdkModel<metadata_alias> */
     use SdkModel;
 
     /**

@@ -11,9 +11,12 @@ use Prelude\Watch\WatchPredictParams\Target\Type;
 
 /**
  * The prediction target. Only supports phone numbers for now.
+ *
+ * @phpstan-type target_alias = array{type: Type::*, value: string}
  */
 final class Target implements BaseModel
 {
+    /** @use SdkModel<target_alias> */
     use SdkModel;
 
     /**

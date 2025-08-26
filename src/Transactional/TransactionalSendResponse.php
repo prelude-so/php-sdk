@@ -8,8 +8,22 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type transactional_send_response = array{
+ *   id: string,
+ *   createdAt: \DateTimeInterface,
+ *   expiresAt: \DateTimeInterface,
+ *   templateID: string,
+ *   to: string,
+ *   variables: array<string, string>,
+ *   callbackURL?: string|null,
+ *   correlationID?: string|null,
+ *   from?: string|null,
+ * }
+ */
 final class TransactionalSendResponse implements BaseModel
 {
+    /** @use SdkModel<transactional_send_response> */
     use SdkModel;
 
     /**

@@ -11,6 +11,7 @@ use Prelude\Core\Contracts\BaseModel;
 
 class TestModel implements BaseModel
 {
+    /** @use SdkModel<array<string, mixed>> */
     use SdkModel;
 
     #[Api]

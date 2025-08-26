@@ -11,9 +11,12 @@ use Prelude\Watch\WatchSendEventsParams\Event\Target\Type;
 
 /**
  * The event target. Only supports phone numbers for now.
+ *
+ * @phpstan-type target_alias = array{type: Type::*, value: string}
  */
 final class Target implements BaseModel
 {
+    /** @use SdkModel<target_alias> */
     use SdkModel;
 
     /**

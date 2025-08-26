@@ -11,9 +11,21 @@ use Prelude\Watch\WatchPredictParams\Signals\DevicePlatform;
 
 /**
  * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+ *
+ * @phpstan-type signals_alias = array{
+ *   appVersion?: string|null,
+ *   deviceID?: string|null,
+ *   deviceModel?: string|null,
+ *   devicePlatform?: DevicePlatform::*|null,
+ *   ip?: string|null,
+ *   isTrustedUser?: bool|null,
+ *   osVersion?: string|null,
+ *   userAgent?: string|null,
+ * }
  */
 final class Signals implements BaseModel
 {
+    /** @use SdkModel<signals_alias> */
     use SdkModel;
 
     /**

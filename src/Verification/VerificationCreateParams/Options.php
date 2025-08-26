@@ -13,9 +13,23 @@ use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
 
 /**
  * Verification options.
+ *
+ * @phpstan-type options_alias = array{
+ *   appRealm?: AppRealm|null,
+ *   callbackURL?: string|null,
+ *   codeSize?: int|null,
+ *   customCode?: string|null,
+ *   locale?: string|null,
+ *   method?: Method::*|null,
+ *   preferredChannel?: PreferredChannel::*|null,
+ *   senderID?: string|null,
+ *   templateID?: string|null,
+ *   variables?: array<string, string>|null,
+ * }
  */
 final class Options implements BaseModel
 {
+    /** @use SdkModel<options_alias> */
     use SdkModel;
 
     /**
