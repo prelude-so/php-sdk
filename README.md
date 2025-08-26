@@ -49,6 +49,7 @@ $client = new Client(apiToken: getenv("API_TOKEN") ?: "My API Token");
 $verification = $client->verification->create(
   target: Target::with(type: "phone_number", value: "+30123456789")
 );
+
 var_dump($verification->id);
 ```
 
@@ -119,6 +120,7 @@ use Prelude\Verification\VerificationCreateParams\Target;
 $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
+
 $result = $client->verification->create(
   target: Target::with(type: "phone_number", value: "+30123456789"),
   new RequestOptions(maxRetries: 5),
