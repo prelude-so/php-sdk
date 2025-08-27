@@ -7,7 +7,7 @@ namespace Prelude\Core\Concerns;
 use Prelude\Client;
 use Prelude\Core\Conversion\Contracts\Converter;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
-use Prelude\Core\Errors\APIStatusError;
+use Prelude\Core\Exceptions\APIStatusException;
 use Prelude\RequestOptions;
 
 /**
@@ -52,7 +52,7 @@ trait SdkPage
      *
      * @return static of static<Item>
      *
-     * @throws APIStatusError
+     * @throws APIStatusException
      */
     public function getNextPage(): static
     {

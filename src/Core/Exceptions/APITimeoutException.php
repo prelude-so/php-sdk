@@ -1,13 +1,13 @@
 <?php
 
-namespace Prelude\Core\Errors;
+namespace Prelude\Core\Exceptions;
 
 use Psr\Http\Message\RequestInterface;
 
-class APITimeoutError extends APIConnectionError
+class APITimeoutException extends APIConnectionException
 {
     /** @var string */
-    protected const DESC = 'Prelude API Timeout Error';
+    protected const DESC = 'Prelude API Timeout Exception';
 
     public function __construct(
         public RequestInterface $request,

@@ -10,7 +10,7 @@ use Prelude\Core\Contracts\BasePage;
 use Prelude\Core\Contracts\BaseStream;
 use Prelude\Core\Conversion\Contracts\Converter;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
-use Prelude\Core\Errors\APIStatusError;
+use Prelude\Core\Exceptions\APIStatusException;
 use Prelude\RequestOptions;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -203,7 +203,7 @@ class BaseClient
         }
 
         if ($code >= 400 && $code < 500) {
-            throw APIStatusError::from(request: $req, response: $rsp);
+            throw APIStatusException::from(request: $req, response: $rsp);
         }
 
         if ($code >= 500 && $retryCount < $opts->maxRetries) {
