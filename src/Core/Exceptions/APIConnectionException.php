@@ -1,8 +1,8 @@
 <?php
 
-namespace Prelude\Core\Errors;
+namespace Prelude\Core\Exceptions;
 
-class APIConnectionError extends APIError
+class APIConnectionException extends APIException
 {
     /** @var string */
     protected const DESC = 'Prelude API Connection Error';

@@ -1,11 +1,11 @@
 <?php
 
-namespace Prelude\Core\Errors;
+namespace Prelude\Core\Exceptions;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class APIError extends PreludeError
+class APIException extends PreludeException
 {
     public ?int $status = null;
 

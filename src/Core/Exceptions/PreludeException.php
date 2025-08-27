@@ -1,8 +1,8 @@
 <?php
 
-namespace Prelude\Core\Errors;
+namespace Prelude\Core\Exceptions;
 
-class PreludeError extends \Exception
+class PreludeException extends \Exception
 {
     /** @var string */
     protected const DESC = 'Prelude Error';
