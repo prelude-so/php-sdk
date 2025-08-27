@@ -9,6 +9,9 @@ use Prelude\Core\Conversion;
 use Prelude\Core\Conversion\Contracts\Converter;
 use Prelude\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @internal
+ */
 final class UnionOf implements Converter
 {
     /**
