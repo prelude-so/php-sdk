@@ -24,7 +24,6 @@
     "sort-packages": true
   },
   "description": "Prelude PHP SDK",
-  "license": "APACHE-2.0",
   "name": "placeholder/placeholder",
   "require": {
     "php": "^8.1",
