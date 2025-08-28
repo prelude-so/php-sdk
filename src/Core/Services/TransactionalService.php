@@ -17,6 +17,8 @@ final class TransactionalService implements TransactionalContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * Send a transactional message to your user.
      *
      * @param string $templateID the template identifier

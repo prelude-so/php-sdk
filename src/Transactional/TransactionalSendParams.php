@@ -12,6 +12,8 @@ use Prelude\Core\Contracts\BaseModel;
 /**
  * Send a transactional message to your user.
  *
+ * @see Prelude\Transactional->send
+ *
  * @phpstan-type transactional_send_params = array{
  *   templateID: string,
  *   to: string,

@@ -18,6 +18,8 @@ final class LookupService implements LookupContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
      *
      * @param list<Type::*> $type Optional features. Possible values are:

@@ -15,6 +15,8 @@ use Prelude\Watch\WatchPredictParams\Target;
 /**
  * Predict the outcome of a verification based on Prelude’s anti-fraud system.
  *
+ * @see Prelude\Watch->predict
+ *
  * @phpstan-type watch_predict_params = array{
  *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
  * }

@@ -13,6 +13,8 @@ use Prelude\Watch\WatchSendEventsParams\Event;
 /**
  * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
  *
+ * @see Prelude\Watch->sendEvents
+ *
  * @phpstan-type watch_send_events_params = array{events: list<Event>}
  */
 final class WatchSendEventsParams implements BaseModel
