@@ -19,6 +19,8 @@ use const Prelude\Core\OMIT as omit;
 interface WatchContract
 {
     /**
+     * @api
+     *
      * @param Target $target The prediction target. Only supports phone numbers for now.
      * @param string $dispatchID the identifier of the dispatch that came from the front-end SDK
      * @param Metadata $metadata the metadata for this prediction
@@ -33,6 +35,8 @@ interface WatchContract
     ): WatchPredictResponse;
 
     /**
+     * @api
+     *
      * @param list<Event> $events a list of events to dispatch
      */
     public function sendEvents(
@@ -41,6 +45,8 @@ interface WatchContract
     ): WatchSendEventsResponse;
 
     /**
+     * @api
+     *
      * @param list<Feedback> $feedbacks a list of feedbacks to send
      */
     public function sendFeedbacks(

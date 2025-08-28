@@ -18,6 +18,8 @@ use const Prelude\Core\OMIT as omit;
 interface VerificationContract
 {
     /**
+     * @api
+     *
      * @param Target $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      * @param string $dispatchID the identifier of the dispatch that came from the front-end SDK
      * @param Metadata $metadata The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
@@ -34,6 +36,8 @@ interface VerificationContract
     ): VerificationNewResponse;
 
     /**
+     * @api
+     *
      * @param string $code the OTP code to validate
      * @param Target1 $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      */

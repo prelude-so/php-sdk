@@ -26,6 +26,8 @@ final class WatchService implements WatchContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * Predict the outcome of a verification based on Prelude’s anti-fraud system.
      *
      * @param Target $target The prediction target. Only supports phone numbers for now.
@@ -61,6 +63,8 @@ final class WatchService implements WatchContract
     }
 
     /**
+     * @api
+     *
      * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
      *
      * @param list<Event> $events a list of events to dispatch
@@ -85,6 +89,8 @@ final class WatchService implements WatchContract
     }
 
     /**
+     * @api
+     *
      * Send feedback regarding your end-users verification funnel. Events will be analyzed for proactive fraud prevention and risk scoring.
      *
      * @param list<Feedback> $feedbacks a list of feedbacks to send

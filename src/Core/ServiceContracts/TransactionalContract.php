@@ -12,6 +12,8 @@ use const Prelude\Core\OMIT as omit;
 interface TransactionalContract
 {
     /**
+     * @api
+     *
      * @param string $templateID the template identifier
      * @param string $to the recipient's phone number
      * @param string $callbackURL the callback URL

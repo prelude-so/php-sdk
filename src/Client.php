@@ -14,12 +14,24 @@ class Client extends BaseClient
 {
     public string $apiToken;
 
+    /**
+     * @api
+     */
     public LookupService $lookup;
 
+    /**
+     * @api
+     */
     public TransactionalService $transactional;
 
+    /**
+     * @api
+     */
     public VerificationService $verification;
 
+    /**
+     * @api
+     */
     public WatchService $watch;
 
     public function __construct(?string $apiToken = null, ?string $baseUrl = null)

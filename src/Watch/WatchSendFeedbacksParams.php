@@ -13,6 +13,8 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 /**
  * Send feedback regarding your end-users verification funnel. Events will be analyzed for proactive fraud prevention and risk scoring.
  *
+ * @see Prelude\Watch->sendFeedbacks
+ *
  * @phpstan-type watch_send_feedbacks_params = array{feedbacks: list<Feedback>}
  */
 final class WatchSendFeedbacksParams implements BaseModel
