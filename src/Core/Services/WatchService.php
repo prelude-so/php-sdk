@@ -23,6 +23,9 @@ use const Prelude\Core\OMIT as omit;
 
 final class WatchService implements WatchContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**

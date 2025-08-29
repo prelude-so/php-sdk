@@ -21,6 +21,9 @@ use const Prelude\Core\OMIT as omit;
 
 final class VerificationService implements VerificationContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**

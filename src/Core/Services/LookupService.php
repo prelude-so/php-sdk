@@ -15,6 +15,9 @@ use const Prelude\Core\OMIT as omit;
 
 final class LookupService implements LookupContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**
