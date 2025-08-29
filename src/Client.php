@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude;
 
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 use Prelude\Core\BaseClient;
 use Prelude\Core\Services\LookupService;
 use Prelude\Core\Services\TransactionalService;
@@ -40,12 +42,19 @@ class Client extends BaseClient
 
         $base = $baseUrl ?? getenv('PRELUDE_BASE_URL') ?: 'https://api.prelude.dev';
 
+        $options = new RequestOptions(
+            uriFactory: Psr17FactoryDiscovery::findUriFactory(),
+            streamFactory: Psr17FactoryDiscovery::findStreamFactory(),
+            requestFactory: Psr17FactoryDiscovery::findRequestFactory(),
+            transporter: Psr18ClientDiscovery::find(),
+        );
+
         parent::__construct(
             headers: [
                 'Content-Type' => 'application/json', 'Accept' => 'application/json',
             ],
             baseUrl: $base,
-            options: new RequestOptions,
+            options: $options,
         );
 
         $this->lookup = new LookupService($this);
