@@ -14,6 +14,9 @@ use const Prelude\Core\OMIT as omit;
 
 final class TransactionalService implements TransactionalContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**
