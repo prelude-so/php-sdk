@@ -11,7 +11,18 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCheckParams\Target;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new VerificationCheckParams); // set properties as needed
+ * $client->verification->check(...$params->toArray());
+ * ```
  * Check the validity of a verification code.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->verification->check(...$params->toArray());`
  *
  * @see Prelude\Verification->check
  *
