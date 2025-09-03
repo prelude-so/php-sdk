@@ -13,7 +13,18 @@ use Prelude\Watch\WatchPredictParams\Signals;
 use Prelude\Watch\WatchPredictParams\Target;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new WatchPredictParams); // set properties as needed
+ * $client->watch->predict(...$params->toArray());
+ * ```
  * Predict the outcome of a verification based on Prelude’s anti-fraud system.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->watch->predict(...$params->toArray());`
  *
  * @see Prelude\Watch->predict
  *
