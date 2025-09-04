@@ -39,7 +39,7 @@ final class VerificationTest extends TestCase
             target: Target::with(type: 'phone_number', value: '+30123456789')
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -53,7 +53,7 @@ final class VerificationTest extends TestCase
             target: Target::with(type: 'phone_number', value: '+30123456789')
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -64,7 +64,7 @@ final class VerificationTest extends TestCase
             target: Target1::with(type: 'phone_number', value: '+30123456789'),
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -75,6 +75,6 @@ final class VerificationTest extends TestCase
             target: Target1::with(type: 'phone_number', value: '+30123456789'),
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

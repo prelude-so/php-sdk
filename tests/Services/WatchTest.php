@@ -39,7 +39,7 @@ final class WatchTest extends TestCase
             target: Target::with(type: 'phone_number', value: '+30123456789')
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -49,7 +49,7 @@ final class WatchTest extends TestCase
             target: Target::with(type: 'phone_number', value: '+30123456789')
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -65,7 +65,7 @@ final class WatchTest extends TestCase
             ],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -81,7 +81,7 @@ final class WatchTest extends TestCase
             ],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -96,7 +96,7 @@ final class WatchTest extends TestCase
             ],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -126,6 +126,6 @@ final class WatchTest extends TestCase
             ],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

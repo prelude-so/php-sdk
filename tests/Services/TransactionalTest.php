@@ -38,7 +38,7 @@ final class TransactionalTest extends TestCase
             to: '+30123456789'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -53,6 +53,6 @@ final class TransactionalTest extends TestCase
             to: '+30123456789'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }
