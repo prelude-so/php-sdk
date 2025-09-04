@@ -30,6 +30,6 @@ final class LookupTest extends TestCase
     {
         $result = $this->client->lookup->lookup('+12065550100');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }
