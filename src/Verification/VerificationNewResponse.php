@@ -17,11 +17,11 @@ use Prelude\Verification\VerificationNewResponse\Status;
 /**
  * @phpstan-type verification_new_response = array{
  *   id: string,
- *   method: Method::*,
- *   status: Status::*,
- *   channels?: list<Channel::*>|null,
+ *   method: value-of<Method>,
+ *   status: value-of<Status>,
+ *   channels?: list<value-of<Channel>>|null,
  *   metadata?: Metadata|null,
- *   reason?: Reason::*|null,
+ *   reason?: value-of<Reason>|null,
  *   requestID?: string|null,
  *   silent?: Silent|null,
  * }
@@ -40,7 +40,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The method used for verifying this phone number.
      *
-     * @var Method::* $method
+     * @var value-of<Method> $method
      */
     #[Api(enum: Method::class)]
     public string $method;
@@ -48,7 +48,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The status of the verification.
      *
-     * @var Status::* $status
+     * @var value-of<Status> $status
      */
     #[Api(enum: Status::class)]
     public string $status;
@@ -56,7 +56,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The ordered sequence of channels to be used for verification.
      *
-     * @var list<Channel::*>|null $channels
+     * @var list<value-of<Channel>>|null $channels
      */
     #[Api(list: Channel::class, optional: true)]
     public ?array $channels;
@@ -78,7 +78,7 @@ final class VerificationNewResponse implements BaseModel
      *  * `repeated_attempts` - The phone number has made too many verification attempts.
      *  * `suspicious` - The verification attempt was deemed suspicious by the anti-fraud system.
      *
-     * @var Reason::*|null $reason
+     * @var value-of<Reason>|null $reason
      */
     #[Api(enum: Reason::class, optional: true)]
     public ?string $reason;
@@ -116,30 +116,30 @@ final class VerificationNewResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Method::* $method
-     * @param Status::* $status
-     * @param list<Channel::*> $channels
-     * @param Reason::* $reason
+     * @param Method|value-of<Method> $method
+     * @param Status|value-of<Status> $status
+     * @param list<Channel|value-of<Channel>> $channels
+     * @param Reason|value-of<Reason> $reason
      */
     public static function with(
         string $id,
-        string $method,
-        string $status,
+        Method|string $method,
+        Status|string $status,
         ?array $channels = null,
         ?Metadata $metadata = null,
-        ?string $reason = null,
+        Reason|string|null $reason = null,
         ?string $requestID = null,
         ?Silent $silent = null,
     ): self {
         $obj = new self;
 
         $obj->id = $id;
-        $obj->method = $method;
-        $obj->status = $status;
+        $obj->method = $method instanceof Method ? $method->value : $method;
+        $obj->status = $status instanceof Status ? $status->value : $status;
 
-        null !== $channels && $obj->channels = $channels;
+        null !== $channels && $obj->channels = array_map(fn ($v) => $v instanceof Channel ? $v->value : $v, $channels);
         null !== $metadata && $obj->metadata = $metadata;
-        null !== $reason && $obj->reason = $reason;
+        null !== $reason && $obj->reason = $reason instanceof Reason ? $reason->value : $reason;
         null !== $requestID && $obj->requestID = $requestID;
         null !== $silent && $obj->silent = $silent;
 
@@ -160,12 +160,12 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The method used for verifying this phone number.
      *
-     * @param Method::* $method
+     * @param Method|value-of<Method> $method
      */
-    public function withMethod(string $method): self
+    public function withMethod(Method|string $method): self
     {
         $obj = clone $this;
-        $obj->method = $method;
+        $obj->method = $method instanceof Method ? $method->value : $method;
 
         return $obj;
     }
@@ -173,12 +173,12 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The status of the verification.
      *
-     * @param Status::* $status
+     * @param Status|value-of<Status> $status
      */
-    public function withStatus(string $status): self
+    public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status;
+        $obj->status = $status instanceof Status ? $status->value : $status;
 
         return $obj;
     }
@@ -186,12 +186,12 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The ordered sequence of channels to be used for verification.
      *
-     * @param list<Channel::*> $channels
+     * @param list<Channel|value-of<Channel>> $channels
      */
     public function withChannels(array $channels): self
     {
         $obj = clone $this;
-        $obj->channels = $channels;
+        $obj->channels = array_map(fn ($v) => $v instanceof Channel ? $v->value : $v, $channels);
 
         return $obj;
     }
@@ -218,12 +218,12 @@ final class VerificationNewResponse implements BaseModel
      *  * `repeated_attempts` - The phone number has made too many verification attempts.
      *  * `suspicious` - The verification attempt was deemed suspicious by the anti-fraud system.
      *
-     * @param Reason::* $reason
+     * @param Reason|value-of<Reason> $reason
      */
-    public function withReason(string $reason): self
+    public function withReason(Reason|string $reason): self
     {
         $obj = clone $this;
-        $obj->reason = $reason;
+        $obj->reason = $reason instanceof Reason ? $reason->value : $reason;
 
         return $obj;
     }

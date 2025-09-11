@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * The type of feedback.
  */
-final class Type implements ConverterSource
+enum Type: string
 {
-    use SdkEnum;
+    case VERIFICATION_STARTED = 'verification.started';
 
-    public const VERIFICATION_STARTED = 'verification.started';
-
-    public const VERIFICATION_COMPLETED = 'verification.completed';
+    case VERIFICATION_COMPLETED = 'verification.completed';
 }

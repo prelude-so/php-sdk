@@ -15,7 +15,7 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Type;
 /**
  * @phpstan-type feedback_alias = array{
  *   target: Target,
- *   type: Type::*,
+ *   type: value-of<Type>,
  *   dispatchID?: string|null,
  *   metadata?: Metadata|null,
  *   signals?: Signals|null,
@@ -35,7 +35,7 @@ final class Feedback implements BaseModel
     /**
      * The type of feedback.
      *
-     * @var Type::* $type
+     * @var value-of<Type> $type
      */
     #[Api(enum: Type::class)]
     public string $type;
@@ -82,11 +82,11 @@ final class Feedback implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
     public static function with(
         Target $target,
-        string $type,
+        Type|string $type,
         ?string $dispatchID = null,
         ?Metadata $metadata = null,
         ?Signals $signals = null,
@@ -94,7 +94,7 @@ final class Feedback implements BaseModel
         $obj = new self;
 
         $obj->target = $target;
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         null !== $dispatchID && $obj->dispatchID = $dispatchID;
         null !== $metadata && $obj->metadata = $metadata;
@@ -117,12 +117,12 @@ final class Feedback implements BaseModel
     /**
      * The type of feedback.
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public function withType(string $type): self
+    public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }

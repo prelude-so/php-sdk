@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace Prelude\Verification\VerificationNewResponse;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * The status of the verification.
  */
-final class Status implements ConverterSource
+enum Status: string
 {
-    use SdkEnum;
+    case SUCCESS = 'success';
 
-    public const SUCCESS = 'success';
+    case RETRY = 'retry';
 
-    public const RETRY = 'retry';
-
-    public const BLOCKED = 'blocked';
+    case BLOCKED = 'blocked';
 }

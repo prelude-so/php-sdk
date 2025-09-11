@@ -11,7 +11,7 @@ use Prelude\Watch\WatchSendFeedbacksResponse\Status;
 
 /**
  * @phpstan-type watch_send_feedbacks_response = array{
- *   requestID: string, status: Status::*
+ *   requestID: string, status: value-of<Status>
  * }
  */
 final class WatchSendFeedbacksResponse implements BaseModel
@@ -28,7 +28,7 @@ final class WatchSendFeedbacksResponse implements BaseModel
     /**
      * The status of the feedbacks sending.
      *
-     * @var Status::* $status
+     * @var value-of<Status> $status
      */
     #[Api(enum: Status::class)]
     public string $status;
@@ -57,14 +57,14 @@ final class WatchSendFeedbacksResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Status::* $status
+     * @param Status|value-of<Status> $status
      */
-    public static function with(string $requestID, string $status): self
+    public static function with(string $requestID, Status|string $status): self
     {
         $obj = new self;
 
         $obj->requestID = $requestID;
-        $obj->status = $status;
+        $obj->status = $status instanceof Status ? $status->value : $status;
 
         return $obj;
     }
@@ -83,12 +83,12 @@ final class WatchSendFeedbacksResponse implements BaseModel
     /**
      * The status of the feedbacks sending.
      *
-     * @param Status::* $status
+     * @param Status|value-of<Status> $status
      */
-    public function withStatus(string $status): self
+    public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status;
+        $obj->status = $status instanceof Status ? $status->value : $status;
 
         return $obj;
     }

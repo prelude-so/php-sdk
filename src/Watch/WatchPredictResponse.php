@@ -11,7 +11,7 @@ use Prelude\Watch\WatchPredictResponse\Prediction;
 
 /**
  * @phpstan-type watch_predict_response = array{
- *   id: string, prediction: Prediction::*, requestID: string
+ *   id: string, prediction: value-of<Prediction>, requestID: string
  * }
  */
 final class WatchPredictResponse implements BaseModel
@@ -28,7 +28,7 @@ final class WatchPredictResponse implements BaseModel
     /**
      * The prediction outcome.
      *
-     * @var Prediction::* $prediction
+     * @var value-of<Prediction> $prediction
      */
     #[Api(enum: Prediction::class)]
     public string $prediction;
@@ -63,17 +63,17 @@ final class WatchPredictResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Prediction::* $prediction
+     * @param Prediction|value-of<Prediction> $prediction
      */
     public static function with(
         string $id,
-        string $prediction,
+        Prediction|string $prediction,
         string $requestID
     ): self {
         $obj = new self;
 
         $obj->id = $id;
-        $obj->prediction = $prediction;
+        $obj->prediction = $prediction instanceof Prediction ? $prediction->value : $prediction;
         $obj->requestID = $requestID;
 
         return $obj;
@@ -93,12 +93,12 @@ final class WatchPredictResponse implements BaseModel
     /**
      * The prediction outcome.
      *
-     * @param Prediction::* $prediction
+     * @param Prediction|value-of<Prediction> $prediction
      */
-    public function withPrediction(string $prediction): self
+    public function withPrediction(Prediction|string $prediction): self
     {
         $obj = clone $this;
-        $obj->prediction = $prediction;
+        $obj->prediction = $prediction instanceof Prediction ? $prediction->value : $prediction;
 
         return $obj;
     }

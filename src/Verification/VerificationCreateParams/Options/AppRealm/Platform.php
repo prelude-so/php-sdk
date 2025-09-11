@@ -4,15 +4,10 @@ declare(strict_types=1);
 
 namespace Prelude\Verification\VerificationCreateParams\Options\AppRealm;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * The platform the SMS will be sent to. We are currently only supporting "android".
  */
-final class Platform implements ConverterSource
+enum Platform: string
 {
-    use SdkEnum;
-
-    public const ANDROID = 'android';
+    case ANDROID = 'android';
 }

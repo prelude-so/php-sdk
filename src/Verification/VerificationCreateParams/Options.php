@@ -20,8 +20,8 @@ use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
  *   codeSize?: int|null,
  *   customCode?: string|null,
  *   locale?: string|null,
- *   method?: Method::*|null,
- *   preferredChannel?: PreferredChannel::*|null,
+ *   method?: value-of<Method>|null,
+ *   preferredChannel?: value-of<PreferredChannel>|null,
  *   senderID?: string|null,
  *   templateID?: string|null,
  *   variables?: array<string, string>|null,
@@ -65,7 +65,7 @@ final class Options implements BaseModel
     /**
      * The method used for verifying this phone number. The 'voice' option provides an accessible alternative for visually impaired users by delivering the verification code through a phone call rather than a text message. It also allows verification of landline numbers that cannot receive SMS messages.
      *
-     * @var Method::*|null $method
+     * @var value-of<Method>|null $method
      */
     #[Api(enum: Method::class, optional: true)]
     public ?string $method;
@@ -73,7 +73,7 @@ final class Options implements BaseModel
     /**
      * The preferred channel to be used in priority for verification.
      *
-     * @var PreferredChannel::*|null $preferredChannel
+     * @var value-of<PreferredChannel>|null $preferredChannel
      */
     #[Api('preferred_channel', enum: PreferredChannel::class, optional: true)]
     public ?string $preferredChannel;
@@ -108,8 +108,8 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Method::* $method
-     * @param PreferredChannel::* $preferredChannel
+     * @param Method|value-of<Method> $method
+     * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
      * @param array<string, string> $variables
      */
     public static function with(
@@ -118,8 +118,8 @@ final class Options implements BaseModel
         ?int $codeSize = null,
         ?string $customCode = null,
         ?string $locale = null,
-        ?string $method = null,
-        ?string $preferredChannel = null,
+        Method|string|null $method = null,
+        PreferredChannel|string|null $preferredChannel = null,
         ?string $senderID = null,
         ?string $templateID = null,
         ?array $variables = null,
@@ -131,8 +131,8 @@ final class Options implements BaseModel
         null !== $codeSize && $obj->codeSize = $codeSize;
         null !== $customCode && $obj->customCode = $customCode;
         null !== $locale && $obj->locale = $locale;
-        null !== $method && $obj->method = $method;
-        null !== $preferredChannel && $obj->preferredChannel = $preferredChannel;
+        null !== $method && $obj->method = $method instanceof Method ? $method->value : $method;
+        null !== $preferredChannel && $obj->preferredChannel = $preferredChannel instanceof PreferredChannel ? $preferredChannel->value : $preferredChannel;
         null !== $senderID && $obj->senderID = $senderID;
         null !== $templateID && $obj->templateID = $templateID;
         null !== $variables && $obj->variables = $variables;
@@ -198,12 +198,12 @@ final class Options implements BaseModel
     /**
      * The method used for verifying this phone number. The 'voice' option provides an accessible alternative for visually impaired users by delivering the verification code through a phone call rather than a text message. It also allows verification of landline numbers that cannot receive SMS messages.
      *
-     * @param Method::* $method
+     * @param Method|value-of<Method> $method
      */
-    public function withMethod(string $method): self
+    public function withMethod(Method|string $method): self
     {
         $obj = clone $this;
-        $obj->method = $method;
+        $obj->method = $method instanceof Method ? $method->value : $method;
 
         return $obj;
     }
@@ -211,12 +211,13 @@ final class Options implements BaseModel
     /**
      * The preferred channel to be used in priority for verification.
      *
-     * @param PreferredChannel::* $preferredChannel
+     * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
      */
-    public function withPreferredChannel(string $preferredChannel): self
-    {
+    public function withPreferredChannel(
+        PreferredChannel|string $preferredChannel
+    ): self {
         $obj = clone $this;
-        $obj->preferredChannel = $preferredChannel;
+        $obj->preferredChannel = $preferredChannel instanceof PreferredChannel ? $preferredChannel->value : $preferredChannel;
 
         return $obj;
     }

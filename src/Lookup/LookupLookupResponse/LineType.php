@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Prelude\Lookup\LookupLookupResponse;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * The type of phone line.
  *   * `calling_cards` - Numbers that are associated with providers of pre-paid domestic and international calling cards.
@@ -29,45 +26,43 @@ use Prelude\Core\Conversion\Contracts\ConverterSource;
  *   * `voice_mail` - A specific category of Interactive Voice Response (IVR) services.
  *   * `voip` - Specific ranges for providers of VoIP services to allow incoming calls from the regular telephony network.
  */
-final class LineType implements ConverterSource
+enum LineType: string
 {
-    use SdkEnum;
+    case CALLING_CARDS = 'calling_cards';
 
-    public const CALLING_CARDS = 'calling_cards';
+    case FIXED_LINE = 'fixed_line';
 
-    public const FIXED_LINE = 'fixed_line';
+    case ISP = 'isp';
 
-    public const ISP = 'isp';
+    case LOCAL_RATE = 'local_rate';
 
-    public const LOCAL_RATE = 'local_rate';
+    case MOBILE = 'mobile';
 
-    public const MOBILE = 'mobile';
+    case OTHER = 'other';
 
-    public const OTHER = 'other';
+    case PAGER = 'pager';
 
-    public const PAGER = 'pager';
+    case PAYPHONE = 'payphone';
 
-    public const PAYPHONE = 'payphone';
+    case PREMIUM_RATE = 'premium_rate';
 
-    public const PREMIUM_RATE = 'premium_rate';
+    case SATELLITE = 'satellite';
 
-    public const SATELLITE = 'satellite';
+    case SERVICE = 'service';
 
-    public const SERVICE = 'service';
+    case SHARED_COST = 'shared_cost';
 
-    public const SHARED_COST = 'shared_cost';
+    case SHORT_CODES_COMMERCIAL = 'short_codes_commercial';
 
-    public const SHORT_CODES_COMMERCIAL = 'short_codes_commercial';
+    case TOLL_FREE = 'toll_free';
 
-    public const TOLL_FREE = 'toll_free';
+    case UNIVERSAL_ACCESS = 'universal_access';
 
-    public const UNIVERSAL_ACCESS = 'universal_access';
+    case UNKNOWN = 'unknown';
 
-    public const UNKNOWN = 'unknown';
+    case VPN = 'vpn';
 
-    public const VPN = 'vpn';
+    case VOICE_MAIL = 'voice_mail';
 
-    public const VOICE_MAIL = 'voice_mail';
-
-    public const VOIP = 'voip';
+    case VOIP = 'voip';
 }

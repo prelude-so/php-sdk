@@ -26,7 +26,7 @@ use Prelude\Lookup\LookupLookupParams\Type;
  *
  * @see Prelude\Lookup->lookup
  *
- * @phpstan-type lookup_lookup_params = array{type?: list<Type::*>}
+ * @phpstan-type lookup_lookup_params = array{type?: list<Type|value-of<Type>>}
  */
 final class LookupLookupParams implements BaseModel
 {
@@ -38,7 +38,7 @@ final class LookupLookupParams implements BaseModel
      * Optional features. Possible values are:
      *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
      *
-     * @var list<Type::*>|null $type
+     * @var list<value-of<Type>>|null $type
      */
     #[Api(list: Type::class, optional: true)]
     public ?array $type;
@@ -53,13 +53,13 @@ final class LookupLookupParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Type::*> $type
+     * @param list<Type|value-of<Type>> $type
      */
     public static function with(?array $type = null): self
     {
         $obj = new self;
 
-        null !== $type && $obj->type = $type;
+        null !== $type && $obj->type = array_map(fn ($v) => $v instanceof Type ? $v->value : $v, $type);
 
         return $obj;
     }
@@ -68,12 +68,12 @@ final class LookupLookupParams implements BaseModel
      * Optional features. Possible values are:
      *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
      *
-     * @param list<Type::*> $type
+     * @param list<Type|value-of<Type>> $type
      */
     public function withType(array $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj->type = array_map(fn ($v) => $v instanceof Type ? $v->value : $v, $type);
 
         return $obj;
     }

@@ -16,8 +16,8 @@ use Prelude\Lookup\LookupLookupResponse\OriginalNetworkInfo;
  * @phpstan-type lookup_lookup_response = array{
  *   callerName?: string|null,
  *   countryCode?: string|null,
- *   flags?: list<Flag::*>|null,
- *   lineType?: LineType::*|null,
+ *   flags?: list<value-of<Flag>>|null,
+ *   lineType?: value-of<LineType>|null,
  *   networkInfo?: NetworkInfo|null,
  *   originalNetworkInfo?: OriginalNetworkInfo|null,
  *   phoneNumber?: string|null,
@@ -45,7 +45,7 @@ final class LookupLookupResponse implements BaseModel
      *   * `ported` - Indicates the phone number has been transferred from one carrier to another.
      *   * `temporary` - Indicates the phone number is likely a temporary or virtual number, often used for verification services or burner phones.
      *
-     * @var list<Flag::*>|null $flags
+     * @var list<value-of<Flag>>|null $flags
      */
     #[Api(list: Flag::class, optional: true)]
     public ?array $flags;
@@ -72,7 +72,7 @@ final class LookupLookupResponse implements BaseModel
      *   * `voice_mail` - A specific category of Interactive Voice Response (IVR) services.
      *   * `voip` - Specific ranges for providers of VoIP services to allow incoming calls from the regular telephony network.
      *
-     * @var LineType::*|null $lineType
+     * @var value-of<LineType>|null $lineType
      */
     #[Api('line_type', enum: LineType::class, optional: true)]
     public ?string $lineType;
@@ -105,14 +105,14 @@ final class LookupLookupResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Flag::*> $flags
-     * @param LineType::* $lineType
+     * @param list<Flag|value-of<Flag>> $flags
+     * @param LineType|value-of<LineType> $lineType
      */
     public static function with(
         ?string $callerName = null,
         ?string $countryCode = null,
         ?array $flags = null,
-        ?string $lineType = null,
+        LineType|string|null $lineType = null,
         ?NetworkInfo $networkInfo = null,
         ?OriginalNetworkInfo $originalNetworkInfo = null,
         ?string $phoneNumber = null,
@@ -121,8 +121,8 @@ final class LookupLookupResponse implements BaseModel
 
         null !== $callerName && $obj->callerName = $callerName;
         null !== $countryCode && $obj->countryCode = $countryCode;
-        null !== $flags && $obj->flags = $flags;
-        null !== $lineType && $obj->lineType = $lineType;
+        null !== $flags && $obj->flags = array_map(fn ($v) => $v instanceof Flag ? $v->value : $v, $flags);
+        null !== $lineType && $obj->lineType = $lineType instanceof LineType ? $lineType->value : $lineType;
         null !== $networkInfo && $obj->networkInfo = $networkInfo;
         null !== $originalNetworkInfo && $obj->originalNetworkInfo = $originalNetworkInfo;
         null !== $phoneNumber && $obj->phoneNumber = $phoneNumber;
@@ -157,12 +157,12 @@ final class LookupLookupResponse implements BaseModel
      *   * `ported` - Indicates the phone number has been transferred from one carrier to another.
      *   * `temporary` - Indicates the phone number is likely a temporary or virtual number, often used for verification services or burner phones.
      *
-     * @param list<Flag::*> $flags
+     * @param list<Flag|value-of<Flag>> $flags
      */
     public function withFlags(array $flags): self
     {
         $obj = clone $this;
-        $obj->flags = $flags;
+        $obj->flags = array_map(fn ($v) => $v instanceof Flag ? $v->value : $v, $flags);
 
         return $obj;
     }
@@ -189,12 +189,12 @@ final class LookupLookupResponse implements BaseModel
      *   * `voice_mail` - A specific category of Interactive Voice Response (IVR) services.
      *   * `voip` - Specific ranges for providers of VoIP services to allow incoming calls from the regular telephony network.
      *
-     * @param LineType::* $lineType
+     * @param LineType|value-of<LineType> $lineType
      */
-    public function withLineType(string $lineType): self
+    public function withLineType(LineType|string $lineType): self
     {
         $obj = clone $this;
-        $obj->lineType = $lineType;
+        $obj->lineType = $lineType instanceof LineType ? $lineType->value : $lineType;
 
         return $obj;
     }

@@ -12,7 +12,7 @@ use Prelude\Verification\VerificationCheckResponse\Status;
 
 /**
  * @phpstan-type verification_check_response = array{
- *   status: Status::*,
+ *   status: value-of<Status>,
  *   id?: string|null,
  *   metadata?: Metadata|null,
  *   requestID?: string|null,
@@ -26,7 +26,7 @@ final class VerificationCheckResponse implements BaseModel
     /**
      * The status of the check.
      *
-     * @var Status::* $status
+     * @var value-of<Status> $status
      */
     #[Api(enum: Status::class)]
     public string $status;
@@ -70,17 +70,17 @@ final class VerificationCheckResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Status::* $status
+     * @param Status|value-of<Status> $status
      */
     public static function with(
-        string $status,
+        Status|string $status,
         ?string $id = null,
         ?Metadata $metadata = null,
         ?string $requestID = null,
     ): self {
         $obj = new self;
 
-        $obj->status = $status;
+        $obj->status = $status instanceof Status ? $status->value : $status;
 
         null !== $id && $obj->id = $id;
         null !== $metadata && $obj->metadata = $metadata;
@@ -92,12 +92,12 @@ final class VerificationCheckResponse implements BaseModel
     /**
      * The status of the check.
      *
-     * @param Status::* $status
+     * @param Status|value-of<Status> $status
      */
-    public function withStatus(string $status): self
+    public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status;
+        $obj->status = $status instanceof Status ? $status->value : $status;
 
         return $obj;
     }
