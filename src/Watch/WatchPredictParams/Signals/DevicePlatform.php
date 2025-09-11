@@ -4,23 +4,18 @@ declare(strict_types=1);
 
 namespace Prelude\Watch\WatchPredictParams\Signals;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * The type of the user's device.
  */
-final class DevicePlatform implements ConverterSource
+enum DevicePlatform: string
 {
-    use SdkEnum;
+    case ANDROID = 'android';
 
-    public const ANDROID = 'android';
+    case IOS = 'ios';
 
-    public const IOS = 'ios';
+    case IPADOS = 'ipados';
 
-    public const IPADOS = 'ipados';
+    case TVOS = 'tvos';
 
-    public const TVOS = 'tvos';
-
-    public const WEB = 'web';
+    case WEB = 'web';
 }

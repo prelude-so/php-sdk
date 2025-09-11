@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Lookup\LookupLookupParams;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
-final class Type implements ConverterSource
+enum Type: string
 {
-    use SdkEnum;
-
-    public const CNAM = 'cnam';
+    case CNAM = 'cnam';
 }

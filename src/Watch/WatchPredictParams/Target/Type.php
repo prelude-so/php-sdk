@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace Prelude\Watch\WatchPredictParams\Target;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * The type of the target. Either "phone_number" or "email_address".
  */
-final class Type implements ConverterSource
+enum Type: string
 {
-    use SdkEnum;
+    case PHONE_NUMBER = 'phone_number';
 
-    public const PHONE_NUMBER = 'phone_number';
-
-    public const EMAIL_ADDRESS = 'email_address';
+    case EMAIL_ADDRESS = 'email_address';
 }

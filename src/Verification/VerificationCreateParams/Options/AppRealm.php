@@ -12,7 +12,7 @@ use Prelude\Verification\VerificationCreateParams\Options\AppRealm\Platform;
 /**
  * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
  *
- * @phpstan-type app_realm = array{platform: Platform::*, value: string}
+ * @phpstan-type app_realm = array{platform: value-of<Platform>, value: string}
  */
 final class AppRealm implements BaseModel
 {
@@ -22,7 +22,7 @@ final class AppRealm implements BaseModel
     /**
      * The platform the SMS will be sent to. We are currently only supporting "android".
      *
-     * @var Platform::* $platform
+     * @var value-of<Platform> $platform
      */
     #[Api(enum: Platform::class)]
     public string $platform;
@@ -57,13 +57,13 @@ final class AppRealm implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Platform::* $platform
+     * @param Platform|value-of<Platform> $platform
      */
-    public static function with(string $platform, string $value): self
+    public static function with(Platform|string $platform, string $value): self
     {
         $obj = new self;
 
-        $obj->platform = $platform;
+        $obj->platform = $platform instanceof Platform ? $platform->value : $platform;
         $obj->value = $value;
 
         return $obj;
@@ -72,12 +72,12 @@ final class AppRealm implements BaseModel
     /**
      * The platform the SMS will be sent to. We are currently only supporting "android".
      *
-     * @param Platform::* $platform
+     * @param Platform|value-of<Platform> $platform
      */
-    public function withPlatform(string $platform): self
+    public function withPlatform(Platform|string $platform): self
     {
         $obj = clone $this;
-        $obj->platform = $platform;
+        $obj->platform = $platform instanceof Platform ? $platform->value : $platform;
 
         return $obj;
     }

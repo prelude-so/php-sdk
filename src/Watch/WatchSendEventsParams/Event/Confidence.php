@@ -4,23 +4,18 @@ declare(strict_types=1);
 
 namespace Prelude\Watch\WatchSendEventsParams\Event;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * A confidence level you want to assign to the event.
  */
-final class Confidence implements ConverterSource
+enum Confidence: string
 {
-    use SdkEnum;
+    case MAXIMUM = 'maximum';
 
-    public const MAXIMUM = 'maximum';
+    case HIGH = 'high';
 
-    public const HIGH = 'high';
+    case NEUTRAL = 'neutral';
 
-    public const NEUTRAL = 'neutral';
+    case LOW = 'low';
 
-    public const LOW = 'low';
-
-    public const MINIMUM = 'minimum';
+    case MINIMUM = 'minimum';
 }

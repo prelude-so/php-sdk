@@ -12,7 +12,7 @@ use Prelude\Watch\WatchPredictParams\Target\Type;
 /**
  * The prediction target. Only supports phone numbers for now.
  *
- * @phpstan-type target_alias = array{type: Type::*, value: string}
+ * @phpstan-type target_alias = array{type: value-of<Type>, value: string}
  */
 final class Target implements BaseModel
 {
@@ -22,7 +22,7 @@ final class Target implements BaseModel
     /**
      * The type of the target. Either "phone_number" or "email_address".
      *
-     * @var Type::* $type
+     * @var value-of<Type> $type
      */
     #[Api(enum: Type::class)]
     public string $type;
@@ -57,13 +57,13 @@ final class Target implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public static function with(string $type, string $value): self
+    public static function with(Type|string $type, string $value): self
     {
         $obj = new self;
 
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
         $obj->value = $value;
 
         return $obj;
@@ -72,12 +72,12 @@ final class Target implements BaseModel
     /**
      * The type of the target. Either "phone_number" or "email_address".
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public function withType(string $type): self
+    public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }

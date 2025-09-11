@@ -25,7 +25,7 @@ final class LookupService implements LookupContract
      *
      * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
      *
-     * @param list<Type::*> $type Optional features. Possible values are:
+     * @param list<Type|value-of<Type>> $type Optional features. Possible values are:
      *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
      */
     public function lookup(

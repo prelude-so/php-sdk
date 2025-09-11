@@ -4,21 +4,16 @@ declare(strict_types=1);
 
 namespace Prelude\Verification\VerificationNewResponse;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * The method used for verifying this phone number.
  */
-final class Method implements ConverterSource
+enum Method: string
 {
-    use SdkEnum;
+    case EMAIL = 'email';
 
-    public const EMAIL = 'email';
+    case MESSAGE = 'message';
 
-    public const MESSAGE = 'message';
+    case SILENT = 'silent';
 
-    public const SILENT = 'silent';
-
-    public const VOICE = 'voice';
+    case VOICE = 'voice';
 }

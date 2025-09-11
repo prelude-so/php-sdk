@@ -4,25 +4,20 @@ declare(strict_types=1);
 
 namespace Prelude\Verification\VerificationCreateParams\Options;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * The preferred channel to be used in priority for verification.
  */
-final class PreferredChannel implements ConverterSource
+enum PreferredChannel: string
 {
-    use SdkEnum;
+    case SMS = 'sms';
 
-    public const SMS = 'sms';
+    case RCS = 'rcs';
 
-    public const RCS = 'rcs';
+    case WHATSAPP = 'whatsapp';
 
-    public const WHATSAPP = 'whatsapp';
+    case VIBER = 'viber';
 
-    public const VIBER = 'viber';
+    case ZALO = 'zalo';
 
-    public const ZALO = 'zalo';
-
-    public const TELEGRAM = 'telegram';
+    case TELEGRAM = 'telegram';
 }

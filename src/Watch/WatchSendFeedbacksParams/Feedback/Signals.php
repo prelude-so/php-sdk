@@ -16,7 +16,7 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals\DevicePlatform;
  *   appVersion?: string|null,
  *   deviceID?: string|null,
  *   deviceModel?: string|null,
- *   devicePlatform?: DevicePlatform::*|null,
+ *   devicePlatform?: value-of<DevicePlatform>|null,
  *   ip?: string|null,
  *   isTrustedUser?: bool|null,
  *   osVersion?: string|null,
@@ -49,7 +49,7 @@ final class Signals implements BaseModel
     /**
      * The type of the user's device.
      *
-     * @var DevicePlatform::*|null $devicePlatform
+     * @var value-of<DevicePlatform>|null $devicePlatform
      */
     #[Api('device_platform', enum: DevicePlatform::class, optional: true)]
     public ?string $devicePlatform;
@@ -88,13 +88,13 @@ final class Signals implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param DevicePlatform::* $devicePlatform
+     * @param DevicePlatform|value-of<DevicePlatform> $devicePlatform
      */
     public static function with(
         ?string $appVersion = null,
         ?string $deviceID = null,
         ?string $deviceModel = null,
-        ?string $devicePlatform = null,
+        DevicePlatform|string|null $devicePlatform = null,
         ?string $ip = null,
         ?bool $isTrustedUser = null,
         ?string $osVersion = null,
@@ -105,7 +105,7 @@ final class Signals implements BaseModel
         null !== $appVersion && $obj->appVersion = $appVersion;
         null !== $deviceID && $obj->deviceID = $deviceID;
         null !== $deviceModel && $obj->deviceModel = $deviceModel;
-        null !== $devicePlatform && $obj->devicePlatform = $devicePlatform;
+        null !== $devicePlatform && $obj->devicePlatform = $devicePlatform instanceof DevicePlatform ? $devicePlatform->value : $devicePlatform;
         null !== $ip && $obj->ip = $ip;
         null !== $isTrustedUser && $obj->isTrustedUser = $isTrustedUser;
         null !== $osVersion && $obj->osVersion = $osVersion;
@@ -150,12 +150,13 @@ final class Signals implements BaseModel
     /**
      * The type of the user's device.
      *
-     * @param DevicePlatform::* $devicePlatform
+     * @param DevicePlatform|value-of<DevicePlatform> $devicePlatform
      */
-    public function withDevicePlatform(string $devicePlatform): self
-    {
+    public function withDevicePlatform(
+        DevicePlatform|string $devicePlatform
+    ): self {
         $obj = clone $this;
-        $obj->devicePlatform = $devicePlatform;
+        $obj->devicePlatform = $devicePlatform instanceof DevicePlatform ? $devicePlatform->value : $devicePlatform;
 
         return $obj;
     }

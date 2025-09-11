@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace Prelude\Verification\VerificationCheckResponse;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * The status of the check.
  */
-final class Status implements ConverterSource
+enum Status: string
 {
-    use SdkEnum;
+    case SUCCESS = 'success';
 
-    public const SUCCESS = 'success';
+    case FAILURE = 'failure';
 
-    public const FAILURE = 'failure';
-
-    public const EXPIRED_OR_NOT_FOUND = 'expired_or_not_found';
+    case EXPIRED_OR_NOT_FOUND = 'expired_or_not_found';
 }

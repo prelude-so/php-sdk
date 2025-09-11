@@ -4,26 +4,21 @@ declare(strict_types=1);
 
 namespace Prelude\Verification\VerificationNewResponse;
 
-use Prelude\Core\Concerns\SdkEnum;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-
-final class Channel implements ConverterSource
+enum Channel: string
 {
-    use SdkEnum;
+    case RCS = 'rcs';
 
-    public const RCS = 'rcs';
+    case SILENT = 'silent';
 
-    public const SILENT = 'silent';
+    case SMS = 'sms';
 
-    public const SMS = 'sms';
+    case TELEGRAM = 'telegram';
 
-    public const TELEGRAM = 'telegram';
+    case VIBER = 'viber';
 
-    public const VIBER = 'viber';
+    case VOICE = 'voice';
 
-    public const VOICE = 'voice';
+    case WHATSAPP = 'whatsapp';
 
-    public const WHATSAPP = 'whatsapp';
-
-    public const ZALO = 'zalo';
+    case ZALO = 'zalo';
 }

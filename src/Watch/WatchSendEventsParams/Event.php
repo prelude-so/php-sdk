@@ -12,7 +12,7 @@ use Prelude\Watch\WatchSendEventsParams\Event\Target;
 
 /**
  * @phpstan-type event_alias = array{
- *   confidence: Confidence::*, label: string, target: Target
+ *   confidence: value-of<Confidence>, label: string, target: Target
  * }
  */
 final class Event implements BaseModel
@@ -23,7 +23,7 @@ final class Event implements BaseModel
     /**
      * A confidence level you want to assign to the event.
      *
-     * @var Confidence::* $confidence
+     * @var value-of<Confidence> $confidence
      */
     #[Api(enum: Confidence::class)]
     public string $confidence;
@@ -64,16 +64,16 @@ final class Event implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Confidence::* $confidence
+     * @param Confidence|value-of<Confidence> $confidence
      */
     public static function with(
-        string $confidence,
+        Confidence|string $confidence,
         string $label,
         Target $target
     ): self {
         $obj = new self;
 
-        $obj->confidence = $confidence;
+        $obj->confidence = $confidence instanceof Confidence ? $confidence->value : $confidence;
         $obj->label = $label;
         $obj->target = $target;
 
@@ -83,12 +83,12 @@ final class Event implements BaseModel
     /**
      * A confidence level you want to assign to the event.
      *
-     * @param Confidence::* $confidence
+     * @param Confidence|value-of<Confidence> $confidence
      */
-    public function withConfidence(string $confidence): self
+    public function withConfidence(Confidence|string $confidence): self
     {
         $obj = clone $this;
-        $obj->confidence = $confidence;
+        $obj->confidence = $confidence instanceof Confidence ? $confidence->value : $confidence;
 
         return $obj;
     }

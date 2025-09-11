@@ -11,7 +11,7 @@ use Prelude\Watch\WatchSendEventsResponse\Status;
 
 /**
  * @phpstan-type watch_send_events_response = array{
- *   requestID: string, status: Status::*
+ *   requestID: string, status: value-of<Status>
  * }
  */
 final class WatchSendEventsResponse implements BaseModel
@@ -28,7 +28,7 @@ final class WatchSendEventsResponse implements BaseModel
     /**
      * The status of the events dispatch.
      *
-     * @var Status::* $status
+     * @var value-of<Status> $status
      */
     #[Api(enum: Status::class)]
     public string $status;
@@ -57,14 +57,14 @@ final class WatchSendEventsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Status::* $status
+     * @param Status|value-of<Status> $status
      */
-    public static function with(string $requestID, string $status): self
+    public static function with(string $requestID, Status|string $status): self
     {
         $obj = new self;
 
         $obj->requestID = $requestID;
-        $obj->status = $status;
+        $obj->status = $status instanceof Status ? $status->value : $status;
 
         return $obj;
     }
@@ -83,12 +83,12 @@ final class WatchSendEventsResponse implements BaseModel
     /**
      * The status of the events dispatch.
      *
-     * @param Status::* $status
+     * @param Status|value-of<Status> $status
      */
-    public function withStatus(string $status): self
+    public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status;
+        $obj->status = $status instanceof Status ? $status->value : $status;
 
         return $obj;
     }
