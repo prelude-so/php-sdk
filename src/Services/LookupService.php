@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Core\Services;
+namespace Prelude\Services;
 
 use Prelude\Client;
-use Prelude\Core\ServiceContracts\LookupContract;
 use Prelude\Lookup\LookupLookupParams;
 use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\Lookup\LookupLookupResponse;
 use Prelude\RequestOptions;
+use Prelude\ServiceContracts\LookupContract;
 
 use const Prelude\Core\OMIT as omit;
 

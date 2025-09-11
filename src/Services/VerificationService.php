@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Core\Services;
+namespace Prelude\Services;
 
 use Prelude\Client;
-use Prelude\Core\ServiceContracts\VerificationContract;
 use Prelude\RequestOptions;
+use Prelude\ServiceContracts\VerificationContract;
 use Prelude\Verification\VerificationCheckParams;
 use Prelude\Verification\VerificationCheckParams\Target as Target1;
 use Prelude\Verification\VerificationCheckResponse;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Core\Services;
+namespace Prelude\Services;
 
 use Prelude\Client;
-use Prelude\Core\ServiceContracts\WatchContract;
 use Prelude\RequestOptions;
+use Prelude\ServiceContracts\WatchContract;
 use Prelude\Watch\WatchPredictParams;
 use Prelude\Watch\WatchPredictParams\Metadata;
 use Prelude\Watch\WatchPredictParams\Signals;

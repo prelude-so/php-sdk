@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Core\ServiceContracts;
+namespace Prelude\ServiceContracts;
 
 use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\Lookup\LookupLookupResponse;
