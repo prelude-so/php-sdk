@@ -7,10 +7,10 @@ namespace Prelude;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Prelude\Core\BaseClient;
-use Prelude\Core\Services\LookupService;
-use Prelude\Core\Services\TransactionalService;
-use Prelude\Core\Services\VerificationService;
-use Prelude\Core\Services\WatchService;
+use Prelude\Services\LookupService;
+use Prelude\Services\TransactionalService;
+use Prelude\Services\VerificationService;
+use Prelude\Services\WatchService;
 
 class Client extends BaseClient
 {

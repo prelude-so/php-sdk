@@ -2,27 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Prelude\Core\Services;
+namespace Prelude\ServiceContracts;
 
-use Prelude\Client;
-use Prelude\Core\ServiceContracts\TransactionalContract;
 use Prelude\RequestOptions;
-use Prelude\Transactional\TransactionalSendParams;
 use Prelude\Transactional\TransactionalSendResponse;
 
 use const Prelude\Core\OMIT as omit;
 
-final class TransactionalService implements TransactionalContract
+interface TransactionalContract
 {
     /**
-     * @internal
-     */
-    public function __construct(private Client $client) {}
-
-    /**
      * @api
-     *
-     * Send a transactional message to your user.
      *
      * @param string $templateID the template identifier
      * @param string $to the recipient's phone number
@@ -44,28 +34,5 @@ final class TransactionalService implements TransactionalContract
         $locale = omit,
         $variables = omit,
         ?RequestOptions $requestOptions = null,
-    ): TransactionalSendResponse {
-        [$parsed, $options] = TransactionalSendParams::parseRequest(
-            [
-                'templateID' => $templateID,
-                'to' => $to,
-                'callbackURL' => $callbackURL,
-                'correlationID' => $correlationID,
-                'expiresAt' => $expiresAt,
-                'from' => $from,
-                'locale' => $locale,
-                'variables' => $variables,
-            ],
-            $requestOptions,
-        );
-
-        // @phpstan-ignore-next-line;
-        return $this->client->request(
-            method: 'post',
-            path: 'v2/transactional',
-            body: (object) $parsed,
-            options: $options,
-            convert: TransactionalSendResponse::class,
-        );
-    }
+    ): TransactionalSendResponse;
 }
