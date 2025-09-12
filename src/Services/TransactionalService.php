@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Exceptions\APIException;
 use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\TransactionalContract;
@@ -36,6 +37,8 @@ final class TransactionalService implements TransactionalContract
      * string,> $variables The variables to be replaced in the template
      *
      * @return TransactionalSendResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function send(
         $templateID,
@@ -48,18 +51,36 @@ final class TransactionalService implements TransactionalContract
         $variables = omit,
         ?RequestOptions $requestOptions = null,
     ): TransactionalSendResponse {
+        $params = [
+            'templateID' => $templateID,
+            'to' => $to,
+            'callbackURL' => $callbackURL,
+            'correlationID' => $correlationID,
+            'expiresAt' => $expiresAt,
+            'from' => $from,
+            'locale' => $locale,
+            'variables' => $variables,
+        ];
+
+        return $this->sendRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return TransactionalSendResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function sendRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): TransactionalSendResponse {
         [$parsed, $options] = TransactionalSendParams::parseRequest(
-            [
-                'templateID' => $templateID,
-                'to' => $to,
-                'callbackURL' => $callbackURL,
-                'correlationID' => $correlationID,
-                'expiresAt' => $expiresAt,
-                'from' => $from,
-                'locale' => $locale,
-                'variables' => $variables,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;

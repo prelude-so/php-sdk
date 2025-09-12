@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\ServiceContracts;
 
+use Prelude\Core\Exceptions\APIException;
 use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
 use Prelude\Transactional\TransactionalSendResponse;
@@ -26,6 +27,8 @@ interface TransactionalContract
      * string,> $variables The variables to be replaced in the template
      *
      * @return TransactionalSendResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function send(
         $templateID,
@@ -37,5 +40,19 @@ interface TransactionalContract
         $locale = omit,
         $variables = omit,
         ?RequestOptions $requestOptions = null,
+    ): TransactionalSendResponse;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return TransactionalSendResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function sendRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
     ): TransactionalSendResponse;
 }

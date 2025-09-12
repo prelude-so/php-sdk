@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Exceptions\APIException;
 use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\WatchContract;
@@ -40,6 +41,8 @@ final class WatchService implements WatchContract
      * @param Signals $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
      * @return WatchPredictResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function predict(
         $target,
@@ -48,14 +51,32 @@ final class WatchService implements WatchContract
         $signals = omit,
         ?RequestOptions $requestOptions = null,
     ): WatchPredictResponse {
+        $params = [
+            'target' => $target,
+            'dispatchID' => $dispatchID,
+            'metadata' => $metadata,
+            'signals' => $signals,
+        ];
+
+        return $this->predictRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return WatchPredictResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function predictRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): WatchPredictResponse {
         [$parsed, $options] = WatchPredictParams::parseRequest(
-            [
-                'target' => $target,
-                'dispatchID' => $dispatchID,
-                'metadata' => $metadata,
-                'signals' => $signals,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -76,13 +97,33 @@ final class WatchService implements WatchContract
      * @param list<Event> $events a list of events to dispatch
      *
      * @return WatchSendEventsResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function sendEvents(
         $events,
         ?RequestOptions $requestOptions = null
     ): WatchSendEventsResponse {
+        $params = ['events' => $events];
+
+        return $this->sendEventsRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return WatchSendEventsResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function sendEventsRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): WatchSendEventsResponse {
         [$parsed, $options] = WatchSendEventsParams::parseRequest(
-            ['events' => $events],
+            $params,
             $requestOptions
         );
 
@@ -104,13 +145,33 @@ final class WatchService implements WatchContract
      * @param list<Feedback> $feedbacks a list of feedbacks to send
      *
      * @return WatchSendFeedbacksResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function sendFeedbacks(
         $feedbacks,
         ?RequestOptions $requestOptions = null
     ): WatchSendFeedbacksResponse {
+        $params = ['feedbacks' => $feedbacks];
+
+        return $this->sendFeedbacksRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return WatchSendFeedbacksResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function sendFeedbacksRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): WatchSendFeedbacksResponse {
         [$parsed, $options] = WatchSendFeedbacksParams::parseRequest(
-            ['feedbacks' => $feedbacks],
+            $params,
             $requestOptions
         );
 
