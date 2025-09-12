@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\ServiceContracts;
 
+use Prelude\Core\Exceptions\APIException;
 use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
 use Prelude\Watch\WatchPredictParams\Metadata;
@@ -28,6 +29,8 @@ interface WatchContract
      * @param Signals $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
      * @return WatchPredictResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function predict(
         $target,
@@ -40,9 +43,25 @@ interface WatchContract
     /**
      * @api
      *
+     * @param array<string, mixed> $params
+     *
+     * @return WatchPredictResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function predictRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): WatchPredictResponse;
+
+    /**
+     * @api
+     *
      * @param list<Event> $events a list of events to dispatch
      *
      * @return WatchSendEventsResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function sendEvents(
         $events,
@@ -52,12 +71,42 @@ interface WatchContract
     /**
      * @api
      *
+     * @param array<string, mixed> $params
+     *
+     * @return WatchSendEventsResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function sendEventsRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): WatchSendEventsResponse;
+
+    /**
+     * @api
+     *
      * @param list<Feedback> $feedbacks a list of feedbacks to send
      *
      * @return WatchSendFeedbacksResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function sendFeedbacks(
         $feedbacks,
+        ?RequestOptions $requestOptions = null
+    ): WatchSendFeedbacksResponse;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return WatchSendFeedbacksResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function sendFeedbacksRaw(
+        array $params,
         ?RequestOptions $requestOptions = null
     ): WatchSendFeedbacksResponse;
 }

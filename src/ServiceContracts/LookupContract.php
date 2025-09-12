@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\ServiceContracts;
 
+use Prelude\Core\Exceptions\APIException;
 use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\Lookup\LookupLookupResponse;
@@ -20,10 +21,27 @@ interface LookupContract
      *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
      *
      * @return LookupLookupResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function lookup(
         string $phoneNumber,
         $type = omit,
+        ?RequestOptions $requestOptions = null,
+    ): LookupLookupResponse;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return LookupLookupResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function lookupRaw(
+        string $phoneNumber,
+        array $params,
         ?RequestOptions $requestOptions = null,
     ): LookupLookupResponse;
 }

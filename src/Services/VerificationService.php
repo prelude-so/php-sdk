@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Exceptions\APIException;
 use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationContract;
@@ -39,6 +40,8 @@ final class VerificationService implements VerificationContract
      * @param Signals $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
      * @return VerificationNewResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function create(
         $target,
@@ -48,15 +51,33 @@ final class VerificationService implements VerificationContract
         $signals = omit,
         ?RequestOptions $requestOptions = null,
     ): VerificationNewResponse {
-        [$parsed, $options1] = VerificationCreateParams::parseRequest(
-            [
-                'target' => $target,
-                'dispatchID' => $dispatchID,
-                'metadata' => $metadata,
-                'options' => $options,
-                'signals' => $signals,
-            ],
-            $requestOptions,
+        $params = [
+            'target' => $target,
+            'dispatchID' => $dispatchID,
+            'metadata' => $metadata,
+            'options' => $options,
+            'signals' => $signals,
+        ];
+
+        return $this->createRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return VerificationNewResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function createRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): VerificationNewResponse {
+        [$parsed, $options] = VerificationCreateParams::parseRequest(
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -64,7 +85,7 @@ final class VerificationService implements VerificationContract
             method: 'post',
             path: 'v2/verification',
             body: (object) $parsed,
-            options: $options1,
+            options: $options,
             convert: VerificationNewResponse::class,
         );
     }
@@ -78,14 +99,34 @@ final class VerificationService implements VerificationContract
      * @param Target1 $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      *
      * @return VerificationCheckResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function check(
         $code,
         $target,
         ?RequestOptions $requestOptions = null
     ): VerificationCheckResponse {
+        $params = ['code' => $code, 'target' => $target];
+
+        return $this->checkRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return VerificationCheckResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function checkRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): VerificationCheckResponse {
         [$parsed, $options] = VerificationCheckParams::parseRequest(
-            ['code' => $code, 'target' => $target],
+            $params,
             $requestOptions
         );
 
