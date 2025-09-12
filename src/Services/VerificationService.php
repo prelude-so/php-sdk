@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationContract;
 use Prelude\Verification\VerificationCheckParams;
@@ -36,6 +37,8 @@ final class VerificationService implements VerificationContract
      * @param Metadata $metadata The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
      * @param Options $options Verification options
      * @param Signals $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     *
+     * @return VerificationNewResponse<HasRawResponse>
      */
     public function create(
         $target,
@@ -73,6 +76,8 @@ final class VerificationService implements VerificationContract
      *
      * @param string $code the OTP code to validate
      * @param Target1 $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     *
+     * @return VerificationCheckResponse<HasRawResponse>
      */
     public function check(
         $code,

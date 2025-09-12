@@ -12,11 +12,12 @@ use Prelude\Verification\VerificationCheckResponse\Status;
 
 /**
  * @phpstan-type verification_check_response = array{
- *   status: value-of<Status>,
- *   id?: string|null,
- *   metadata?: Metadata|null,
- *   requestID?: string|null,
+ *   status: value-of<Status>, id?: string, metadata?: Metadata, requestID?: string
  * }
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class VerificationCheckResponse implements BaseModel
 {

@@ -13,14 +13,14 @@ use Prelude\Verification\VerificationCreateParams\Signals\DevicePlatform;
  * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
  *
  * @phpstan-type signals_alias = array{
- *   appVersion?: string|null,
- *   deviceID?: string|null,
- *   deviceModel?: string|null,
- *   devicePlatform?: value-of<DevicePlatform>|null,
- *   ip?: string|null,
- *   isTrustedUser?: bool|null,
- *   osVersion?: string|null,
- *   userAgent?: string|null,
+ *   appVersion?: string,
+ *   deviceID?: string,
+ *   deviceModel?: string,
+ *   devicePlatform?: value-of<DevicePlatform>,
+ *   ip?: string,
+ *   isTrustedUser?: bool,
+ *   osVersion?: string,
+ *   userAgent?: string,
  * }
  */
 final class Signals implements BaseModel
