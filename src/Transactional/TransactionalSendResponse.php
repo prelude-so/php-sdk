@@ -16,10 +16,14 @@ use Prelude\Core\Contracts\BaseModel;
  *   templateID: string,
  *   to: string,
  *   variables: array<string, string>,
- *   callbackURL?: string|null,
- *   correlationID?: string|null,
- *   from?: string|null,
+ *   callbackURL?: string,
+ *   correlationID?: string,
+ *   from?: string,
  * }
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class TransactionalSendResponse implements BaseModel
 {

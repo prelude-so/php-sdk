@@ -14,14 +14,18 @@ use Prelude\Lookup\LookupLookupResponse\OriginalNetworkInfo;
 
 /**
  * @phpstan-type lookup_lookup_response = array{
- *   callerName?: string|null,
- *   countryCode?: string|null,
- *   flags?: list<value-of<Flag>>|null,
- *   lineType?: value-of<LineType>|null,
- *   networkInfo?: NetworkInfo|null,
- *   originalNetworkInfo?: OriginalNetworkInfo|null,
- *   phoneNumber?: string|null,
+ *   callerName?: string,
+ *   countryCode?: string,
+ *   flags?: list<value-of<Flag>>,
+ *   lineType?: value-of<LineType>,
+ *   networkInfo?: NetworkInfo,
+ *   originalNetworkInfo?: OriginalNetworkInfo,
+ *   phoneNumber?: string,
  * }
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class LookupLookupResponse implements BaseModel
 {

@@ -12,7 +12,7 @@ use Prelude\Core\Contracts\BaseModel;
  * The current carrier information.
  *
  * @phpstan-type network_info = array{
- *   carrierName?: string|null, mcc?: string|null, mnc?: string|null
+ *   carrierName?: string, mcc?: string, mnc?: string
  * }
  */
 final class NetworkInfo implements BaseModel

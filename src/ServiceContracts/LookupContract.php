@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\ServiceContracts;
 
+use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\Lookup\LookupLookupResponse;
 use Prelude\RequestOptions;
@@ -17,6 +18,8 @@ interface LookupContract
      *
      * @param list<Type|value-of<Type>> $type Optional features. Possible values are:
      *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
+     *
+     * @return LookupLookupResponse<HasRawResponse>
      */
     public function lookup(
         string $phoneNumber,

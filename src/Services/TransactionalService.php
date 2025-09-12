@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\TransactionalContract;
 use Prelude\Transactional\TransactionalSendParams;
@@ -33,6 +34,8 @@ final class TransactionalService implements TransactionalContract
      * @param string $locale A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, the default set on the template will be used.
      * @param array<string,
      * string,> $variables The variables to be replaced in the template
+     *
+     * @return TransactionalSendResponse<HasRawResponse>
      */
     public function send(
         $templateID,

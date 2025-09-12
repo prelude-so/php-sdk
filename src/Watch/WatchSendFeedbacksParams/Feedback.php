@@ -16,9 +16,9 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Type;
  * @phpstan-type feedback_alias = array{
  *   target: Target,
  *   type: value-of<Type>,
- *   dispatchID?: string|null,
- *   metadata?: Metadata|null,
- *   signals?: Signals|null,
+ *   dispatchID?: string,
+ *   metadata?: Metadata,
+ *   signals?: Signals,
  * }
  */
 final class Feedback implements BaseModel

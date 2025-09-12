@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\WatchContract;
 use Prelude\Watch\WatchPredictParams;
@@ -37,6 +38,8 @@ final class WatchService implements WatchContract
      * @param string $dispatchID the identifier of the dispatch that came from the front-end SDK
      * @param Metadata $metadata the metadata for this prediction
      * @param Signals $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     *
+     * @return WatchPredictResponse<HasRawResponse>
      */
     public function predict(
         $target,
@@ -71,6 +74,8 @@ final class WatchService implements WatchContract
      * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
      *
      * @param list<Event> $events a list of events to dispatch
+     *
+     * @return WatchSendEventsResponse<HasRawResponse>
      */
     public function sendEvents(
         $events,
@@ -97,6 +102,8 @@ final class WatchService implements WatchContract
      * Send feedback regarding your end-users verification funnel. Events will be analyzed for proactive fraud prevention and risk scoring.
      *
      * @param list<Feedback> $feedbacks a list of feedbacks to send
+     *
+     * @return WatchSendFeedbacksResponse<HasRawResponse>
      */
     public function sendFeedbacks(
         $feedbacks,
