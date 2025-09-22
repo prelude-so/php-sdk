@@ -120,7 +120,6 @@ use Prelude\Verification\VerificationCreateParams\Target;
 $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
-
 $result = $client->verification->create(
   target: Target::with(type: "phone_number", value: "+30123456789"),
   requestOptions: RequestOptions::with(maxRetries: 5),
