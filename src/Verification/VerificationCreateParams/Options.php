@@ -8,6 +8,7 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCreateParams\Options\AppRealm;
+use Prelude\Verification\VerificationCreateParams\Options\Integration;
 use Prelude\Verification\VerificationCreateParams\Options\Method;
 use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
 
@@ -19,6 +20,7 @@ use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
  *   callbackURL?: string,
  *   codeSize?: int,
  *   customCode?: string,
+ *   integration?: value-of<Integration>,
  *   locale?: string,
  *   method?: value-of<Method>,
  *   preferredChannel?: value-of<PreferredChannel>,
@@ -55,6 +57,14 @@ final class Options implements BaseModel
      */
     #[Api('custom_code', optional: true)]
     public ?string $customCode;
+
+    /**
+     * The integration that triggered the verification.
+     *
+     * @var value-of<Integration>|null $integration
+     */
+    #[Api(enum: Integration::class, optional: true)]
+    public ?string $integration;
 
     /**
      * A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, it defaults to US English.
@@ -108,6 +118,7 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param Integration|value-of<Integration> $integration
      * @param Method|value-of<Method> $method
      * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
      * @param array<string, string> $variables
@@ -117,6 +128,7 @@ final class Options implements BaseModel
         ?string $callbackURL = null,
         ?int $codeSize = null,
         ?string $customCode = null,
+        Integration|string|null $integration = null,
         ?string $locale = null,
         Method|string|null $method = null,
         PreferredChannel|string|null $preferredChannel = null,
@@ -130,6 +142,7 @@ final class Options implements BaseModel
         null !== $callbackURL && $obj->callbackURL = $callbackURL;
         null !== $codeSize && $obj->codeSize = $codeSize;
         null !== $customCode && $obj->customCode = $customCode;
+        null !== $integration && $obj->integration = $integration instanceof Integration ? $integration->value : $integration;
         null !== $locale && $obj->locale = $locale;
         null !== $method && $obj->method = $method instanceof Method ? $method->value : $method;
         null !== $preferredChannel && $obj->preferredChannel = $preferredChannel instanceof PreferredChannel ? $preferredChannel->value : $preferredChannel;
@@ -180,6 +193,19 @@ final class Options implements BaseModel
     {
         $obj = clone $this;
         $obj->customCode = $customCode;
+
+        return $obj;
+    }
+
+    /**
+     * The integration that triggered the verification.
+     *
+     * @param Integration|value-of<Integration> $integration
+     */
+    public function withIntegration(Integration|string $integration): self
+    {
+        $obj = clone $this;
+        $obj->integration = $integration instanceof Integration ? $integration->value : $integration;
 
         return $obj;
     }
