@@ -19,6 +19,7 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals\DevicePlatform;
  *   devicePlatform?: value-of<DevicePlatform>,
  *   ip?: string,
  *   isTrustedUser?: bool,
+ *   ja4Fingerprint?: string,
  *   osVersion?: string,
  *   userAgent?: string,
  * }
@@ -67,6 +68,12 @@ final class Signals implements BaseModel
     public ?bool $isTrustedUser;
 
     /**
+     * The JA4 fingerprint observed for the connection. Prelude will infer it automatically when requests go through our client SDK (which uses Prelude's edge), but you can also provide it explicitly if you terminate TLS yourself.
+     */
+    #[Api('ja4_fingerprint', optional: true)]
+    public ?string $ja4Fingerprint;
+
+    /**
      * The version of the user's device operating system.
      */
     #[Api('os_version', optional: true)]
@@ -97,6 +104,7 @@ final class Signals implements BaseModel
         DevicePlatform|string|null $devicePlatform = null,
         ?string $ip = null,
         ?bool $isTrustedUser = null,
+        ?string $ja4Fingerprint = null,
         ?string $osVersion = null,
         ?string $userAgent = null,
     ): self {
@@ -108,6 +116,7 @@ final class Signals implements BaseModel
         null !== $devicePlatform && $obj->devicePlatform = $devicePlatform instanceof DevicePlatform ? $devicePlatform->value : $devicePlatform;
         null !== $ip && $obj->ip = $ip;
         null !== $isTrustedUser && $obj->isTrustedUser = $isTrustedUser;
+        null !== $ja4Fingerprint && $obj->ja4Fingerprint = $ja4Fingerprint;
         null !== $osVersion && $obj->osVersion = $osVersion;
         null !== $userAgent && $obj->userAgent = $userAgent;
 
@@ -179,6 +188,17 @@ final class Signals implements BaseModel
     {
         $obj = clone $this;
         $obj->isTrustedUser = $isTrustedUser;
+
+        return $obj;
+    }
+
+    /**
+     * The JA4 fingerprint observed for the connection. Prelude will infer it automatically when requests go through our client SDK (which uses Prelude's edge), but you can also provide it explicitly if you terminate TLS yourself.
+     */
+    public function withJa4Fingerprint(string $ja4Fingerprint): self
+    {
+        $obj = clone $this;
+        $obj->ja4Fingerprint = $ja4Fingerprint;
 
         return $obj;
     }
