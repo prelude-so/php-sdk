@@ -6,7 +6,6 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Verification\VerificationCheckParams\Target as Target1;
 use Prelude\Verification\VerificationCreateParams\Target;
 use Tests\UnsupportedMockTests;
 
@@ -61,7 +60,10 @@ final class VerificationTest extends TestCase
     {
         $result = $this->client->verification->check(
             code: '12345',
-            target: Target1::with(type: 'phone_number', value: '+30123456789'),
+            target: Prelude\Verification\VerificationCheckParams\Target::with(
+                type: 'phone_number',
+                value: '+30123456789'
+            ),
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
@@ -72,7 +74,10 @@ final class VerificationTest extends TestCase
     {
         $result = $this->client->verification->check(
             code: '12345',
-            target: Target1::with(type: 'phone_number', value: '+30123456789'),
+            target: Prelude\Verification\VerificationCheckParams\Target::with(
+                type: 'phone_number',
+                value: '+30123456789'
+            ),
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType

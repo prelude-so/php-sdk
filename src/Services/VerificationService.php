@@ -10,7 +10,6 @@ use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationContract;
 use Prelude\Verification\VerificationCheckParams;
-use Prelude\Verification\VerificationCheckParams\Target as Target1;
 use Prelude\Verification\VerificationCheckResponse;
 use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Metadata;
@@ -96,7 +95,7 @@ final class VerificationService implements VerificationContract
      * Check the validity of a verification code.
      *
      * @param string $code the OTP code to validate
-     * @param Target1 $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     * @param Prelude\Verification\VerificationCheckParams\Target $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      *
      * @return VerificationCheckResponse<HasRawResponse>
      *

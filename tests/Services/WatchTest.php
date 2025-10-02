@@ -8,11 +8,9 @@ use PHPUnit\Framework\TestCase;
 use Prelude\Client;
 use Prelude\Watch\WatchPredictParams\Target;
 use Prelude\Watch\WatchSendEventsParams\Event;
-use Prelude\Watch\WatchSendEventsParams\Event\Target as Target1;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target as Target2;
 
 /**
  * @internal
@@ -60,7 +58,10 @@ final class WatchTest extends TestCase
                 Event::with(
                     confidence: 'maximum',
                     label: 'onboarding.start',
-                    target: Target1::with(type: 'phone_number', value: '+30123456789'),
+                    target: Prelude\Watch\WatchSendEventsParams\Event\Target::with(
+                        type: 'phone_number',
+                        value: '+30123456789'
+                    ),
                 ),
             ],
         );
@@ -76,7 +77,10 @@ final class WatchTest extends TestCase
                 Event::with(
                     confidence: 'maximum',
                     label: 'onboarding.start',
-                    target: Target1::with(type: 'phone_number', value: '+30123456789'),
+                    target: Prelude\Watch\WatchSendEventsParams\Event\Target::with(
+                        type: 'phone_number',
+                        value: '+30123456789'
+                    ),
                 ),
             ],
         );
@@ -90,7 +94,10 @@ final class WatchTest extends TestCase
         $result = $this->client->watch->sendFeedbacks(
             [
                 Feedback::with(
-                    target: Target2::with(type: 'phone_number', value: '+30123456789'),
+                    target: Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target::with(
+                        type: 'phone_number',
+                        value: '+30123456789'
+                    ),
                     type: 'verification.started',
                 ),
             ],
@@ -105,7 +112,10 @@ final class WatchTest extends TestCase
         $result = $this->client->watch->sendFeedbacks(
             [
                 Feedback::with(
-                    target: Target2::with(type: 'phone_number', value: '+30123456789'),
+                    target: Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target::with(
+                        type: 'phone_number',
+                        value: '+30123456789'
+                    ),
                     type: 'verification.started',
                 )
                     ->withDispatchID('123e4567-e89b-12d3-a456-426614174000')
