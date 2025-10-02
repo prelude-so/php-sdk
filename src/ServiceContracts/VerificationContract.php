@@ -7,7 +7,6 @@ namespace Prelude\ServiceContracts;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
-use Prelude\Verification\VerificationCheckParams\Target as Target1;
 use Prelude\Verification\VerificationCheckResponse;
 use Prelude\Verification\VerificationCreateParams\Metadata;
 use Prelude\Verification\VerificationCreateParams\Options;
@@ -59,7 +58,7 @@ interface VerificationContract
      * @api
      *
      * @param string $code the OTP code to validate
-     * @param Target1 $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     * @param Prelude\Verification\VerificationCheckParams\Target $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      *
      * @return VerificationCheckResponse<HasRawResponse>
      *
