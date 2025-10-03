@@ -6,7 +6,6 @@ namespace Prelude\Services;
 
 use Prelude\Client;
 use Prelude\Core\Exceptions\APIException;
-use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\Lookup\LookupLookupParams;
 use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\Lookup\LookupLookupResponse;
@@ -30,8 +29,6 @@ final class LookupService implements LookupContract
      * @param list<Type|value-of<Type>> $type Optional features. Possible values are:
      *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
      *
-     * @return LookupLookupResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function lookup(
@@ -48,8 +45,6 @@ final class LookupService implements LookupContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return LookupLookupResponse<HasRawResponse>
      *
      * @throws APIException
      */

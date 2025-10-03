@@ -6,7 +6,9 @@ namespace Prelude\Verification;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Verification\VerificationNewResponse\Channel;
 use Prelude\Verification\VerificationNewResponse\Metadata;
 use Prelude\Verification\VerificationNewResponse\Method;
@@ -25,15 +27,13 @@ use Prelude\Verification\VerificationNewResponse\Status;
  *   requestID?: string,
  *   silent?: Silent,
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class VerificationNewResponse implements BaseModel
+final class VerificationNewResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<verification_new_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * The verification identifier.
@@ -138,12 +138,12 @@ final class VerificationNewResponse implements BaseModel
         $obj = new self;
 
         $obj->id = $id;
-        $obj->method = $method instanceof Method ? $method->value : $method;
-        $obj->status = $status instanceof Status ? $status->value : $status;
+        $obj['method'] = $method;
+        $obj['status'] = $status;
 
-        null !== $channels && $obj->channels = array_map(fn ($v) => $v instanceof Channel ? $v->value : $v, $channels);
+        null !== $channels && $obj['channels'] = $channels;
         null !== $metadata && $obj->metadata = $metadata;
-        null !== $reason && $obj->reason = $reason instanceof Reason ? $reason->value : $reason;
+        null !== $reason && $obj['reason'] = $reason;
         null !== $requestID && $obj->requestID = $requestID;
         null !== $silent && $obj->silent = $silent;
 
@@ -169,7 +169,7 @@ final class VerificationNewResponse implements BaseModel
     public function withMethod(Method|string $method): self
     {
         $obj = clone $this;
-        $obj->method = $method instanceof Method ? $method->value : $method;
+        $obj['method'] = $method;
 
         return $obj;
     }
@@ -182,7 +182,7 @@ final class VerificationNewResponse implements BaseModel
     public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status instanceof Status ? $status->value : $status;
+        $obj['status'] = $status;
 
         return $obj;
     }
@@ -195,7 +195,7 @@ final class VerificationNewResponse implements BaseModel
     public function withChannels(array $channels): self
     {
         $obj = clone $this;
-        $obj->channels = array_map(fn ($v) => $v instanceof Channel ? $v->value : $v, $channels);
+        $obj['channels'] = $channels;
 
         return $obj;
     }
@@ -227,7 +227,7 @@ final class VerificationNewResponse implements BaseModel
     public function withReason(Reason|string $reason): self
     {
         $obj = clone $this;
-        $obj->reason = $reason instanceof Reason ? $reason->value : $reason;
+        $obj['reason'] = $reason;
 
         return $obj;
     }

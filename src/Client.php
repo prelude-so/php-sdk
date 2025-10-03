@@ -40,7 +40,7 @@ class Client extends BaseClient
     {
         $this->apiToken = (string) ($apiToken ?? getenv('API_TOKEN'));
 
-        $base = $baseUrl ?? getenv('PRELUDE_BASE_URL') ?: 'https://api.prelude.dev';
+        $baseUrl ??= getenv('PRELUDE_BASE_URL') ?: 'https://api.prelude.dev';
 
         $options = RequestOptions::with(
             uriFactory: Psr17FactoryDiscovery::findUriFactory(),
@@ -53,7 +53,7 @@ class Client extends BaseClient
             headers: [
                 'Content-Type' => 'application/json', 'Accept' => 'application/json',
             ],
-            baseUrl: $base,
+            baseUrl: $baseUrl,
             options: $options,
         );
 

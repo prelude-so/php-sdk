@@ -73,7 +73,7 @@ final class Event implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->confidence = $confidence instanceof Confidence ? $confidence->value : $confidence;
+        $obj['confidence'] = $confidence;
         $obj->label = $label;
         $obj->target = $target;
 
@@ -88,7 +88,7 @@ final class Event implements BaseModel
     public function withConfidence(Confidence|string $confidence): self
     {
         $obj = clone $this;
-        $obj->confidence = $confidence instanceof Confidence ? $confidence->value : $confidence;
+        $obj['confidence'] = $confidence;
 
         return $obj;
     }

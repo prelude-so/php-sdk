@@ -6,7 +6,9 @@ namespace Prelude\Lookup;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Lookup\LookupLookupResponse\Flag;
 use Prelude\Lookup\LookupLookupResponse\LineType;
 use Prelude\Lookup\LookupLookupResponse\NetworkInfo;
@@ -22,15 +24,13 @@ use Prelude\Lookup\LookupLookupResponse\OriginalNetworkInfo;
  *   originalNetworkInfo?: OriginalNetworkInfo,
  *   phoneNumber?: string,
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class LookupLookupResponse implements BaseModel
+final class LookupLookupResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<lookup_lookup_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * The CNAM (Caller ID Name) associated with the phone number. Contact us if you need to use this functionality. Once enabled, put `cnam` option to `type` query parameter.
@@ -125,8 +125,8 @@ final class LookupLookupResponse implements BaseModel
 
         null !== $callerName && $obj->callerName = $callerName;
         null !== $countryCode && $obj->countryCode = $countryCode;
-        null !== $flags && $obj->flags = array_map(fn ($v) => $v instanceof Flag ? $v->value : $v, $flags);
-        null !== $lineType && $obj->lineType = $lineType instanceof LineType ? $lineType->value : $lineType;
+        null !== $flags && $obj['flags'] = $flags;
+        null !== $lineType && $obj['lineType'] = $lineType;
         null !== $networkInfo && $obj->networkInfo = $networkInfo;
         null !== $originalNetworkInfo && $obj->originalNetworkInfo = $originalNetworkInfo;
         null !== $phoneNumber && $obj->phoneNumber = $phoneNumber;
@@ -166,7 +166,7 @@ final class LookupLookupResponse implements BaseModel
     public function withFlags(array $flags): self
     {
         $obj = clone $this;
-        $obj->flags = array_map(fn ($v) => $v instanceof Flag ? $v->value : $v, $flags);
+        $obj['flags'] = $flags;
 
         return $obj;
     }
@@ -198,7 +198,7 @@ final class LookupLookupResponse implements BaseModel
     public function withLineType(LineType|string $lineType): self
     {
         $obj = clone $this;
-        $obj->lineType = $lineType instanceof LineType ? $lineType->value : $lineType;
+        $obj['lineType'] = $lineType;
 
         return $obj;
     }

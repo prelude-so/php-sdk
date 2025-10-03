@@ -6,22 +6,22 @@ namespace Prelude\Watch;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Watch\WatchPredictResponse\Prediction;
 
 /**
  * @phpstan-type watch_predict_response = array{
  *   id: string, prediction: value-of<Prediction>, requestID: string
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class WatchPredictResponse implements BaseModel
+final class WatchPredictResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<watch_predict_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * The prediction identifier.
@@ -77,7 +77,7 @@ final class WatchPredictResponse implements BaseModel
         $obj = new self;
 
         $obj->id = $id;
-        $obj->prediction = $prediction instanceof Prediction ? $prediction->value : $prediction;
+        $obj['prediction'] = $prediction;
         $obj->requestID = $requestID;
 
         return $obj;
@@ -102,7 +102,7 @@ final class WatchPredictResponse implements BaseModel
     public function withPrediction(Prediction|string $prediction): self
     {
         $obj = clone $this;
-        $obj->prediction = $prediction instanceof Prediction ? $prediction->value : $prediction;
+        $obj['prediction'] = $prediction;
 
         return $obj;
     }

@@ -6,7 +6,9 @@ namespace Prelude\Verification;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Verification\VerificationCheckResponse\Metadata;
 use Prelude\Verification\VerificationCheckResponse\Status;
 
@@ -14,15 +16,13 @@ use Prelude\Verification\VerificationCheckResponse\Status;
  * @phpstan-type verification_check_response = array{
  *   status: value-of<Status>, id?: string, metadata?: Metadata, requestID?: string
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class VerificationCheckResponse implements BaseModel
+final class VerificationCheckResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<verification_check_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * The status of the check.
@@ -81,7 +81,7 @@ final class VerificationCheckResponse implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->status = $status instanceof Status ? $status->value : $status;
+        $obj['status'] = $status;
 
         null !== $id && $obj->id = $id;
         null !== $metadata && $obj->metadata = $metadata;
@@ -98,7 +98,7 @@ final class VerificationCheckResponse implements BaseModel
     public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status instanceof Status ? $status->value : $status;
+        $obj['status'] = $status;
 
         return $obj;
     }

@@ -142,10 +142,10 @@ final class Options implements BaseModel
         null !== $callbackURL && $obj->callbackURL = $callbackURL;
         null !== $codeSize && $obj->codeSize = $codeSize;
         null !== $customCode && $obj->customCode = $customCode;
-        null !== $integration && $obj->integration = $integration instanceof Integration ? $integration->value : $integration;
+        null !== $integration && $obj['integration'] = $integration;
         null !== $locale && $obj->locale = $locale;
-        null !== $method && $obj->method = $method instanceof Method ? $method->value : $method;
-        null !== $preferredChannel && $obj->preferredChannel = $preferredChannel instanceof PreferredChannel ? $preferredChannel->value : $preferredChannel;
+        null !== $method && $obj['method'] = $method;
+        null !== $preferredChannel && $obj['preferredChannel'] = $preferredChannel;
         null !== $senderID && $obj->senderID = $senderID;
         null !== $templateID && $obj->templateID = $templateID;
         null !== $variables && $obj->variables = $variables;
@@ -205,7 +205,7 @@ final class Options implements BaseModel
     public function withIntegration(Integration|string $integration): self
     {
         $obj = clone $this;
-        $obj->integration = $integration instanceof Integration ? $integration->value : $integration;
+        $obj['integration'] = $integration;
 
         return $obj;
     }
@@ -229,7 +229,7 @@ final class Options implements BaseModel
     public function withMethod(Method|string $method): self
     {
         $obj = clone $this;
-        $obj->method = $method instanceof Method ? $method->value : $method;
+        $obj['method'] = $method;
 
         return $obj;
     }
@@ -243,7 +243,7 @@ final class Options implements BaseModel
         PreferredChannel|string $preferredChannel
     ): self {
         $obj = clone $this;
-        $obj->preferredChannel = $preferredChannel instanceof PreferredChannel ? $preferredChannel->value : $preferredChannel;
+        $obj['preferredChannel'] = $preferredChannel;
 
         return $obj;
     }
