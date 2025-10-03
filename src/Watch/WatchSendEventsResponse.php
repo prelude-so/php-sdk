@@ -6,22 +6,22 @@ namespace Prelude\Watch;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Watch\WatchSendEventsResponse\Status;
 
 /**
  * @phpstan-type watch_send_events_response = array{
  *   requestID: string, status: value-of<Status>
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class WatchSendEventsResponse implements BaseModel
+final class WatchSendEventsResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<watch_send_events_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * A string that identifies this specific request. Report it back to us to help us diagnose your issues.
@@ -68,7 +68,7 @@ final class WatchSendEventsResponse implements BaseModel
         $obj = new self;
 
         $obj->requestID = $requestID;
-        $obj->status = $status instanceof Status ? $status->value : $status;
+        $obj['status'] = $status;
 
         return $obj;
     }
@@ -92,7 +92,7 @@ final class WatchSendEventsResponse implements BaseModel
     public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status instanceof Status ? $status->value : $status;
+        $obj['status'] = $status;
 
         return $obj;
     }

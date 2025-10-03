@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Prelude\ServiceContracts;
 
 use Prelude\Core\Exceptions\APIException;
-use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
 use Prelude\Verification\VerificationCheckResponse;
 use Prelude\Verification\VerificationCreateParams\Metadata;
@@ -27,8 +26,6 @@ interface VerificationContract
      * @param Options $options Verification options
      * @param Signals $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
-     * @return VerificationNewResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function create(
@@ -45,8 +42,6 @@ interface VerificationContract
      *
      * @param array<string, mixed> $params
      *
-     * @return VerificationNewResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function createRaw(
@@ -60,8 +55,6 @@ interface VerificationContract
      * @param string $code the OTP code to validate
      * @param Prelude\Verification\VerificationCheckParams\Target $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      *
-     * @return VerificationCheckResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function check(
@@ -74,8 +67,6 @@ interface VerificationContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return VerificationCheckResponse<HasRawResponse>
      *
      * @throws APIException
      */

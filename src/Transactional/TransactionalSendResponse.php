@@ -6,7 +6,9 @@ namespace Prelude\Transactional;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
+use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type transactional_send_response = array{
@@ -20,15 +22,13 @@ use Prelude\Core\Contracts\BaseModel;
  *   correlationID?: string,
  *   from?: string,
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class TransactionalSendResponse implements BaseModel
+final class TransactionalSendResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<transactional_send_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * The message identifier.

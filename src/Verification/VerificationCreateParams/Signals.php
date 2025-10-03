@@ -113,7 +113,7 @@ final class Signals implements BaseModel
         null !== $appVersion && $obj->appVersion = $appVersion;
         null !== $deviceID && $obj->deviceID = $deviceID;
         null !== $deviceModel && $obj->deviceModel = $deviceModel;
-        null !== $devicePlatform && $obj->devicePlatform = $devicePlatform instanceof DevicePlatform ? $devicePlatform->value : $devicePlatform;
+        null !== $devicePlatform && $obj['devicePlatform'] = $devicePlatform;
         null !== $ip && $obj->ip = $ip;
         null !== $isTrustedUser && $obj->isTrustedUser = $isTrustedUser;
         null !== $ja4Fingerprint && $obj->ja4Fingerprint = $ja4Fingerprint;
@@ -165,7 +165,7 @@ final class Signals implements BaseModel
         DevicePlatform|string $devicePlatform
     ): self {
         $obj = clone $this;
-        $obj->devicePlatform = $devicePlatform instanceof DevicePlatform ? $devicePlatform->value : $devicePlatform;
+        $obj['devicePlatform'] = $devicePlatform;
 
         return $obj;
     }

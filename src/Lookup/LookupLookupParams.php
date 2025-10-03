@@ -59,7 +59,7 @@ final class LookupLookupParams implements BaseModel
     {
         $obj = new self;
 
-        null !== $type && $obj->type = array_map(fn ($v) => $v instanceof Type ? $v->value : $v, $type);
+        null !== $type && $obj['type'] = $type;
 
         return $obj;
     }
@@ -73,7 +73,7 @@ final class LookupLookupParams implements BaseModel
     public function withType(array $type): self
     {
         $obj = clone $this;
-        $obj->type = array_map(fn ($v) => $v instanceof Type ? $v->value : $v, $type);
+        $obj['type'] = $type;
 
         return $obj;
     }

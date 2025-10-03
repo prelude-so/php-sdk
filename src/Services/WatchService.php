@@ -6,7 +6,6 @@ namespace Prelude\Services;
 
 use Prelude\Client;
 use Prelude\Core\Exceptions\APIException;
-use Prelude\Core\Implementation\HasRawResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\WatchContract;
 use Prelude\Watch\WatchPredictParams;
@@ -40,8 +39,6 @@ final class WatchService implements WatchContract
      * @param Metadata $metadata the metadata for this prediction
      * @param Signals $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
-     * @return WatchPredictResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function predict(
@@ -65,8 +62,6 @@ final class WatchService implements WatchContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return WatchPredictResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -96,8 +91,6 @@ final class WatchService implements WatchContract
      *
      * @param list<Event> $events a list of events to dispatch
      *
-     * @return WatchSendEventsResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function sendEvents(
@@ -113,8 +106,6 @@ final class WatchService implements WatchContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return WatchSendEventsResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -144,8 +135,6 @@ final class WatchService implements WatchContract
      *
      * @param list<Feedback> $feedbacks a list of feedbacks to send
      *
-     * @return WatchSendFeedbacksResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function sendFeedbacks(
@@ -161,8 +150,6 @@ final class WatchService implements WatchContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return WatchSendFeedbacksResponse<HasRawResponse>
      *
      * @throws APIException
      */
