@@ -58,7 +58,7 @@ final class WatchTest extends TestCase
                 Event::with(
                     confidence: 'maximum',
                     label: 'onboarding.start',
-                    target: Prelude\Watch\WatchSendEventsParams\Event\Target::with(
+                    target: Event\Target::with(
                         type: 'phone_number',
                         value: '+30123456789'
                     ),
@@ -77,7 +77,7 @@ final class WatchTest extends TestCase
                 Event::with(
                     confidence: 'maximum',
                     label: 'onboarding.start',
-                    target: Prelude\Watch\WatchSendEventsParams\Event\Target::with(
+                    target: Event\Target::with(
                         type: 'phone_number',
                         value: '+30123456789'
                     ),
@@ -94,7 +94,7 @@ final class WatchTest extends TestCase
         $result = $this->client->watch->sendFeedbacks(
             [
                 Feedback::with(
-                    target: Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target::with(
+                    target: Feedback\Target::with(
                         type: 'phone_number',
                         value: '+30123456789'
                     ),
@@ -112,7 +112,7 @@ final class WatchTest extends TestCase
         $result = $this->client->watch->sendFeedbacks(
             [
                 Feedback::with(
-                    target: Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target::with(
+                    target: Feedback\Target::with(
                         type: 'phone_number',
                         value: '+30123456789'
                     ),

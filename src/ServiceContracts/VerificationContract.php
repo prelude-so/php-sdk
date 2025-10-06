@@ -53,7 +53,7 @@ interface VerificationContract
      * @api
      *
      * @param string $code the OTP code to validate
-     * @param Prelude\Verification\VerificationCheckParams\Target $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     * @param \Prelude\Verification\VerificationCheckParams\Target $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      *
      * @throws APIException
      */
