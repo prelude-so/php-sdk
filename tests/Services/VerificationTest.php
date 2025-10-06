@@ -60,7 +60,7 @@ final class VerificationTest extends TestCase
     {
         $result = $this->client->verification->check(
             code: '12345',
-            target: Prelude\Verification\VerificationCheckParams\Target::with(
+            target: \Prelude\Verification\VerificationCheckParams\Target::with(
                 type: 'phone_number',
                 value: '+30123456789'
             ),
@@ -74,7 +74,7 @@ final class VerificationTest extends TestCase
     {
         $result = $this->client->verification->check(
             code: '12345',
-            target: Prelude\Verification\VerificationCheckParams\Target::with(
+            target: \Prelude\Verification\VerificationCheckParams\Target::with(
                 type: 'phone_number',
                 value: '+30123456789'
             ),
