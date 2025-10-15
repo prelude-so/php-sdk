@@ -9,6 +9,7 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Prelude\Core\BaseClient;
 use Prelude\Services\LookupService;
 use Prelude\Services\TransactionalService;
+use Prelude\Services\VerificationManagementService;
 use Prelude\Services\VerificationService;
 use Prelude\Services\WatchService;
 
@@ -30,6 +31,11 @@ class Client extends BaseClient
      * @api
      */
     public VerificationService $verification;
+
+    /**
+     * @api
+     */
+    public VerificationManagementService $verificationManagement;
 
     /**
      * @api
@@ -60,6 +66,7 @@ class Client extends BaseClient
         $this->lookup = new LookupService($this);
         $this->transactional = new TransactionalService($this);
         $this->verification = new VerificationService($this);
+        $this->verificationManagement = new VerificationManagementService($this);
         $this->watch = new WatchService($this);
     }
 
