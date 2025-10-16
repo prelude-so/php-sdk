@@ -16,7 +16,7 @@ use Prelude\Core\Contracts\BaseModel;
  * $params = (new VerificationManagementSubmitSenderIDParams); // set properties as needed
  * $client->verificationManagement->submitSenderID(...$params->toArray());
  * ```
- * This endpoint allows you to add a new sender ID for verification purposes.
+ * This endpoint allows you to submit a new sender ID for verification purposes.
  *
  * In order to get access to this endpoint, contact our support team.
  *

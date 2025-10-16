@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
-use Prelude\Core\Conversion\ListOf;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationManagementContract;
-use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponseItem;
+use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDParams;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse;
 
@@ -27,27 +26,24 @@ final class VerificationManagementService implements VerificationManagementContr
      *
      * In order to get access to this endpoint, contact our support team.
      *
-     * @return list<VerificationManagementListSenderIDsResponseItem>
-     *
      * @throws APIException
      */
-    public function listSenderIDs(?RequestOptions $requestOptions = null): array
-    {
+    public function listSenderIDs(
+        ?RequestOptions $requestOptions = null
+    ): VerificationManagementListSenderIDsResponse {
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'get',
             path: 'v2/verification/management/sender-id',
             options: $requestOptions,
-            convert: new ListOf(
-                VerificationManagementListSenderIDsResponseItem::class
-            ),
+            convert: VerificationManagementListSenderIDsResponse::class,
         );
     }
 
     /**
      * @api
      *
-     * This endpoint allows you to add a new sender ID for verification purposes.
+     * This endpoint allows you to submit a new sender ID for verification purposes.
      *
      * In order to get access to this endpoint, contact our support team.
      *
