@@ -6,7 +6,7 @@ namespace Prelude\ServiceContracts;
 
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
-use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponseItem;
+use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse;
 
 interface VerificationManagementContract
@@ -14,13 +14,11 @@ interface VerificationManagementContract
     /**
      * @api
      *
-     * @return list<VerificationManagementListSenderIDsResponseItem>
-     *
      * @throws APIException
      */
     public function listSenderIDs(
         ?RequestOptions $requestOptions = null
-    ): array;
+    ): VerificationManagementListSenderIDsResponse;
 
     /**
      * @api
