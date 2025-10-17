@@ -8,6 +8,7 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
 
 /**
  * An object containing the method's parameters.
@@ -33,6 +34,7 @@ use Prelude\Core\Contracts\BaseModel;
  *   expiresAt?: string,
  *   from?: string,
  *   locale?: string,
+ *   preferredChannel?: PreferredChannel|value-of<PreferredChannel>,
  *   variables?: array<string, string>,
  * }
  */
@@ -85,6 +87,18 @@ final class TransactionalSendParams implements BaseModel
     public ?string $locale;
 
     /**
+     * The preferred delivery channel for the message. When specified, the system will prioritize sending via the requested channel if the template is configured for it.
+     *
+     * If not specified and the template is configured for WhatsApp, the message will be sent via WhatsApp first, with automatic fallback to SMS if WhatsApp delivery is unavailable.
+     *
+     * Supported channels: `sms`, `whatsapp`.
+     *
+     * @var value-of<PreferredChannel>|null $preferredChannel
+     */
+    #[Api('preferred_channel', enum: PreferredChannel::class, optional: true)]
+    public ?string $preferredChannel;
+
+    /**
      * The variables to be replaced in the template.
      *
      * @var array<string, string>|null $variables
@@ -116,6 +130,7 @@ final class TransactionalSendParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
      * @param array<string, string> $variables
      */
     public static function with(
@@ -126,6 +141,7 @@ final class TransactionalSendParams implements BaseModel
         ?string $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
+        PreferredChannel|string|null $preferredChannel = null,
         ?array $variables = null,
     ): self {
         $obj = new self;
@@ -138,6 +154,7 @@ final class TransactionalSendParams implements BaseModel
         null !== $expiresAt && $obj->expiresAt = $expiresAt;
         null !== $from && $obj->from = $from;
         null !== $locale && $obj->locale = $locale;
+        null !== $preferredChannel && $obj['preferredChannel'] = $preferredChannel;
         null !== $variables && $obj->variables = $variables;
 
         return $obj;
@@ -216,6 +233,24 @@ final class TransactionalSendParams implements BaseModel
     {
         $obj = clone $this;
         $obj->locale = $locale;
+
+        return $obj;
+    }
+
+    /**
+     * The preferred delivery channel for the message. When specified, the system will prioritize sending via the requested channel if the template is configured for it.
+     *
+     * If not specified and the template is configured for WhatsApp, the message will be sent via WhatsApp first, with automatic fallback to SMS if WhatsApp delivery is unavailable.
+     *
+     * Supported channels: `sms`, `whatsapp`.
+     *
+     * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
+     */
+    public function withPreferredChannel(
+        PreferredChannel|string $preferredChannel
+    ): self {
+        $obj = clone $this;
+        $obj['preferredChannel'] = $preferredChannel;
 
         return $obj;
     }
