@@ -11,18 +11,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new WatchSendFeedbacksParams); // set properties as needed
- * $client->watch->sendFeedbacks(...$params->toArray());
- * ```
  * Send feedback regarding your end-users verification funnel. Events will be analyzed for proactive fraud prevention and risk scoring.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->watch->sendFeedbacks(...$params->toArray());`
  *
  * @see Prelude\Watch->sendFeedbacks
  *

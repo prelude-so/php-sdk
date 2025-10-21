@@ -11,18 +11,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendEventsParams\Event;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new WatchSendEventsParams); // set properties as needed
- * $client->watch->sendEvents(...$params->toArray());
- * ```
  * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->watch->sendEvents(...$params->toArray());`
  *
  * @see Prelude\Watch->sendEvents
  *

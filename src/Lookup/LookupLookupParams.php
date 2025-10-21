@@ -11,18 +11,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Lookup\LookupLookupParams\Type;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new LookupLookupParams); // set properties as needed
- * $client->lookup->lookup(...$params->toArray());
- * ```
  * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->lookup->lookup(...$params->toArray());`
  *
  * @see Prelude\Lookup->lookup
  *

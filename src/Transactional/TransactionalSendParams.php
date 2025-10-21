@@ -11,18 +11,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new TransactionalSendParams); // set properties as needed
- * $client->transactional->send(...$params->toArray());
- * ```
  * Send a transactional message to your user.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->transactional->send(...$params->toArray());`
  *
  * @see Prelude\Transactional->send
  *
