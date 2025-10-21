@@ -10,20 +10,9 @@ use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new VerificationManagementSubmitSenderIDParams); // set properties as needed
- * $client->verificationManagement->submitSenderID(...$params->toArray());
- * ```
  * This endpoint allows you to submit a new sender ID for verification purposes.
  *
  * In order to get access to this endpoint, contact our support team.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->verificationManagement->submitSenderID(...$params->toArray());`
  *
  * @see Prelude\VerificationManagement->submitSenderID
  *
