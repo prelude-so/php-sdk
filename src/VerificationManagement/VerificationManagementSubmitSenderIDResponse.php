@@ -12,13 +12,13 @@ use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse\Status;
 
 /**
- * @phpstan-type verification_management_submit_sender_id_response = array{
+ * @phpstan-type VerificationManagementSubmitSenderIDResponseShape = array{
  *   senderID: string, status: value-of<Status>, reason?: string
  * }
  */
 final class VerificationManagementSubmitSenderIDResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<verification_management_submit_sender_id_response> */
+    /** @use SdkModel<VerificationManagementSubmitSenderIDResponseShape> */
     use SdkModel;
 
     use SdkResponse;

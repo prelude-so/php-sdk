@@ -15,7 +15,7 @@ use Prelude\Lookup\LookupLookupResponse\NetworkInfo;
 use Prelude\Lookup\LookupLookupResponse\OriginalNetworkInfo;
 
 /**
- * @phpstan-type lookup_lookup_response = array{
+ * @phpstan-type LookupLookupResponseShape = array{
  *   callerName?: string,
  *   countryCode?: string,
  *   flags?: list<value-of<Flag>>,
@@ -27,7 +27,7 @@ use Prelude\Lookup\LookupLookupResponse\OriginalNetworkInfo;
  */
 final class LookupLookupResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<lookup_lookup_response> */
+    /** @use SdkModel<LookupLookupResponseShape> */
     use SdkModel;
 
     use SdkResponse;

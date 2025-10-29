@@ -12,13 +12,13 @@ use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Watch\WatchSendEventsResponse\Status;
 
 /**
- * @phpstan-type watch_send_events_response = array{
+ * @phpstan-type WatchSendEventsResponseShape = array{
  *   requestID: string, status: value-of<Status>
  * }
  */
 final class WatchSendEventsResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<watch_send_events_response> */
+    /** @use SdkModel<WatchSendEventsResponseShape> */
     use SdkModel;
 
     use SdkResponse;

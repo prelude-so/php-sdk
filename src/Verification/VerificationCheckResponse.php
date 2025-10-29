@@ -13,13 +13,13 @@ use Prelude\Verification\VerificationCheckResponse\Metadata;
 use Prelude\Verification\VerificationCheckResponse\Status;
 
 /**
- * @phpstan-type verification_check_response = array{
+ * @phpstan-type VerificationCheckResponseShape = array{
  *   status: value-of<Status>, id?: string, metadata?: Metadata, requestID?: string
  * }
  */
 final class VerificationCheckResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<verification_check_response> */
+    /** @use SdkModel<VerificationCheckResponseShape> */
     use SdkModel;
 
     use SdkResponse;

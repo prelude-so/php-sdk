@@ -11,13 +11,13 @@ use Prelude\Core\Contracts\BaseModel;
 /**
  * The original carrier information.
  *
- * @phpstan-type original_network_info = array{
+ * @phpstan-type OriginalNetworkInfoShape = array{
  *   carrierName?: string, mcc?: string, mnc?: string
  * }
  */
 final class OriginalNetworkInfo implements BaseModel
 {
-    /** @use SdkModel<original_network_info> */
+    /** @use SdkModel<OriginalNetworkInfoShape> */
     use SdkModel;
 
     /**

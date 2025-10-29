@@ -11,11 +11,11 @@ use Prelude\Core\Contracts\BaseModel;
 /**
  * The metadata for this feedback.
  *
- * @phpstan-type metadata_alias = array{correlationID?: string}
+ * @phpstan-type MetadataShape = array{correlationID?: string}
  */
 final class Metadata implements BaseModel
 {
-    /** @use SdkModel<metadata_alias> */
+    /** @use SdkModel<MetadataShape> */
     use SdkModel;
 
     /**

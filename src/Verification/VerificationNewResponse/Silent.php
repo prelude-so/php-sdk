@@ -11,11 +11,11 @@ use Prelude\Core\Contracts\BaseModel;
 /**
  * The silent verification specific properties.
  *
- * @phpstan-type silent_alias = array{requestURL: string}
+ * @phpstan-type SilentShape = array{requestURL: string}
  */
 final class Silent implements BaseModel
 {
-    /** @use SdkModel<silent_alias> */
+    /** @use SdkModel<SilentShape> */
     use SdkModel;
 
     /**

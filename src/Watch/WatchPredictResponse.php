@@ -12,13 +12,13 @@ use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Watch\WatchPredictResponse\Prediction;
 
 /**
- * @phpstan-type watch_predict_response = array{
+ * @phpstan-type WatchPredictResponseShape = array{
  *   id: string, prediction: value-of<Prediction>, requestID: string
  * }
  */
 final class WatchPredictResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<watch_predict_response> */
+    /** @use SdkModel<WatchPredictResponseShape> */
     use SdkModel;
 
     use SdkResponse;

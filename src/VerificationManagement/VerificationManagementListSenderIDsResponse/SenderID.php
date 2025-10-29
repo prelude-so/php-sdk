@@ -10,11 +10,13 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\SenderID\Status;
 
 /**
- * @phpstan-type sender_id = array{senderID?: string, status?: value-of<Status>}
+ * @phpstan-type SenderIDShape = array{
+ *   senderID?: string, status?: value-of<Status>
+ * }
  */
 final class SenderID implements BaseModel
 {
-    /** @use SdkModel<sender_id> */
+    /** @use SdkModel<SenderIDShape> */
     use SdkModel;
 
     /**

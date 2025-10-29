@@ -12,13 +12,13 @@ use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Watch\WatchSendFeedbacksResponse\Status;
 
 /**
- * @phpstan-type watch_send_feedbacks_response = array{
+ * @phpstan-type WatchSendFeedbacksResponseShape = array{
  *   requestID: string, status: value-of<Status>
  * }
  */
 final class WatchSendFeedbacksResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<watch_send_feedbacks_response> */
+    /** @use SdkModel<WatchSendFeedbacksResponseShape> */
     use SdkModel;
 
     use SdkResponse;

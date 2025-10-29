@@ -17,13 +17,13 @@ use Prelude\Watch\WatchPredictParams\Target;
  *
  * @see Prelude\Watch->predict
  *
- * @phpstan-type watch_predict_params = array{
+ * @phpstan-type WatchPredictParamsShape = array{
  *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
  * }
  */
 final class WatchPredictParams implements BaseModel
 {
-    /** @use SdkModel<watch_predict_params> */
+    /** @use SdkModel<WatchPredictParamsShape> */
     use SdkModel;
     use SdkParams;
 

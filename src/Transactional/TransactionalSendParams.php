@@ -15,7 +15,7 @@ use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
  *
  * @see Prelude\Transactional->send
  *
- * @phpstan-type transactional_send_params = array{
+ * @phpstan-type TransactionalSendParamsShape = array{
  *   templateID: string,
  *   to: string,
  *   callbackURL?: string,
@@ -29,7 +29,7 @@ use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
  */
 final class TransactionalSendParams implements BaseModel
 {
-    /** @use SdkModel<transactional_send_params> */
+    /** @use SdkModel<TransactionalSendParamsShape> */
     use SdkModel;
     use SdkParams;
 

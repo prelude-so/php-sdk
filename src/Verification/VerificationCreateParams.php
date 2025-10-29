@@ -18,7 +18,7 @@ use Prelude\Verification\VerificationCreateParams\Target;
  *
  * @see Prelude\Verification->create
  *
- * @phpstan-type verification_create_params = array{
+ * @phpstan-type VerificationCreateParamsShape = array{
  *   target: Target,
  *   dispatchID?: string,
  *   metadata?: Metadata,
@@ -28,7 +28,7 @@ use Prelude\Verification\VerificationCreateParams\Target;
  */
 final class VerificationCreateParams implements BaseModel
 {
-    /** @use SdkModel<verification_create_params> */
+    /** @use SdkModel<VerificationCreateParamsShape> */
     use SdkModel;
     use SdkParams;
 

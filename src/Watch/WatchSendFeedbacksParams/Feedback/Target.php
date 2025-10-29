@@ -12,11 +12,11 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type;
 /**
  * The feedback target. Only supports phone numbers for now.
  *
- * @phpstan-type target_alias = array{type: value-of<Type>, value: string}
+ * @phpstan-type TargetShape = array{type: value-of<Type>, value: string}
  */
 final class Target implements BaseModel
 {
-    /** @use SdkModel<target_alias> */
+    /** @use SdkModel<TargetShape> */
     use SdkModel;
 
     /**

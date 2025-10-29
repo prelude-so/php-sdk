@@ -15,11 +15,11 @@ use Prelude\Watch\WatchSendEventsParams\Event;
  *
  * @see Prelude\Watch->sendEvents
  *
- * @phpstan-type watch_send_events_params = array{events: list<Event>}
+ * @phpstan-type WatchSendEventsParamsShape = array{events: list<Event>}
  */
 final class WatchSendEventsParams implements BaseModel
 {
-    /** @use SdkModel<watch_send_events_params> */
+    /** @use SdkModel<WatchSendEventsParamsShape> */
     use SdkModel;
     use SdkParams;
 
