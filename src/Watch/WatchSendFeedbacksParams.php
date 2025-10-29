@@ -15,11 +15,11 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
  *
  * @see Prelude\Watch->sendFeedbacks
  *
- * @phpstan-type watch_send_feedbacks_params = array{feedbacks: list<Feedback>}
+ * @phpstan-type WatchSendFeedbacksParamsShape = array{feedbacks: list<Feedback>}
  */
 final class WatchSendFeedbacksParams implements BaseModel
 {
-    /** @use SdkModel<watch_send_feedbacks_params> */
+    /** @use SdkModel<WatchSendFeedbacksParamsShape> */
     use SdkModel;
     use SdkParams;
 

@@ -15,11 +15,11 @@ use Prelude\Verification\VerificationCheckParams\Target;
  *
  * @see Prelude\Verification->check
  *
- * @phpstan-type verification_check_params = array{code: string, target: Target}
+ * @phpstan-type VerificationCheckParamsShape = array{code: string, target: Target}
  */
 final class VerificationCheckParams implements BaseModel
 {
-    /** @use SdkModel<verification_check_params> */
+    /** @use SdkModel<VerificationCheckParamsShape> */
     use SdkModel;
     use SdkParams;
 

@@ -16,13 +16,13 @@ use Prelude\Core\Contracts\BaseModel;
  *
  * @see Prelude\VerificationManagement->submitSenderID
  *
- * @phpstan-type verification_management_submit_sender_id_params = array{
+ * @phpstan-type VerificationManagementSubmitSenderIDParamsShape = array{
  *   senderID: string
  * }
  */
 final class VerificationManagementSubmitSenderIDParams implements BaseModel
 {
-    /** @use SdkModel<verification_management_submit_sender_id_params> */
+    /** @use SdkModel<VerificationManagementSubmitSenderIDParamsShape> */
     use SdkModel;
     use SdkParams;
 

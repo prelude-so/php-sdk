@@ -12,7 +12,7 @@ use Prelude\Verification\VerificationCreateParams\Signals\DevicePlatform;
 /**
  * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
  *
- * @phpstan-type signals_alias = array{
+ * @phpstan-type SignalsShape = array{
  *   appVersion?: string,
  *   deviceID?: string,
  *   deviceModel?: string,
@@ -26,7 +26,7 @@ use Prelude\Verification\VerificationCreateParams\Signals\DevicePlatform;
  */
 final class Signals implements BaseModel
 {
-    /** @use SdkModel<signals_alias> */
+    /** @use SdkModel<SignalsShape> */
     use SdkModel;
 
     /**

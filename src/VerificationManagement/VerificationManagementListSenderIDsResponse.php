@@ -14,13 +14,13 @@ use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\S
 /**
  * A list of Sender ID.
  *
- * @phpstan-type verification_management_list_sender_ids_response = array{
+ * @phpstan-type VerificationManagementListSenderIDsResponseShape = array{
  *   senderIDs?: list<SenderID>
  * }
  */
 final class VerificationManagementListSenderIDsResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<verification_management_list_sender_ids_response> */
+    /** @use SdkModel<VerificationManagementListSenderIDsResponseShape> */
     use SdkModel;
 
     use SdkResponse;

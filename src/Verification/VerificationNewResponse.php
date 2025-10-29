@@ -17,7 +17,7 @@ use Prelude\Verification\VerificationNewResponse\Silent;
 use Prelude\Verification\VerificationNewResponse\Status;
 
 /**
- * @phpstan-type verification_new_response = array{
+ * @phpstan-type VerificationNewResponseShape = array{
  *   id: string,
  *   method: value-of<Method>,
  *   status: value-of<Status>,
@@ -30,7 +30,7 @@ use Prelude\Verification\VerificationNewResponse\Status;
  */
 final class VerificationNewResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<verification_new_response> */
+    /** @use SdkModel<VerificationNewResponseShape> */
     use SdkModel;
 
     use SdkResponse;

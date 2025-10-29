@@ -11,7 +11,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type transactional_send_response = array{
+ * @phpstan-type TransactionalSendResponseShape = array{
  *   id: string,
  *   createdAt: \DateTimeInterface,
  *   expiresAt: \DateTimeInterface,
@@ -25,7 +25,7 @@ use Prelude\Core\Conversion\Contracts\ResponseConverter;
  */
 final class TransactionalSendResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<transactional_send_response> */
+    /** @use SdkModel<TransactionalSendResponseShape> */
     use SdkModel;
 
     use SdkResponse;

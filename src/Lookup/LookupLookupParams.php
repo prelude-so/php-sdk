@@ -15,11 +15,11 @@ use Prelude\Lookup\LookupLookupParams\Type;
  *
  * @see Prelude\Lookup->lookup
  *
- * @phpstan-type lookup_lookup_params = array{type?: list<Type|value-of<Type>>}
+ * @phpstan-type LookupLookupParamsShape = array{type?: list<Type|value-of<Type>>}
  */
 final class LookupLookupParams implements BaseModel
 {
-    /** @use SdkModel<lookup_lookup_params> */
+    /** @use SdkModel<LookupLookupParamsShape> */
     use SdkModel;
     use SdkParams;
 
