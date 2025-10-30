@@ -80,7 +80,7 @@ final class TransactionalSendParams implements BaseModel
      *
      * If not specified and the template is configured for WhatsApp, the message will be sent via WhatsApp first, with automatic fallback to SMS if WhatsApp delivery is unavailable.
      *
-     * Supported channels: `sms`, `whatsapp`.
+     * Supported channels: `sms`, `rcs`, `whatsapp`.
      *
      * @var value-of<PreferredChannel>|null $preferredChannel
      */
@@ -231,7 +231,7 @@ final class TransactionalSendParams implements BaseModel
      *
      * If not specified and the template is configured for WhatsApp, the message will be sent via WhatsApp first, with automatic fallback to SMS if WhatsApp delivery is unavailable.
      *
-     * Supported channels: `sms`, `whatsapp`.
+     * Supported channels: `sms`, `rcs`, `whatsapp`.
      *
      * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
      */

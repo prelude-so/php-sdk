@@ -37,7 +37,7 @@ final class TransactionalService implements TransactionalContract
      *
      * If not specified and the template is configured for WhatsApp, the message will be sent via WhatsApp first, with automatic fallback to SMS if WhatsApp delivery is unavailable.
      *
-     * Supported channels: `sms`, `whatsapp`.
+     * Supported channels: `sms`, `rcs`, `whatsapp`.
      * @param array<string,
      * string,> $variables The variables to be replaced in the template
      *

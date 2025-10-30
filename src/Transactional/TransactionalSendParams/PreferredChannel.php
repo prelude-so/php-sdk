@@ -9,11 +9,13 @@ namespace Prelude\Transactional\TransactionalSendParams;
  *
  * If not specified and the template is configured for WhatsApp, the message will be sent via WhatsApp first, with automatic fallback to SMS if WhatsApp delivery is unavailable.
  *
- * Supported channels: `sms`, `whatsapp`.
+ * Supported channels: `sms`, `rcs`, `whatsapp`.
  */
 enum PreferredChannel: string
 {
     case SMS = 'sms';
+
+    case RCS = 'rcs';
 
     case WHATSAPP = 'whatsapp';
 }
