@@ -34,7 +34,7 @@ final class TransactionalTest extends TestCase
         }
 
         $result = $this->client->transactional->send(
-            templateID: 'template_01jd1xq0cffycayqtdkdbv4d61',
+            templateID: 'template_01hynf45qvevj844m9az2x2f3c',
             to: '+30123456789'
         );
 
@@ -49,7 +49,7 @@ final class TransactionalTest extends TestCase
         }
 
         $result = $this->client->transactional->send(
-            templateID: 'template_01jd1xq0cffycayqtdkdbv4d61',
+            templateID: 'template_01hynf45qvevj844m9az2x2f3c',
             to: '+30123456789'
         );
 
