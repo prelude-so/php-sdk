@@ -22,9 +22,11 @@ final class TransactionalService implements TransactionalContract
     public function __construct(private Client $client) {}
 
     /**
+     * @deprecated
+     *
      * @api
      *
-     * Send a transactional message to your user.
+     * Legacy route maintained for backward compatibility. Migrate to `/v2/notify` instead.
      *
      * @param string $templateID the template identifier
      * @param string $to the recipient's phone number
@@ -71,6 +73,8 @@ final class TransactionalService implements TransactionalContract
     }
 
     /**
+     * @deprecated
+     *
      * @api
      *
      * @param array<string, mixed> $params

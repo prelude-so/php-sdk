@@ -11,8 +11,9 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
 
 /**
- * Send a transactional message to your user.
+ * Legacy route maintained for backward compatibility. Migrate to `/v2/notify` instead.
  *
+ * @deprecated
  * @see Prelude\Transactional->send
  *
  * @phpstan-type TransactionalSendParamsShape = array{
