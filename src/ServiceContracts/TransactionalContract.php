@@ -14,6 +14,8 @@ use const Prelude\Core\OMIT as omit;
 interface TransactionalContract
 {
     /**
+     * @deprecated
+     *
      * @api
      *
      * @param string $templateID the template identifier
@@ -47,6 +49,8 @@ interface TransactionalContract
     ): TransactionalSendResponse;
 
     /**
+     * @deprecated
+     *
      * @api
      *
      * @param array<string, mixed> $params
