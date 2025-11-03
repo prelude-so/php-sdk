@@ -26,9 +26,61 @@ final class VerificationManagementTest extends TestCase
     }
 
     #[Test]
+    public function testDeletePhoneNumber(): void
+    {
+        $result = $this->client->verificationManagement->deletePhoneNumber(
+            'allow',
+            '+30123456789'
+        );
+
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+    }
+
+    #[Test]
+    public function testDeletePhoneNumberWithOptionalParams(): void
+    {
+        $result = $this->client->verificationManagement->deletePhoneNumber(
+            'allow',
+            '+30123456789'
+        );
+
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+    }
+
+    #[Test]
+    public function testListPhoneNumbers(): void
+    {
+        $result = $this->client->verificationManagement->listPhoneNumbers('allow');
+
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+    }
+
+    #[Test]
     public function testListSenderIDs(): void
     {
         $result = $this->client->verificationManagement->listSenderIDs();
+
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+    }
+
+    #[Test]
+    public function testSetPhoneNumber(): void
+    {
+        $result = $this->client->verificationManagement->setPhoneNumber(
+            'allow',
+            '+30123456789'
+        );
+
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+    }
+
+    #[Test]
+    public function testSetPhoneNumberWithOptionalParams(): void
+    {
+        $result = $this->client->verificationManagement->setPhoneNumber(
+            'allow',
+            '+30123456789'
+        );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
