@@ -17,15 +17,15 @@ use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
  * @see Prelude\Transactional->send
  *
  * @phpstan-type TransactionalSendParamsShape = array{
- *   templateID: string,
+ *   template_id: string,
  *   to: string,
- *   callbackURL?: string,
- *   correlationID?: string,
- *   expiresAt?: string,
+ *   callback_url?: string,
+ *   correlation_id?: string,
+ *   expires_at?: string,
  *   from?: string,
  *   locale?: string,
- *   preferredChannel?: PreferredChannel|value-of<PreferredChannel>,
- *   variables?: array<string, string>,
+ *   preferred_channel?: PreferredChannel|value-of<PreferredChannel>,
+ *   variables?: array<string,string>,
  * }
  */
 final class TransactionalSendParams implements BaseModel
@@ -37,8 +37,8 @@ final class TransactionalSendParams implements BaseModel
     /**
      * The template identifier.
      */
-    #[Api('template_id')]
-    public string $templateID;
+    #[Api]
+    public string $template_id;
 
     /**
      * The recipient's phone number.
@@ -49,20 +49,20 @@ final class TransactionalSendParams implements BaseModel
     /**
      * The callback URL.
      */
-    #[Api('callback_url', optional: true)]
-    public ?string $callbackURL;
+    #[Api(optional: true)]
+    public ?string $callback_url;
 
     /**
      * A user-defined identifier to correlate this transactional message with. It is returned in the response and any webhook events that refer to this transactionalmessage.
      */
-    #[Api('correlation_id', optional: true)]
-    public ?string $correlationID;
+    #[Api(optional: true)]
+    public ?string $correlation_id;
 
     /**
      * The message expiration date.
      */
-    #[Api('expires_at', optional: true)]
-    public ?string $expiresAt;
+    #[Api(optional: true)]
+    public ?string $expires_at;
 
     /**
      * The Sender ID.
@@ -83,15 +83,15 @@ final class TransactionalSendParams implements BaseModel
      *
      * Supported channels: `sms`, `rcs`, `whatsapp`.
      *
-     * @var value-of<PreferredChannel>|null $preferredChannel
+     * @var value-of<PreferredChannel>|null $preferred_channel
      */
-    #[Api('preferred_channel', enum: PreferredChannel::class, optional: true)]
-    public ?string $preferredChannel;
+    #[Api(enum: PreferredChannel::class, optional: true)]
+    public ?string $preferred_channel;
 
     /**
      * The variables to be replaced in the template.
      *
-     * @var array<string, string>|null $variables
+     * @var array<string,string>|null $variables
      */
     #[Api(map: 'string', optional: true)]
     public ?array $variables;
@@ -101,7 +101,7 @@ final class TransactionalSendParams implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * TransactionalSendParams::with(templateID: ..., to: ...)
+     * TransactionalSendParams::with(template_id: ..., to: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -120,31 +120,31 @@ final class TransactionalSendParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
-     * @param array<string, string> $variables
+     * @param PreferredChannel|value-of<PreferredChannel> $preferred_channel
+     * @param array<string,string> $variables
      */
     public static function with(
-        string $templateID,
+        string $template_id,
         string $to,
-        ?string $callbackURL = null,
-        ?string $correlationID = null,
-        ?string $expiresAt = null,
+        ?string $callback_url = null,
+        ?string $correlation_id = null,
+        ?string $expires_at = null,
         ?string $from = null,
         ?string $locale = null,
-        PreferredChannel|string|null $preferredChannel = null,
+        PreferredChannel|string|null $preferred_channel = null,
         ?array $variables = null,
     ): self {
         $obj = new self;
 
-        $obj->templateID = $templateID;
+        $obj->template_id = $template_id;
         $obj->to = $to;
 
-        null !== $callbackURL && $obj->callbackURL = $callbackURL;
-        null !== $correlationID && $obj->correlationID = $correlationID;
-        null !== $expiresAt && $obj->expiresAt = $expiresAt;
+        null !== $callback_url && $obj->callback_url = $callback_url;
+        null !== $correlation_id && $obj->correlation_id = $correlation_id;
+        null !== $expires_at && $obj->expires_at = $expires_at;
         null !== $from && $obj->from = $from;
         null !== $locale && $obj->locale = $locale;
-        null !== $preferredChannel && $obj['preferredChannel'] = $preferredChannel;
+        null !== $preferred_channel && $obj['preferred_channel'] = $preferred_channel;
         null !== $variables && $obj->variables = $variables;
 
         return $obj;
@@ -156,7 +156,7 @@ final class TransactionalSendParams implements BaseModel
     public function withTemplateID(string $templateID): self
     {
         $obj = clone $this;
-        $obj->templateID = $templateID;
+        $obj->template_id = $templateID;
 
         return $obj;
     }
@@ -178,7 +178,7 @@ final class TransactionalSendParams implements BaseModel
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj->callbackURL = $callbackURL;
+        $obj->callback_url = $callbackURL;
 
         return $obj;
     }
@@ -189,7 +189,7 @@ final class TransactionalSendParams implements BaseModel
     public function withCorrelationID(string $correlationID): self
     {
         $obj = clone $this;
-        $obj->correlationID = $correlationID;
+        $obj->correlation_id = $correlationID;
 
         return $obj;
     }
@@ -200,7 +200,7 @@ final class TransactionalSendParams implements BaseModel
     public function withExpiresAt(string $expiresAt): self
     {
         $obj = clone $this;
-        $obj->expiresAt = $expiresAt;
+        $obj->expires_at = $expiresAt;
 
         return $obj;
     }
@@ -240,7 +240,7 @@ final class TransactionalSendParams implements BaseModel
         PreferredChannel|string $preferredChannel
     ): self {
         $obj = clone $this;
-        $obj['preferredChannel'] = $preferredChannel;
+        $obj['preferred_channel'] = $preferredChannel;
 
         return $obj;
     }
@@ -248,7 +248,7 @@ final class TransactionalSendParams implements BaseModel
     /**
      * The variables to be replaced in the template.
      *
-     * @param array<string, string> $variables
+     * @param array<string,string> $variables
      */
     public function withVariables(array $variables): self
     {

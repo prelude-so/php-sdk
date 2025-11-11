@@ -12,7 +12,7 @@ use Prelude\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type VerificationManagementSetPhoneNumberResponseShape = array{
- *   phoneNumber: string
+ *   phone_number: string
  * }
  */
 final class VerificationManagementSetPhoneNumberResponse implements BaseModel, ResponseConverter
@@ -25,15 +25,15 @@ final class VerificationManagementSetPhoneNumberResponse implements BaseModel, R
     /**
      * The E.164 formatted phone number that was added to the list.
      */
-    #[Api('phone_number')]
-    public string $phoneNumber;
+    #[Api]
+    public string $phone_number;
 
     /**
      * `new VerificationManagementSetPhoneNumberResponse()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * VerificationManagementSetPhoneNumberResponse::with(phoneNumber: ...)
+     * VerificationManagementSetPhoneNumberResponse::with(phone_number: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -52,11 +52,11 @@ final class VerificationManagementSetPhoneNumberResponse implements BaseModel, R
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $phoneNumber): self
+    public static function with(string $phone_number): self
     {
         $obj = new self;
 
-        $obj->phoneNumber = $phoneNumber;
+        $obj->phone_number = $phone_number;
 
         return $obj;
     }
@@ -67,7 +67,7 @@ final class VerificationManagementSetPhoneNumberResponse implements BaseModel, R
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phoneNumber = $phoneNumber;
+        $obj->phone_number = $phoneNumber;
 
         return $obj;
     }

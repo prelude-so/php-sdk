@@ -13,14 +13,14 @@ use Prelude\Core\Conversion\Contracts\ResponseConverter;
 /**
  * @phpstan-type TransactionalSendResponseShape = array{
  *   id: string,
- *   createdAt: \DateTimeInterface,
- *   expiresAt: \DateTimeInterface,
- *   templateID: string,
+ *   created_at: \DateTimeInterface,
+ *   expires_at: \DateTimeInterface,
+ *   template_id: string,
  *   to: string,
- *   variables: array<string, string>,
- *   callbackURL?: string,
- *   correlationID?: string,
- *   from?: string,
+ *   variables: array<string,string>,
+ *   callback_url?: string|null,
+ *   correlation_id?: string|null,
+ *   from?: string|null,
  * }
  */
 final class TransactionalSendResponse implements BaseModel, ResponseConverter
@@ -39,20 +39,20 @@ final class TransactionalSendResponse implements BaseModel, ResponseConverter
     /**
      * The message creation date.
      */
-    #[Api('created_at')]
-    public \DateTimeInterface $createdAt;
+    #[Api]
+    public \DateTimeInterface $created_at;
 
     /**
      * The message expiration date.
      */
-    #[Api('expires_at')]
-    public \DateTimeInterface $expiresAt;
+    #[Api]
+    public \DateTimeInterface $expires_at;
 
     /**
      * The template identifier.
      */
-    #[Api('template_id')]
-    public string $templateID;
+    #[Api]
+    public string $template_id;
 
     /**
      * The recipient's phone number.
@@ -63,7 +63,7 @@ final class TransactionalSendResponse implements BaseModel, ResponseConverter
     /**
      * The variables to be replaced in the template.
      *
-     * @var array<string, string> $variables
+     * @var array<string,string> $variables
      */
     #[Api(map: 'string')]
     public array $variables;
@@ -71,14 +71,14 @@ final class TransactionalSendResponse implements BaseModel, ResponseConverter
     /**
      * The callback URL.
      */
-    #[Api('callback_url', optional: true)]
-    public ?string $callbackURL;
+    #[Api(optional: true)]
+    public ?string $callback_url;
 
     /**
      * A user-defined identifier to correlate this transactional message with. It is returned in the response and any webhook events that refer to this transactional message.
      */
-    #[Api('correlation_id', optional: true)]
-    public ?string $correlationID;
+    #[Api(optional: true)]
+    public ?string $correlation_id;
 
     /**
      * The Sender ID.
@@ -93,9 +93,9 @@ final class TransactionalSendResponse implements BaseModel, ResponseConverter
      * ```
      * TransactionalSendResponse::with(
      *   id: ...,
-     *   createdAt: ...,
-     *   expiresAt: ...,
-     *   templateID: ...,
+     *   created_at: ...,
+     *   expires_at: ...,
+     *   template_id: ...,
      *   to: ...,
      *   variables: ...,
      * )
@@ -123,30 +123,30 @@ final class TransactionalSendResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string, string> $variables
+     * @param array<string,string> $variables
      */
     public static function with(
         string $id,
-        \DateTimeInterface $createdAt,
-        \DateTimeInterface $expiresAt,
-        string $templateID,
+        \DateTimeInterface $created_at,
+        \DateTimeInterface $expires_at,
+        string $template_id,
         string $to,
         array $variables,
-        ?string $callbackURL = null,
-        ?string $correlationID = null,
+        ?string $callback_url = null,
+        ?string $correlation_id = null,
         ?string $from = null,
     ): self {
         $obj = new self;
 
         $obj->id = $id;
-        $obj->createdAt = $createdAt;
-        $obj->expiresAt = $expiresAt;
-        $obj->templateID = $templateID;
+        $obj->created_at = $created_at;
+        $obj->expires_at = $expires_at;
+        $obj->template_id = $template_id;
         $obj->to = $to;
         $obj->variables = $variables;
 
-        null !== $callbackURL && $obj->callbackURL = $callbackURL;
-        null !== $correlationID && $obj->correlationID = $correlationID;
+        null !== $callback_url && $obj->callback_url = $callback_url;
+        null !== $correlation_id && $obj->correlation_id = $correlation_id;
         null !== $from && $obj->from = $from;
 
         return $obj;
@@ -169,7 +169,7 @@ final class TransactionalSendResponse implements BaseModel, ResponseConverter
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->createdAt = $createdAt;
+        $obj->created_at = $createdAt;
 
         return $obj;
     }
@@ -180,7 +180,7 @@ final class TransactionalSendResponse implements BaseModel, ResponseConverter
     public function withExpiresAt(\DateTimeInterface $expiresAt): self
     {
         $obj = clone $this;
-        $obj->expiresAt = $expiresAt;
+        $obj->expires_at = $expiresAt;
 
         return $obj;
     }
@@ -191,7 +191,7 @@ final class TransactionalSendResponse implements BaseModel, ResponseConverter
     public function withTemplateID(string $templateID): self
     {
         $obj = clone $this;
-        $obj->templateID = $templateID;
+        $obj->template_id = $templateID;
 
         return $obj;
     }
@@ -210,7 +210,7 @@ final class TransactionalSendResponse implements BaseModel, ResponseConverter
     /**
      * The variables to be replaced in the template.
      *
-     * @param array<string, string> $variables
+     * @param array<string,string> $variables
      */
     public function withVariables(array $variables): self
     {
@@ -226,7 +226,7 @@ final class TransactionalSendResponse implements BaseModel, ResponseConverter
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj->callbackURL = $callbackURL;
+        $obj->callback_url = $callbackURL;
 
         return $obj;
     }
@@ -237,7 +237,7 @@ final class TransactionalSendResponse implements BaseModel, ResponseConverter
     public function withCorrelationID(string $correlationID): self
     {
         $obj = clone $this;
-        $obj->correlationID = $correlationID;
+        $obj->correlation_id = $correlationID;
 
         return $obj;
     }

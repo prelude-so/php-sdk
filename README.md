@@ -42,13 +42,12 @@ Parameters with a default value must be set by name.
 <?php
 
 use Prelude\Client;
-use Prelude\Verification\VerificationCreateParams\Target;
 
 $client = new Client(apiToken: getenv("API_TOKEN") ?: "My API Token");
 
-$verification = $client->verification->create(
-  target: Target::with(type: "phone_number", value: "+30123456789")
-);
+$verification = $client->verification->create([
+  "target" => ["type" => "phone_number", "value" => "+30123456789"]
+]);
 
 var_dump($verification->id);
 ```
@@ -68,12 +67,11 @@ When the library is unable to connect to the API, or if the API returns a non-su
 <?php
 
 use Prelude\Core\Exceptions\APIConnectionException;
-use Prelude\Verification\VerificationCreateParams\Target;
 
 try {
-  $verification = $client->verification->create(
-    target: Target::with(type: "phone_number", value: "+30123456789")
-  );
+  $verification = $client->verification->create([
+    "target" => ["type" => "phone_number", "value" => "+30123456789"]
+  ]);
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
   var_dump($e->getPrevious());
@@ -114,15 +112,14 @@ You can use the `maxRetries` option to configure or disable this:
 
 use Prelude\Client;
 use Prelude\RequestOptions;
-use Prelude\Verification\VerificationCreateParams\Target;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
 $result = $client->verification->create(
-  target: Target::with(type: "phone_number", value: "+30123456789"),
-  requestOptions: RequestOptions::with(maxRetries: 5),
+  ["target" => ["type" => "phone_number", "value" => "+30123456789"]],
+  RequestOptions::with(maxRetries: 5),
 );
 ```
 
@@ -140,18 +137,15 @@ Note: the `extra*` parameters of the same name overrides the documented paramete
 <?php
 
 use Prelude\RequestOptions;
-use Prelude\Verification\VerificationCreateParams\Target;
 
 $verification = $client->verification->create(
-  target: Target::with(type: "phone_number", value: "+30123456789"),
-  requestOptions: RequestOptions::with(
+  ["target" => ["type" => "phone_number", "value" => "+30123456789"]],
+  RequestOptions::with(
     extraQueryParams: ["my_query_parameter" => "value"],
     extraBodyParams: ["my_body_parameter" => "value"],
     extraHeaders: ["my-header" => "value"],
   ),
 );
-
-var_dump($verification["my_undocumented_property"]);
 ```
 
 #### Undocumented request params

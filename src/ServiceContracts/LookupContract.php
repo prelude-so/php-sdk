@@ -5,38 +5,22 @@ declare(strict_types=1);
 namespace Prelude\ServiceContracts;
 
 use Prelude\Core\Exceptions\APIException;
-use Prelude\Lookup\LookupLookupParams\Type;
+use Prelude\Lookup\LookupLookupParams;
 use Prelude\Lookup\LookupLookupResponse;
 use Prelude\RequestOptions;
-
-use const Prelude\Core\OMIT as omit;
 
 interface LookupContract
 {
     /**
      * @api
      *
-     * @param list<Type|value-of<Type>> $type Optional features. Possible values are:
-     *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
+     * @param array<mixed>|LookupLookupParams $params
      *
      * @throws APIException
      */
     public function lookup(
         string $phoneNumber,
-        $type = omit,
-        ?RequestOptions $requestOptions = null,
-    ): LookupLookupResponse;
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function lookupRaw(
-        string $phoneNumber,
-        array $params,
+        array|LookupLookupParams $params,
         ?RequestOptions $requestOptions = null,
     ): LookupLookupResponse;
 }

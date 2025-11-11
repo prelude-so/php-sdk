@@ -35,38 +35,20 @@ final class VerificationManagementService implements VerificationManagementContr
      * In order to get access to this endpoint, contact our support team.
      *
      * @param Action|value-of<Action> $action
-     * @param string $phoneNumber An E.164 formatted phone number to remove from the list.
+     * @param array{
+     *   phone_number: string
+     * }|VerificationManagementDeletePhoneNumberParams $params
      *
      * @throws APIException
      */
     public function deletePhoneNumber(
         Action|string $action,
-        $phoneNumber,
-        ?RequestOptions $requestOptions = null
+        array|VerificationManagementDeletePhoneNumberParams $params,
+        ?RequestOptions $requestOptions = null,
     ): VerificationManagementDeletePhoneNumberResponse {
-        $params = ['phoneNumber' => $phoneNumber];
-
-        return $this->deletePhoneNumberRaw($action, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param Action|value-of<Action> $action
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function deletePhoneNumberRaw(
-        Action|string $action,
-        array $params,
-        ?RequestOptions $requestOptions = null
-    ): VerificationManagementDeletePhoneNumberResponse {
-        [
-            $parsed, $options,
-        ] = VerificationManagementDeletePhoneNumberParams::parseRequest(
+        [$parsed, $options] = VerificationManagementDeletePhoneNumberParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -134,38 +116,20 @@ final class VerificationManagementService implements VerificationManagementContr
      * In order to get access to this endpoint, contact our support team.
      *
      * @param VerificationManagementSetPhoneNumberParams\Action|value-of<VerificationManagementSetPhoneNumberParams\Action> $action
-     * @param string $phoneNumber An E.164 formatted phone number to add to the list.
+     * @param array{
+     *   phone_number: string
+     * }|VerificationManagementSetPhoneNumberParams $params
      *
      * @throws APIException
      */
     public function setPhoneNumber(
         VerificationManagementSetPhoneNumberParams\Action|string $action,
-        $phoneNumber,
+        array|VerificationManagementSetPhoneNumberParams $params,
         ?RequestOptions $requestOptions = null,
     ): VerificationManagementSetPhoneNumberResponse {
-        $params = ['phoneNumber' => $phoneNumber];
-
-        return $this->setPhoneNumberRaw($action, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param VerificationManagementSetPhoneNumberParams\Action|value-of<VerificationManagementSetPhoneNumberParams\Action> $action
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function setPhoneNumberRaw(
-        VerificationManagementSetPhoneNumberParams\Action|string $action,
-        array $params,
-        ?RequestOptions $requestOptions = null,
-    ): VerificationManagementSetPhoneNumberResponse {
-        [
-            $parsed, $options,
-        ] = VerificationManagementSetPhoneNumberParams::parseRequest(
+        [$parsed, $options] = VerificationManagementSetPhoneNumberParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -185,35 +149,19 @@ final class VerificationManagementService implements VerificationManagementContr
      *
      * In order to get access to this endpoint, contact our support team.
      *
-     * @param string $senderID the sender ID to add
+     * @param array{
+     *   sender_id: string
+     * }|VerificationManagementSubmitSenderIDParams $params
      *
      * @throws APIException
      */
     public function submitSenderID(
-        $senderID,
-        ?RequestOptions $requestOptions = null
+        array|VerificationManagementSubmitSenderIDParams $params,
+        ?RequestOptions $requestOptions = null,
     ): VerificationManagementSubmitSenderIDResponse {
-        $params = ['senderID' => $senderID];
-
-        return $this->submitSenderIDRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function submitSenderIDRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
-    ): VerificationManagementSubmitSenderIDResponse {
-        [
-            $parsed, $options,
-        ] = VerificationManagementSubmitSenderIDParams::parseRequest(
+        [$parsed, $options] = VerificationManagementSubmitSenderIDParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;

@@ -13,7 +13,7 @@ use Prelude\Watch\WatchPredictResponse\Prediction;
 
 /**
  * @phpstan-type WatchPredictResponseShape = array{
- *   id: string, prediction: value-of<Prediction>, requestID: string
+ *   id: string, prediction: value-of<Prediction>, request_id: string
  * }
  */
 final class WatchPredictResponse implements BaseModel, ResponseConverter
@@ -40,15 +40,15 @@ final class WatchPredictResponse implements BaseModel, ResponseConverter
     /**
      * A string that identifies this specific request. Report it back to us to help us diagnose your issues.
      */
-    #[Api('request_id')]
-    public string $requestID;
+    #[Api]
+    public string $request_id;
 
     /**
      * `new WatchPredictResponse()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * WatchPredictResponse::with(id: ..., prediction: ..., requestID: ...)
+     * WatchPredictResponse::with(id: ..., prediction: ..., request_id: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -72,13 +72,13 @@ final class WatchPredictResponse implements BaseModel, ResponseConverter
     public static function with(
         string $id,
         Prediction|string $prediction,
-        string $requestID
+        string $request_id
     ): self {
         $obj = new self;
 
         $obj->id = $id;
         $obj['prediction'] = $prediction;
-        $obj->requestID = $requestID;
+        $obj->request_id = $request_id;
 
         return $obj;
     }
@@ -113,7 +113,7 @@ final class WatchPredictResponse implements BaseModel, ResponseConverter
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj->requestID = $requestID;
+        $obj->request_id = $requestID;
 
         return $obj;
     }

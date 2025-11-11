@@ -13,7 +13,7 @@ use Prelude\VerificationManagement\VerificationManagementListPhoneNumbersRespons
 
 /**
  * @phpstan-type VerificationManagementListPhoneNumbersResponseShape = array{
- *   phoneNumbers: list<PhoneNumber>
+ *   phone_numbers: list<PhoneNumber>
  * }
  */
 final class VerificationManagementListPhoneNumbersResponse implements BaseModel, ResponseConverter
@@ -26,17 +26,17 @@ final class VerificationManagementListPhoneNumbersResponse implements BaseModel,
     /**
      * A list of phone numbers in the allow or block list.
      *
-     * @var list<PhoneNumber> $phoneNumbers
+     * @var list<PhoneNumber> $phone_numbers
      */
-    #[Api('phone_numbers', list: PhoneNumber::class)]
-    public array $phoneNumbers;
+    #[Api(list: PhoneNumber::class)]
+    public array $phone_numbers;
 
     /**
      * `new VerificationManagementListPhoneNumbersResponse()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * VerificationManagementListPhoneNumbersResponse::with(phoneNumbers: ...)
+     * VerificationManagementListPhoneNumbersResponse::with(phone_numbers: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -55,13 +55,13 @@ final class VerificationManagementListPhoneNumbersResponse implements BaseModel,
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<PhoneNumber> $phoneNumbers
+     * @param list<PhoneNumber> $phone_numbers
      */
-    public static function with(array $phoneNumbers): self
+    public static function with(array $phone_numbers): self
     {
         $obj = new self;
 
-        $obj->phoneNumbers = $phoneNumbers;
+        $obj->phone_numbers = $phone_numbers;
 
         return $obj;
     }
@@ -74,7 +74,7 @@ final class VerificationManagementListPhoneNumbersResponse implements BaseModel,
     public function withPhoneNumbers(array $phoneNumbers): self
     {
         $obj = clone $this;
-        $obj->phoneNumbers = $phoneNumbers;
+        $obj->phone_numbers = $phoneNumbers;
 
         return $obj;
     }

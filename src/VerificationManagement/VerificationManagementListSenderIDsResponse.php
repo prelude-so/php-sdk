@@ -15,7 +15,7 @@ use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\S
  * A list of Sender ID.
  *
  * @phpstan-type VerificationManagementListSenderIDsResponseShape = array{
- *   senderIDs?: list<SenderID>
+ *   sender_ids?: list<SenderID>|null
  * }
  */
 final class VerificationManagementListSenderIDsResponse implements BaseModel, ResponseConverter
@@ -25,9 +25,9 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel, Re
 
     use SdkResponse;
 
-    /** @var list<SenderID>|null $senderIDs */
-    #[Api('sender_ids', list: SenderID::class, optional: true)]
-    public ?array $senderIDs;
+    /** @var list<SenderID>|null $sender_ids */
+    #[Api(list: SenderID::class, optional: true)]
+    public ?array $sender_ids;
 
     public function __construct()
     {
@@ -39,13 +39,13 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel, Re
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<SenderID> $senderIDs
+     * @param list<SenderID> $sender_ids
      */
-    public static function with(?array $senderIDs = null): self
+    public static function with(?array $sender_ids = null): self
     {
         $obj = new self;
 
-        null !== $senderIDs && $obj->senderIDs = $senderIDs;
+        null !== $sender_ids && $obj->sender_ids = $sender_ids;
 
         return $obj;
     }
@@ -56,7 +56,7 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel, Re
     public function withSenderIDs(array $senderIDs): self
     {
         $obj = clone $this;
-        $obj->senderIDs = $senderIDs;
+        $obj->sender_ids = $senderIDs;
 
         return $obj;
     }

@@ -13,7 +13,7 @@ use Prelude\Watch\WatchSendFeedbacksResponse\Status;
 
 /**
  * @phpstan-type WatchSendFeedbacksResponseShape = array{
- *   requestID: string, status: value-of<Status>
+ *   request_id: string, status: value-of<Status>
  * }
  */
 final class WatchSendFeedbacksResponse implements BaseModel, ResponseConverter
@@ -26,8 +26,8 @@ final class WatchSendFeedbacksResponse implements BaseModel, ResponseConverter
     /**
      * A string that identifies this specific request. Report it back to us to help us diagnose your issues.
      */
-    #[Api('request_id')]
-    public string $requestID;
+    #[Api]
+    public string $request_id;
 
     /**
      * The status of the feedbacks sending.
@@ -42,7 +42,7 @@ final class WatchSendFeedbacksResponse implements BaseModel, ResponseConverter
      *
      * To enforce required parameters use
      * ```
-     * WatchSendFeedbacksResponse::with(requestID: ..., status: ...)
+     * WatchSendFeedbacksResponse::with(request_id: ..., status: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -63,11 +63,11 @@ final class WatchSendFeedbacksResponse implements BaseModel, ResponseConverter
      *
      * @param Status|value-of<Status> $status
      */
-    public static function with(string $requestID, Status|string $status): self
+    public static function with(string $request_id, Status|string $status): self
     {
         $obj = new self;
 
-        $obj->requestID = $requestID;
+        $obj->request_id = $request_id;
         $obj['status'] = $status;
 
         return $obj;
@@ -79,7 +79,7 @@ final class WatchSendFeedbacksResponse implements BaseModel, ResponseConverter
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj->requestID = $requestID;
+        $obj->request_id = $requestID;
 
         return $obj;
     }

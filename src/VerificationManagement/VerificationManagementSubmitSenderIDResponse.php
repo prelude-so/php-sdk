@@ -13,7 +13,7 @@ use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse\
 
 /**
  * @phpstan-type VerificationManagementSubmitSenderIDResponseShape = array{
- *   senderID: string, status: value-of<Status>, reason?: string
+ *   sender_id: string, status: value-of<Status>, reason?: string|null
  * }
  */
 final class VerificationManagementSubmitSenderIDResponse implements BaseModel, ResponseConverter
@@ -26,8 +26,8 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel, R
     /**
      * The sender ID that was added.
      */
-    #[Api('sender_id')]
-    public string $senderID;
+    #[Api]
+    public string $sender_id;
 
     /**
      * It indicates the status of the sender ID. Possible values are:
@@ -51,7 +51,7 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel, R
      *
      * To enforce required parameters use
      * ```
-     * VerificationManagementSubmitSenderIDResponse::with(senderID: ..., status: ...)
+     * VerificationManagementSubmitSenderIDResponse::with(sender_id: ..., status: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -75,13 +75,13 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel, R
      * @param Status|value-of<Status> $status
      */
     public static function with(
-        string $senderID,
+        string $sender_id,
         Status|string $status,
         ?string $reason = null
     ): self {
         $obj = new self;
 
-        $obj->senderID = $senderID;
+        $obj->sender_id = $sender_id;
         $obj['status'] = $status;
 
         null !== $reason && $obj->reason = $reason;
@@ -95,7 +95,7 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel, R
     public function withSenderID(string $senderID): self
     {
         $obj = clone $this;
-        $obj->senderID = $senderID;
+        $obj->sender_id = $senderID;
 
         return $obj;
     }

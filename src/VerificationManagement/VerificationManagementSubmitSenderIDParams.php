@@ -17,7 +17,7 @@ use Prelude\Core\Contracts\BaseModel;
  * @see Prelude\VerificationManagement->submitSenderID
  *
  * @phpstan-type VerificationManagementSubmitSenderIDParamsShape = array{
- *   senderID: string
+ *   sender_id: string
  * }
  */
 final class VerificationManagementSubmitSenderIDParams implements BaseModel
@@ -29,15 +29,15 @@ final class VerificationManagementSubmitSenderIDParams implements BaseModel
     /**
      * The sender ID to add.
      */
-    #[Api('sender_id')]
-    public string $senderID;
+    #[Api]
+    public string $sender_id;
 
     /**
      * `new VerificationManagementSubmitSenderIDParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * VerificationManagementSubmitSenderIDParams::with(senderID: ...)
+     * VerificationManagementSubmitSenderIDParams::with(sender_id: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -56,11 +56,11 @@ final class VerificationManagementSubmitSenderIDParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $senderID): self
+    public static function with(string $sender_id): self
     {
         $obj = new self;
 
-        $obj->senderID = $senderID;
+        $obj->sender_id = $sender_id;
 
         return $obj;
     }
@@ -71,7 +71,7 @@ final class VerificationManagementSubmitSenderIDParams implements BaseModel
     public function withSenderID(string $senderID): self
     {
         $obj = clone $this;
-        $obj->senderID = $senderID;
+        $obj->sender_id = $senderID;
 
         return $obj;
     }
