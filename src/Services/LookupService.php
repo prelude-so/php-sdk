@@ -7,12 +7,9 @@ namespace Prelude\Services;
 use Prelude\Client;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\Lookup\LookupLookupParams;
-use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\Lookup\LookupLookupResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\LookupContract;
-
-use const Prelude\Core\OMIT as omit;
 
 final class LookupService implements LookupContract
 {
@@ -26,36 +23,18 @@ final class LookupService implements LookupContract
      *
      * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
      *
-     * @param list<Type|value-of<Type>> $type Optional features. Possible values are:
-     *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
+     * @param array{type?: list<"cnam">}|LookupLookupParams $params
      *
      * @throws APIException
      */
     public function lookup(
         string $phoneNumber,
-        $type = omit,
-        ?RequestOptions $requestOptions = null
-    ): LookupLookupResponse {
-        $params = ['type' => $type];
-
-        return $this->lookupRaw($phoneNumber, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function lookupRaw(
-        string $phoneNumber,
-        array $params,
-        ?RequestOptions $requestOptions = null
+        array|LookupLookupParams $params,
+        ?RequestOptions $requestOptions = null,
     ): LookupLookupResponse {
         [$parsed, $options] = LookupLookupParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;

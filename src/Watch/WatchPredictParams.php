@@ -18,7 +18,7 @@ use Prelude\Watch\WatchPredictParams\Target;
  * @see Prelude\Watch->predict
  *
  * @phpstan-type WatchPredictParamsShape = array{
- *   target: Target, dispatchID?: string, metadata?: Metadata, signals?: Signals
+ *   target: Target, dispatch_id?: string, metadata?: Metadata, signals?: Signals
  * }
  */
 final class WatchPredictParams implements BaseModel
@@ -36,8 +36,8 @@ final class WatchPredictParams implements BaseModel
     /**
      * The identifier of the dispatch that came from the front-end SDK.
      */
-    #[Api('dispatch_id', optional: true)]
-    public ?string $dispatchID;
+    #[Api(optional: true)]
+    public ?string $dispatch_id;
 
     /**
      * The metadata for this prediction.
@@ -77,7 +77,7 @@ final class WatchPredictParams implements BaseModel
      */
     public static function with(
         Target $target,
-        ?string $dispatchID = null,
+        ?string $dispatch_id = null,
         ?Metadata $metadata = null,
         ?Signals $signals = null,
     ): self {
@@ -85,7 +85,7 @@ final class WatchPredictParams implements BaseModel
 
         $obj->target = $target;
 
-        null !== $dispatchID && $obj->dispatchID = $dispatchID;
+        null !== $dispatch_id && $obj->dispatch_id = $dispatch_id;
         null !== $metadata && $obj->metadata = $metadata;
         null !== $signals && $obj->signals = $signals;
 
@@ -109,7 +109,7 @@ final class WatchPredictParams implements BaseModel
     public function withDispatchID(string $dispatchID): self
     {
         $obj = clone $this;
-        $obj->dispatchID = $dispatchID;
+        $obj->dispatch_id = $dispatchID;
 
         return $obj;
     }

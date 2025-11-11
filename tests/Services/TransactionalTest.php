@@ -33,10 +33,10 @@ final class TransactionalTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $result = $this->client->transactional->send(
-            templateID: 'template_01hynf45qvevj844m9az2x2f3c',
-            to: '+30123456789'
-        );
+        $result = $this->client->transactional->send([
+            'template_id' => 'template_01hynf45qvevj844m9az2x2f3c',
+            'to' => '+30123456789',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -48,10 +48,10 @@ final class TransactionalTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $result = $this->client->transactional->send(
-            templateID: 'template_01hynf45qvevj844m9az2x2f3c',
-            to: '+30123456789'
-        );
+        $result = $this->client->transactional->send([
+            'template_id' => 'template_01hynf45qvevj844m9az2x2f3c',
+            'to' => '+30123456789',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }

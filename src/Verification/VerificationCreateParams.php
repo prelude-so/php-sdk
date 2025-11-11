@@ -20,7 +20,7 @@ use Prelude\Verification\VerificationCreateParams\Target;
  *
  * @phpstan-type VerificationCreateParamsShape = array{
  *   target: Target,
- *   dispatchID?: string,
+ *   dispatch_id?: string,
  *   metadata?: Metadata,
  *   options?: Options,
  *   signals?: Signals,
@@ -41,8 +41,8 @@ final class VerificationCreateParams implements BaseModel
     /**
      * The identifier of the dispatch that came from the front-end SDK.
      */
-    #[Api('dispatch_id', optional: true)]
-    public ?string $dispatchID;
+    #[Api(optional: true)]
+    public ?string $dispatch_id;
 
     /**
      * The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
@@ -88,7 +88,7 @@ final class VerificationCreateParams implements BaseModel
      */
     public static function with(
         Target $target,
-        ?string $dispatchID = null,
+        ?string $dispatch_id = null,
         ?Metadata $metadata = null,
         ?Options $options = null,
         ?Signals $signals = null,
@@ -97,7 +97,7 @@ final class VerificationCreateParams implements BaseModel
 
         $obj->target = $target;
 
-        null !== $dispatchID && $obj->dispatchID = $dispatchID;
+        null !== $dispatch_id && $obj->dispatch_id = $dispatch_id;
         null !== $metadata && $obj->metadata = $metadata;
         null !== $options && $obj->options = $options;
         null !== $signals && $obj->signals = $signals;
@@ -122,7 +122,7 @@ final class VerificationCreateParams implements BaseModel
     public function withDispatchID(string $dispatchID): self
     {
         $obj = clone $this;
-        $obj->dispatchID = $dispatchID;
+        $obj->dispatch_id = $dispatchID;
 
         return $obj;
     }

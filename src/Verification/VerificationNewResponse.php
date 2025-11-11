@@ -21,11 +21,11 @@ use Prelude\Verification\VerificationNewResponse\Status;
  *   id: string,
  *   method: value-of<Method>,
  *   status: value-of<Status>,
- *   channels?: list<value-of<Channel>>,
- *   metadata?: Metadata,
- *   reason?: value-of<Reason>,
- *   requestID?: string,
- *   silent?: Silent,
+ *   channels?: list<value-of<Channel>>|null,
+ *   metadata?: Metadata|null,
+ *   reason?: value-of<Reason>|null,
+ *   request_id?: string|null,
+ *   silent?: Silent|null,
  * }
  */
 final class VerificationNewResponse implements BaseModel, ResponseConverter
@@ -87,8 +87,8 @@ final class VerificationNewResponse implements BaseModel, ResponseConverter
     #[Api(enum: Reason::class, optional: true)]
     public ?string $reason;
 
-    #[Api('request_id', optional: true)]
-    public ?string $requestID;
+    #[Api(optional: true)]
+    public ?string $request_id;
 
     /**
      * The silent verification specific properties.
@@ -132,7 +132,7 @@ final class VerificationNewResponse implements BaseModel, ResponseConverter
         ?array $channels = null,
         ?Metadata $metadata = null,
         Reason|string|null $reason = null,
-        ?string $requestID = null,
+        ?string $request_id = null,
         ?Silent $silent = null,
     ): self {
         $obj = new self;
@@ -144,7 +144,7 @@ final class VerificationNewResponse implements BaseModel, ResponseConverter
         null !== $channels && $obj['channels'] = $channels;
         null !== $metadata && $obj->metadata = $metadata;
         null !== $reason && $obj['reason'] = $reason;
-        null !== $requestID && $obj->requestID = $requestID;
+        null !== $request_id && $obj->request_id = $request_id;
         null !== $silent && $obj->silent = $silent;
 
         return $obj;
@@ -235,7 +235,7 @@ final class VerificationNewResponse implements BaseModel, ResponseConverter
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj->requestID = $requestID;
+        $obj->request_id = $requestID;
 
         return $obj;
     }

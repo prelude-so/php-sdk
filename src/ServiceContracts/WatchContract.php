@@ -6,94 +6,48 @@ namespace Prelude\ServiceContracts;
 
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
-use Prelude\Watch\WatchPredictParams\Metadata;
-use Prelude\Watch\WatchPredictParams\Signals;
-use Prelude\Watch\WatchPredictParams\Target;
+use Prelude\Watch\WatchPredictParams;
 use Prelude\Watch\WatchPredictResponse;
-use Prelude\Watch\WatchSendEventsParams\Event;
+use Prelude\Watch\WatchSendEventsParams;
 use Prelude\Watch\WatchSendEventsResponse;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
+use Prelude\Watch\WatchSendFeedbacksParams;
 use Prelude\Watch\WatchSendFeedbacksResponse;
-
-use const Prelude\Core\OMIT as omit;
 
 interface WatchContract
 {
     /**
      * @api
      *
-     * @param Target $target The prediction target. Only supports phone numbers for now.
-     * @param string $dispatchID the identifier of the dispatch that came from the front-end SDK
-     * @param Metadata $metadata the metadata for this prediction
-     * @param Signals $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     * @param array<mixed>|WatchPredictParams $params
      *
      * @throws APIException
      */
     public function predict(
-        $target,
-        $dispatchID = omit,
-        $metadata = omit,
-        $signals = omit,
-        ?RequestOptions $requestOptions = null,
-    ): WatchPredictResponse;
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function predictRaw(
-        array $params,
+        array|WatchPredictParams $params,
         ?RequestOptions $requestOptions = null
     ): WatchPredictResponse;
 
     /**
      * @api
      *
-     * @param list<Event> $events a list of events to dispatch
+     * @param array<mixed>|WatchSendEventsParams $params
      *
      * @throws APIException
      */
     public function sendEvents(
-        $events,
-        ?RequestOptions $requestOptions = null
+        array|WatchSendEventsParams $params,
+        ?RequestOptions $requestOptions = null,
     ): WatchSendEventsResponse;
 
     /**
      * @api
      *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function sendEventsRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
-    ): WatchSendEventsResponse;
-
-    /**
-     * @api
-     *
-     * @param list<Feedback> $feedbacks a list of feedbacks to send
+     * @param array<mixed>|WatchSendFeedbacksParams $params
      *
      * @throws APIException
      */
     public function sendFeedbacks(
-        $feedbacks,
-        ?RequestOptions $requestOptions = null
-    ): WatchSendFeedbacksResponse;
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function sendFeedbacksRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
+        array|WatchSendFeedbacksParams $params,
+        ?RequestOptions $requestOptions = null,
     ): WatchSendFeedbacksResponse;
 }

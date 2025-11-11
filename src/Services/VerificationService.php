@@ -11,13 +11,7 @@ use Prelude\ServiceContracts\VerificationContract;
 use Prelude\Verification\VerificationCheckParams;
 use Prelude\Verification\VerificationCheckResponse;
 use Prelude\Verification\VerificationCreateParams;
-use Prelude\Verification\VerificationCreateParams\Metadata;
-use Prelude\Verification\VerificationCreateParams\Options;
-use Prelude\Verification\VerificationCreateParams\Signals;
-use Prelude\Verification\VerificationCreateParams\Target;
 use Prelude\Verification\VerificationNewResponse;
-
-use const Prelude\Core\OMIT as omit;
 
 final class VerificationService implements VerificationContract
 {
@@ -31,47 +25,45 @@ final class VerificationService implements VerificationContract
      *
      * Create a new verification for a specific phone number. If another non-expired verification exists (the request is performed within the verification window), this endpoint will perform a retry instead.
      *
-     * @param Target $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
-     * @param string $dispatchID the identifier of the dispatch that came from the front-end SDK
-     * @param Metadata $metadata The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
-     * @param Options $options Verification options
-     * @param Signals $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     * @param array{
+     *   target: array{type: "phone_number"|"email_address", value: string},
+     *   dispatch_id?: string,
+     *   metadata?: array{correlation_id?: string},
+     *   options?: array{
+     *     app_realm?: array{platform: "android", value: string},
+     *     callback_url?: string,
+     *     code_size?: int,
+     *     custom_code?: string,
+     *     integration?: "auth0"|"supabase",
+     *     locale?: string,
+     *     method?: "auto"|"voice"|"message",
+     *     preferred_channel?: "sms"|"rcs"|"whatsapp"|"viber"|"zalo"|"telegram",
+     *     sender_id?: string,
+     *     template_id?: string,
+     *     variables?: array<string,string>,
+     *   },
+     *   signals?: array{
+     *     app_version?: string,
+     *     device_id?: string,
+     *     device_model?: string,
+     *     device_platform?: "android"|"ios"|"ipados"|"tvos"|"web",
+     *     ip?: string,
+     *     is_trusted_user?: bool,
+     *     ja4_fingerprint?: string,
+     *     os_version?: string,
+     *     user_agent?: string,
+     *   },
+     * }|VerificationCreateParams $params
      *
      * @throws APIException
      */
     public function create(
-        $target,
-        $dispatchID = omit,
-        $metadata = omit,
-        $options = omit,
-        $signals = omit,
+        array|VerificationCreateParams $params,
         ?RequestOptions $requestOptions = null,
-    ): VerificationNewResponse {
-        $params = [
-            'target' => $target,
-            'dispatchID' => $dispatchID,
-            'metadata' => $metadata,
-            'options' => $options,
-            'signals' => $signals,
-        ];
-
-        return $this->createRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function createRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
     ): VerificationNewResponse {
         [$parsed, $options] = VerificationCreateParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -89,35 +81,20 @@ final class VerificationService implements VerificationContract
      *
      * Check the validity of a verification code.
      *
-     * @param string $code the OTP code to validate
-     * @param VerificationCheckParams\Target $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     * @param array{
+     *   code: string,
+     *   target: array{type: "phone_number"|"email_address", value: string},
+     * }|VerificationCheckParams $params
      *
      * @throws APIException
      */
     public function check(
-        $code,
-        $target,
-        ?RequestOptions $requestOptions = null
-    ): VerificationCheckResponse {
-        $params = ['code' => $code, 'target' => $target];
-
-        return $this->checkRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function checkRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
+        array|VerificationCheckParams $params,
+        ?RequestOptions $requestOptions = null,
     ): VerificationCheckResponse {
         [$parsed, $options] = VerificationCheckParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;

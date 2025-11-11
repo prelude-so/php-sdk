@@ -14,7 +14,10 @@ use Prelude\Verification\VerificationCheckResponse\Status;
 
 /**
  * @phpstan-type VerificationCheckResponseShape = array{
- *   status: value-of<Status>, id?: string, metadata?: Metadata, requestID?: string
+ *   status: value-of<Status>,
+ *   id?: string|null,
+ *   metadata?: Metadata|null,
+ *   request_id?: string|null,
  * }
  */
 final class VerificationCheckResponse implements BaseModel, ResponseConverter
@@ -44,8 +47,8 @@ final class VerificationCheckResponse implements BaseModel, ResponseConverter
     #[Api(optional: true)]
     public ?Metadata $metadata;
 
-    #[Api('request_id', optional: true)]
-    public ?string $requestID;
+    #[Api(optional: true)]
+    public ?string $request_id;
 
     /**
      * `new VerificationCheckResponse()` is missing required properties by the API.
@@ -77,7 +80,7 @@ final class VerificationCheckResponse implements BaseModel, ResponseConverter
         Status|string $status,
         ?string $id = null,
         ?Metadata $metadata = null,
-        ?string $requestID = null,
+        ?string $request_id = null,
     ): self {
         $obj = new self;
 
@@ -85,7 +88,7 @@ final class VerificationCheckResponse implements BaseModel, ResponseConverter
 
         null !== $id && $obj->id = $id;
         null !== $metadata && $obj->metadata = $metadata;
-        null !== $requestID && $obj->requestID = $requestID;
+        null !== $request_id && $obj->request_id = $request_id;
 
         return $obj;
     }
@@ -128,7 +131,7 @@ final class VerificationCheckResponse implements BaseModel, ResponseConverter
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj->requestID = $requestID;
+        $obj->request_id = $requestID;
 
         return $obj;
     }

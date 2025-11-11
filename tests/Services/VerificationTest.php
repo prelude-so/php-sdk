@@ -6,7 +6,6 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
-use Prelude\Verification\VerificationCreateParams\Target;
 use Tests\UnsupportedMockTests;
 
 /**
@@ -34,9 +33,9 @@ final class VerificationTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $result = $this->client->verification->create(
-            target: Target::with(type: 'phone_number', value: '+30123456789')
-        );
+        $result = $this->client->verification->create([
+            'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -48,9 +47,9 @@ final class VerificationTest extends TestCase
             $this->markTestSkipped("Prism doesn't support callbacks yet");
         }
 
-        $result = $this->client->verification->create(
-            target: Target::with(type: 'phone_number', value: '+30123456789')
-        );
+        $result = $this->client->verification->create([
+            'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -58,13 +57,10 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCheck(): void
     {
-        $result = $this->client->verification->check(
-            code: '12345',
-            target: \Prelude\Verification\VerificationCheckParams\Target::with(
-                type: 'phone_number',
-                value: '+30123456789'
-            ),
-        );
+        $result = $this->client->verification->check([
+            'code' => '12345',
+            'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -72,13 +68,10 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCheckWithOptionalParams(): void
     {
-        $result = $this->client->verification->check(
-            code: '12345',
-            target: \Prelude\Verification\VerificationCheckParams\Target::with(
-                type: 'phone_number',
-                value: '+30123456789'
-            ),
-        );
+        $result = $this->client->verification->check([
+            'code' => '12345',
+            'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }

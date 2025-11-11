@@ -16,9 +16,9 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Type;
  * @phpstan-type FeedbackShape = array{
  *   target: Target,
  *   type: value-of<Type>,
- *   dispatchID?: string,
- *   metadata?: Metadata,
- *   signals?: Signals,
+ *   dispatch_id?: string|null,
+ *   metadata?: Metadata|null,
+ *   signals?: Signals|null,
  * }
  */
 final class Feedback implements BaseModel
@@ -43,8 +43,8 @@ final class Feedback implements BaseModel
     /**
      * The identifier of the dispatch that came from the front-end SDK.
      */
-    #[Api('dispatch_id', optional: true)]
-    public ?string $dispatchID;
+    #[Api(optional: true)]
+    public ?string $dispatch_id;
 
     /**
      * The metadata for this feedback.
@@ -87,7 +87,7 @@ final class Feedback implements BaseModel
     public static function with(
         Target $target,
         Type|string $type,
-        ?string $dispatchID = null,
+        ?string $dispatch_id = null,
         ?Metadata $metadata = null,
         ?Signals $signals = null,
     ): self {
@@ -96,7 +96,7 @@ final class Feedback implements BaseModel
         $obj->target = $target;
         $obj['type'] = $type;
 
-        null !== $dispatchID && $obj->dispatchID = $dispatchID;
+        null !== $dispatch_id && $obj->dispatch_id = $dispatch_id;
         null !== $metadata && $obj->metadata = $metadata;
         null !== $signals && $obj->signals = $signals;
 
@@ -133,7 +133,7 @@ final class Feedback implements BaseModel
     public function withDispatchID(string $dispatchID): self
     {
         $obj = clone $this;
-        $obj->dispatchID = $dispatchID;
+        $obj->dispatch_id = $dispatchID;
 
         return $obj;
     }

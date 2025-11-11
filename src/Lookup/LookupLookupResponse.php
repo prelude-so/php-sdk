@@ -16,13 +16,13 @@ use Prelude\Lookup\LookupLookupResponse\OriginalNetworkInfo;
 
 /**
  * @phpstan-type LookupLookupResponseShape = array{
- *   callerName?: string,
- *   countryCode?: string,
- *   flags?: list<value-of<Flag>>,
- *   lineType?: value-of<LineType>,
- *   networkInfo?: NetworkInfo,
- *   originalNetworkInfo?: OriginalNetworkInfo,
- *   phoneNumber?: string,
+ *   caller_name?: string|null,
+ *   country_code?: string|null,
+ *   flags?: list<value-of<Flag>>|null,
+ *   line_type?: value-of<LineType>|null,
+ *   network_info?: NetworkInfo|null,
+ *   original_network_info?: OriginalNetworkInfo|null,
+ *   phone_number?: string|null,
  * }
  */
 final class LookupLookupResponse implements BaseModel, ResponseConverter
@@ -35,14 +35,14 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
     /**
      * The CNAM (Caller ID Name) associated with the phone number. Contact us if you need to use this functionality. Once enabled, put `cnam` option to `type` query parameter.
      */
-    #[Api('caller_name', optional: true)]
-    public ?string $callerName;
+    #[Api(optional: true)]
+    public ?string $caller_name;
 
     /**
      * The country code of the phone number.
      */
-    #[Api('country_code', optional: true)]
-    public ?string $countryCode;
+    #[Api(optional: true)]
+    public ?string $country_code;
 
     /**
      * A list of flags associated with the phone number.
@@ -76,28 +76,28 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
      *   * `voice_mail` - A specific category of Interactive Voice Response (IVR) services.
      *   * `voip` - Specific ranges for providers of VoIP services to allow incoming calls from the regular telephony network.
      *
-     * @var value-of<LineType>|null $lineType
+     * @var value-of<LineType>|null $line_type
      */
-    #[Api('line_type', enum: LineType::class, optional: true)]
-    public ?string $lineType;
+    #[Api(enum: LineType::class, optional: true)]
+    public ?string $line_type;
 
     /**
      * The current carrier information.
      */
-    #[Api('network_info', optional: true)]
-    public ?NetworkInfo $networkInfo;
+    #[Api(optional: true)]
+    public ?NetworkInfo $network_info;
 
     /**
      * The original carrier information.
      */
-    #[Api('original_network_info', optional: true)]
-    public ?OriginalNetworkInfo $originalNetworkInfo;
+    #[Api(optional: true)]
+    public ?OriginalNetworkInfo $original_network_info;
 
     /**
      * The phone number.
      */
-    #[Api('phone_number', optional: true)]
-    public ?string $phoneNumber;
+    #[Api(optional: true)]
+    public ?string $phone_number;
 
     public function __construct()
     {
@@ -110,26 +110,26 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<Flag|value-of<Flag>> $flags
-     * @param LineType|value-of<LineType> $lineType
+     * @param LineType|value-of<LineType> $line_type
      */
     public static function with(
-        ?string $callerName = null,
-        ?string $countryCode = null,
+        ?string $caller_name = null,
+        ?string $country_code = null,
         ?array $flags = null,
-        LineType|string|null $lineType = null,
-        ?NetworkInfo $networkInfo = null,
-        ?OriginalNetworkInfo $originalNetworkInfo = null,
-        ?string $phoneNumber = null,
+        LineType|string|null $line_type = null,
+        ?NetworkInfo $network_info = null,
+        ?OriginalNetworkInfo $original_network_info = null,
+        ?string $phone_number = null,
     ): self {
         $obj = new self;
 
-        null !== $callerName && $obj->callerName = $callerName;
-        null !== $countryCode && $obj->countryCode = $countryCode;
+        null !== $caller_name && $obj->caller_name = $caller_name;
+        null !== $country_code && $obj->country_code = $country_code;
         null !== $flags && $obj['flags'] = $flags;
-        null !== $lineType && $obj['lineType'] = $lineType;
-        null !== $networkInfo && $obj->networkInfo = $networkInfo;
-        null !== $originalNetworkInfo && $obj->originalNetworkInfo = $originalNetworkInfo;
-        null !== $phoneNumber && $obj->phoneNumber = $phoneNumber;
+        null !== $line_type && $obj['line_type'] = $line_type;
+        null !== $network_info && $obj->network_info = $network_info;
+        null !== $original_network_info && $obj->original_network_info = $original_network_info;
+        null !== $phone_number && $obj->phone_number = $phone_number;
 
         return $obj;
     }
@@ -140,7 +140,7 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
     public function withCallerName(string $callerName): self
     {
         $obj = clone $this;
-        $obj->callerName = $callerName;
+        $obj->caller_name = $callerName;
 
         return $obj;
     }
@@ -151,7 +151,7 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
     public function withCountryCode(string $countryCode): self
     {
         $obj = clone $this;
-        $obj->countryCode = $countryCode;
+        $obj->country_code = $countryCode;
 
         return $obj;
     }
@@ -198,7 +198,7 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
     public function withLineType(LineType|string $lineType): self
     {
         $obj = clone $this;
-        $obj['lineType'] = $lineType;
+        $obj['line_type'] = $lineType;
 
         return $obj;
     }
@@ -209,7 +209,7 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
     public function withNetworkInfo(NetworkInfo $networkInfo): self
     {
         $obj = clone $this;
-        $obj->networkInfo = $networkInfo;
+        $obj->network_info = $networkInfo;
 
         return $obj;
     }
@@ -221,7 +221,7 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
         OriginalNetworkInfo $originalNetworkInfo
     ): self {
         $obj = clone $this;
-        $obj->originalNetworkInfo = $originalNetworkInfo;
+        $obj->original_network_info = $originalNetworkInfo;
 
         return $obj;
     }
@@ -232,7 +232,7 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phoneNumber = $phoneNumber;
+        $obj->phone_number = $phoneNumber;
 
         return $obj;
     }

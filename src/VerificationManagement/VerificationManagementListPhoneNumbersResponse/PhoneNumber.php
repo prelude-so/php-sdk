@@ -10,7 +10,7 @@ use Prelude\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type PhoneNumberShape = array{
- *   createdAt: \DateTimeInterface, phoneNumber: string
+ *   created_at: \DateTimeInterface, phone_number: string
  * }
  */
 final class PhoneNumber implements BaseModel
@@ -21,21 +21,21 @@ final class PhoneNumber implements BaseModel
     /**
      * The date and time when the phone number was added to the list.
      */
-    #[Api('created_at')]
-    public \DateTimeInterface $createdAt;
+    #[Api]
+    public \DateTimeInterface $created_at;
 
     /**
      * An E.164 formatted phone number.
      */
-    #[Api('phone_number')]
-    public string $phoneNumber;
+    #[Api]
+    public string $phone_number;
 
     /**
      * `new PhoneNumber()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * PhoneNumber::with(createdAt: ..., phoneNumber: ...)
+     * PhoneNumber::with(created_at: ..., phone_number: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -55,13 +55,13 @@ final class PhoneNumber implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        \DateTimeInterface $createdAt,
-        string $phoneNumber
+        \DateTimeInterface $created_at,
+        string $phone_number
     ): self {
         $obj = new self;
 
-        $obj->createdAt = $createdAt;
-        $obj->phoneNumber = $phoneNumber;
+        $obj->created_at = $created_at;
+        $obj->phone_number = $phone_number;
 
         return $obj;
     }
@@ -72,7 +72,7 @@ final class PhoneNumber implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->createdAt = $createdAt;
+        $obj->created_at = $createdAt;
 
         return $obj;
     }
@@ -83,7 +83,7 @@ final class PhoneNumber implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phoneNumber = $phoneNumber;
+        $obj->phone_number = $phoneNumber;
 
         return $obj;
     }

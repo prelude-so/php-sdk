@@ -16,17 +16,17 @@ use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
  * Verification options.
  *
  * @phpstan-type OptionsShape = array{
- *   appRealm?: AppRealm,
- *   callbackURL?: string,
- *   codeSize?: int,
- *   customCode?: string,
- *   integration?: value-of<Integration>,
- *   locale?: string,
- *   method?: value-of<Method>,
- *   preferredChannel?: value-of<PreferredChannel>,
- *   senderID?: string,
- *   templateID?: string,
- *   variables?: array<string, string>,
+ *   app_realm?: AppRealm|null,
+ *   callback_url?: string|null,
+ *   code_size?: int|null,
+ *   custom_code?: string|null,
+ *   integration?: value-of<Integration>|null,
+ *   locale?: string|null,
+ *   method?: value-of<Method>|null,
+ *   preferred_channel?: value-of<PreferredChannel>|null,
+ *   sender_id?: string|null,
+ *   template_id?: string|null,
+ *   variables?: array<string,string>|null,
  * }
  */
 final class Options implements BaseModel
@@ -37,26 +37,26 @@ final class Options implements BaseModel
     /**
      * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
      */
-    #[Api('app_realm', optional: true)]
-    public ?AppRealm $appRealm;
+    #[Api(optional: true)]
+    public ?AppRealm $app_realm;
 
     /**
      * The URL where webhooks will be sent when verification events occur, including verification creation, attempt creation, and delivery status changes. For more details, refer to [Webhook](/verify/v2/documentation/webhook).
      */
-    #[Api('callback_url', optional: true)]
-    public ?string $callbackURL;
+    #[Api(optional: true)]
+    public ?string $callback_url;
 
     /**
      * The size of the code generated. It should be between 4 and 8. Defaults to the code size specified from the Dashboard.
      */
-    #[Api('code_size', optional: true)]
-    public ?int $codeSize;
+    #[Api(optional: true)]
+    public ?int $code_size;
 
     /**
      * The custom code to use for OTP verification. To use the custom code feature, contact us to enable it for your account. For more details, refer to [Custom Code](/verify/v2/documentation/custom-codes).
      */
-    #[Api('custom_code', optional: true)]
-    public ?string $customCode;
+    #[Api(optional: true)]
+    public ?string $custom_code;
 
     /**
      * The integration that triggered the verification.
@@ -83,27 +83,27 @@ final class Options implements BaseModel
     /**
      * The preferred channel to be used in priority for verification.
      *
-     * @var value-of<PreferredChannel>|null $preferredChannel
+     * @var value-of<PreferredChannel>|null $preferred_channel
      */
-    #[Api('preferred_channel', enum: PreferredChannel::class, optional: true)]
-    public ?string $preferredChannel;
+    #[Api(enum: PreferredChannel::class, optional: true)]
+    public ?string $preferred_channel;
 
     /**
      * The Sender ID to use for this message. The Sender ID needs to be enabled by Prelude.
      */
-    #[Api('sender_id', optional: true)]
-    public ?string $senderID;
+    #[Api(optional: true)]
+    public ?string $sender_id;
 
     /**
      * The identifier of a verification template. It applies use case-specific settings, such as the message content or certain verification parameters.
      */
-    #[Api('template_id', optional: true)]
-    public ?string $templateID;
+    #[Api(optional: true)]
+    public ?string $template_id;
 
     /**
      * The variables to be replaced in the template.
      *
-     * @var array<string, string>|null $variables
+     * @var array<string,string>|null $variables
      */
     #[Api(map: 'string', optional: true)]
     public ?array $variables;
@@ -120,34 +120,34 @@ final class Options implements BaseModel
      *
      * @param Integration|value-of<Integration> $integration
      * @param Method|value-of<Method> $method
-     * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
-     * @param array<string, string> $variables
+     * @param PreferredChannel|value-of<PreferredChannel> $preferred_channel
+     * @param array<string,string> $variables
      */
     public static function with(
-        ?AppRealm $appRealm = null,
-        ?string $callbackURL = null,
-        ?int $codeSize = null,
-        ?string $customCode = null,
+        ?AppRealm $app_realm = null,
+        ?string $callback_url = null,
+        ?int $code_size = null,
+        ?string $custom_code = null,
         Integration|string|null $integration = null,
         ?string $locale = null,
         Method|string|null $method = null,
-        PreferredChannel|string|null $preferredChannel = null,
-        ?string $senderID = null,
-        ?string $templateID = null,
+        PreferredChannel|string|null $preferred_channel = null,
+        ?string $sender_id = null,
+        ?string $template_id = null,
         ?array $variables = null,
     ): self {
         $obj = new self;
 
-        null !== $appRealm && $obj->appRealm = $appRealm;
-        null !== $callbackURL && $obj->callbackURL = $callbackURL;
-        null !== $codeSize && $obj->codeSize = $codeSize;
-        null !== $customCode && $obj->customCode = $customCode;
+        null !== $app_realm && $obj->app_realm = $app_realm;
+        null !== $callback_url && $obj->callback_url = $callback_url;
+        null !== $code_size && $obj->code_size = $code_size;
+        null !== $custom_code && $obj->custom_code = $custom_code;
         null !== $integration && $obj['integration'] = $integration;
         null !== $locale && $obj->locale = $locale;
         null !== $method && $obj['method'] = $method;
-        null !== $preferredChannel && $obj['preferredChannel'] = $preferredChannel;
-        null !== $senderID && $obj->senderID = $senderID;
-        null !== $templateID && $obj->templateID = $templateID;
+        null !== $preferred_channel && $obj['preferred_channel'] = $preferred_channel;
+        null !== $sender_id && $obj->sender_id = $sender_id;
+        null !== $template_id && $obj->template_id = $template_id;
         null !== $variables && $obj->variables = $variables;
 
         return $obj;
@@ -159,7 +159,7 @@ final class Options implements BaseModel
     public function withAppRealm(AppRealm $appRealm): self
     {
         $obj = clone $this;
-        $obj->appRealm = $appRealm;
+        $obj->app_realm = $appRealm;
 
         return $obj;
     }
@@ -170,7 +170,7 @@ final class Options implements BaseModel
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj->callbackURL = $callbackURL;
+        $obj->callback_url = $callbackURL;
 
         return $obj;
     }
@@ -181,7 +181,7 @@ final class Options implements BaseModel
     public function withCodeSize(int $codeSize): self
     {
         $obj = clone $this;
-        $obj->codeSize = $codeSize;
+        $obj->code_size = $codeSize;
 
         return $obj;
     }
@@ -192,7 +192,7 @@ final class Options implements BaseModel
     public function withCustomCode(string $customCode): self
     {
         $obj = clone $this;
-        $obj->customCode = $customCode;
+        $obj->custom_code = $customCode;
 
         return $obj;
     }
@@ -243,7 +243,7 @@ final class Options implements BaseModel
         PreferredChannel|string $preferredChannel
     ): self {
         $obj = clone $this;
-        $obj['preferredChannel'] = $preferredChannel;
+        $obj['preferred_channel'] = $preferredChannel;
 
         return $obj;
     }
@@ -254,7 +254,7 @@ final class Options implements BaseModel
     public function withSenderID(string $senderID): self
     {
         $obj = clone $this;
-        $obj->senderID = $senderID;
+        $obj->sender_id = $senderID;
 
         return $obj;
     }
@@ -265,7 +265,7 @@ final class Options implements BaseModel
     public function withTemplateID(string $templateID): self
     {
         $obj = clone $this;
-        $obj->templateID = $templateID;
+        $obj->template_id = $templateID;
 
         return $obj;
     }
@@ -273,7 +273,7 @@ final class Options implements BaseModel
     /**
      * The variables to be replaced in the template.
      *
-     * @param array<string, string> $variables
+     * @param array<string,string> $variables
      */
     public function withVariables(array $variables): self
     {

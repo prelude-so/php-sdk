@@ -30,7 +30,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->deletePhoneNumber(
             'allow',
-            '+30123456789'
+            ['phone_number' => '+30123456789']
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
@@ -41,7 +41,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->deletePhoneNumber(
             'allow',
-            '+30123456789'
+            ['phone_number' => '+30123456789']
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
@@ -68,7 +68,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->setPhoneNumber(
             'allow',
-            '+30123456789'
+            ['phone_number' => '+30123456789']
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
@@ -79,7 +79,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->setPhoneNumber(
             'allow',
-            '+30123456789'
+            ['phone_number' => '+30123456789']
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
@@ -88,7 +88,9 @@ final class VerificationManagementTest extends TestCase
     #[Test]
     public function testSubmitSenderID(): void
     {
-        $result = $this->client->verificationManagement->submitSenderID('Prelude');
+        $result = $this->client->verificationManagement->submitSenderID([
+            'sender_id' => 'Prelude',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -96,7 +98,9 @@ final class VerificationManagementTest extends TestCase
     #[Test]
     public function testSubmitSenderIDWithOptionalParams(): void
     {
-        $result = $this->client->verificationManagement->submitSenderID('Prelude');
+        $result = $this->client->verificationManagement->submitSenderID([
+            'sender_id' => 'Prelude',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }

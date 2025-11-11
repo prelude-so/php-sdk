@@ -6,11 +6,14 @@ namespace Prelude\ServiceContracts;
 
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
+use Prelude\VerificationManagement\VerificationManagementDeletePhoneNumberParams;
 use Prelude\VerificationManagement\VerificationManagementDeletePhoneNumberParams\Action;
 use Prelude\VerificationManagement\VerificationManagementDeletePhoneNumberResponse;
 use Prelude\VerificationManagement\VerificationManagementListPhoneNumbersResponse;
 use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse;
+use Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams;
 use Prelude\VerificationManagement\VerificationManagementSetPhoneNumberResponse;
+use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDParams;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse;
 
 interface VerificationManagementContract
@@ -19,27 +22,13 @@ interface VerificationManagementContract
      * @api
      *
      * @param Action|value-of<Action> $action
-     * @param string $phoneNumber An E.164 formatted phone number to remove from the list.
+     * @param array<mixed>|VerificationManagementDeletePhoneNumberParams $params
      *
      * @throws APIException
      */
     public function deletePhoneNumber(
         Action|string $action,
-        $phoneNumber,
-        ?RequestOptions $requestOptions = null,
-    ): VerificationManagementDeletePhoneNumberResponse;
-
-    /**
-     * @api
-     *
-     * @param Action|value-of<Action> $action
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function deletePhoneNumberRaw(
-        Action|string $action,
-        array $params,
+        array|VerificationManagementDeletePhoneNumberParams $params,
         ?RequestOptions $requestOptions = null,
     ): VerificationManagementDeletePhoneNumberResponse;
 
@@ -67,52 +56,26 @@ interface VerificationManagementContract
     /**
      * @api
      *
-     * @param \Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action|value-of<\Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action> $action
-     * @param string $phoneNumber An E.164 formatted phone number to add to the list.
+     * @param VerificationManagementSetPhoneNumberParams\Action|value-of<VerificationManagementSetPhoneNumberParams\Action> $action
+     * @param array<mixed>|VerificationManagementSetPhoneNumberParams $params
      *
      * @throws APIException
      */
     public function setPhoneNumber(
-        \Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action|string $action,
-        $phoneNumber,
+        VerificationManagementSetPhoneNumberParams\Action|string $action,
+        array|VerificationManagementSetPhoneNumberParams $params,
         ?RequestOptions $requestOptions = null,
     ): VerificationManagementSetPhoneNumberResponse;
 
     /**
      * @api
      *
-     * @param \Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action|value-of<\Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action> $action
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function setPhoneNumberRaw(
-        \Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action|string $action,
-        array $params,
-        ?RequestOptions $requestOptions = null,
-    ): VerificationManagementSetPhoneNumberResponse;
-
-    /**
-     * @api
-     *
-     * @param string $senderID the sender ID to add
+     * @param array<mixed>|VerificationManagementSubmitSenderIDParams $params
      *
      * @throws APIException
      */
     public function submitSenderID(
-        $senderID,
-        ?RequestOptions $requestOptions = null
-    ): VerificationManagementSubmitSenderIDResponse;
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function submitSenderIDRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
+        array|VerificationManagementSubmitSenderIDParams $params,
+        ?RequestOptions $requestOptions = null,
     ): VerificationManagementSubmitSenderIDResponse;
 }

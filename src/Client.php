@@ -80,7 +80,7 @@ class Client extends BaseClient
         $this->watch = new WatchService($this);
     }
 
-    /** @return array<string, string> */
+    /** @return array<string,string> */
     protected function authHeaders(): array
     {
         return $this->apiToken ? ['Authorization' => "Bearer {$this->apiToken}"] : [
