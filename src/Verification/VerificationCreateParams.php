@@ -16,7 +16,7 @@ use Prelude\Verification\VerificationCreateParams\Target;
 /**
  * Create a new verification for a specific phone number. If another non-expired verification exists (the request is performed within the verification window), this endpoint will perform a retry instead.
  *
- * @see Prelude\VerificationService::create()
+ * @see Prelude\Services\VerificationService::create()
  *
  * @phpstan-type VerificationCreateParamsShape = array{
  *   target: Target,

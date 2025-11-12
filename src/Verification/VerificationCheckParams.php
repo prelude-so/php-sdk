@@ -13,7 +13,7 @@ use Prelude\Verification\VerificationCheckParams\Target;
 /**
  * Check the validity of a verification code.
  *
- * @see Prelude\VerificationService::check()
+ * @see Prelude\Services\VerificationService::check()
  *
  * @phpstan-type VerificationCheckParamsShape = array{code: string, target: Target}
  */

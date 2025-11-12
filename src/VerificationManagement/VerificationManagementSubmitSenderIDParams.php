@@ -14,7 +14,7 @@ use Prelude\Core\Contracts\BaseModel;
  *
  * In order to get access to this endpoint, contact our support team.
  *
- * @see Prelude\VerificationManagementService::submitSenderID()
+ * @see Prelude\Services\VerificationManagementService::submitSenderID()
  *
  * @phpstan-type VerificationManagementSubmitSenderIDParamsShape = array{
  *   sender_id: string
