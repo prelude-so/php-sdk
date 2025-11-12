@@ -16,7 +16,7 @@ use Prelude\Core\Contracts\BaseModel;
  *
  * In order to get access to this endpoint, contact our support team.
  *
- * @see Prelude\VerificationManagement->setPhoneNumber
+ * @see Prelude\VerificationManagementService::setPhoneNumber()
  *
  * @phpstan-type VerificationManagementSetPhoneNumberParamsShape = array{
  *   phone_number: string

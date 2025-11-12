@@ -16,7 +16,7 @@ use Prelude\Core\Contracts\BaseModel;
  *
  * In order to get access to this endpoint, contact our support team.
  *
- * @see Prelude\VerificationManagement->deletePhoneNumber
+ * @see Prelude\VerificationManagementService::deletePhoneNumber()
  *
  * @phpstan-type VerificationManagementDeletePhoneNumberParamsShape = array{
  *   phone_number: string
