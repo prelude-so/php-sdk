@@ -14,7 +14,7 @@ use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
  * Legacy route maintained for backward compatibility. Migrate to `/v2/notify` instead.
  *
  * @deprecated
- * @see Prelude\TransactionalService::send()
+ * @see Prelude\Services\TransactionalService::send()
  *
  * @phpstan-type TransactionalSendParamsShape = array{
  *   template_id: string,
