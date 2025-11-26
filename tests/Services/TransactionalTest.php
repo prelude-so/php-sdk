@@ -6,6 +6,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
+use Prelude\Transactional\TransactionalSendResponse;
 use Tests\UnsupportedMockTests;
 
 /**
@@ -38,7 +39,8 @@ final class TransactionalTest extends TestCase
             'to' => '+30123456789',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(TransactionalSendResponse::class, $result);
     }
 
     #[Test]
@@ -51,8 +53,16 @@ final class TransactionalTest extends TestCase
         $result = $this->client->transactional->send([
             'template_id' => 'template_01hynf45qvevj844m9az2x2f3c',
             'to' => '+30123456789',
+            'callback_url' => 'callback_url',
+            'correlation_id' => 'correlation_id',
+            'expires_at' => 'expires_at',
+            'from' => 'from',
+            'locale' => 'el-GR',
+            'preferred_channel' => 'whatsapp',
+            'variables' => ['foo' => 'bar'],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(TransactionalSendResponse::class, $result);
     }
 }

@@ -6,6 +6,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
+use Prelude\Lookup\LookupLookupResponse;
 
 /**
  * @internal
@@ -30,6 +31,7 @@ final class LookupTest extends TestCase
     {
         $result = $this->client->lookup->lookup('+12065550100', []);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(LookupLookupResponse::class, $result);
     }
 }

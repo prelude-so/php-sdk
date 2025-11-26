@@ -6,6 +6,11 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
+use Prelude\VerificationManagement\VerificationManagementDeletePhoneNumberResponse;
+use Prelude\VerificationManagement\VerificationManagementListPhoneNumbersResponse;
+use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse;
+use Prelude\VerificationManagement\VerificationManagementSetPhoneNumberResponse;
+use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse;
 
 /**
  * @internal
@@ -33,7 +38,11 @@ final class VerificationManagementTest extends TestCase
             ['phone_number' => '+30123456789']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(
+            VerificationManagementDeletePhoneNumberResponse::class,
+            $result
+        );
     }
 
     #[Test]
@@ -44,7 +53,11 @@ final class VerificationManagementTest extends TestCase
             ['phone_number' => '+30123456789']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(
+            VerificationManagementDeletePhoneNumberResponse::class,
+            $result
+        );
     }
 
     #[Test]
@@ -52,7 +65,11 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->listPhoneNumbers('allow');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(
+            VerificationManagementListPhoneNumbersResponse::class,
+            $result
+        );
     }
 
     #[Test]
@@ -60,7 +77,11 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->listSenderIDs();
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(
+            VerificationManagementListSenderIDsResponse::class,
+            $result
+        );
     }
 
     #[Test]
@@ -71,7 +92,11 @@ final class VerificationManagementTest extends TestCase
             ['phone_number' => '+30123456789']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(
+            VerificationManagementSetPhoneNumberResponse::class,
+            $result
+        );
     }
 
     #[Test]
@@ -82,7 +107,11 @@ final class VerificationManagementTest extends TestCase
             ['phone_number' => '+30123456789']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(
+            VerificationManagementSetPhoneNumberResponse::class,
+            $result
+        );
     }
 
     #[Test]
@@ -92,7 +121,11 @@ final class VerificationManagementTest extends TestCase
             'sender_id' => 'Prelude',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(
+            VerificationManagementSubmitSenderIDResponse::class,
+            $result
+        );
     }
 
     #[Test]
@@ -102,6 +135,10 @@ final class VerificationManagementTest extends TestCase
             'sender_id' => 'Prelude',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(
+            VerificationManagementSubmitSenderIDResponse::class,
+            $result
+        );
     }
 }
