@@ -28,14 +28,14 @@ final class WatchService implements WatchContract
      * Predict the outcome of a verification based on Prelude’s anti-fraud system.
      *
      * @param array{
-     *   target: array{type: "phone_number"|"email_address", value: string},
+     *   target: array{type: 'phone_number'|'email_address', value: string},
      *   dispatch_id?: string,
      *   metadata?: array{correlation_id?: string},
      *   signals?: array{
      *     app_version?: string,
      *     device_id?: string,
      *     device_model?: string,
-     *     device_platform?: "android"|"ios"|"ipados"|"tvos"|"web",
+     *     device_platform?: 'android'|'ios'|'ipados'|'tvos'|'web',
      *     ip?: string,
      *     is_trusted_user?: bool,
      *     ja4_fingerprint?: string,
@@ -72,9 +72,9 @@ final class WatchService implements WatchContract
      *
      * @param array{
      *   events: list<array{
-     *     confidence: "maximum"|"high"|"neutral"|"low"|"minimum",
+     *     confidence: 'maximum'|'high'|'neutral'|'low'|'minimum',
      *     label: string,
-     *     target: array{type: "phone_number"|"email_address", value: string},
+     *     target: array{type: 'phone_number'|'email_address', value: string},
      *   }>,
      * }|WatchSendEventsParams $params
      *
@@ -106,15 +106,15 @@ final class WatchService implements WatchContract
      *
      * @param array{
      *   feedbacks: list<array{
-     *     target: array{type: "phone_number"|"email_address", value: string},
-     *     type: "verification.started"|"verification.completed",
+     *     target: array{type: 'phone_number'|'email_address', value: string},
+     *     type: 'verification.started'|'verification.completed',
      *     dispatch_id?: string,
      *     metadata?: array{correlation_id?: string},
      *     signals?: array{
      *       app_version?: string,
      *       device_id?: string,
      *       device_model?: string,
-     *       device_platform?: "android"|"ios"|"ipados"|"tvos"|"web",
+     *       device_platform?: 'android'|'ios'|'ipados'|'tvos'|'web',
      *       ip?: string,
      *       is_trusted_user?: bool,
      *       ja4_fingerprint?: string,

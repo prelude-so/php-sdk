@@ -33,7 +33,7 @@ final class TransactionalService implements TransactionalContract
      *   expires_at?: string,
      *   from?: string,
      *   locale?: string,
-     *   preferred_channel?: "sms"|"rcs"|"whatsapp",
+     *   preferred_channel?: 'sms'|'rcs'|'whatsapp',
      *   variables?: array<string,string>,
      * }|TransactionalSendParams $params
      *

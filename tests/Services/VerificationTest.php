@@ -30,7 +30,7 @@ final class VerificationTest extends TestCase
     public function testCreate(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped("Prism doesn't support callbacks yet");
+            $this->markTestSkipped('Prism doesn\'t support callbacks yet');
         }
 
         $result = $this->client->verification->create([
@@ -44,7 +44,7 @@ final class VerificationTest extends TestCase
     public function testCreateWithOptionalParams(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped("Prism doesn't support callbacks yet");
+            $this->markTestSkipped('Prism doesn\'t support callbacks yet');
         }
 
         $result = $this->client->verification->create([
