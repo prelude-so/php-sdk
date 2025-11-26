@@ -30,7 +30,7 @@ final class TransactionalTest extends TestCase
     public function testSend(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped("Prism doesn't support callbacks yet");
+            $this->markTestSkipped('Prism doesn\'t support callbacks yet');
         }
 
         $result = $this->client->transactional->send([
@@ -45,7 +45,7 @@ final class TransactionalTest extends TestCase
     public function testSendWithOptionalParams(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped("Prism doesn't support callbacks yet");
+            $this->markTestSkipped('Prism doesn\'t support callbacks yet');
         }
 
         $result = $this->client->transactional->send([

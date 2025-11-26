@@ -23,7 +23,7 @@ final class LookupService implements LookupContract
      *
      * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
      *
-     * @param array{type?: list<"cnam">}|LookupLookupParams $params
+     * @param array{type?: list<'cnam'>}|LookupLookupParams $params
      *
      * @throws APIException
      */

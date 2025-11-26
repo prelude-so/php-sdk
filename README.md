@@ -43,10 +43,10 @@ Parameters with a default value must be set by name.
 
 use Prelude\Client;
 
-$client = new Client(apiToken: getenv("API_TOKEN") ?: "My API Token");
+$client = new Client(apiToken: getenv('API_TOKEN') ?: 'My API Token');
 
 $verification = $client->verification->create([
-  "target" => ["type" => "phone_number", "value" => "+30123456789"]
+  'target' => ['type' => 'phone_number', 'value' => '+30123456789']
 ]);
 
 var_dump($verification->id);
@@ -70,7 +70,7 @@ use Prelude\Core\Exceptions\APIConnectionException;
 
 try {
   $verification = $client->verification->create([
-    "target" => ["type" => "phone_number", "value" => "+30123456789"]
+    'target' => ['type' => 'phone_number', 'value' => '+30123456789']
   ]);
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
@@ -118,7 +118,7 @@ $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
 $result = $client->verification->create(
-  ["target" => ["type" => "phone_number", "value" => "+30123456789"]],
+  ['target' => ['type' => 'phone_number', 'value' => '+30123456789']],
   RequestOptions::with(maxRetries: 5),
 );
 ```
@@ -139,11 +139,11 @@ Note: the `extra*` parameters of the same name overrides the documented paramete
 use Prelude\RequestOptions;
 
 $verification = $client->verification->create(
-  ["target" => ["type" => "phone_number", "value" => "+30123456789"]],
+  ['target' => ['type' => 'phone_number', 'value' => '+30123456789']],
   RequestOptions::with(
-    extraQueryParams: ["my_query_parameter" => "value"],
-    extraBodyParams: ["my_body_parameter" => "value"],
-    extraHeaders: ["my-header" => "value"],
+    extraQueryParams: ['my_query_parameter' => 'value'],
+    extraBodyParams: ['my_body_parameter' => 'value'],
+    extraHeaders: ['my-header' => 'value'],
   ),
 );
 ```
