@@ -37,7 +37,7 @@ final class LookupService implements LookupContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['v2/lookup/%1$s', $phoneNumber],

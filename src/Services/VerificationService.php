@@ -66,7 +66,7 @@ final class VerificationService implements VerificationContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v2/verification',
@@ -97,7 +97,7 @@ final class VerificationService implements VerificationContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v2/verification/check',
