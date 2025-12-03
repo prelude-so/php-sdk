@@ -12,7 +12,10 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type;
 /**
  * The feedback target. Only supports phone numbers for now.
  *
- * @phpstan-type TargetShape = array{type: value-of<Type>, value: string}
+ * @phpstan-type TargetShape = array{
+ *   type: value-of<\Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type>,
+ *   value: string,
+ * }
  */
 final class Target implements BaseModel
 {
@@ -24,7 +27,9 @@ final class Target implements BaseModel
      *
      * @var value-of<Type> $type
      */
-    #[Api(enum: Type::class)]
+    #[Api(
+        enum: Type::class
+    )]
     public string $type;
 
     /**
@@ -59,8 +64,10 @@ final class Target implements BaseModel
      *
      * @param Type|value-of<Type> $type
      */
-    public static function with(Type|string $type, string $value): self
-    {
+    public static function with(
+        Type|string $type,
+        string $value,
+    ): self {
         $obj = new self;
 
         $obj['type'] = $type;
@@ -74,8 +81,9 @@ final class Target implements BaseModel
      *
      * @param Type|value-of<Type> $type
      */
-    public function withType(Type|string $type): self
-    {
+    public function withType(
+        Type|string $type
+    ): self {
         $obj = clone $this;
         $obj['type'] = $type;
 

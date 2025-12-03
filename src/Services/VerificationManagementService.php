@@ -51,7 +51,7 @@ final class VerificationManagementService implements VerificationManagementContr
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
             path: ['v2/verification/management/phone-numbers/%1$s', $action],
@@ -76,7 +76,7 @@ final class VerificationManagementService implements VerificationManagementContr
         \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action|string $action,
         ?RequestOptions $requestOptions = null,
     ): VerificationManagementListPhoneNumbersResponse {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['v2/verification/management/phone-numbers/%1$s', $action],
@@ -97,7 +97,7 @@ final class VerificationManagementService implements VerificationManagementContr
     public function listSenderIDs(
         ?RequestOptions $requestOptions = null
     ): VerificationManagementListSenderIDsResponse {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: 'v2/verification/management/sender-id',
@@ -132,7 +132,7 @@ final class VerificationManagementService implements VerificationManagementContr
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: ['v2/verification/management/phone-numbers/%1$s', $action],
@@ -164,7 +164,7 @@ final class VerificationManagementService implements VerificationManagementContr
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v2/verification/management/sender-id',
