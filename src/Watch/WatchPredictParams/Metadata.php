@@ -38,7 +38,7 @@ final class Metadata implements BaseModel
     {
         $obj = new self;
 
-        null !== $correlation_id && $obj->correlation_id = $correlation_id;
+        null !== $correlation_id && $obj['correlation_id'] = $correlation_id;
 
         return $obj;
     }
@@ -49,7 +49,7 @@ final class Metadata implements BaseModel
     public function withCorrelationID(string $correlationID): self
     {
         $obj = clone $this;
-        $obj->correlation_id = $correlationID;
+        $obj['correlation_id'] = $correlationID;
 
         return $obj;
     }

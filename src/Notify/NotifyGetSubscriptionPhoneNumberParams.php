@@ -55,7 +55,7 @@ final class NotifyGetSubscriptionPhoneNumberParams implements BaseModel
     {
         $obj = new self;
 
-        $obj->config_id = $config_id;
+        $obj['config_id'] = $config_id;
 
         return $obj;
     }
@@ -63,7 +63,7 @@ final class NotifyGetSubscriptionPhoneNumberParams implements BaseModel
     public function withConfigID(string $configID): self
     {
         $obj = clone $this;
-        $obj->config_id = $configID;
+        $obj['config_id'] = $configID;
 
         return $obj;
     }

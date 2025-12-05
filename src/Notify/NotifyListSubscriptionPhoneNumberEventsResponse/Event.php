@@ -115,13 +115,13 @@ final class Event implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->config_id = $config_id;
-        $obj->phone_number = $phone_number;
+        $obj['config_id'] = $config_id;
+        $obj['phone_number'] = $phone_number;
         $obj['source'] = $source;
         $obj['state'] = $state;
-        $obj->timestamp = $timestamp;
+        $obj['timestamp'] = $timestamp;
 
-        null !== $reason && $obj->reason = $reason;
+        null !== $reason && $obj['reason'] = $reason;
 
         return $obj;
     }
@@ -132,7 +132,7 @@ final class Event implements BaseModel
     public function withConfigID(string $configID): self
     {
         $obj = clone $this;
-        $obj->config_id = $configID;
+        $obj['config_id'] = $configID;
 
         return $obj;
     }
@@ -143,7 +143,7 @@ final class Event implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $obj['phone_number'] = $phoneNumber;
 
         return $obj;
     }
@@ -186,7 +186,7 @@ final class Event implements BaseModel
     public function withTimestamp(\DateTimeInterface $timestamp): self
     {
         $obj = clone $this;
-        $obj->timestamp = $timestamp;
+        $obj['timestamp'] = $timestamp;
 
         return $obj;
     }
@@ -197,7 +197,7 @@ final class Event implements BaseModel
     public function withReason(string $reason): self
     {
         $obj = clone $this;
-        $obj->reason = $reason;
+        $obj['reason'] = $reason;
 
         return $obj;
     }

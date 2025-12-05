@@ -111,25 +111,31 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
      *
      * @param list<Flag|value-of<Flag>> $flags
      * @param LineType|value-of<LineType> $line_type
+     * @param NetworkInfo|array{
+     *   carrier_name?: string|null, mcc?: string|null, mnc?: string|null
+     * } $network_info
+     * @param OriginalNetworkInfo|array{
+     *   carrier_name?: string|null, mcc?: string|null, mnc?: string|null
+     * } $original_network_info
      */
     public static function with(
         ?string $caller_name = null,
         ?string $country_code = null,
         ?array $flags = null,
         LineType|string|null $line_type = null,
-        ?NetworkInfo $network_info = null,
-        ?OriginalNetworkInfo $original_network_info = null,
+        NetworkInfo|array|null $network_info = null,
+        OriginalNetworkInfo|array|null $original_network_info = null,
         ?string $phone_number = null,
     ): self {
         $obj = new self;
 
-        null !== $caller_name && $obj->caller_name = $caller_name;
-        null !== $country_code && $obj->country_code = $country_code;
+        null !== $caller_name && $obj['caller_name'] = $caller_name;
+        null !== $country_code && $obj['country_code'] = $country_code;
         null !== $flags && $obj['flags'] = $flags;
         null !== $line_type && $obj['line_type'] = $line_type;
-        null !== $network_info && $obj->network_info = $network_info;
-        null !== $original_network_info && $obj->original_network_info = $original_network_info;
-        null !== $phone_number && $obj->phone_number = $phone_number;
+        null !== $network_info && $obj['network_info'] = $network_info;
+        null !== $original_network_info && $obj['original_network_info'] = $original_network_info;
+        null !== $phone_number && $obj['phone_number'] = $phone_number;
 
         return $obj;
     }
@@ -140,7 +146,7 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
     public function withCallerName(string $callerName): self
     {
         $obj = clone $this;
-        $obj->caller_name = $callerName;
+        $obj['caller_name'] = $callerName;
 
         return $obj;
     }
@@ -151,7 +157,7 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
     public function withCountryCode(string $countryCode): self
     {
         $obj = clone $this;
-        $obj->country_code = $countryCode;
+        $obj['country_code'] = $countryCode;
 
         return $obj;
     }
@@ -205,23 +211,31 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
 
     /**
      * The current carrier information.
+     *
+     * @param NetworkInfo|array{
+     *   carrier_name?: string|null, mcc?: string|null, mnc?: string|null
+     * } $networkInfo
      */
-    public function withNetworkInfo(NetworkInfo $networkInfo): self
+    public function withNetworkInfo(NetworkInfo|array $networkInfo): self
     {
         $obj = clone $this;
-        $obj->network_info = $networkInfo;
+        $obj['network_info'] = $networkInfo;
 
         return $obj;
     }
 
     /**
      * The original carrier information.
+     *
+     * @param OriginalNetworkInfo|array{
+     *   carrier_name?: string|null, mcc?: string|null, mnc?: string|null
+     * } $originalNetworkInfo
      */
     public function withOriginalNetworkInfo(
-        OriginalNetworkInfo $originalNetworkInfo
+        OriginalNetworkInfo|array $originalNetworkInfo
     ): self {
         $obj = clone $this;
-        $obj->original_network_info = $originalNetworkInfo;
+        $obj['original_network_info'] = $originalNetworkInfo;
 
         return $obj;
     }
@@ -232,7 +246,7 @@ final class LookupLookupResponse implements BaseModel, ResponseConverter
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $obj['phone_number'] = $phoneNumber;
 
         return $obj;
     }

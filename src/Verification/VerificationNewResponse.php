@@ -123,29 +123,31 @@ final class VerificationNewResponse implements BaseModel, ResponseConverter
      * @param Method|value-of<Method> $method
      * @param Status|value-of<Status> $status
      * @param list<Channel|value-of<Channel>> $channels
+     * @param Metadata|array{correlation_id?: string|null} $metadata
      * @param Reason|value-of<Reason> $reason
+     * @param Silent|array{request_url: string} $silent
      */
     public static function with(
         string $id,
         Method|string $method,
         Status|string $status,
         ?array $channels = null,
-        ?Metadata $metadata = null,
+        Metadata|array|null $metadata = null,
         Reason|string|null $reason = null,
         ?string $request_id = null,
-        ?Silent $silent = null,
+        Silent|array|null $silent = null,
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
+        $obj['id'] = $id;
         $obj['method'] = $method;
         $obj['status'] = $status;
 
         null !== $channels && $obj['channels'] = $channels;
-        null !== $metadata && $obj->metadata = $metadata;
+        null !== $metadata && $obj['metadata'] = $metadata;
         null !== $reason && $obj['reason'] = $reason;
-        null !== $request_id && $obj->request_id = $request_id;
-        null !== $silent && $obj->silent = $silent;
+        null !== $request_id && $obj['request_id'] = $request_id;
+        null !== $silent && $obj['silent'] = $silent;
 
         return $obj;
     }
@@ -156,7 +158,7 @@ final class VerificationNewResponse implements BaseModel, ResponseConverter
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -202,11 +204,13 @@ final class VerificationNewResponse implements BaseModel, ResponseConverter
 
     /**
      * The metadata for this verification.
+     *
+     * @param Metadata|array{correlation_id?: string|null} $metadata
      */
-    public function withMetadata(Metadata $metadata): self
+    public function withMetadata(Metadata|array $metadata): self
     {
         $obj = clone $this;
-        $obj->metadata = $metadata;
+        $obj['metadata'] = $metadata;
 
         return $obj;
     }
@@ -235,18 +239,20 @@ final class VerificationNewResponse implements BaseModel, ResponseConverter
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj->request_id = $requestID;
+        $obj['request_id'] = $requestID;
 
         return $obj;
     }
 
     /**
      * The silent verification specific properties.
+     *
+     * @param Silent|array{request_url: string} $silent
      */
-    public function withSilent(Silent $silent): self
+    public function withSilent(Silent|array $silent): self
     {
         $obj = clone $this;
-        $obj->silent = $silent;
+        $obj['silent'] = $silent;
 
         return $obj;
     }

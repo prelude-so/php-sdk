@@ -142,17 +142,17 @@ final class NotifySendBatchParams implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->template_id = $template_id;
-        $obj->to = $to;
+        $obj['template_id'] = $template_id;
+        $obj['to'] = $to;
 
-        null !== $callback_url && $obj->callback_url = $callback_url;
-        null !== $correlation_id && $obj->correlation_id = $correlation_id;
-        null !== $expires_at && $obj->expires_at = $expires_at;
-        null !== $from && $obj->from = $from;
-        null !== $locale && $obj->locale = $locale;
+        null !== $callback_url && $obj['callback_url'] = $callback_url;
+        null !== $correlation_id && $obj['correlation_id'] = $correlation_id;
+        null !== $expires_at && $obj['expires_at'] = $expires_at;
+        null !== $from && $obj['from'] = $from;
+        null !== $locale && $obj['locale'] = $locale;
         null !== $preferred_channel && $obj['preferred_channel'] = $preferred_channel;
-        null !== $schedule_at && $obj->schedule_at = $schedule_at;
-        null !== $variables && $obj->variables = $variables;
+        null !== $schedule_at && $obj['schedule_at'] = $schedule_at;
+        null !== $variables && $obj['variables'] = $variables;
 
         return $obj;
     }
@@ -163,7 +163,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withTemplateID(string $templateID): self
     {
         $obj = clone $this;
-        $obj->template_id = $templateID;
+        $obj['template_id'] = $templateID;
 
         return $obj;
     }
@@ -176,7 +176,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withTo(array $to): self
     {
         $obj = clone $this;
-        $obj->to = $to;
+        $obj['to'] = $to;
 
         return $obj;
     }
@@ -187,7 +187,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj->callback_url = $callbackURL;
+        $obj['callback_url'] = $callbackURL;
 
         return $obj;
     }
@@ -198,7 +198,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withCorrelationID(string $correlationID): self
     {
         $obj = clone $this;
-        $obj->correlation_id = $correlationID;
+        $obj['correlation_id'] = $correlationID;
 
         return $obj;
     }
@@ -209,7 +209,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withExpiresAt(\DateTimeInterface $expiresAt): self
     {
         $obj = clone $this;
-        $obj->expires_at = $expiresAt;
+        $obj['expires_at'] = $expiresAt;
 
         return $obj;
     }
@@ -220,7 +220,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withFrom(string $from): self
     {
         $obj = clone $this;
-        $obj->from = $from;
+        $obj['from'] = $from;
 
         return $obj;
     }
@@ -231,7 +231,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withLocale(string $locale): self
     {
         $obj = clone $this;
-        $obj->locale = $locale;
+        $obj['locale'] = $locale;
 
         return $obj;
     }
@@ -256,7 +256,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withScheduleAt(\DateTimeInterface $scheduleAt): self
     {
         $obj = clone $this;
-        $obj->schedule_at = $scheduleAt;
+        $obj['schedule_at'] = $scheduleAt;
 
         return $obj;
     }
@@ -269,7 +269,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withVariables(array $variables): self
     {
         $obj = clone $this;
-        $obj->variables = $variables;
+        $obj['variables'] = $variables;
 
         return $obj;
     }

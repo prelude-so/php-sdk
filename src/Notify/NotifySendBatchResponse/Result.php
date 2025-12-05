@@ -70,20 +70,32 @@ final class Result implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Error|array{code?: string|null, message?: string|null} $error
+     * @param Message|array{
+     *   id?: string|null,
+     *   correlation_id?: string|null,
+     *   created_at?: \DateTimeInterface|null,
+     *   expires_at?: \DateTimeInterface|null,
+     *   from?: string|null,
+     *   locale?: string|null,
+     *   schedule_at?: \DateTimeInterface|null,
+     *   to?: string|null,
+     * } $message
      */
     public static function with(
         string $phone_number,
         bool $success,
-        ?Error $error = null,
-        ?Message $message = null,
+        Error|array|null $error = null,
+        Message|array|null $message = null,
     ): self {
         $obj = new self;
 
-        $obj->phone_number = $phone_number;
-        $obj->success = $success;
+        $obj['phone_number'] = $phone_number;
+        $obj['success'] = $success;
 
-        null !== $error && $obj->error = $error;
-        null !== $message && $obj->message = $message;
+        null !== $error && $obj['error'] = $error;
+        null !== $message && $obj['message'] = $message;
 
         return $obj;
     }
@@ -94,7 +106,7 @@ final class Result implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $obj['phone_number'] = $phoneNumber;
 
         return $obj;
     }
@@ -105,29 +117,42 @@ final class Result implements BaseModel
     public function withSuccess(bool $success): self
     {
         $obj = clone $this;
-        $obj->success = $success;
+        $obj['success'] = $success;
 
         return $obj;
     }
 
     /**
      * Present only if success is false.
+     *
+     * @param Error|array{code?: string|null, message?: string|null} $error
      */
-    public function withError(Error $error): self
+    public function withError(Error|array $error): self
     {
         $obj = clone $this;
-        $obj->error = $error;
+        $obj['error'] = $error;
 
         return $obj;
     }
 
     /**
      * Present only if success is true.
+     *
+     * @param Message|array{
+     *   id?: string|null,
+     *   correlation_id?: string|null,
+     *   created_at?: \DateTimeInterface|null,
+     *   expires_at?: \DateTimeInterface|null,
+     *   from?: string|null,
+     *   locale?: string|null,
+     *   schedule_at?: \DateTimeInterface|null,
+     *   to?: string|null,
+     * } $message
      */
-    public function withMessage(Message $message): self
+    public function withMessage(Message|array $message): self
     {
         $obj = clone $this;
-        $obj->message = $message;
+        $obj['message'] = $message;
 
         return $obj;
     }

@@ -9,6 +9,7 @@ use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals;
+use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals\DevicePlatform;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Type;
 
@@ -82,34 +83,55 @@ final class Feedback implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param Target|array{
+     *   type: value-of<Target\Type>,
+     *   value: string,
+     * } $target
      * @param Type|value-of<Type> $type
+     * @param Metadata|array{correlation_id?: string|null} $metadata
+     * @param Signals|array{
+     *   app_version?: string|null,
+     *   device_id?: string|null,
+     *   device_model?: string|null,
+     *   device_platform?: value-of<DevicePlatform>|null,
+     *   ip?: string|null,
+     *   is_trusted_user?: bool|null,
+     *   ja4_fingerprint?: string|null,
+     *   os_version?: string|null,
+     *   user_agent?: string|null,
+     * } $signals
      */
     public static function with(
-        Target $target,
+        Target|array $target,
         Type|string $type,
         ?string $dispatch_id = null,
-        ?Metadata $metadata = null,
-        ?Signals $signals = null,
+        Metadata|array|null $metadata = null,
+        Signals|array|null $signals = null,
     ): self {
         $obj = new self;
 
-        $obj->target = $target;
+        $obj['target'] = $target;
         $obj['type'] = $type;
 
-        null !== $dispatch_id && $obj->dispatch_id = $dispatch_id;
-        null !== $metadata && $obj->metadata = $metadata;
-        null !== $signals && $obj->signals = $signals;
+        null !== $dispatch_id && $obj['dispatch_id'] = $dispatch_id;
+        null !== $metadata && $obj['metadata'] = $metadata;
+        null !== $signals && $obj['signals'] = $signals;
 
         return $obj;
     }
 
     /**
      * The feedback target. Only supports phone numbers for now.
+     *
+     * @param Target|array{
+     *   type: value-of<Target\Type>,
+     *   value: string,
+     * } $target
      */
-    public function withTarget(Target $target): self
+    public function withTarget(Target|array $target): self
     {
         $obj = clone $this;
-        $obj->target = $target;
+        $obj['target'] = $target;
 
         return $obj;
     }
@@ -133,29 +155,43 @@ final class Feedback implements BaseModel
     public function withDispatchID(string $dispatchID): self
     {
         $obj = clone $this;
-        $obj->dispatch_id = $dispatchID;
+        $obj['dispatch_id'] = $dispatchID;
 
         return $obj;
     }
 
     /**
      * The metadata for this feedback.
+     *
+     * @param Metadata|array{correlation_id?: string|null} $metadata
      */
-    public function withMetadata(Metadata $metadata): self
+    public function withMetadata(Metadata|array $metadata): self
     {
         $obj = clone $this;
-        $obj->metadata = $metadata;
+        $obj['metadata'] = $metadata;
 
         return $obj;
     }
 
     /**
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     *
+     * @param Signals|array{
+     *   app_version?: string|null,
+     *   device_id?: string|null,
+     *   device_model?: string|null,
+     *   device_platform?: value-of<DevicePlatform>|null,
+     *   ip?: string|null,
+     *   is_trusted_user?: bool|null,
+     *   ja4_fingerprint?: string|null,
+     *   os_version?: string|null,
+     *   user_agent?: string|null,
+     * } $signals
      */
-    public function withSignals(Signals $signals): self
+    public function withSignals(Signals|array $signals): self
     {
         $obj = clone $this;
-        $obj->signals = $signals;
+        $obj['signals'] = $signals;
 
         return $obj;
     }

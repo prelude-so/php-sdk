@@ -110,15 +110,15 @@ final class Signals implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $app_version && $obj->app_version = $app_version;
-        null !== $device_id && $obj->device_id = $device_id;
-        null !== $device_model && $obj->device_model = $device_model;
+        null !== $app_version && $obj['app_version'] = $app_version;
+        null !== $device_id && $obj['device_id'] = $device_id;
+        null !== $device_model && $obj['device_model'] = $device_model;
         null !== $device_platform && $obj['device_platform'] = $device_platform;
-        null !== $ip && $obj->ip = $ip;
-        null !== $is_trusted_user && $obj->is_trusted_user = $is_trusted_user;
-        null !== $ja4_fingerprint && $obj->ja4_fingerprint = $ja4_fingerprint;
-        null !== $os_version && $obj->os_version = $os_version;
-        null !== $user_agent && $obj->user_agent = $user_agent;
+        null !== $ip && $obj['ip'] = $ip;
+        null !== $is_trusted_user && $obj['is_trusted_user'] = $is_trusted_user;
+        null !== $ja4_fingerprint && $obj['ja4_fingerprint'] = $ja4_fingerprint;
+        null !== $os_version && $obj['os_version'] = $os_version;
+        null !== $user_agent && $obj['user_agent'] = $user_agent;
 
         return $obj;
     }
@@ -129,7 +129,7 @@ final class Signals implements BaseModel
     public function withAppVersion(string $appVersion): self
     {
         $obj = clone $this;
-        $obj->app_version = $appVersion;
+        $obj['app_version'] = $appVersion;
 
         return $obj;
     }
@@ -140,7 +140,7 @@ final class Signals implements BaseModel
     public function withDeviceID(string $deviceID): self
     {
         $obj = clone $this;
-        $obj->device_id = $deviceID;
+        $obj['device_id'] = $deviceID;
 
         return $obj;
     }
@@ -151,7 +151,7 @@ final class Signals implements BaseModel
     public function withDeviceModel(string $deviceModel): self
     {
         $obj = clone $this;
-        $obj->device_model = $deviceModel;
+        $obj['device_model'] = $deviceModel;
 
         return $obj;
     }
@@ -176,7 +176,7 @@ final class Signals implements BaseModel
     public function withIP(string $ip): self
     {
         $obj = clone $this;
-        $obj->ip = $ip;
+        $obj['ip'] = $ip;
 
         return $obj;
     }
@@ -187,7 +187,7 @@ final class Signals implements BaseModel
     public function withIsTrustedUser(bool $isTrustedUser): self
     {
         $obj = clone $this;
-        $obj->is_trusted_user = $isTrustedUser;
+        $obj['is_trusted_user'] = $isTrustedUser;
 
         return $obj;
     }
@@ -198,7 +198,7 @@ final class Signals implements BaseModel
     public function withJa4Fingerprint(string $ja4Fingerprint): self
     {
         $obj = clone $this;
-        $obj->ja4_fingerprint = $ja4Fingerprint;
+        $obj['ja4_fingerprint'] = $ja4Fingerprint;
 
         return $obj;
     }
@@ -209,7 +209,7 @@ final class Signals implements BaseModel
     public function withOsVersion(string $osVersion): self
     {
         $obj = clone $this;
-        $obj->os_version = $osVersion;
+        $obj['os_version'] = $osVersion;
 
         return $obj;
     }
@@ -220,7 +220,7 @@ final class Signals implements BaseModel
     public function withUserAgent(string $userAgent): self
     {
         $obj = clone $this;
-        $obj->user_agent = $userAgent;
+        $obj['user_agent'] = $userAgent;
 
         return $obj;
     }

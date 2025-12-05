@@ -52,7 +52,7 @@ final class Silent implements BaseModel
     {
         $obj = new self;
 
-        $obj->request_url = $request_url;
+        $obj['request_url'] = $request_url;
 
         return $obj;
     }
@@ -63,7 +63,7 @@ final class Silent implements BaseModel
     public function withRequestURL(string $requestURL): self
     {
         $obj = clone $this;
-        $obj->request_url = $requestURL;
+        $obj['request_url'] = $requestURL;
 
         return $obj;
     }

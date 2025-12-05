@@ -75,20 +75,21 @@ final class VerificationCheckResponse implements BaseModel, ResponseConverter
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Status|value-of<Status> $status
+     * @param Metadata|array{correlation_id?: string|null} $metadata
      */
     public static function with(
         Status|string $status,
         ?string $id = null,
-        ?Metadata $metadata = null,
+        Metadata|array|null $metadata = null,
         ?string $request_id = null,
     ): self {
         $obj = new self;
 
         $obj['status'] = $status;
 
-        null !== $id && $obj->id = $id;
-        null !== $metadata && $obj->metadata = $metadata;
-        null !== $request_id && $obj->request_id = $request_id;
+        null !== $id && $obj['id'] = $id;
+        null !== $metadata && $obj['metadata'] = $metadata;
+        null !== $request_id && $obj['request_id'] = $request_id;
 
         return $obj;
     }
@@ -112,18 +113,20 @@ final class VerificationCheckResponse implements BaseModel, ResponseConverter
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
 
     /**
      * The metadata for this verification.
+     *
+     * @param Metadata|array{correlation_id?: string|null} $metadata
      */
-    public function withMetadata(Metadata $metadata): self
+    public function withMetadata(Metadata|array $metadata): self
     {
         $obj = clone $this;
-        $obj->metadata = $metadata;
+        $obj['metadata'] = $metadata;
 
         return $obj;
     }
@@ -131,7 +134,7 @@ final class VerificationCheckResponse implements BaseModel, ResponseConverter
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj->request_id = $requestID;
+        $obj['request_id'] = $requestID;
 
         return $obj;
     }

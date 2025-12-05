@@ -57,9 +57,9 @@ final class Messages implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $help_message && $obj->help_message = $help_message;
-        null !== $start_message && $obj->start_message = $start_message;
-        null !== $stop_message && $obj->stop_message = $stop_message;
+        null !== $help_message && $obj['help_message'] = $help_message;
+        null !== $start_message && $obj['start_message'] = $start_message;
+        null !== $stop_message && $obj['stop_message'] = $stop_message;
 
         return $obj;
     }
@@ -70,7 +70,7 @@ final class Messages implements BaseModel
     public function withHelpMessage(string $helpMessage): self
     {
         $obj = clone $this;
-        $obj->help_message = $helpMessage;
+        $obj['help_message'] = $helpMessage;
 
         return $obj;
     }
@@ -81,7 +81,7 @@ final class Messages implements BaseModel
     public function withStartMessage(string $startMessage): self
     {
         $obj = clone $this;
-        $obj->start_message = $startMessage;
+        $obj['start_message'] = $startMessage;
 
         return $obj;
     }
@@ -92,7 +92,7 @@ final class Messages implements BaseModel
     public function withStopMessage(string $stopMessage): self
     {
         $obj = clone $this;
-        $obj->stop_message = $stopMessage;
+        $obj['stop_message'] = $stopMessage;
 
         return $obj;
     }

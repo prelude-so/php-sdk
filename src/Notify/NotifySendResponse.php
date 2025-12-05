@@ -146,17 +146,17 @@ final class NotifySendResponse implements BaseModel, ResponseConverter
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
-        $obj->created_at = $created_at;
-        $obj->expires_at = $expires_at;
-        $obj->template_id = $template_id;
-        $obj->to = $to;
-        $obj->variables = $variables;
+        $obj['id'] = $id;
+        $obj['created_at'] = $created_at;
+        $obj['expires_at'] = $expires_at;
+        $obj['template_id'] = $template_id;
+        $obj['to'] = $to;
+        $obj['variables'] = $variables;
 
-        null !== $callback_url && $obj->callback_url = $callback_url;
-        null !== $correlation_id && $obj->correlation_id = $correlation_id;
-        null !== $from && $obj->from = $from;
-        null !== $schedule_at && $obj->schedule_at = $schedule_at;
+        null !== $callback_url && $obj['callback_url'] = $callback_url;
+        null !== $correlation_id && $obj['correlation_id'] = $correlation_id;
+        null !== $from && $obj['from'] = $from;
+        null !== $schedule_at && $obj['schedule_at'] = $schedule_at;
 
         return $obj;
     }
@@ -167,7 +167,7 @@ final class NotifySendResponse implements BaseModel, ResponseConverter
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -178,7 +178,7 @@ final class NotifySendResponse implements BaseModel, ResponseConverter
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->created_at = $createdAt;
+        $obj['created_at'] = $createdAt;
 
         return $obj;
     }
@@ -189,7 +189,7 @@ final class NotifySendResponse implements BaseModel, ResponseConverter
     public function withExpiresAt(\DateTimeInterface $expiresAt): self
     {
         $obj = clone $this;
-        $obj->expires_at = $expiresAt;
+        $obj['expires_at'] = $expiresAt;
 
         return $obj;
     }
@@ -200,7 +200,7 @@ final class NotifySendResponse implements BaseModel, ResponseConverter
     public function withTemplateID(string $templateID): self
     {
         $obj = clone $this;
-        $obj->template_id = $templateID;
+        $obj['template_id'] = $templateID;
 
         return $obj;
     }
@@ -211,7 +211,7 @@ final class NotifySendResponse implements BaseModel, ResponseConverter
     public function withTo(string $to): self
     {
         $obj = clone $this;
-        $obj->to = $to;
+        $obj['to'] = $to;
 
         return $obj;
     }
@@ -224,7 +224,7 @@ final class NotifySendResponse implements BaseModel, ResponseConverter
     public function withVariables(array $variables): self
     {
         $obj = clone $this;
-        $obj->variables = $variables;
+        $obj['variables'] = $variables;
 
         return $obj;
     }
@@ -235,7 +235,7 @@ final class NotifySendResponse implements BaseModel, ResponseConverter
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj->callback_url = $callbackURL;
+        $obj['callback_url'] = $callbackURL;
 
         return $obj;
     }
@@ -246,7 +246,7 @@ final class NotifySendResponse implements BaseModel, ResponseConverter
     public function withCorrelationID(string $correlationID): self
     {
         $obj = clone $this;
-        $obj->correlation_id = $correlationID;
+        $obj['correlation_id'] = $correlationID;
 
         return $obj;
     }
@@ -257,7 +257,7 @@ final class NotifySendResponse implements BaseModel, ResponseConverter
     public function withFrom(string $from): self
     {
         $obj = clone $this;
-        $obj->from = $from;
+        $obj['from'] = $from;
 
         return $obj;
     }
@@ -268,7 +268,7 @@ final class NotifySendResponse implements BaseModel, ResponseConverter
     public function withScheduleAt(\DateTimeInterface $scheduleAt): self
     {
         $obj = clone $this;
-        $obj->schedule_at = $scheduleAt;
+        $obj['schedule_at'] = $scheduleAt;
 
         return $obj;
     }

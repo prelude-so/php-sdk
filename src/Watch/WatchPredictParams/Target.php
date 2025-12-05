@@ -64,7 +64,7 @@ final class Target implements BaseModel
         $obj = new self;
 
         $obj['type'] = $type;
-        $obj->value = $value;
+        $obj['value'] = $value;
 
         return $obj;
     }
@@ -88,7 +88,7 @@ final class Target implements BaseModel
     public function withValue(string $value): self
     {
         $obj = clone $this;
-        $obj->value = $value;
+        $obj['value'] = $value;
 
         return $obj;
     }

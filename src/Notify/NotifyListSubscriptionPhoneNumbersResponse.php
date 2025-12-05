@@ -10,6 +10,8 @@ use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber;
+use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber\Source;
+use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber\State;
 
 /**
  * @phpstan-type NotifyListSubscriptionPhoneNumbersResponseShape = array{
@@ -61,7 +63,14 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel, Res
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<PhoneNumber> $phone_numbers
+     * @param list<PhoneNumber|array{
+     *   config_id: string,
+     *   phone_number: string,
+     *   source: value-of<Source>,
+     *   state: value-of<State>,
+     *   updated_at: \DateTimeInterface,
+     *   reason?: string|null,
+     * }> $phone_numbers
      */
     public static function with(
         array $phone_numbers,
@@ -69,9 +78,9 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel, Res
     ): self {
         $obj = new self;
 
-        $obj->phone_numbers = $phone_numbers;
+        $obj['phone_numbers'] = $phone_numbers;
 
-        null !== $next_cursor && $obj->next_cursor = $next_cursor;
+        null !== $next_cursor && $obj['next_cursor'] = $next_cursor;
 
         return $obj;
     }
@@ -79,12 +88,19 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel, Res
     /**
      * A list of phone numbers and their subscription statuses.
      *
-     * @param list<PhoneNumber> $phoneNumbers
+     * @param list<PhoneNumber|array{
+     *   config_id: string,
+     *   phone_number: string,
+     *   source: value-of<Source>,
+     *   state: value-of<State>,
+     *   updated_at: \DateTimeInterface,
+     *   reason?: string|null,
+     * }> $phoneNumbers
      */
     public function withPhoneNumbers(array $phoneNumbers): self
     {
         $obj = clone $this;
-        $obj->phone_numbers = $phoneNumbers;
+        $obj['phone_numbers'] = $phoneNumbers;
 
         return $obj;
     }
@@ -95,7 +111,7 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel, Res
     public function withNextCursor(string $nextCursor): self
     {
         $obj = clone $this;
-        $obj->next_cursor = $nextCursor;
+        $obj['next_cursor'] = $nextCursor;
 
         return $obj;
     }

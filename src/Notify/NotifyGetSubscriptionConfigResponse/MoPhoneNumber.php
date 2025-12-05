@@ -60,8 +60,8 @@ final class MoPhoneNumber implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->country_code = $country_code;
-        $obj->phone_number = $phone_number;
+        $obj['country_code'] = $country_code;
+        $obj['phone_number'] = $phone_number;
 
         return $obj;
     }
@@ -72,7 +72,7 @@ final class MoPhoneNumber implements BaseModel
     public function withCountryCode(string $countryCode): self
     {
         $obj = clone $this;
-        $obj->country_code = $countryCode;
+        $obj['country_code'] = $countryCode;
 
         return $obj;
     }
@@ -83,7 +83,7 @@ final class MoPhoneNumber implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $obj['phone_number'] = $phoneNumber;
 
         return $obj;
     }

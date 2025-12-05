@@ -81,10 +81,10 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel, R
     ): self {
         $obj = new self;
 
-        $obj->sender_id = $sender_id;
+        $obj['sender_id'] = $sender_id;
         $obj['status'] = $status;
 
-        null !== $reason && $obj->reason = $reason;
+        null !== $reason && $obj['reason'] = $reason;
 
         return $obj;
     }
@@ -95,7 +95,7 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel, R
     public function withSenderID(string $senderID): self
     {
         $obj = clone $this;
-        $obj->sender_id = $senderID;
+        $obj['sender_id'] = $senderID;
 
         return $obj;
     }
@@ -122,7 +122,7 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel, R
     public function withReason(string $reason): self
     {
         $obj = clone $this;
-        $obj->reason = $reason;
+        $obj['reason'] = $reason;
 
         return $obj;
     }
