@@ -8,6 +8,7 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Prelude\Core\BaseClient;
 use Prelude\Services\LookupService;
+use Prelude\Services\NotifyService;
 use Prelude\Services\TransactionalService;
 use Prelude\Services\VerificationManagementService;
 use Prelude\Services\VerificationService;
@@ -21,6 +22,11 @@ class Client extends BaseClient
      * @api
      */
     public LookupService $lookup;
+
+    /**
+     * @api
+     */
+    public NotifyService $notify;
 
     /**
      * @api
@@ -74,6 +80,7 @@ class Client extends BaseClient
         );
 
         $this->lookup = new LookupService($this);
+        $this->notify = new NotifyService($this);
         $this->transactional = new TransactionalService($this);
         $this->verification = new VerificationService($this);
         $this->verificationManagement = new VerificationManagementService($this);
