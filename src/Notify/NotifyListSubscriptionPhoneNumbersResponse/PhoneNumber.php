@@ -115,13 +115,13 @@ final class PhoneNumber implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->config_id = $config_id;
-        $obj->phone_number = $phone_number;
+        $obj['config_id'] = $config_id;
+        $obj['phone_number'] = $phone_number;
         $obj['source'] = $source;
         $obj['state'] = $state;
-        $obj->updated_at = $updated_at;
+        $obj['updated_at'] = $updated_at;
 
-        null !== $reason && $obj->reason = $reason;
+        null !== $reason && $obj['reason'] = $reason;
 
         return $obj;
     }
@@ -132,7 +132,7 @@ final class PhoneNumber implements BaseModel
     public function withConfigID(string $configID): self
     {
         $obj = clone $this;
-        $obj->config_id = $configID;
+        $obj['config_id'] = $configID;
 
         return $obj;
     }
@@ -143,7 +143,7 @@ final class PhoneNumber implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $obj['phone_number'] = $phoneNumber;
 
         return $obj;
     }
@@ -186,7 +186,7 @@ final class PhoneNumber implements BaseModel
     public function withUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $obj = clone $this;
-        $obj->updated_at = $updatedAt;
+        $obj['updated_at'] = $updatedAt;
 
         return $obj;
     }
@@ -197,7 +197,7 @@ final class PhoneNumber implements BaseModel
     public function withReason(string $reason): self
     {
         $obj = clone $this;
-        $obj->reason = $reason;
+        $obj['reason'] = $reason;
 
         return $obj;
     }

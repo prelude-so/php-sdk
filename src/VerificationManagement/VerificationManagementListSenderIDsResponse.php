@@ -10,6 +10,7 @@ use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\SenderID;
+use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\SenderID\Status;
 
 /**
  * A list of Sender ID.
@@ -39,24 +40,28 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel, Re
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<SenderID> $sender_ids
+     * @param list<SenderID|array{
+     *   sender_id?: string|null, status?: value-of<Status>|null
+     * }> $sender_ids
      */
     public static function with(?array $sender_ids = null): self
     {
         $obj = new self;
 
-        null !== $sender_ids && $obj->sender_ids = $sender_ids;
+        null !== $sender_ids && $obj['sender_ids'] = $sender_ids;
 
         return $obj;
     }
 
     /**
-     * @param list<SenderID> $senderIDs
+     * @param list<SenderID|array{
+     *   sender_id?: string|null, status?: value-of<Status>|null
+     * }> $senderIDs
      */
     public function withSenderIDs(array $senderIDs): self
     {
         $obj = clone $this;
-        $obj->sender_ids = $senderIDs;
+        $obj['sender_ids'] = $senderIDs;
 
         return $obj;
     }

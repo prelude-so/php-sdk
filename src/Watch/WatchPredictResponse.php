@@ -76,9 +76,9 @@ final class WatchPredictResponse implements BaseModel, ResponseConverter
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
+        $obj['id'] = $id;
         $obj['prediction'] = $prediction;
-        $obj->request_id = $request_id;
+        $obj['request_id'] = $request_id;
 
         return $obj;
     }
@@ -89,7 +89,7 @@ final class WatchPredictResponse implements BaseModel, ResponseConverter
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -113,7 +113,7 @@ final class WatchPredictResponse implements BaseModel, ResponseConverter
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj->request_id = $requestID;
+        $obj['request_id'] = $requestID;
 
         return $obj;
     }

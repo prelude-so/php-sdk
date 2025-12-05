@@ -55,13 +55,15 @@ final class VerificationManagementListPhoneNumbersResponse implements BaseModel,
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<PhoneNumber> $phone_numbers
+     * @param list<PhoneNumber|array{
+     *   created_at: \DateTimeInterface, phone_number: string
+     * }> $phone_numbers
      */
     public static function with(array $phone_numbers): self
     {
         $obj = new self;
 
-        $obj->phone_numbers = $phone_numbers;
+        $obj['phone_numbers'] = $phone_numbers;
 
         return $obj;
     }
@@ -69,12 +71,14 @@ final class VerificationManagementListPhoneNumbersResponse implements BaseModel,
     /**
      * A list of phone numbers in the allow or block list.
      *
-     * @param list<PhoneNumber> $phoneNumbers
+     * @param list<PhoneNumber|array{
+     *   created_at: \DateTimeInterface, phone_number: string
+     * }> $phoneNumbers
      */
     public function withPhoneNumbers(array $phoneNumbers): self
     {
         $obj = clone $this;
-        $obj->phone_numbers = $phoneNumbers;
+        $obj['phone_numbers'] = $phoneNumbers;
 
         return $obj;
     }

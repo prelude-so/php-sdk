@@ -62,7 +62,7 @@ final class VerificationManagementDeletePhoneNumberParams implements BaseModel
     {
         $obj = new self;
 
-        $obj->phone_number = $phone_number;
+        $obj['phone_number'] = $phone_number;
 
         return $obj;
     }
@@ -73,7 +73,7 @@ final class VerificationManagementDeletePhoneNumberParams implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $obj['phone_number'] = $phoneNumber;
 
         return $obj;
     }

@@ -10,6 +10,8 @@ use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Notify\NotifySendBatchResponse\Result;
+use Prelude\Notify\NotifySendBatchResponse\Result\Error;
+use Prelude\Notify\NotifySendBatchResponse\Result\Message;
 
 /**
  * @phpstan-type NotifySendBatchResponseShape = array{
@@ -112,7 +114,12 @@ final class NotifySendBatchResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Result> $results
+     * @param list<Result|array{
+     *   phone_number: string,
+     *   success: bool,
+     *   error?: Error|null,
+     *   message?: Message|null,
+     * }> $results
      * @param array<string,string> $variables
      */
     public static function with(
@@ -127,15 +134,15 @@ final class NotifySendBatchResponse implements BaseModel, ResponseConverter
     ): self {
         $obj = new self;
 
-        $obj->error_count = $error_count;
-        $obj->results = $results;
-        $obj->success_count = $success_count;
-        $obj->total_count = $total_count;
+        $obj['error_count'] = $error_count;
+        $obj['results'] = $results;
+        $obj['success_count'] = $success_count;
+        $obj['total_count'] = $total_count;
 
-        null !== $callback_url && $obj->callback_url = $callback_url;
-        null !== $request_id && $obj->request_id = $request_id;
-        null !== $template_id && $obj->template_id = $template_id;
-        null !== $variables && $obj->variables = $variables;
+        null !== $callback_url && $obj['callback_url'] = $callback_url;
+        null !== $request_id && $obj['request_id'] = $request_id;
+        null !== $template_id && $obj['template_id'] = $template_id;
+        null !== $variables && $obj['variables'] = $variables;
 
         return $obj;
     }
@@ -146,7 +153,7 @@ final class NotifySendBatchResponse implements BaseModel, ResponseConverter
     public function withErrorCount(int $errorCount): self
     {
         $obj = clone $this;
-        $obj->error_count = $errorCount;
+        $obj['error_count'] = $errorCount;
 
         return $obj;
     }
@@ -154,12 +161,17 @@ final class NotifySendBatchResponse implements BaseModel, ResponseConverter
     /**
      * The per-recipient result of the bulk send.
      *
-     * @param list<Result> $results
+     * @param list<Result|array{
+     *   phone_number: string,
+     *   success: bool,
+     *   error?: Error|null,
+     *   message?: Message|null,
+     * }> $results
      */
     public function withResults(array $results): self
     {
         $obj = clone $this;
-        $obj->results = $results;
+        $obj['results'] = $results;
 
         return $obj;
     }
@@ -170,7 +182,7 @@ final class NotifySendBatchResponse implements BaseModel, ResponseConverter
     public function withSuccessCount(int $successCount): self
     {
         $obj = clone $this;
-        $obj->success_count = $successCount;
+        $obj['success_count'] = $successCount;
 
         return $obj;
     }
@@ -181,7 +193,7 @@ final class NotifySendBatchResponse implements BaseModel, ResponseConverter
     public function withTotalCount(int $totalCount): self
     {
         $obj = clone $this;
-        $obj->total_count = $totalCount;
+        $obj['total_count'] = $totalCount;
 
         return $obj;
     }
@@ -192,7 +204,7 @@ final class NotifySendBatchResponse implements BaseModel, ResponseConverter
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj->callback_url = $callbackURL;
+        $obj['callback_url'] = $callbackURL;
 
         return $obj;
     }
@@ -203,7 +215,7 @@ final class NotifySendBatchResponse implements BaseModel, ResponseConverter
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj->request_id = $requestID;
+        $obj['request_id'] = $requestID;
 
         return $obj;
     }
@@ -214,7 +226,7 @@ final class NotifySendBatchResponse implements BaseModel, ResponseConverter
     public function withTemplateID(string $templateID): self
     {
         $obj = clone $this;
-        $obj->template_id = $templateID;
+        $obj['template_id'] = $templateID;
 
         return $obj;
     }
@@ -227,7 +239,7 @@ final class NotifySendBatchResponse implements BaseModel, ResponseConverter
     public function withVariables(array $variables): self
     {
         $obj = clone $this;
-        $obj->variables = $variables;
+        $obj['variables'] = $variables;
 
         return $obj;
     }

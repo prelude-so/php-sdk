@@ -10,6 +10,8 @@ use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config;
+use Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config\Messages;
+use Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config\MoPhoneNumber;
 
 /**
  * @phpstan-type NotifyListSubscriptionConfigsResponseShape = array{
@@ -61,7 +63,15 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel, Response
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Config> $configs
+     * @param list<Config|array{
+     *   id: string,
+     *   callback_url: string,
+     *   created_at: \DateTimeInterface,
+     *   messages: Messages,
+     *   name: string,
+     *   updated_at: \DateTimeInterface,
+     *   mo_phone_numbers?: list<MoPhoneNumber>|null,
+     * }> $configs
      */
     public static function with(
         array $configs,
@@ -69,9 +79,9 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel, Response
     ): self {
         $obj = new self;
 
-        $obj->configs = $configs;
+        $obj['configs'] = $configs;
 
-        null !== $next_cursor && $obj->next_cursor = $next_cursor;
+        null !== $next_cursor && $obj['next_cursor'] = $next_cursor;
 
         return $obj;
     }
@@ -79,12 +89,20 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel, Response
     /**
      * A list of subscription management configurations.
      *
-     * @param list<Config> $configs
+     * @param list<Config|array{
+     *   id: string,
+     *   callback_url: string,
+     *   created_at: \DateTimeInterface,
+     *   messages: Messages,
+     *   name: string,
+     *   updated_at: \DateTimeInterface,
+     *   mo_phone_numbers?: list<MoPhoneNumber>|null,
+     * }> $configs
      */
     public function withConfigs(array $configs): self
     {
         $obj = clone $this;
-        $obj->configs = $configs;
+        $obj['configs'] = $configs;
 
         return $obj;
     }
@@ -95,7 +113,7 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel, Response
     public function withNextCursor(string $nextCursor): self
     {
         $obj = clone $this;
-        $obj->next_cursor = $nextCursor;
+        $obj['next_cursor'] = $nextCursor;
 
         return $obj;
     }

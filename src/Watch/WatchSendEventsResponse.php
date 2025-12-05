@@ -67,7 +67,7 @@ final class WatchSendEventsResponse implements BaseModel, ResponseConverter
     {
         $obj = new self;
 
-        $obj->request_id = $request_id;
+        $obj['request_id'] = $request_id;
         $obj['status'] = $status;
 
         return $obj;
@@ -79,7 +79,7 @@ final class WatchSendEventsResponse implements BaseModel, ResponseConverter
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj->request_id = $requestID;
+        $obj['request_id'] = $requestID;
 
         return $obj;
     }

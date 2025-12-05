@@ -60,7 +60,7 @@ final class VerificationManagementSubmitSenderIDParams implements BaseModel
     {
         $obj = new self;
 
-        $obj->sender_id = $sender_id;
+        $obj['sender_id'] = $sender_id;
 
         return $obj;
     }
@@ -71,7 +71,7 @@ final class VerificationManagementSubmitSenderIDParams implements BaseModel
     public function withSenderID(string $senderID): self
     {
         $obj = clone $this;
-        $obj->sender_id = $senderID;
+        $obj['sender_id'] = $senderID;
 
         return $obj;
     }

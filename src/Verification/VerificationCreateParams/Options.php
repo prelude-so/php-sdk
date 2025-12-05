@@ -8,6 +8,7 @@ use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCreateParams\Options\AppRealm;
+use Prelude\Verification\VerificationCreateParams\Options\AppRealm\Platform;
 use Prelude\Verification\VerificationCreateParams\Options\Integration;
 use Prelude\Verification\VerificationCreateParams\Options\Method;
 use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
@@ -118,13 +119,14 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param AppRealm|array{platform: value-of<Platform>, value: string} $app_realm
      * @param Integration|value-of<Integration> $integration
      * @param Method|value-of<Method> $method
      * @param PreferredChannel|value-of<PreferredChannel> $preferred_channel
      * @param array<string,string> $variables
      */
     public static function with(
-        ?AppRealm $app_realm = null,
+        AppRealm|array|null $app_realm = null,
         ?string $callback_url = null,
         ?int $code_size = null,
         ?string $custom_code = null,
@@ -138,28 +140,30 @@ final class Options implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $app_realm && $obj->app_realm = $app_realm;
-        null !== $callback_url && $obj->callback_url = $callback_url;
-        null !== $code_size && $obj->code_size = $code_size;
-        null !== $custom_code && $obj->custom_code = $custom_code;
+        null !== $app_realm && $obj['app_realm'] = $app_realm;
+        null !== $callback_url && $obj['callback_url'] = $callback_url;
+        null !== $code_size && $obj['code_size'] = $code_size;
+        null !== $custom_code && $obj['custom_code'] = $custom_code;
         null !== $integration && $obj['integration'] = $integration;
-        null !== $locale && $obj->locale = $locale;
+        null !== $locale && $obj['locale'] = $locale;
         null !== $method && $obj['method'] = $method;
         null !== $preferred_channel && $obj['preferred_channel'] = $preferred_channel;
-        null !== $sender_id && $obj->sender_id = $sender_id;
-        null !== $template_id && $obj->template_id = $template_id;
-        null !== $variables && $obj->variables = $variables;
+        null !== $sender_id && $obj['sender_id'] = $sender_id;
+        null !== $template_id && $obj['template_id'] = $template_id;
+        null !== $variables && $obj['variables'] = $variables;
 
         return $obj;
     }
 
     /**
      * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
+     *
+     * @param AppRealm|array{platform: value-of<Platform>, value: string} $appRealm
      */
-    public function withAppRealm(AppRealm $appRealm): self
+    public function withAppRealm(AppRealm|array $appRealm): self
     {
         $obj = clone $this;
-        $obj->app_realm = $appRealm;
+        $obj['app_realm'] = $appRealm;
 
         return $obj;
     }
@@ -170,7 +174,7 @@ final class Options implements BaseModel
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj->callback_url = $callbackURL;
+        $obj['callback_url'] = $callbackURL;
 
         return $obj;
     }
@@ -181,7 +185,7 @@ final class Options implements BaseModel
     public function withCodeSize(int $codeSize): self
     {
         $obj = clone $this;
-        $obj->code_size = $codeSize;
+        $obj['code_size'] = $codeSize;
 
         return $obj;
     }
@@ -192,7 +196,7 @@ final class Options implements BaseModel
     public function withCustomCode(string $customCode): self
     {
         $obj = clone $this;
-        $obj->custom_code = $customCode;
+        $obj['custom_code'] = $customCode;
 
         return $obj;
     }
@@ -216,7 +220,7 @@ final class Options implements BaseModel
     public function withLocale(string $locale): self
     {
         $obj = clone $this;
-        $obj->locale = $locale;
+        $obj['locale'] = $locale;
 
         return $obj;
     }
@@ -254,7 +258,7 @@ final class Options implements BaseModel
     public function withSenderID(string $senderID): self
     {
         $obj = clone $this;
-        $obj->sender_id = $senderID;
+        $obj['sender_id'] = $senderID;
 
         return $obj;
     }
@@ -265,7 +269,7 @@ final class Options implements BaseModel
     public function withTemplateID(string $templateID): self
     {
         $obj = clone $this;
-        $obj->template_id = $templateID;
+        $obj['template_id'] = $templateID;
 
         return $obj;
     }
@@ -278,7 +282,7 @@ final class Options implements BaseModel
     public function withVariables(array $variables): self
     {
         $obj = clone $this;
-        $obj->variables = $variables;
+        $obj['variables'] = $variables;
 
         return $obj;
     }

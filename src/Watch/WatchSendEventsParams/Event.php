@@ -9,6 +9,7 @@ use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendEventsParams\Event\Confidence;
 use Prelude\Watch\WatchSendEventsParams\Event\Target;
+use Prelude\Watch\WatchSendEventsParams\Event\Target\Type;
 
 /**
  * @phpstan-type EventShape = array{
@@ -65,17 +66,18 @@ final class Event implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Confidence|value-of<Confidence> $confidence
+     * @param Target|array{type: value-of<Type>, value: string} $target
      */
     public static function with(
         Confidence|string $confidence,
         string $label,
-        Target $target
+        Target|array $target
     ): self {
         $obj = new self;
 
         $obj['confidence'] = $confidence;
-        $obj->label = $label;
-        $obj->target = $target;
+        $obj['label'] = $label;
+        $obj['target'] = $target;
 
         return $obj;
     }
@@ -99,18 +101,20 @@ final class Event implements BaseModel
     public function withLabel(string $label): self
     {
         $obj = clone $this;
-        $obj->label = $label;
+        $obj['label'] = $label;
 
         return $obj;
     }
 
     /**
      * The event target. Only supports phone numbers for now.
+     *
+     * @param Target|array{type: value-of<Type>, value: string} $target
      */
-    public function withTarget(Target $target): self
+    public function withTarget(Target|array $target): self
     {
         $obj = clone $this;
-        $obj->target = $target;
+        $obj['target'] = $target;
 
         return $obj;
     }

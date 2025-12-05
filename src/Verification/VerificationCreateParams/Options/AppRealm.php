@@ -65,7 +65,7 @@ final class AppRealm implements BaseModel
         $obj = new self;
 
         $obj['platform'] = $platform;
-        $obj->value = $value;
+        $obj['value'] = $value;
 
         return $obj;
     }
@@ -90,7 +90,7 @@ final class AppRealm implements BaseModel
     public function withValue(string $value): self
     {
         $obj = clone $this;
-        $obj->value = $value;
+        $obj['value'] = $value;
 
         return $obj;
     }

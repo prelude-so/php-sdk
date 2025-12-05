@@ -107,27 +107,34 @@ final class Config implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<MoPhoneNumber> $mo_phone_numbers
+     * @param Messages|array{
+     *   help_message?: string|null,
+     *   start_message?: string|null,
+     *   stop_message?: string|null,
+     * } $messages
+     * @param list<MoPhoneNumber|array{
+     *   country_code: string, phone_number: string
+     * }> $mo_phone_numbers
      */
     public static function with(
         string $id,
         string $callback_url,
         \DateTimeInterface $created_at,
-        Messages $messages,
+        Messages|array $messages,
         string $name,
         \DateTimeInterface $updated_at,
         ?array $mo_phone_numbers = null,
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
-        $obj->callback_url = $callback_url;
-        $obj->created_at = $created_at;
-        $obj->messages = $messages;
-        $obj->name = $name;
-        $obj->updated_at = $updated_at;
+        $obj['id'] = $id;
+        $obj['callback_url'] = $callback_url;
+        $obj['created_at'] = $created_at;
+        $obj['messages'] = $messages;
+        $obj['name'] = $name;
+        $obj['updated_at'] = $updated_at;
 
-        null !== $mo_phone_numbers && $obj->mo_phone_numbers = $mo_phone_numbers;
+        null !== $mo_phone_numbers && $obj['mo_phone_numbers'] = $mo_phone_numbers;
 
         return $obj;
     }
@@ -138,7 +145,7 @@ final class Config implements BaseModel
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -149,7 +156,7 @@ final class Config implements BaseModel
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj->callback_url = $callbackURL;
+        $obj['callback_url'] = $callbackURL;
 
         return $obj;
     }
@@ -160,18 +167,24 @@ final class Config implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->created_at = $createdAt;
+        $obj['created_at'] = $createdAt;
 
         return $obj;
     }
 
     /**
      * The subscription messages configuration.
+     *
+     * @param Messages|array{
+     *   help_message?: string|null,
+     *   start_message?: string|null,
+     *   stop_message?: string|null,
+     * } $messages
      */
-    public function withMessages(Messages $messages): self
+    public function withMessages(Messages|array $messages): self
     {
         $obj = clone $this;
-        $obj->messages = $messages;
+        $obj['messages'] = $messages;
 
         return $obj;
     }
@@ -182,7 +195,7 @@ final class Config implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -193,7 +206,7 @@ final class Config implements BaseModel
     public function withUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $obj = clone $this;
-        $obj->updated_at = $updatedAt;
+        $obj['updated_at'] = $updatedAt;
 
         return $obj;
     }
@@ -201,12 +214,14 @@ final class Config implements BaseModel
     /**
      * A list of phone numbers for receiving inbound messages.
      *
-     * @param list<MoPhoneNumber> $moPhoneNumbers
+     * @param list<MoPhoneNumber|array{
+     *   country_code: string, phone_number: string
+     * }> $moPhoneNumbers
      */
     public function withMoPhoneNumbers(array $moPhoneNumbers): self
     {
         $obj = clone $this;
-        $obj->mo_phone_numbers = $moPhoneNumbers;
+        $obj['mo_phone_numbers'] = $moPhoneNumbers;
 
         return $obj;
     }

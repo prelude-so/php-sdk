@@ -9,13 +9,19 @@ use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendEventsParams\Event;
+use Prelude\Watch\WatchSendEventsParams\Event\Confidence;
+use Prelude\Watch\WatchSendEventsParams\Event\Target;
 
 /**
  * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
  *
  * @see Prelude\Services\WatchService::sendEvents()
  *
- * @phpstan-type WatchSendEventsParamsShape = array{events: list<Event>}
+ * @phpstan-type WatchSendEventsParamsShape = array{
+ *   events: list<Event|array{
+ *     confidence: value-of<Confidence>, label: string, target: Target
+ *   }>,
+ * }
  */
 final class WatchSendEventsParams implements BaseModel
 {
@@ -55,13 +61,15 @@ final class WatchSendEventsParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Event> $events
+     * @param list<Event|array{
+     *   confidence: value-of<Confidence>, label: string, target: Target
+     * }> $events
      */
     public static function with(array $events): self
     {
         $obj = new self;
 
-        $obj->events = $events;
+        $obj['events'] = $events;
 
         return $obj;
     }
@@ -69,12 +77,14 @@ final class WatchSendEventsParams implements BaseModel
     /**
      * A list of events to dispatch.
      *
-     * @param list<Event> $events
+     * @param list<Event|array{
+     *   confidence: value-of<Confidence>, label: string, target: Target
+     * }> $events
      */
     public function withEvents(array $events): self
     {
         $obj = clone $this;
-        $obj->events = $events;
+        $obj['events'] = $events;
 
         return $obj;
     }

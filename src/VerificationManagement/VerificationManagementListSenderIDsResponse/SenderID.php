@@ -54,7 +54,7 @@ final class SenderID implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $sender_id && $obj->sender_id = $sender_id;
+        null !== $sender_id && $obj['sender_id'] = $sender_id;
         null !== $status && $obj['status'] = $status;
 
         return $obj;
@@ -66,7 +66,7 @@ final class SenderID implements BaseModel
     public function withSenderID(string $senderID): self
     {
         $obj = clone $this;
-        $obj->sender_id = $senderID;
+        $obj['sender_id'] = $senderID;
 
         return $obj;
     }

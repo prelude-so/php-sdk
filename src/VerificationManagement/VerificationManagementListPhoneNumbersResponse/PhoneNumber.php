@@ -60,8 +60,8 @@ final class PhoneNumber implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->created_at = $created_at;
-        $obj->phone_number = $phone_number;
+        $obj['created_at'] = $created_at;
+        $obj['phone_number'] = $phone_number;
 
         return $obj;
     }
@@ -72,7 +72,7 @@ final class PhoneNumber implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->created_at = $createdAt;
+        $obj['created_at'] = $createdAt;
 
         return $obj;
     }
@@ -83,7 +83,7 @@ final class PhoneNumber implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $obj['phone_number'] = $phoneNumber;
 
         return $obj;
     }

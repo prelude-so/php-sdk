@@ -46,8 +46,8 @@ final class Error implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $code && $obj->code = $code;
-        null !== $message && $obj->message = $message;
+        null !== $code && $obj['code'] = $code;
+        null !== $message && $obj['message'] = $message;
 
         return $obj;
     }
@@ -58,7 +58,7 @@ final class Error implements BaseModel
     public function withCode(string $code): self
     {
         $obj = clone $this;
-        $obj->code = $code;
+        $obj['code'] = $code;
 
         return $obj;
     }
@@ -69,7 +69,7 @@ final class Error implements BaseModel
     public function withMessage(string $message): self
     {
         $obj = clone $this;
-        $obj->message = $message;
+        $obj['message'] = $message;
 
         return $obj;
     }
