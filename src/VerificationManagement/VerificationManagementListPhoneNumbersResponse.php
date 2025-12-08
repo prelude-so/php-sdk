@@ -6,9 +6,7 @@ namespace Prelude\VerificationManagement;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\VerificationManagement\VerificationManagementListPhoneNumbersResponse\PhoneNumber;
 
 /**
@@ -16,12 +14,10 @@ use Prelude\VerificationManagement\VerificationManagementListPhoneNumbersRespons
  *   phone_numbers: list<PhoneNumber>
  * }
  */
-final class VerificationManagementListPhoneNumbersResponse implements BaseModel, ResponseConverter
+final class VerificationManagementListPhoneNumbersResponse implements BaseModel
 {
     /** @use SdkModel<VerificationManagementListPhoneNumbersResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * A list of phone numbers in the allow or block list.

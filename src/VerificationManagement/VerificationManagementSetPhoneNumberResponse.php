@@ -6,21 +6,17 @@ namespace Prelude\VerificationManagement;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type VerificationManagementSetPhoneNumberResponseShape = array{
  *   phone_number: string
  * }
  */
-final class VerificationManagementSetPhoneNumberResponse implements BaseModel, ResponseConverter
+final class VerificationManagementSetPhoneNumberResponse implements BaseModel
 {
     /** @use SdkModel<VerificationManagementSetPhoneNumberResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * The E.164 formatted phone number that was added to the list.

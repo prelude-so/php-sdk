@@ -6,9 +6,7 @@ namespace Prelude\VerificationManagement;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\SenderID;
 use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\SenderID\Status;
 
@@ -19,12 +17,10 @@ use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\S
  *   sender_ids?: list<SenderID>|null
  * }
  */
-final class VerificationManagementListSenderIDsResponse implements BaseModel, ResponseConverter
+final class VerificationManagementListSenderIDsResponse implements BaseModel
 {
     /** @use SdkModel<VerificationManagementListSenderIDsResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /** @var list<SenderID>|null $sender_ids */
     #[Api(list: SenderID::class, optional: true)]

@@ -6,9 +6,7 @@ namespace Prelude\Notify;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event\Source;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event\State;
@@ -18,12 +16,10 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event\State;
  *   events: list<Event>, next_cursor?: string|null
  * }
  */
-final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel, ResponseConverter
+final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
 {
     /** @use SdkModel<NotifyListSubscriptionPhoneNumberEventsResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * A list of subscription events (status changes) ordered by timestamp descending.

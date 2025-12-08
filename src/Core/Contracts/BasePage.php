@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace Prelude\Core\Contracts;
 
-use Prelude\Client;
-use Prelude\Core\Conversion\Contracts\Converter;
-use Prelude\Core\Conversion\Contracts\ConverterSource;
-use Prelude\RequestOptions;
-use Psr\Http\Message\ResponseInterface;
-
 /**
  * @internal
  *
@@ -21,19 +15,6 @@ use Psr\Http\Message\ResponseInterface;
  */
 interface BasePage extends \IteratorAggregate
 {
-    /**
-     * @internal
-     *
-     * @param normalized_request $request
-     */
-    public function __construct(
-        Converter|ConverterSource|string $convert,
-        Client $client,
-        array $request,
-        RequestOptions $options,
-        ResponseInterface $response,
-    );
-
     public function hasNextPage(): bool;
 
     /**

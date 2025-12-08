@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationContract;
@@ -66,14 +67,16 @@ final class VerificationService implements VerificationContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<VerificationNewResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v2/verification',
             body: (object) $parsed,
             options: $options,
             convert: VerificationNewResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -97,13 +100,15 @@ final class VerificationService implements VerificationContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<VerificationCheckResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v2/verification/check',
             body: (object) $parsed,
             options: $options,
             convert: VerificationCheckResponse::class,
         );
+
+        return $response->parse();
     }
 }

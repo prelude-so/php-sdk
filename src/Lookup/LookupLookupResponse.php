@@ -6,9 +6,7 @@ namespace Prelude\Lookup;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Lookup\LookupLookupResponse\Flag;
 use Prelude\Lookup\LookupLookupResponse\LineType;
 use Prelude\Lookup\LookupLookupResponse\NetworkInfo;
@@ -25,12 +23,10 @@ use Prelude\Lookup\LookupLookupResponse\OriginalNetworkInfo;
  *   phone_number?: string|null,
  * }
  */
-final class LookupLookupResponse implements BaseModel, ResponseConverter
+final class LookupLookupResponse implements BaseModel
 {
     /** @use SdkModel<LookupLookupResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * The CNAM (Caller ID Name) associated with the phone number. Contact us if you need to use this functionality. Once enabled, put `cnam` option to `type` query parameter.

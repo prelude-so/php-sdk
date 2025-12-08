@@ -6,9 +6,7 @@ namespace Prelude\Transactional;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type TransactionalSendResponseShape = array{
@@ -23,12 +21,10 @@ use Prelude\Core\Conversion\Contracts\ResponseConverter;
  *   from?: string|null,
  * }
  */
-final class TransactionalSendResponse implements BaseModel, ResponseConverter
+final class TransactionalSendResponse implements BaseModel
 {
     /** @use SdkModel<TransactionalSendResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * The message identifier.

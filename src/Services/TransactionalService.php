@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\TransactionalContract;
@@ -48,13 +49,15 @@ final class TransactionalService implements TransactionalContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<TransactionalSendResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v2/transactional',
             body: (object) $parsed,
             options: $options,
             convert: TransactionalSendResponse::class,
         );
+
+        return $response->parse();
     }
 }

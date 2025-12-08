@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\Notify\NotifyGetSubscriptionConfigResponse;
 use Prelude\Notify\NotifyGetSubscriptionPhoneNumberParams;
@@ -40,13 +41,15 @@ final class NotifyService implements NotifyContract
         string $configID,
         ?RequestOptions $requestOptions = null
     ): NotifyGetSubscriptionConfigResponse {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<NotifyGetSubscriptionConfigResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: ['v2/notify/management/subscriptions/%1$s', $configID],
             options: $requestOptions,
             convert: NotifyGetSubscriptionConfigResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -70,8 +73,8 @@ final class NotifyService implements NotifyContract
         $configID = $parsed['config_id'];
         unset($parsed['config_id']);
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<NotifyGetSubscriptionPhoneNumberResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: [
                 'v2/notify/management/subscriptions/%1$s/phone_numbers/%2$s',
@@ -81,6 +84,8 @@ final class NotifyService implements NotifyContract
             options: $options,
             convert: NotifyGetSubscriptionPhoneNumberResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -105,14 +110,16 @@ final class NotifyService implements NotifyContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<NotifyListSubscriptionConfigsResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: 'v2/notify/management/subscriptions',
             query: $parsed,
             options: $options,
             convert: NotifyListSubscriptionConfigsResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -140,8 +147,8 @@ final class NotifyService implements NotifyContract
         $configID = $parsed['config_id'];
         unset($parsed['config_id']);
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<NotifyListSubscriptionPhoneNumberEventsResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: [
                 'v2/notify/management/subscriptions/%1$s/phone_numbers/%2$s/events',
@@ -152,6 +159,8 @@ final class NotifyService implements NotifyContract
             options: $options,
             convert: NotifyListSubscriptionPhoneNumberEventsResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -177,8 +186,8 @@ final class NotifyService implements NotifyContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<NotifyListSubscriptionPhoneNumbersResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: [
                 'v2/notify/management/subscriptions/%1$s/phone_numbers', $configID,
@@ -187,6 +196,8 @@ final class NotifyService implements NotifyContract
             options: $options,
             convert: NotifyListSubscriptionPhoneNumbersResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -218,14 +229,16 @@ final class NotifyService implements NotifyContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<NotifySendResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v2/notify',
             body: (object) $parsed,
             options: $options,
             convert: NotifySendResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -257,13 +270,15 @@ final class NotifyService implements NotifyContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<NotifySendBatchResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v2/notify/batch',
             body: (object) $parsed,
             options: $options,
             convert: NotifySendBatchResponse::class,
         );
+
+        return $response->parse();
     }
 }
