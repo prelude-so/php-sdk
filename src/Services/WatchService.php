@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\WatchContract;
@@ -55,14 +56,16 @@ final class WatchService implements WatchContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<WatchPredictResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v2/watch/predict',
             body: (object) $parsed,
             options: $options,
             convert: WatchPredictResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -89,14 +92,16 @@ final class WatchService implements WatchContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<WatchSendEventsResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v2/watch/event',
             body: (object) $parsed,
             options: $options,
             convert: WatchSendEventsResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -135,13 +140,15 @@ final class WatchService implements WatchContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<WatchSendFeedbacksResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v2/watch/feedback',
             body: (object) $parsed,
             options: $options,
             convert: WatchSendFeedbacksResponse::class,
         );
+
+        return $response->parse();
     }
 }

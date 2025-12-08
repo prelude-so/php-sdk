@@ -6,9 +6,7 @@ namespace Prelude\Verification;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Verification\VerificationCheckResponse\Metadata;
 use Prelude\Verification\VerificationCheckResponse\Status;
 
@@ -20,12 +18,10 @@ use Prelude\Verification\VerificationCheckResponse\Status;
  *   request_id?: string|null,
  * }
  */
-final class VerificationCheckResponse implements BaseModel, ResponseConverter
+final class VerificationCheckResponse implements BaseModel
 {
     /** @use SdkModel<VerificationCheckResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * The status of the check.

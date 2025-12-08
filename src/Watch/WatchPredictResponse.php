@@ -6,9 +6,7 @@ namespace Prelude\Watch;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Watch\WatchPredictResponse\Prediction;
 
 /**
@@ -16,12 +14,10 @@ use Prelude\Watch\WatchPredictResponse\Prediction;
  *   id: string, prediction: value-of<Prediction>, request_id: string
  * }
  */
-final class WatchPredictResponse implements BaseModel, ResponseConverter
+final class WatchPredictResponse implements BaseModel
 {
     /** @use SdkModel<WatchPredictResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * The prediction identifier.

@@ -6,9 +6,7 @@ namespace Prelude\Notify;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Notify\NotifySendBatchResponse\Result;
 use Prelude\Notify\NotifySendBatchResponse\Result\Error;
 use Prelude\Notify\NotifySendBatchResponse\Result\Message;
@@ -25,12 +23,10 @@ use Prelude\Notify\NotifySendBatchResponse\Result\Message;
  *   variables?: array<string,string>|null,
  * }
  */
-final class NotifySendBatchResponse implements BaseModel, ResponseConverter
+final class NotifySendBatchResponse implements BaseModel
 {
     /** @use SdkModel<NotifySendBatchResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * Number of failed sends.

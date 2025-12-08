@@ -6,21 +6,17 @@ namespace Prelude\VerificationManagement;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type VerificationManagementDeletePhoneNumberResponseShape = array{
  *   phone_number: string
  * }
  */
-final class VerificationManagementDeletePhoneNumberResponse implements BaseModel, ResponseConverter
+final class VerificationManagementDeletePhoneNumberResponse implements BaseModel
 {
     /** @use SdkModel<VerificationManagementDeletePhoneNumberResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * The E.164 formatted phone number that was removed from the list.

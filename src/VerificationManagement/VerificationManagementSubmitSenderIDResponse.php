@@ -6,9 +6,7 @@ namespace Prelude\VerificationManagement;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse\Status;
 
 /**
@@ -16,12 +14,10 @@ use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse\
  *   sender_id: string, status: value-of<Status>, reason?: string|null
  * }
  */
-final class VerificationManagementSubmitSenderIDResponse implements BaseModel, ResponseConverter
+final class VerificationManagementSubmitSenderIDResponse implements BaseModel
 {
     /** @use SdkModel<VerificationManagementSubmitSenderIDResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * The sender ID that was added.

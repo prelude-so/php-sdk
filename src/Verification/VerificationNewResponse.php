@@ -6,9 +6,7 @@ namespace Prelude\Verification;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Verification\VerificationNewResponse\Channel;
 use Prelude\Verification\VerificationNewResponse\Metadata;
 use Prelude\Verification\VerificationNewResponse\Method;
@@ -28,12 +26,10 @@ use Prelude\Verification\VerificationNewResponse\Status;
  *   silent?: Silent|null,
  * }
  */
-final class VerificationNewResponse implements BaseModel, ResponseConverter
+final class VerificationNewResponse implements BaseModel
 {
     /** @use SdkModel<VerificationNewResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * The verification identifier.

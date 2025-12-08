@@ -6,9 +6,7 @@ namespace Prelude\Watch;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Watch\WatchSendEventsResponse\Status;
 
 /**
@@ -16,12 +14,10 @@ use Prelude\Watch\WatchSendEventsResponse\Status;
  *   request_id: string, status: value-of<Status>
  * }
  */
-final class WatchSendEventsResponse implements BaseModel, ResponseConverter
+final class WatchSendEventsResponse implements BaseModel
 {
     /** @use SdkModel<WatchSendEventsResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * A string that identifies this specific request. Report it back to us to help us diagnose your issues.

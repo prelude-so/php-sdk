@@ -6,9 +6,7 @@ namespace Prelude\Notify;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber\Source;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber\State;
@@ -18,12 +16,10 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber\State;
  *   phone_numbers: list<PhoneNumber>, next_cursor?: string|null
  * }
  */
-final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel, ResponseConverter
+final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
 {
     /** @use SdkModel<NotifyListSubscriptionPhoneNumbersResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * A list of phone numbers and their subscription statuses.

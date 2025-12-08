@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationManagementContract;
@@ -51,14 +52,16 @@ final class VerificationManagementService implements VerificationManagementContr
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<VerificationManagementDeletePhoneNumberResponse> */
+        $response = $this->client->request(
             method: 'delete',
             path: ['v2/verification/management/phone-numbers/%1$s', $action],
             body: (object) $parsed,
             options: $options,
             convert: VerificationManagementDeletePhoneNumberResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -76,13 +79,15 @@ final class VerificationManagementService implements VerificationManagementContr
         \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action|string $action,
         ?RequestOptions $requestOptions = null,
     ): VerificationManagementListPhoneNumbersResponse {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<VerificationManagementListPhoneNumbersResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: ['v2/verification/management/phone-numbers/%1$s', $action],
             options: $requestOptions,
             convert: VerificationManagementListPhoneNumbersResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -97,13 +102,15 @@ final class VerificationManagementService implements VerificationManagementContr
     public function listSenderIDs(
         ?RequestOptions $requestOptions = null
     ): VerificationManagementListSenderIDsResponse {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<VerificationManagementListSenderIDsResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: 'v2/verification/management/sender-id',
             options: $requestOptions,
             convert: VerificationManagementListSenderIDsResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -132,14 +139,16 @@ final class VerificationManagementService implements VerificationManagementContr
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<VerificationManagementSetPhoneNumberResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: ['v2/verification/management/phone-numbers/%1$s', $action],
             body: (object) $parsed,
             options: $options,
             convert: VerificationManagementSetPhoneNumberResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -164,13 +173,15 @@ final class VerificationManagementService implements VerificationManagementContr
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<VerificationManagementSubmitSenderIDResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v2/verification/management/sender-id',
             body: (object) $parsed,
             options: $options,
             convert: VerificationManagementSubmitSenderIDResponse::class,
         );
+
+        return $response->parse();
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
+use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\Lookup\LookupLookupParams;
 use Prelude\Lookup\LookupLookupResponse;
@@ -37,13 +38,15 @@ final class LookupService implements LookupContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<LookupLookupResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: ['v2/lookup/%1$s', $phoneNumber],
             query: $parsed,
             options: $options,
             convert: LookupLookupResponse::class,
         );
+
+        return $response->parse();
     }
 }

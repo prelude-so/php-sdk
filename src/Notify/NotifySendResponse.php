@@ -6,9 +6,7 @@ namespace Prelude\Notify;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type NotifySendResponseShape = array{
@@ -24,12 +22,10 @@ use Prelude\Core\Conversion\Contracts\ResponseConverter;
  *   schedule_at?: \DateTimeInterface|null,
  * }
  */
-final class NotifySendResponse implements BaseModel, ResponseConverter
+final class NotifySendResponse implements BaseModel
 {
     /** @use SdkModel<NotifySendResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * The message identifier.

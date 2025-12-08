@@ -6,9 +6,7 @@ namespace Prelude\Notify;
 
 use Prelude\Core\Attributes\Api;
 use Prelude\Core\Concerns\SdkModel;
-use Prelude\Core\Concerns\SdkResponse;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Core\Conversion\Contracts\ResponseConverter;
 use Prelude\Notify\NotifyGetSubscriptionConfigResponse\Messages;
 use Prelude\Notify\NotifyGetSubscriptionConfigResponse\MoPhoneNumber;
 
@@ -23,12 +21,10 @@ use Prelude\Notify\NotifyGetSubscriptionConfigResponse\MoPhoneNumber;
  *   mo_phone_numbers?: list<MoPhoneNumber>|null,
  * }
  */
-final class NotifyGetSubscriptionConfigResponse implements BaseModel, ResponseConverter
+final class NotifyGetSubscriptionConfigResponse implements BaseModel
 {
     /** @use SdkModel<NotifyGetSubscriptionConfigResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * The subscription configuration ID.
