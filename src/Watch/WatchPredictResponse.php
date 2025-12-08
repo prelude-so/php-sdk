@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Watch;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchPredictResponse\Prediction;
@@ -22,7 +22,7 @@ final class WatchPredictResponse implements BaseModel
     /**
      * The prediction identifier.
      */
-    #[Api]
+    #[Required]
     public string $id;
 
     /**
@@ -30,13 +30,13 @@ final class WatchPredictResponse implements BaseModel
      *
      * @var value-of<Prediction> $prediction
      */
-    #[Api(enum: Prediction::class)]
+    #[Required(enum: Prediction::class)]
     public string $prediction;
 
     /**
      * A string that identifies this specific request. Report it back to us to help us diagnose your issues.
      */
-    #[Api]
+    #[Required]
     public string $request_id;
 
     /**

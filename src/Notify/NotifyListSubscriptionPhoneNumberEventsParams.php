@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Notify;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -26,19 +27,19 @@ final class NotifyListSubscriptionPhoneNumberEventsParams implements BaseModel
     use SdkModel;
     use SdkParams;
 
-    #[Api]
+    #[Required]
     public string $config_id;
 
     /**
      * Pagination cursor from the previous response.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $cursor;
 
     /**
      * Maximum number of events to return per page.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $limit;
 
     /**

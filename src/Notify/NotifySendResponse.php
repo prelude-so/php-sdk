@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Notify;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
@@ -30,31 +31,31 @@ final class NotifySendResponse implements BaseModel
     /**
      * The message identifier.
      */
-    #[Api]
+    #[Required]
     public string $id;
 
     /**
      * The message creation date in RFC3339 format.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $created_at;
 
     /**
      * The message expiration date in RFC3339 format.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $expires_at;
 
     /**
      * The template identifier.
      */
-    #[Api]
+    #[Required]
     public string $template_id;
 
     /**
      * The recipient's phone number in E.164 format.
      */
-    #[Api]
+    #[Required]
     public string $to;
 
     /**
@@ -62,31 +63,31 @@ final class NotifySendResponse implements BaseModel
      *
      * @var array<string,string> $variables
      */
-    #[Api(map: 'string')]
+    #[Required(map: 'string')]
     public array $variables;
 
     /**
      * The callback URL where webhooks will be sent.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $callback_url;
 
     /**
      * A user-defined identifier to correlate this message with your internal systems.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $correlation_id;
 
     /**
      * The Sender ID used for this message.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $from;
 
     /**
      * When the message will actually be sent in RFC3339 format with timezone offset. For marketing messages, this may differ from the requested schedule_at due to automatic compliance adjustments.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $schedule_at;
 
     /**

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Watch;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -45,25 +46,25 @@ final class WatchPredictParams implements BaseModel
     /**
      * The prediction target. Only supports phone numbers for now.
      */
-    #[Api]
+    #[Required]
     public Target $target;
 
     /**
      * The identifier of the dispatch that came from the front-end SDK.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $dispatch_id;
 
     /**
      * The metadata for this prediction.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Metadata $metadata;
 
     /**
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Signals $signals;
 
     /**

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Notify;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -30,13 +30,13 @@ final class NotifyListSubscriptionPhoneNumbersParams implements BaseModel
     /**
      * Pagination cursor from the previous response.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $cursor;
 
     /**
      * Maximum number of phone numbers to return per page.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $limit;
 
     /**
@@ -44,7 +44,7 @@ final class NotifyListSubscriptionPhoneNumbersParams implements BaseModel
      *
      * @var value-of<State>|null $state
      */
-    #[Api(enum: State::class, optional: true)]
+    #[Optional(enum: State::class)]
     public ?string $state;
 
     public function __construct()

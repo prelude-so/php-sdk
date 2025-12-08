@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Verification\VerificationCreateParams;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCreateParams\Options\AppRealm;
@@ -38,25 +38,25 @@ final class Options implements BaseModel
     /**
      * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?AppRealm $app_realm;
 
     /**
      * The URL where webhooks will be sent when verification events occur, including verification creation, attempt creation, and delivery status changes. For more details, refer to [Webhook](/verify/v2/documentation/webhook).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $callback_url;
 
     /**
      * The size of the code generated. It should be between 4 and 8. Defaults to the code size specified from the Dashboard.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $code_size;
 
     /**
      * The custom code to use for OTP verification. To use the custom code feature, contact us to enable it for your account. For more details, refer to [Custom Code](/verify/v2/documentation/custom-codes).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $custom_code;
 
     /**
@@ -64,13 +64,13 @@ final class Options implements BaseModel
      *
      * @var value-of<Integration>|null $integration
      */
-    #[Api(enum: Integration::class, optional: true)]
+    #[Optional(enum: Integration::class)]
     public ?string $integration;
 
     /**
      * A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, it defaults to US English.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $locale;
 
     /**
@@ -78,7 +78,7 @@ final class Options implements BaseModel
      *
      * @var value-of<Method>|null $method
      */
-    #[Api(enum: Method::class, optional: true)]
+    #[Optional(enum: Method::class)]
     public ?string $method;
 
     /**
@@ -86,19 +86,19 @@ final class Options implements BaseModel
      *
      * @var value-of<PreferredChannel>|null $preferred_channel
      */
-    #[Api(enum: PreferredChannel::class, optional: true)]
+    #[Optional(enum: PreferredChannel::class)]
     public ?string $preferred_channel;
 
     /**
      * The Sender ID to use for this message. The Sender ID needs to be enabled by Prelude.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $sender_id;
 
     /**
      * The identifier of a verification template. It applies use case-specific settings, such as the message content or certain verification parameters.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $template_id;
 
     /**
@@ -106,7 +106,7 @@ final class Options implements BaseModel
      *
      * @var array<string,string>|null $variables
      */
-    #[Api(map: 'string', optional: true)]
+    #[Optional(map: 'string')]
     public ?array $variables;
 
     public function __construct()

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Notify\NotifyGetSubscriptionConfigResponse;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
@@ -21,13 +21,13 @@ final class MoPhoneNumber implements BaseModel
     /**
      * The ISO 3166-1 alpha-2 country code.
      */
-    #[Api]
+    #[Required]
     public string $country_code;
 
     /**
      * The phone number in E.164 format for long codes, or short code format for short codes.
      */
-    #[Api]
+    #[Required]
     public string $phone_number;
 
     /**

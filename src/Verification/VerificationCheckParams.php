@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Verification;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -29,13 +29,13 @@ final class VerificationCheckParams implements BaseModel
     /**
      * The OTP code to validate.
      */
-    #[Api]
+    #[Required]
     public string $code;
 
     /**
      * The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      */
-    #[Api]
+    #[Required]
     public Target $target;
 
     /**

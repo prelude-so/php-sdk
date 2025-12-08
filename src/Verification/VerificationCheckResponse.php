@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Verification;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCheckResponse\Metadata;
@@ -28,22 +29,22 @@ final class VerificationCheckResponse implements BaseModel
      *
      * @var value-of<Status> $status
      */
-    #[Api(enum: Status::class)]
+    #[Required(enum: Status::class)]
     public string $status;
 
     /**
      * The verification identifier.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
      * The metadata for this verification.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Metadata $metadata;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $request_id;
 
     /**

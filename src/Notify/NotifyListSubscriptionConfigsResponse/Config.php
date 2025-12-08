@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Notify\NotifyListSubscriptionConfigsResponse;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config\Messages;
@@ -29,37 +30,37 @@ final class Config implements BaseModel
     /**
      * The subscription configuration ID.
      */
-    #[Api]
+    #[Required]
     public string $id;
 
     /**
      * The URL to call when subscription status changes.
      */
-    #[Api]
+    #[Required]
     public string $callback_url;
 
     /**
      * The date and time when the configuration was created.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $created_at;
 
     /**
      * The subscription messages configuration.
      */
-    #[Api]
+    #[Required]
     public Messages $messages;
 
     /**
      * The human-readable name for the subscription configuration.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
     /**
      * The date and time when the configuration was last updated.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $updated_at;
 
     /**
@@ -67,7 +68,7 @@ final class Config implements BaseModel
      *
      * @var list<MoPhoneNumber>|null $mo_phone_numbers
      */
-    #[Api(list: MoPhoneNumber::class, optional: true)]
+    #[Optional(list: MoPhoneNumber::class)]
     public ?array $mo_phone_numbers;
 
     /**

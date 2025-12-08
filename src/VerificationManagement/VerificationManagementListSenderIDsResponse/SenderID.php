@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\SenderID\Status;
@@ -22,7 +22,7 @@ final class SenderID implements BaseModel
     /**
      * Value that will be presented as Sender ID.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $sender_id;
 
     /**
@@ -33,7 +33,7 @@ final class SenderID implements BaseModel
      *
      * @var value-of<Status>|null $status
      */
-    #[Api(enum: Status::class, optional: true)]
+    #[Optional(enum: Status::class)]
     public ?string $status;
 
     public function __construct()

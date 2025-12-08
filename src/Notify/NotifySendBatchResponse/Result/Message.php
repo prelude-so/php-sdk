@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Notify\NotifySendBatchResponse\Result;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
@@ -30,49 +30,49 @@ final class Message implements BaseModel
     /**
      * The message identifier.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
      * The correlation identifier for the message.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $correlation_id;
 
     /**
      * The message creation date in RFC3339 format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $created_at;
 
     /**
      * The message expiration date in RFC3339 format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $expires_at;
 
     /**
      * The Sender ID used for this message.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $from;
 
     /**
      * The locale used for the message, if any.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $locale;
 
     /**
      * When the message will actually be sent in RFC3339 format with timezone offset.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $schedule_at;
 
     /**
      * The recipient's phone number in E.164 format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $to;
 
     public function __construct()

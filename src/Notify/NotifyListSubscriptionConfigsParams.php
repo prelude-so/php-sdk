@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Notify;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -29,13 +29,13 @@ final class NotifyListSubscriptionConfigsParams implements BaseModel
     /**
      * Pagination cursor from the previous response.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $cursor;
 
     /**
      * Maximum number of configurations to return per page.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $limit;
 
     public function __construct()

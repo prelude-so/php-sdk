@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Notify;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Notify\NotifySendBatchResponse\Result;
@@ -31,7 +32,7 @@ final class NotifySendBatchResponse implements BaseModel
     /**
      * Number of failed sends.
      */
-    #[Api]
+    #[Required]
     public int $error_count;
 
     /**
@@ -39,37 +40,37 @@ final class NotifySendBatchResponse implements BaseModel
      *
      * @var list<Result> $results
      */
-    #[Api(list: Result::class)]
+    #[Required(list: Result::class)]
     public array $results;
 
     /**
      * Number of successful sends.
      */
-    #[Api]
+    #[Required]
     public int $success_count;
 
     /**
      * Total number of recipients.
      */
-    #[Api]
+    #[Required]
     public int $total_count;
 
     /**
      * The callback URL used for this bulk request, if any.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $callback_url;
 
     /**
      * A string that identifies this specific request.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $request_id;
 
     /**
      * The template identifier used for this bulk request.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $template_id;
 
     /**
@@ -77,7 +78,7 @@ final class NotifySendBatchResponse implements BaseModel
      *
      * @var array<string,string>|null $variables
      */
-    #[Api(map: 'string', optional: true)]
+    #[Optional(map: 'string')]
     public ?array $variables;
 
     /**

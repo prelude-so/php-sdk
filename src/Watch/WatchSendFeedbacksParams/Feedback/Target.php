@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type;
@@ -27,7 +27,7 @@ final class Target implements BaseModel
      *
      * @var value-of<Type> $type
      */
-    #[Api(
+    #[Required(
         enum: Type::class
     )]
     public string $type;
@@ -35,7 +35,7 @@ final class Target implements BaseModel
     /**
      * An E.164 formatted phone number or an email address.
      */
-    #[Api]
+    #[Required]
     public string $value;
 
     /**

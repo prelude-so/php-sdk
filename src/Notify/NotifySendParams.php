@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Notify;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -37,43 +38,43 @@ final class NotifySendParams implements BaseModel
     /**
      * The template identifier configured by your Customer Success team.
      */
-    #[Api]
+    #[Required]
     public string $template_id;
 
     /**
      * The recipient's phone number in E.164 format.
      */
-    #[Api]
+    #[Required]
     public string $to;
 
     /**
      * The URL where webhooks will be sent for message delivery events.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $callback_url;
 
     /**
      * A user-defined identifier to correlate this message with your internal systems. It is returned in the response and any webhook events that refer to this message.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $correlation_id;
 
     /**
      * The message expiration date in RFC3339 format. The message will not be sent if this time is reached.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $expires_at;
 
     /**
      * The Sender ID. Must be approved for your account.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $from;
 
     /**
      * A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, the default set on the template will be used.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $locale;
 
     /**
@@ -81,13 +82,13 @@ final class NotifySendParams implements BaseModel
      *
      * @var value-of<PreferredChannel>|null $preferred_channel
      */
-    #[Api(enum: PreferredChannel::class, optional: true)]
+    #[Optional(enum: PreferredChannel::class)]
     public ?string $preferred_channel;
 
     /**
      * Schedule the message for future delivery in RFC3339 format. Marketing messages can be scheduled up to 90 days in advance and will be automatically adjusted for compliance with local time window restrictions.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $schedule_at;
 
     /**
@@ -95,7 +96,7 @@ final class NotifySendParams implements BaseModel
      *
      * @var array<string,string>|null $variables
      */
-    #[Api(map: 'string', optional: true)]
+    #[Optional(map: 'string')]
     public ?array $variables;
 
     /**

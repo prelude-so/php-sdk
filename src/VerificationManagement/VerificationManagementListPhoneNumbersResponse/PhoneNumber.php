@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\VerificationManagement\VerificationManagementListPhoneNumbersResponse;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
@@ -21,13 +21,13 @@ final class PhoneNumber implements BaseModel
     /**
      * The date and time when the phone number was added to the list.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $created_at;
 
     /**
      * An E.164 formatted phone number.
      */
-    #[Api]
+    #[Required]
     public string $phone_number;
 
     /**

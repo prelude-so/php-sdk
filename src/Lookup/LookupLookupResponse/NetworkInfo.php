@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Lookup\LookupLookupResponse;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
@@ -23,19 +23,19 @@ final class NetworkInfo implements BaseModel
     /**
      * The name of the carrier.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $carrier_name;
 
     /**
      * Mobile Country Code.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $mcc;
 
     /**
      * Mobile Network Code.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $mnc;
 
     public function __construct()

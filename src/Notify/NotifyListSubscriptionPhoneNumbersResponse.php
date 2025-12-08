@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Notify;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber;
@@ -26,13 +27,13 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
      *
      * @var list<PhoneNumber> $phone_numbers
      */
-    #[Api(list: PhoneNumber::class)]
+    #[Required(list: PhoneNumber::class)]
     public array $phone_numbers;
 
     /**
      * Pagination cursor for the next page of results. Omitted if there are no more pages.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $next_cursor;
 
     /**

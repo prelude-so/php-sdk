@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\VerificationManagement;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\SenderID;
@@ -23,7 +23,7 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel
     use SdkModel;
 
     /** @var list<SenderID>|null $sender_ids */
-    #[Api(list: SenderID::class, optional: true)]
+    #[Optional(list: SenderID::class)]
     public ?array $sender_ids;
 
     public function __construct()

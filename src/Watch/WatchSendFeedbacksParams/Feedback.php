@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Watch\WatchSendFeedbacksParams;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata;
@@ -30,7 +31,7 @@ final class Feedback implements BaseModel
     /**
      * The feedback target. Only supports phone numbers for now.
      */
-    #[Api]
+    #[Required]
     public Target $target;
 
     /**
@@ -38,25 +39,25 @@ final class Feedback implements BaseModel
      *
      * @var value-of<Type> $type
      */
-    #[Api(enum: Type::class)]
+    #[Required(enum: Type::class)]
     public string $type;
 
     /**
      * The identifier of the dispatch that came from the front-end SDK.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $dispatch_id;
 
     /**
      * The metadata for this feedback.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Metadata $metadata;
 
     /**
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Signals $signals;
 
     /**

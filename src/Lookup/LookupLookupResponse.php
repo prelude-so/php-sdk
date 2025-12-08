@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Lookup;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Lookup\LookupLookupResponse\Flag;
@@ -31,13 +31,13 @@ final class LookupLookupResponse implements BaseModel
     /**
      * The CNAM (Caller ID Name) associated with the phone number. Contact us if you need to use this functionality. Once enabled, put `cnam` option to `type` query parameter.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $caller_name;
 
     /**
      * The country code of the phone number.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $country_code;
 
     /**
@@ -47,7 +47,7 @@ final class LookupLookupResponse implements BaseModel
      *
      * @var list<value-of<Flag>>|null $flags
      */
-    #[Api(list: Flag::class, optional: true)]
+    #[Optional(list: Flag::class)]
     public ?array $flags;
 
     /**
@@ -74,25 +74,25 @@ final class LookupLookupResponse implements BaseModel
      *
      * @var value-of<LineType>|null $line_type
      */
-    #[Api(enum: LineType::class, optional: true)]
+    #[Optional(enum: LineType::class)]
     public ?string $line_type;
 
     /**
      * The current carrier information.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?NetworkInfo $network_info;
 
     /**
      * The original carrier information.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?OriginalNetworkInfo $original_network_info;
 
     /**
      * The phone number.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $phone_number;
 
     public function __construct()
