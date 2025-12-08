@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\VerificationManagement;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
@@ -21,7 +21,7 @@ final class VerificationManagementSetPhoneNumberResponse implements BaseModel
     /**
      * The E.164 formatted phone number that was added to the list.
      */
-    #[Api]
+    #[Required]
     public string $phone_number;
 
     /**

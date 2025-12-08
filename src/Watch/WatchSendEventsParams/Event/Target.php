@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Watch\WatchSendEventsParams\Event;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendEventsParams\Event\Target\Type;
@@ -24,13 +24,13 @@ final class Target implements BaseModel
      *
      * @var value-of<Type> $type
      */
-    #[Api(enum: Type::class)]
+    #[Required(enum: Type::class)]
     public string $type;
 
     /**
      * An E.164 formatted phone number or an email address.
      */
-    #[Api]
+    #[Required]
     public string $value;
 
     /**

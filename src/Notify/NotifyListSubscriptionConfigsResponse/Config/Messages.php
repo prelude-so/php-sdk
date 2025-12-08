@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
@@ -25,19 +25,19 @@ final class Messages implements BaseModel
     /**
      * Message sent when user requests help.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $help_message;
 
     /**
      * Message sent when user subscribes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $start_message;
 
     /**
      * Message sent when user unsubscribes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $stop_message;
 
     public function __construct()

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Notify;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -37,7 +38,7 @@ final class NotifySendBatchParams implements BaseModel
     /**
      * The template identifier configured by your Customer Success team.
      */
-    #[Api]
+    #[Required]
     public string $template_id;
 
     /**
@@ -45,37 +46,37 @@ final class NotifySendBatchParams implements BaseModel
      *
      * @var list<string> $to
      */
-    #[Api(list: 'string')]
+    #[Required(list: 'string')]
     public array $to;
 
     /**
      * The URL where webhooks will be sent for delivery events.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $callback_url;
 
     /**
      * A user-defined identifier to correlate this request with your internal systems.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $correlation_id;
 
     /**
      * The message expiration date in RFC3339 format. Messages will not be sent after this time.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $expires_at;
 
     /**
      * The Sender ID. Must be approved for your account.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $from;
 
     /**
      * A BCP-47 formatted locale string.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $locale;
 
     /**
@@ -83,13 +84,13 @@ final class NotifySendBatchParams implements BaseModel
      *
      * @var value-of<PreferredChannel>|null $preferred_channel
      */
-    #[Api(enum: PreferredChannel::class, optional: true)]
+    #[Optional(enum: PreferredChannel::class)]
     public ?string $preferred_channel;
 
     /**
      * Schedule delivery in RFC3339 format. Marketing sends may be adjusted to comply with local time windows.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $schedule_at;
 
     /**
@@ -97,7 +98,7 @@ final class NotifySendBatchParams implements BaseModel
      *
      * @var array<string,string>|null $variables
      */
-    #[Api(map: 'string', optional: true)]
+    #[Optional(map: 'string')]
     public ?array $variables;
 
     /**

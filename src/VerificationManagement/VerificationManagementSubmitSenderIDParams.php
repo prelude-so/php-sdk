@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\VerificationManagement;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -29,7 +29,7 @@ final class VerificationManagementSubmitSenderIDParams implements BaseModel
     /**
      * The sender ID to add.
      */
-    #[Api]
+    #[Required]
     public string $sender_id;
 
     /**

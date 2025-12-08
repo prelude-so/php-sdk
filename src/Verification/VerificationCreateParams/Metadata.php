@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Verification\VerificationCreateParams;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
@@ -21,7 +21,7 @@ final class Metadata implements BaseModel
     /**
      * A user-defined identifier to correlate this verification with. It is returned in the response and any webhook events that refer to this verification.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $correlation_id;
 
     public function __construct()

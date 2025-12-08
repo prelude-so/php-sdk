@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Watch;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -40,7 +40,7 @@ final class WatchSendFeedbacksParams implements BaseModel
      *
      * @var list<Feedback> $feedbacks
      */
-    #[Api(list: Feedback::class)]
+    #[Required(list: Feedback::class)]
     public array $feedbacks;
 
     /**

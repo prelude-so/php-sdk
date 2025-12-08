@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Verification\VerificationCreateParams\Options;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCreateParams\Options\AppRealm\Platform;
@@ -24,14 +24,14 @@ final class AppRealm implements BaseModel
      *
      * @var value-of<Platform> $platform
      */
-    #[Api(enum: Platform::class)]
+    #[Required(enum: Platform::class)]
     public string $platform;
 
     /**
      * The Android SMS Retriever API hash code that identifies your app.
      * For more information, see [Google documentation](https://developers.google.com/identity/sms-retriever/verify#computing_your_apps_hash_string).
      */
-    #[Api]
+    #[Required]
     public string $value;
 
     /**

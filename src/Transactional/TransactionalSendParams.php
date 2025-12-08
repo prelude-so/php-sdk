@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Transactional;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -37,43 +38,43 @@ final class TransactionalSendParams implements BaseModel
     /**
      * The template identifier.
      */
-    #[Api]
+    #[Required]
     public string $template_id;
 
     /**
      * The recipient's phone number.
      */
-    #[Api]
+    #[Required]
     public string $to;
 
     /**
      * The callback URL.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $callback_url;
 
     /**
      * A user-defined identifier to correlate this transactional message with. It is returned in the response and any webhook events that refer to this transactionalmessage.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $correlation_id;
 
     /**
      * The message expiration date.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $expires_at;
 
     /**
      * The Sender ID.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $from;
 
     /**
      * A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, the default set on the template will be used.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $locale;
 
     /**
@@ -85,7 +86,7 @@ final class TransactionalSendParams implements BaseModel
      *
      * @var value-of<PreferredChannel>|null $preferred_channel
      */
-    #[Api(enum: PreferredChannel::class, optional: true)]
+    #[Optional(enum: PreferredChannel::class)]
     public ?string $preferred_channel;
 
     /**
@@ -93,7 +94,7 @@ final class TransactionalSendParams implements BaseModel
      *
      * @var array<string,string>|null $variables
      */
-    #[Api(map: 'string', optional: true)]
+    #[Optional(map: 'string')]
     public ?array $variables;
 
     /**

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Watch;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendEventsResponse\Status;
@@ -22,7 +22,7 @@ final class WatchSendEventsResponse implements BaseModel
     /**
      * A string that identifies this specific request. Report it back to us to help us diagnose your issues.
      */
-    #[Api]
+    #[Required]
     public string $request_id;
 
     /**
@@ -30,7 +30,7 @@ final class WatchSendEventsResponse implements BaseModel
      *
      * @var value-of<Status> $status
      */
-    #[Api(enum: Status::class)]
+    #[Required(enum: Status::class)]
     public string $status;
 
     /**

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Transactional;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
@@ -29,31 +30,31 @@ final class TransactionalSendResponse implements BaseModel
     /**
      * The message identifier.
      */
-    #[Api]
+    #[Required]
     public string $id;
 
     /**
      * The message creation date.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $created_at;
 
     /**
      * The message expiration date.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $expires_at;
 
     /**
      * The template identifier.
      */
-    #[Api]
+    #[Required]
     public string $template_id;
 
     /**
      * The recipient's phone number.
      */
-    #[Api]
+    #[Required]
     public string $to;
 
     /**
@@ -61,25 +62,25 @@ final class TransactionalSendResponse implements BaseModel
      *
      * @var array<string,string> $variables
      */
-    #[Api(map: 'string')]
+    #[Required(map: 'string')]
     public array $variables;
 
     /**
      * The callback URL.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $callback_url;
 
     /**
      * A user-defined identifier to correlate this transactional message with. It is returned in the response and any webhook events that refer to this transactional message.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $correlation_id;
 
     /**
      * The Sender ID.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $from;
 
     /**

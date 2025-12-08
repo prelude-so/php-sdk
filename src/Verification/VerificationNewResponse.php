@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Verification;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationNewResponse\Channel;
@@ -34,7 +35,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The verification identifier.
      */
-    #[Api]
+    #[Required]
     public string $id;
 
     /**
@@ -42,7 +43,7 @@ final class VerificationNewResponse implements BaseModel
      *
      * @var value-of<Method> $method
      */
-    #[Api(enum: Method::class)]
+    #[Required(enum: Method::class)]
     public string $method;
 
     /**
@@ -50,7 +51,7 @@ final class VerificationNewResponse implements BaseModel
      *
      * @var value-of<Status> $status
      */
-    #[Api(enum: Status::class)]
+    #[Required(enum: Status::class)]
     public string $status;
 
     /**
@@ -58,13 +59,13 @@ final class VerificationNewResponse implements BaseModel
      *
      * @var list<value-of<Channel>>|null $channels
      */
-    #[Api(list: Channel::class, optional: true)]
+    #[Optional(list: Channel::class)]
     public ?array $channels;
 
     /**
      * The metadata for this verification.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Metadata $metadata;
 
     /**
@@ -80,16 +81,16 @@ final class VerificationNewResponse implements BaseModel
      *
      * @var value-of<Reason>|null $reason
      */
-    #[Api(enum: Reason::class, optional: true)]
+    #[Optional(enum: Reason::class)]
     public ?string $reason;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $request_id;
 
     /**
      * The silent verification specific properties.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Silent $silent;
 
     /**

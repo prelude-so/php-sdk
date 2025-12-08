@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Notify\NotifySendBatchResponse;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Notify\NotifySendBatchResponse\Result\Error;
@@ -26,25 +27,25 @@ final class Result implements BaseModel
     /**
      * The recipient's phone number in E.164 format.
      */
-    #[Api]
+    #[Required]
     public string $phone_number;
 
     /**
      * Whether the message was accepted for delivery.
      */
-    #[Api]
+    #[Required]
     public bool $success;
 
     /**
      * Present only if success is false.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Error $error;
 
     /**
      * Present only if success is true.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Message $message;
 
     /**

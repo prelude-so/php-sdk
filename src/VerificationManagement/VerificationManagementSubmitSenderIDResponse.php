@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\VerificationManagement;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse\Status;
@@ -22,7 +23,7 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel
     /**
      * The sender ID that was added.
      */
-    #[Api]
+    #[Required]
     public string $sender_id;
 
     /**
@@ -33,13 +34,13 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel
      *
      * @var value-of<Status> $status
      */
-    #[Api(enum: Status::class)]
+    #[Required(enum: Status::class)]
     public string $status;
 
     /**
      * The reason why the sender ID was rejected.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $reason;
 
     /**

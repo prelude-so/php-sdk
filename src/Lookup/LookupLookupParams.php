@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Lookup;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -29,7 +29,7 @@ final class LookupLookupParams implements BaseModel
      *
      * @var list<value-of<Type>>|null $type
      */
-    #[Api(list: Type::class, optional: true)]
+    #[Optional(list: Type::class)]
     public ?array $type;
 
     public function __construct()

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Watch\WatchSendEventsParams;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendEventsParams\Event\Confidence;
@@ -26,19 +26,19 @@ final class Event implements BaseModel
      *
      * @var value-of<Confidence> $confidence
      */
-    #[Api(enum: Confidence::class)]
+    #[Required(enum: Confidence::class)]
     public string $confidence;
 
     /**
      * A label to describe what the event refers to.
      */
-    #[Api]
+    #[Required]
     public string $label;
 
     /**
      * The event target. Only supports phone numbers for now.
      */
-    #[Api]
+    #[Required]
     public Target $target;
 
     /**

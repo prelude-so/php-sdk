@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Watch;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
@@ -34,7 +34,7 @@ final class WatchSendEventsParams implements BaseModel
      *
      * @var list<Event> $events
      */
-    #[Api(list: Event::class)]
+    #[Required(list: Event::class)]
     public array $events;
 
     /**

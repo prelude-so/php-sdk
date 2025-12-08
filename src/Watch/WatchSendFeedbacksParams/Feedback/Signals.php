@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals\DevicePlatform;
@@ -32,19 +32,19 @@ final class Signals implements BaseModel
     /**
      * The version of your application.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $app_version;
 
     /**
      * The unique identifier for the user's device. For Android, this corresponds to the `ANDROID_ID` and for iOS, this corresponds to the `identifierForVendor`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $device_id;
 
     /**
      * The model of the user's device.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $device_model;
 
     /**
@@ -52,37 +52,37 @@ final class Signals implements BaseModel
      *
      * @var value-of<DevicePlatform>|null $device_platform
      */
-    #[Api(enum: DevicePlatform::class, optional: true)]
+    #[Optional(enum: DevicePlatform::class)]
     public ?string $device_platform;
 
     /**
      * The IP address of the user's device.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $ip;
 
     /**
      * This signal should provide a higher level of trust, indicating that the user is genuine. Contact us to discuss your use case. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $is_trusted_user;
 
     /**
      * The JA4 fingerprint observed for the connection. Prelude will infer it automatically when requests go through our client SDK (which uses Prelude's edge), but you can also provide it explicitly if you terminate TLS yourself.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $ja4_fingerprint;
 
     /**
      * The version of the user's device operating system.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $os_version;
 
     /**
      * The user agent of the user's device. If the individual fields (os_version, device_platform, device_model) are provided, we will prioritize those values instead of parsing them from the user agent string.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $user_agent;
 
     public function __construct()

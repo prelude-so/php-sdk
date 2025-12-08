@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Verification\VerificationNewResponse;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
@@ -21,7 +21,7 @@ final class Silent implements BaseModel
     /**
      * The URL to start the silent verification towards.
      */
-    #[Api]
+    #[Required]
     public string $request_url;
 
     /**

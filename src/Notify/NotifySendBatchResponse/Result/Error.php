@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\Notify\NotifySendBatchResponse\Result;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 
@@ -21,13 +21,13 @@ final class Error implements BaseModel
     /**
      * The error code.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $code;
 
     /**
      * A human-readable error message.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $message;
 
     public function __construct()

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Prelude\VerificationManagement;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\VerificationManagement\VerificationManagementListPhoneNumbersResponse\PhoneNumber;
@@ -24,7 +24,7 @@ final class VerificationManagementListPhoneNumbersResponse implements BaseModel
      *
      * @var list<PhoneNumber> $phone_numbers
      */
-    #[Api(list: PhoneNumber::class)]
+    #[Required(list: PhoneNumber::class)]
     public array $phone_numbers;
 
     /**

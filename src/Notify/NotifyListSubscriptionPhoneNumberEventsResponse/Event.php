@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse;
 
-use Prelude\Core\Attributes\Api;
+use Prelude\Core\Attributes\Optional;
+use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event\Source;
@@ -28,13 +29,13 @@ final class Event implements BaseModel
     /**
      * The subscription configuration ID.
      */
-    #[Api]
+    #[Required]
     public string $config_id;
 
     /**
      * The phone number in E.164 format.
      */
-    #[Api]
+    #[Required]
     public string $phone_number;
 
     /**
@@ -46,7 +47,7 @@ final class Event implements BaseModel
      *
      * @var value-of<Source> $source
      */
-    #[Api(enum: Source::class)]
+    #[Required(enum: Source::class)]
     public string $source;
 
     /**
@@ -56,19 +57,19 @@ final class Event implements BaseModel
      *
      * @var value-of<State> $state
      */
-    #[Api(enum: State::class)]
+    #[Required(enum: State::class)]
     public string $state;
 
     /**
      * The date and time when the event occurred.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $timestamp;
 
     /**
      * Additional context about the state change (e.g., the keyword that was sent).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $reason;
 
     /**
