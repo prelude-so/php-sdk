@@ -10,8 +10,11 @@ use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\WatchContract;
 use Prelude\Watch\WatchPredictParams;
+use Prelude\Watch\WatchPredictParams\Signals\DevicePlatform;
+use Prelude\Watch\WatchPredictParams\Target\Type;
 use Prelude\Watch\WatchPredictResponse;
 use Prelude\Watch\WatchSendEventsParams;
+use Prelude\Watch\WatchSendEventsParams\Event\Confidence;
 use Prelude\Watch\WatchSendEventsResponse;
 use Prelude\Watch\WatchSendFeedbacksParams;
 use Prelude\Watch\WatchSendFeedbacksResponse;
@@ -29,14 +32,14 @@ final class WatchService implements WatchContract
      * Predict the outcome of a verification based on Prelude’s anti-fraud system.
      *
      * @param array{
-     *   target: array{type: 'phone_number'|'email_address', value: string},
+     *   target: array{type: 'phone_number'|'email_address'|Type, value: string},
      *   dispatch_id?: string,
      *   metadata?: array{correlation_id?: string},
      *   signals?: array{
      *     app_version?: string,
      *     device_id?: string,
      *     device_model?: string,
-     *     device_platform?: 'android'|'ios'|'ipados'|'tvos'|'web',
+     *     device_platform?: 'android'|'ios'|'ipados'|'tvos'|'web'|DevicePlatform,
      *     ip?: string,
      *     is_trusted_user?: bool,
      *     ja4_fingerprint?: string,
@@ -75,9 +78,12 @@ final class WatchService implements WatchContract
      *
      * @param array{
      *   events: list<array{
-     *     confidence: 'maximum'|'high'|'neutral'|'low'|'minimum',
+     *     confidence: 'maximum'|'high'|'neutral'|'low'|'minimum'|Confidence,
      *     label: string,
-     *     target: array{type: 'phone_number'|'email_address', value: string},
+     *     target: array{
+     *       type: 'phone_number'|'email_address'|WatchSendEventsParams\Event\Target\Type,
+     *       value: string,
+     *     },
      *   }>,
      * }|WatchSendEventsParams $params
      *
@@ -111,15 +117,18 @@ final class WatchService implements WatchContract
      *
      * @param array{
      *   feedbacks: list<array{
-     *     target: array{type: 'phone_number'|'email_address', value: string},
-     *     type: 'verification.started'|'verification.completed',
+     *     target: array{
+     *       type: 'phone_number'|'email_address'|WatchSendFeedbacksParams\Feedback\Target\Type,
+     *       value: string,
+     *     },
+     *     type: 'verification.started'|'verification.completed'|WatchSendFeedbacksParams\Feedback\Type,
      *     dispatch_id?: string,
      *     metadata?: array{correlation_id?: string},
      *     signals?: array{
      *       app_version?: string,
      *       device_id?: string,
      *       device_model?: string,
-     *       device_platform?: 'android'|'ios'|'ipados'|'tvos'|'web',
+     *       device_platform?: 'android'|'ios'|'ipados'|'tvos'|'web'|WatchSendFeedbacksParams\Feedback\Signals\DevicePlatform,
      *       ip?: string,
      *       is_trusted_user?: bool,
      *       ja4_fingerprint?: string,

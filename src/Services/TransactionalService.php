@@ -10,6 +10,7 @@ use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\TransactionalContract;
 use Prelude\Transactional\TransactionalSendParams;
+use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
 use Prelude\Transactional\TransactionalSendResponse;
 
 final class TransactionalService implements TransactionalContract
@@ -34,7 +35,7 @@ final class TransactionalService implements TransactionalContract
      *   expires_at?: string,
      *   from?: string,
      *   locale?: string,
-     *   preferred_channel?: 'sms'|'rcs'|'whatsapp',
+     *   preferred_channel?: 'sms'|'rcs'|'whatsapp'|PreferredChannel,
      *   variables?: array<string,string>,
      * }|TransactionalSendParams $params
      *
