@@ -15,7 +15,7 @@ use Prelude\Core\Contracts\BaseModel;
  * @see Prelude\Services\NotifyService::getSubscriptionPhoneNumber()
  *
  * @phpstan-type NotifyGetSubscriptionPhoneNumberParamsShape = array{
- *   config_id: string
+ *   configID: string
  * }
  */
 final class NotifyGetSubscriptionPhoneNumberParams implements BaseModel
@@ -25,14 +25,14 @@ final class NotifyGetSubscriptionPhoneNumberParams implements BaseModel
     use SdkParams;
 
     #[Required]
-    public string $config_id;
+    public string $configID;
 
     /**
      * `new NotifyGetSubscriptionPhoneNumberParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * NotifyGetSubscriptionPhoneNumberParams::with(config_id: ...)
+     * NotifyGetSubscriptionPhoneNumberParams::with(configID: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -51,11 +51,11 @@ final class NotifyGetSubscriptionPhoneNumberParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $config_id): self
+    public static function with(string $configID): self
     {
         $obj = new self;
 
-        $obj['config_id'] = $config_id;
+        $obj['configID'] = $configID;
 
         return $obj;
     }
@@ -63,7 +63,7 @@ final class NotifyGetSubscriptionPhoneNumberParams implements BaseModel
     public function withConfigID(string $configID): self
     {
         $obj = clone $this;
-        $obj['config_id'] = $configID;
+        $obj['configID'] = $configID;
 
         return $obj;
     }

@@ -28,14 +28,14 @@ final class TransactionalService implements TransactionalContract
      * Legacy route maintained for backward compatibility. Migrate to `/v2/notify` instead.
      *
      * @param array{
-     *   template_id: string,
+     *   templateID: string,
      *   to: string,
-     *   callback_url?: string,
-     *   correlation_id?: string,
-     *   expires_at?: string,
+     *   callbackURL?: string,
+     *   correlationID?: string,
+     *   expiresAt?: string,
      *   from?: string,
      *   locale?: string,
-     *   preferred_channel?: 'sms'|'rcs'|'whatsapp'|PreferredChannel,
+     *   preferredChannel?: 'sms'|'rcs'|'whatsapp'|PreferredChannel,
      *   variables?: array<string,string>,
      * }|TransactionalSendParams $params
      *

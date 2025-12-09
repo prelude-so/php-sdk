@@ -14,7 +14,7 @@ use Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config\MoPhoneNumber;
 
 /**
  * @phpstan-type NotifyListSubscriptionConfigsResponseShape = array{
- *   configs: list<Config>, next_cursor?: string|null
+ *   configs: list<Config>, nextCursor?: string|null
  * }
  */
 final class NotifyListSubscriptionConfigsResponse implements BaseModel
@@ -33,8 +33,8 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel
     /**
      * Pagination cursor for the next page of results. Omitted if there are no more pages.
      */
-    #[Optional]
-    public ?string $next_cursor;
+    #[Optional('next_cursor')]
+    public ?string $nextCursor;
 
     /**
      * `new NotifyListSubscriptionConfigsResponse()` is missing required properties by the API.
@@ -62,23 +62,21 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel
      *
      * @param list<Config|array{
      *   id: string,
-     *   callback_url: string,
-     *   created_at: \DateTimeInterface,
+     *   callbackURL: string,
+     *   createdAt: \DateTimeInterface,
      *   messages: Messages,
      *   name: string,
-     *   updated_at: \DateTimeInterface,
-     *   mo_phone_numbers?: list<MoPhoneNumber>|null,
+     *   updatedAt: \DateTimeInterface,
+     *   moPhoneNumbers?: list<MoPhoneNumber>|null,
      * }> $configs
      */
-    public static function with(
-        array $configs,
-        ?string $next_cursor = null
-    ): self {
+    public static function with(array $configs, ?string $nextCursor = null): self
+    {
         $obj = new self;
 
         $obj['configs'] = $configs;
 
-        null !== $next_cursor && $obj['next_cursor'] = $next_cursor;
+        null !== $nextCursor && $obj['nextCursor'] = $nextCursor;
 
         return $obj;
     }
@@ -88,12 +86,12 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel
      *
      * @param list<Config|array{
      *   id: string,
-     *   callback_url: string,
-     *   created_at: \DateTimeInterface,
+     *   callbackURL: string,
+     *   createdAt: \DateTimeInterface,
      *   messages: Messages,
      *   name: string,
-     *   updated_at: \DateTimeInterface,
-     *   mo_phone_numbers?: list<MoPhoneNumber>|null,
+     *   updatedAt: \DateTimeInterface,
+     *   moPhoneNumbers?: list<MoPhoneNumber>|null,
      * }> $configs
      */
     public function withConfigs(array $configs): self
@@ -110,7 +108,7 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel
     public function withNextCursor(string $nextCursor): self
     {
         $obj = clone $this;
-        $obj['next_cursor'] = $nextCursor;
+        $obj['nextCursor'] = $nextCursor;
 
         return $obj;
     }

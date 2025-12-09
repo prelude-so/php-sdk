@@ -19,7 +19,7 @@ use Prelude\Core\Contracts\BaseModel;
  * @see Prelude\Services\VerificationManagementService::setPhoneNumber()
  *
  * @phpstan-type VerificationManagementSetPhoneNumberParamsShape = array{
- *   phone_number: string
+ *   phoneNumber: string
  * }
  */
 final class VerificationManagementSetPhoneNumberParams implements BaseModel
@@ -31,15 +31,15 @@ final class VerificationManagementSetPhoneNumberParams implements BaseModel
     /**
      * An E.164 formatted phone number to add to the list.
      */
-    #[Required]
-    public string $phone_number;
+    #[Required('phone_number')]
+    public string $phoneNumber;
 
     /**
      * `new VerificationManagementSetPhoneNumberParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * VerificationManagementSetPhoneNumberParams::with(phone_number: ...)
+     * VerificationManagementSetPhoneNumberParams::with(phoneNumber: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -58,11 +58,11 @@ final class VerificationManagementSetPhoneNumberParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $phone_number): self
+    public static function with(string $phoneNumber): self
     {
         $obj = new self;
 
-        $obj['phone_number'] = $phone_number;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }
@@ -73,7 +73,7 @@ final class VerificationManagementSetPhoneNumberParams implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj['phone_number'] = $phoneNumber;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }

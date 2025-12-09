@@ -27,31 +27,31 @@ use Prelude\Verification\VerificationCreateParams\Target\Type;
  *
  * @phpstan-type VerificationCreateParamsShape = array{
  *   target: Target|array{type: value-of<Type>, value: string},
- *   dispatch_id?: string,
- *   metadata?: Metadata|array{correlation_id?: string|null},
+ *   dispatchID?: string,
+ *   metadata?: Metadata|array{correlationID?: string|null},
  *   options?: Options|array{
- *     app_realm?: AppRealm|null,
- *     callback_url?: string|null,
- *     code_size?: int|null,
- *     custom_code?: string|null,
+ *     appRealm?: AppRealm|null,
+ *     callbackURL?: string|null,
+ *     codeSize?: int|null,
+ *     customCode?: string|null,
  *     integration?: value-of<Integration>|null,
  *     locale?: string|null,
  *     method?: value-of<Method>|null,
- *     preferred_channel?: value-of<PreferredChannel>|null,
- *     sender_id?: string|null,
- *     template_id?: string|null,
+ *     preferredChannel?: value-of<PreferredChannel>|null,
+ *     senderID?: string|null,
+ *     templateID?: string|null,
  *     variables?: array<string,string>|null,
  *   },
  *   signals?: Signals|array{
- *     app_version?: string|null,
- *     device_id?: string|null,
- *     device_model?: string|null,
- *     device_platform?: value-of<DevicePlatform>|null,
+ *     appVersion?: string|null,
+ *     deviceID?: string|null,
+ *     deviceModel?: string|null,
+ *     devicePlatform?: value-of<DevicePlatform>|null,
  *     ip?: string|null,
- *     is_trusted_user?: bool|null,
- *     ja4_fingerprint?: string|null,
- *     os_version?: string|null,
- *     user_agent?: string|null,
+ *     isTrustedUser?: bool|null,
+ *     ja4Fingerprint?: string|null,
+ *     osVersion?: string|null,
+ *     userAgent?: string|null,
  *   },
  * }
  */
@@ -70,8 +70,8 @@ final class VerificationCreateParams implements BaseModel
     /**
      * The identifier of the dispatch that came from the front-end SDK.
      */
-    #[Optional]
-    public ?string $dispatch_id;
+    #[Optional('dispatch_id')]
+    public ?string $dispatchID;
 
     /**
      * The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
@@ -116,35 +116,35 @@ final class VerificationCreateParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Target|array{type: value-of<Type>, value: string} $target
-     * @param Metadata|array{correlation_id?: string|null} $metadata
+     * @param Metadata|array{correlationID?: string|null} $metadata
      * @param Options|array{
-     *   app_realm?: AppRealm|null,
-     *   callback_url?: string|null,
-     *   code_size?: int|null,
-     *   custom_code?: string|null,
+     *   appRealm?: AppRealm|null,
+     *   callbackURL?: string|null,
+     *   codeSize?: int|null,
+     *   customCode?: string|null,
      *   integration?: value-of<Integration>|null,
      *   locale?: string|null,
      *   method?: value-of<Method>|null,
-     *   preferred_channel?: value-of<PreferredChannel>|null,
-     *   sender_id?: string|null,
-     *   template_id?: string|null,
+     *   preferredChannel?: value-of<PreferredChannel>|null,
+     *   senderID?: string|null,
+     *   templateID?: string|null,
      *   variables?: array<string,string>|null,
      * } $options
      * @param Signals|array{
-     *   app_version?: string|null,
-     *   device_id?: string|null,
-     *   device_model?: string|null,
-     *   device_platform?: value-of<DevicePlatform>|null,
+     *   appVersion?: string|null,
+     *   deviceID?: string|null,
+     *   deviceModel?: string|null,
+     *   devicePlatform?: value-of<DevicePlatform>|null,
      *   ip?: string|null,
-     *   is_trusted_user?: bool|null,
-     *   ja4_fingerprint?: string|null,
-     *   os_version?: string|null,
-     *   user_agent?: string|null,
+     *   isTrustedUser?: bool|null,
+     *   ja4Fingerprint?: string|null,
+     *   osVersion?: string|null,
+     *   userAgent?: string|null,
      * } $signals
      */
     public static function with(
         Target|array $target,
-        ?string $dispatch_id = null,
+        ?string $dispatchID = null,
         Metadata|array|null $metadata = null,
         Options|array|null $options = null,
         Signals|array|null $signals = null,
@@ -153,7 +153,7 @@ final class VerificationCreateParams implements BaseModel
 
         $obj['target'] = $target;
 
-        null !== $dispatch_id && $obj['dispatch_id'] = $dispatch_id;
+        null !== $dispatchID && $obj['dispatchID'] = $dispatchID;
         null !== $metadata && $obj['metadata'] = $metadata;
         null !== $options && $obj['options'] = $options;
         null !== $signals && $obj['signals'] = $signals;
@@ -180,7 +180,7 @@ final class VerificationCreateParams implements BaseModel
     public function withDispatchID(string $dispatchID): self
     {
         $obj = clone $this;
-        $obj['dispatch_id'] = $dispatchID;
+        $obj['dispatchID'] = $dispatchID;
 
         return $obj;
     }
@@ -188,7 +188,7 @@ final class VerificationCreateParams implements BaseModel
     /**
      * The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
      *
-     * @param Metadata|array{correlation_id?: string|null} $metadata
+     * @param Metadata|array{correlationID?: string|null} $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -202,16 +202,16 @@ final class VerificationCreateParams implements BaseModel
      * Verification options.
      *
      * @param Options|array{
-     *   app_realm?: AppRealm|null,
-     *   callback_url?: string|null,
-     *   code_size?: int|null,
-     *   custom_code?: string|null,
+     *   appRealm?: AppRealm|null,
+     *   callbackURL?: string|null,
+     *   codeSize?: int|null,
+     *   customCode?: string|null,
      *   integration?: value-of<Integration>|null,
      *   locale?: string|null,
      *   method?: value-of<Method>|null,
-     *   preferred_channel?: value-of<PreferredChannel>|null,
-     *   sender_id?: string|null,
-     *   template_id?: string|null,
+     *   preferredChannel?: value-of<PreferredChannel>|null,
+     *   senderID?: string|null,
+     *   templateID?: string|null,
      *   variables?: array<string,string>|null,
      * } $options
      */
@@ -227,15 +227,15 @@ final class VerificationCreateParams implements BaseModel
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
      * @param Signals|array{
-     *   app_version?: string|null,
-     *   device_id?: string|null,
-     *   device_model?: string|null,
-     *   device_platform?: value-of<DevicePlatform>|null,
+     *   appVersion?: string|null,
+     *   deviceID?: string|null,
+     *   deviceModel?: string|null,
+     *   devicePlatform?: value-of<DevicePlatform>|null,
      *   ip?: string|null,
-     *   is_trusted_user?: bool|null,
-     *   ja4_fingerprint?: string|null,
-     *   os_version?: string|null,
-     *   user_agent?: string|null,
+     *   isTrustedUser?: bool|null,
+     *   ja4Fingerprint?: string|null,
+     *   osVersion?: string|null,
+     *   userAgent?: string|null,
      * } $signals
      */
     public function withSignals(Signals|array $signals): self

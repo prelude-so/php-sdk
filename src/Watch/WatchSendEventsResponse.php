@@ -11,7 +11,7 @@ use Prelude\Watch\WatchSendEventsResponse\Status;
 
 /**
  * @phpstan-type WatchSendEventsResponseShape = array{
- *   request_id: string, status: value-of<Status>
+ *   requestID: string, status: value-of<Status>
  * }
  */
 final class WatchSendEventsResponse implements BaseModel
@@ -22,8 +22,8 @@ final class WatchSendEventsResponse implements BaseModel
     /**
      * A string that identifies this specific request. Report it back to us to help us diagnose your issues.
      */
-    #[Required]
-    public string $request_id;
+    #[Required('request_id')]
+    public string $requestID;
 
     /**
      * The status of the events dispatch.
@@ -38,7 +38,7 @@ final class WatchSendEventsResponse implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * WatchSendEventsResponse::with(request_id: ..., status: ...)
+     * WatchSendEventsResponse::with(requestID: ..., status: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -59,11 +59,11 @@ final class WatchSendEventsResponse implements BaseModel
      *
      * @param Status|value-of<Status> $status
      */
-    public static function with(string $request_id, Status|string $status): self
+    public static function with(string $requestID, Status|string $status): self
     {
         $obj = new self;
 
-        $obj['request_id'] = $request_id;
+        $obj['requestID'] = $requestID;
         $obj['status'] = $status;
 
         return $obj;
@@ -75,7 +75,7 @@ final class WatchSendEventsResponse implements BaseModel
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj['request_id'] = $requestID;
+        $obj['requestID'] = $requestID;
 
         return $obj;
     }

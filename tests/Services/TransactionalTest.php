@@ -35,7 +35,7 @@ final class TransactionalTest extends TestCase
         }
 
         $result = $this->client->transactional->send([
-            'template_id' => 'template_01hynf45qvevj844m9az2x2f3c',
+            'templateID' => 'template_01hynf45qvevj844m9az2x2f3c',
             'to' => '+30123456789',
         ]);
 
@@ -51,14 +51,14 @@ final class TransactionalTest extends TestCase
         }
 
         $result = $this->client->transactional->send([
-            'template_id' => 'template_01hynf45qvevj844m9az2x2f3c',
+            'templateID' => 'template_01hynf45qvevj844m9az2x2f3c',
             'to' => '+30123456789',
-            'callback_url' => 'callback_url',
-            'correlation_id' => 'correlation_id',
-            'expires_at' => 'expires_at',
+            'callbackURL' => 'callback_url',
+            'correlationID' => 'correlation_id',
+            'expiresAt' => 'expires_at',
             'from' => 'from',
             'locale' => 'el-GR',
-            'preferred_channel' => 'whatsapp',
+            'preferredChannel' => 'whatsapp',
             'variables' => ['foo' => 'bar'],
         ]);
 

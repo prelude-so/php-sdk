@@ -13,10 +13,7 @@ use Prelude\Notify\NotifySendBatchResponse\Result\Message;
 
 /**
  * @phpstan-type ResultShape = array{
- *   phone_number: string,
- *   success: bool,
- *   error?: Error|null,
- *   message?: Message|null,
+ *   phoneNumber: string, success: bool, error?: Error|null, message?: Message|null
  * }
  */
 final class Result implements BaseModel
@@ -27,8 +24,8 @@ final class Result implements BaseModel
     /**
      * The recipient's phone number in E.164 format.
      */
-    #[Required]
-    public string $phone_number;
+    #[Required('phone_number')]
+    public string $phoneNumber;
 
     /**
      * Whether the message was accepted for delivery.
@@ -53,7 +50,7 @@ final class Result implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * Result::with(phone_number: ..., success: ...)
+     * Result::with(phoneNumber: ..., success: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -75,24 +72,24 @@ final class Result implements BaseModel
      * @param Error|array{code?: string|null, message?: string|null} $error
      * @param Message|array{
      *   id?: string|null,
-     *   correlation_id?: string|null,
-     *   created_at?: \DateTimeInterface|null,
-     *   expires_at?: \DateTimeInterface|null,
+     *   correlationID?: string|null,
+     *   createdAt?: \DateTimeInterface|null,
+     *   expiresAt?: \DateTimeInterface|null,
      *   from?: string|null,
      *   locale?: string|null,
-     *   schedule_at?: \DateTimeInterface|null,
+     *   scheduleAt?: \DateTimeInterface|null,
      *   to?: string|null,
      * } $message
      */
     public static function with(
-        string $phone_number,
+        string $phoneNumber,
         bool $success,
         Error|array|null $error = null,
         Message|array|null $message = null,
     ): self {
         $obj = new self;
 
-        $obj['phone_number'] = $phone_number;
+        $obj['phoneNumber'] = $phoneNumber;
         $obj['success'] = $success;
 
         null !== $error && $obj['error'] = $error;
@@ -107,7 +104,7 @@ final class Result implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj['phone_number'] = $phoneNumber;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }
@@ -141,12 +138,12 @@ final class Result implements BaseModel
      *
      * @param Message|array{
      *   id?: string|null,
-     *   correlation_id?: string|null,
-     *   created_at?: \DateTimeInterface|null,
-     *   expires_at?: \DateTimeInterface|null,
+     *   correlationID?: string|null,
+     *   createdAt?: \DateTimeInterface|null,
+     *   expiresAt?: \DateTimeInterface|null,
      *   from?: string|null,
      *   locale?: string|null,
-     *   schedule_at?: \DateTimeInterface|null,
+     *   scheduleAt?: \DateTimeInterface|null,
      *   to?: string|null,
      * } $message
      */

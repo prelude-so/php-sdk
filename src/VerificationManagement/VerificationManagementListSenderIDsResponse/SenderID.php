@@ -11,7 +11,7 @@ use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\S
 
 /**
  * @phpstan-type SenderIDShape = array{
- *   sender_id?: string|null, status?: value-of<Status>|null
+ *   senderID?: string|null, status?: value-of<Status>|null
  * }
  */
 final class SenderID implements BaseModel
@@ -22,8 +22,8 @@ final class SenderID implements BaseModel
     /**
      * Value that will be presented as Sender ID.
      */
-    #[Optional]
-    public ?string $sender_id;
+    #[Optional('sender_id')]
+    public ?string $senderID;
 
     /**
      * It indicates the status of the Sender ID. Possible values are:
@@ -49,12 +49,12 @@ final class SenderID implements BaseModel
      * @param Status|value-of<Status> $status
      */
     public static function with(
-        ?string $sender_id = null,
+        ?string $senderID = null,
         Status|string|null $status = null
     ): self {
         $obj = new self;
 
-        null !== $sender_id && $obj['sender_id'] = $sender_id;
+        null !== $senderID && $obj['senderID'] = $senderID;
         null !== $status && $obj['status'] = $status;
 
         return $obj;
@@ -66,7 +66,7 @@ final class SenderID implements BaseModel
     public function withSenderID(string $senderID): self
     {
         $obj = clone $this;
-        $obj['sender_id'] = $senderID;
+        $obj['senderID'] = $senderID;
 
         return $obj;
     }

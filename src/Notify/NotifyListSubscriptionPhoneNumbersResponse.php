@@ -14,7 +14,7 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber\State;
 
 /**
  * @phpstan-type NotifyListSubscriptionPhoneNumbersResponseShape = array{
- *   phone_numbers: list<PhoneNumber>, next_cursor?: string|null
+ *   phoneNumbers: list<PhoneNumber>, nextCursor?: string|null
  * }
  */
 final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
@@ -25,23 +25,23 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
     /**
      * A list of phone numbers and their subscription statuses.
      *
-     * @var list<PhoneNumber> $phone_numbers
+     * @var list<PhoneNumber> $phoneNumbers
      */
-    #[Required(list: PhoneNumber::class)]
-    public array $phone_numbers;
+    #[Required('phone_numbers', list: PhoneNumber::class)]
+    public array $phoneNumbers;
 
     /**
      * Pagination cursor for the next page of results. Omitted if there are no more pages.
      */
-    #[Optional]
-    public ?string $next_cursor;
+    #[Optional('next_cursor')]
+    public ?string $nextCursor;
 
     /**
      * `new NotifyListSubscriptionPhoneNumbersResponse()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * NotifyListSubscriptionPhoneNumbersResponse::with(phone_numbers: ...)
+     * NotifyListSubscriptionPhoneNumbersResponse::with(phoneNumbers: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -61,23 +61,23 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<PhoneNumber|array{
-     *   config_id: string,
-     *   phone_number: string,
+     *   configID: string,
+     *   phoneNumber: string,
      *   source: value-of<Source>,
      *   state: value-of<State>,
-     *   updated_at: \DateTimeInterface,
+     *   updatedAt: \DateTimeInterface,
      *   reason?: string|null,
-     * }> $phone_numbers
+     * }> $phoneNumbers
      */
     public static function with(
-        array $phone_numbers,
-        ?string $next_cursor = null
+        array $phoneNumbers,
+        ?string $nextCursor = null
     ): self {
         $obj = new self;
 
-        $obj['phone_numbers'] = $phone_numbers;
+        $obj['phoneNumbers'] = $phoneNumbers;
 
-        null !== $next_cursor && $obj['next_cursor'] = $next_cursor;
+        null !== $nextCursor && $obj['nextCursor'] = $nextCursor;
 
         return $obj;
     }
@@ -86,18 +86,18 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
      * A list of phone numbers and their subscription statuses.
      *
      * @param list<PhoneNumber|array{
-     *   config_id: string,
-     *   phone_number: string,
+     *   configID: string,
+     *   phoneNumber: string,
      *   source: value-of<Source>,
      *   state: value-of<State>,
-     *   updated_at: \DateTimeInterface,
+     *   updatedAt: \DateTimeInterface,
      *   reason?: string|null,
      * }> $phoneNumbers
      */
     public function withPhoneNumbers(array $phoneNumbers): self
     {
         $obj = clone $this;
-        $obj['phone_numbers'] = $phoneNumbers;
+        $obj['phoneNumbers'] = $phoneNumbers;
 
         return $obj;
     }
@@ -108,7 +108,7 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
     public function withNextCursor(string $nextCursor): self
     {
         $obj = clone $this;
-        $obj['next_cursor'] = $nextCursor;
+        $obj['nextCursor'] = $nextCursor;
 
         return $obj;
     }

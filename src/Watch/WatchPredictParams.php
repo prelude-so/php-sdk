@@ -22,18 +22,18 @@ use Prelude\Watch\WatchPredictParams\Target\Type;
  *
  * @phpstan-type WatchPredictParamsShape = array{
  *   target: Target|array{type: value-of<Type>, value: string},
- *   dispatch_id?: string,
- *   metadata?: Metadata|array{correlation_id?: string|null},
+ *   dispatchID?: string,
+ *   metadata?: Metadata|array{correlationID?: string|null},
  *   signals?: Signals|array{
- *     app_version?: string|null,
- *     device_id?: string|null,
- *     device_model?: string|null,
- *     device_platform?: value-of<DevicePlatform>|null,
+ *     appVersion?: string|null,
+ *     deviceID?: string|null,
+ *     deviceModel?: string|null,
+ *     devicePlatform?: value-of<DevicePlatform>|null,
  *     ip?: string|null,
- *     is_trusted_user?: bool|null,
- *     ja4_fingerprint?: string|null,
- *     os_version?: string|null,
- *     user_agent?: string|null,
+ *     isTrustedUser?: bool|null,
+ *     ja4Fingerprint?: string|null,
+ *     osVersion?: string|null,
+ *     userAgent?: string|null,
  *   },
  * }
  */
@@ -52,8 +52,8 @@ final class WatchPredictParams implements BaseModel
     /**
      * The identifier of the dispatch that came from the front-end SDK.
      */
-    #[Optional]
-    public ?string $dispatch_id;
+    #[Optional('dispatch_id')]
+    public ?string $dispatchID;
 
     /**
      * The metadata for this prediction.
@@ -92,22 +92,22 @@ final class WatchPredictParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Target|array{type: value-of<Type>, value: string} $target
-     * @param Metadata|array{correlation_id?: string|null} $metadata
+     * @param Metadata|array{correlationID?: string|null} $metadata
      * @param Signals|array{
-     *   app_version?: string|null,
-     *   device_id?: string|null,
-     *   device_model?: string|null,
-     *   device_platform?: value-of<DevicePlatform>|null,
+     *   appVersion?: string|null,
+     *   deviceID?: string|null,
+     *   deviceModel?: string|null,
+     *   devicePlatform?: value-of<DevicePlatform>|null,
      *   ip?: string|null,
-     *   is_trusted_user?: bool|null,
-     *   ja4_fingerprint?: string|null,
-     *   os_version?: string|null,
-     *   user_agent?: string|null,
+     *   isTrustedUser?: bool|null,
+     *   ja4Fingerprint?: string|null,
+     *   osVersion?: string|null,
+     *   userAgent?: string|null,
      * } $signals
      */
     public static function with(
         Target|array $target,
-        ?string $dispatch_id = null,
+        ?string $dispatchID = null,
         Metadata|array|null $metadata = null,
         Signals|array|null $signals = null,
     ): self {
@@ -115,7 +115,7 @@ final class WatchPredictParams implements BaseModel
 
         $obj['target'] = $target;
 
-        null !== $dispatch_id && $obj['dispatch_id'] = $dispatch_id;
+        null !== $dispatchID && $obj['dispatchID'] = $dispatchID;
         null !== $metadata && $obj['metadata'] = $metadata;
         null !== $signals && $obj['signals'] = $signals;
 
@@ -141,7 +141,7 @@ final class WatchPredictParams implements BaseModel
     public function withDispatchID(string $dispatchID): self
     {
         $obj = clone $this;
-        $obj['dispatch_id'] = $dispatchID;
+        $obj['dispatchID'] = $dispatchID;
 
         return $obj;
     }
@@ -149,7 +149,7 @@ final class WatchPredictParams implements BaseModel
     /**
      * The metadata for this prediction.
      *
-     * @param Metadata|array{correlation_id?: string|null} $metadata
+     * @param Metadata|array{correlationID?: string|null} $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -163,15 +163,15 @@ final class WatchPredictParams implements BaseModel
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
      * @param Signals|array{
-     *   app_version?: string|null,
-     *   device_id?: string|null,
-     *   device_model?: string|null,
-     *   device_platform?: value-of<DevicePlatform>|null,
+     *   appVersion?: string|null,
+     *   deviceID?: string|null,
+     *   deviceModel?: string|null,
+     *   devicePlatform?: value-of<DevicePlatform>|null,
      *   ip?: string|null,
-     *   is_trusted_user?: bool|null,
-     *   ja4_fingerprint?: string|null,
-     *   os_version?: string|null,
-     *   user_agent?: string|null,
+     *   isTrustedUser?: bool|null,
+     *   ja4Fingerprint?: string|null,
+     *   osVersion?: string|null,
+     *   userAgent?: string|null,
      * } $signals
      */
     public function withSignals(Signals|array $signals): self

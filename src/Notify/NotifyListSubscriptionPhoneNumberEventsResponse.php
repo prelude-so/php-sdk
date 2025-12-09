@@ -14,7 +14,7 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event\State;
 
 /**
  * @phpstan-type NotifyListSubscriptionPhoneNumberEventsResponseShape = array{
- *   events: list<Event>, next_cursor?: string|null
+ *   events: list<Event>, nextCursor?: string|null
  * }
  */
 final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
@@ -33,8 +33,8 @@ final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
     /**
      * Pagination cursor for the next page of results. Omitted if there are no more pages.
      */
-    #[Optional]
-    public ?string $next_cursor;
+    #[Optional('next_cursor')]
+    public ?string $nextCursor;
 
     /**
      * `new NotifyListSubscriptionPhoneNumberEventsResponse()` is missing required properties by the API.
@@ -61,21 +61,21 @@ final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<Event|array{
-     *   config_id: string,
-     *   phone_number: string,
+     *   configID: string,
+     *   phoneNumber: string,
      *   source: value-of<Source>,
      *   state: value-of<State>,
      *   timestamp: \DateTimeInterface,
      *   reason?: string|null,
      * }> $events
      */
-    public static function with(array $events, ?string $next_cursor = null): self
+    public static function with(array $events, ?string $nextCursor = null): self
     {
         $obj = new self;
 
         $obj['events'] = $events;
 
-        null !== $next_cursor && $obj['next_cursor'] = $next_cursor;
+        null !== $nextCursor && $obj['nextCursor'] = $nextCursor;
 
         return $obj;
     }
@@ -84,8 +84,8 @@ final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
      * A list of subscription events (status changes) ordered by timestamp descending.
      *
      * @param list<Event|array{
-     *   config_id: string,
-     *   phone_number: string,
+     *   configID: string,
+     *   phoneNumber: string,
      *   source: value-of<Source>,
      *   state: value-of<State>,
      *   timestamp: \DateTimeInterface,
@@ -106,7 +106,7 @@ final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
     public function withNextCursor(string $nextCursor): self
     {
         $obj = clone $this;
-        $obj['next_cursor'] = $nextCursor;
+        $obj['nextCursor'] = $nextCursor;
 
         return $obj;
     }

@@ -23,7 +23,7 @@ use Prelude\Verification\VerificationNewResponse\Status;
  *   channels?: list<value-of<Channel>>|null,
  *   metadata?: Metadata|null,
  *   reason?: value-of<Reason>|null,
- *   request_id?: string|null,
+ *   requestID?: string|null,
  *   silent?: Silent|null,
  * }
  */
@@ -84,8 +84,8 @@ final class VerificationNewResponse implements BaseModel
     #[Optional(enum: Reason::class)]
     public ?string $reason;
 
-    #[Optional]
-    public ?string $request_id;
+    #[Optional('request_id')]
+    public ?string $requestID;
 
     /**
      * The silent verification specific properties.
@@ -120,9 +120,9 @@ final class VerificationNewResponse implements BaseModel
      * @param Method|value-of<Method> $method
      * @param Status|value-of<Status> $status
      * @param list<Channel|value-of<Channel>> $channels
-     * @param Metadata|array{correlation_id?: string|null} $metadata
+     * @param Metadata|array{correlationID?: string|null} $metadata
      * @param Reason|value-of<Reason> $reason
-     * @param Silent|array{request_url: string} $silent
+     * @param Silent|array{requestURL: string} $silent
      */
     public static function with(
         string $id,
@@ -131,7 +131,7 @@ final class VerificationNewResponse implements BaseModel
         ?array $channels = null,
         Metadata|array|null $metadata = null,
         Reason|string|null $reason = null,
-        ?string $request_id = null,
+        ?string $requestID = null,
         Silent|array|null $silent = null,
     ): self {
         $obj = new self;
@@ -143,7 +143,7 @@ final class VerificationNewResponse implements BaseModel
         null !== $channels && $obj['channels'] = $channels;
         null !== $metadata && $obj['metadata'] = $metadata;
         null !== $reason && $obj['reason'] = $reason;
-        null !== $request_id && $obj['request_id'] = $request_id;
+        null !== $requestID && $obj['requestID'] = $requestID;
         null !== $silent && $obj['silent'] = $silent;
 
         return $obj;
@@ -202,7 +202,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The metadata for this verification.
      *
-     * @param Metadata|array{correlation_id?: string|null} $metadata
+     * @param Metadata|array{correlationID?: string|null} $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -236,7 +236,7 @@ final class VerificationNewResponse implements BaseModel
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj['request_id'] = $requestID;
+        $obj['requestID'] = $requestID;
 
         return $obj;
     }
@@ -244,7 +244,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The silent verification specific properties.
      *
-     * @param Silent|array{request_url: string} $silent
+     * @param Silent|array{requestURL: string} $silent
      */
     public function withSilent(Silent|array $silent): self
     {
