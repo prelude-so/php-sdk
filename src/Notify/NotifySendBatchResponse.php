@@ -14,13 +14,13 @@ use Prelude\Notify\NotifySendBatchResponse\Result\Message;
 
 /**
  * @phpstan-type NotifySendBatchResponseShape = array{
- *   error_count: int,
+ *   errorCount: int,
  *   results: list<Result>,
- *   success_count: int,
- *   total_count: int,
- *   callback_url?: string|null,
- *   request_id?: string|null,
- *   template_id?: string|null,
+ *   successCount: int,
+ *   totalCount: int,
+ *   callbackURL?: string|null,
+ *   requestID?: string|null,
+ *   templateID?: string|null,
  *   variables?: array<string,string>|null,
  * }
  */
@@ -32,8 +32,8 @@ final class NotifySendBatchResponse implements BaseModel
     /**
      * Number of failed sends.
      */
-    #[Required]
-    public int $error_count;
+    #[Required('error_count')]
+    public int $errorCount;
 
     /**
      * The per-recipient result of the bulk send.
@@ -46,32 +46,32 @@ final class NotifySendBatchResponse implements BaseModel
     /**
      * Number of successful sends.
      */
-    #[Required]
-    public int $success_count;
+    #[Required('success_count')]
+    public int $successCount;
 
     /**
      * Total number of recipients.
      */
-    #[Required]
-    public int $total_count;
+    #[Required('total_count')]
+    public int $totalCount;
 
     /**
      * The callback URL used for this bulk request, if any.
      */
-    #[Optional]
-    public ?string $callback_url;
+    #[Optional('callback_url')]
+    public ?string $callbackURL;
 
     /**
      * A string that identifies this specific request.
      */
-    #[Optional]
-    public ?string $request_id;
+    #[Optional('request_id')]
+    public ?string $requestID;
 
     /**
      * The template identifier used for this bulk request.
      */
-    #[Optional]
-    public ?string $template_id;
+    #[Optional('template_id')]
+    public ?string $templateID;
 
     /**
      * The variables used for this bulk request.
@@ -87,7 +87,7 @@ final class NotifySendBatchResponse implements BaseModel
      * To enforce required parameters use
      * ```
      * NotifySendBatchResponse::with(
-     *   error_count: ..., results: ..., success_count: ..., total_count: ...
+     *   errorCount: ..., results: ..., successCount: ..., totalCount: ...
      * )
      * ```
      *
@@ -112,33 +112,30 @@ final class NotifySendBatchResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<Result|array{
-     *   phone_number: string,
-     *   success: bool,
-     *   error?: Error|null,
-     *   message?: Message|null,
+     *   phoneNumber: string, success: bool, error?: Error|null, message?: Message|null
      * }> $results
      * @param array<string,string> $variables
      */
     public static function with(
-        int $error_count,
+        int $errorCount,
         array $results,
-        int $success_count,
-        int $total_count,
-        ?string $callback_url = null,
-        ?string $request_id = null,
-        ?string $template_id = null,
+        int $successCount,
+        int $totalCount,
+        ?string $callbackURL = null,
+        ?string $requestID = null,
+        ?string $templateID = null,
         ?array $variables = null,
     ): self {
         $obj = new self;
 
-        $obj['error_count'] = $error_count;
+        $obj['errorCount'] = $errorCount;
         $obj['results'] = $results;
-        $obj['success_count'] = $success_count;
-        $obj['total_count'] = $total_count;
+        $obj['successCount'] = $successCount;
+        $obj['totalCount'] = $totalCount;
 
-        null !== $callback_url && $obj['callback_url'] = $callback_url;
-        null !== $request_id && $obj['request_id'] = $request_id;
-        null !== $template_id && $obj['template_id'] = $template_id;
+        null !== $callbackURL && $obj['callbackURL'] = $callbackURL;
+        null !== $requestID && $obj['requestID'] = $requestID;
+        null !== $templateID && $obj['templateID'] = $templateID;
         null !== $variables && $obj['variables'] = $variables;
 
         return $obj;
@@ -150,7 +147,7 @@ final class NotifySendBatchResponse implements BaseModel
     public function withErrorCount(int $errorCount): self
     {
         $obj = clone $this;
-        $obj['error_count'] = $errorCount;
+        $obj['errorCount'] = $errorCount;
 
         return $obj;
     }
@@ -159,10 +156,7 @@ final class NotifySendBatchResponse implements BaseModel
      * The per-recipient result of the bulk send.
      *
      * @param list<Result|array{
-     *   phone_number: string,
-     *   success: bool,
-     *   error?: Error|null,
-     *   message?: Message|null,
+     *   phoneNumber: string, success: bool, error?: Error|null, message?: Message|null
      * }> $results
      */
     public function withResults(array $results): self
@@ -179,7 +173,7 @@ final class NotifySendBatchResponse implements BaseModel
     public function withSuccessCount(int $successCount): self
     {
         $obj = clone $this;
-        $obj['success_count'] = $successCount;
+        $obj['successCount'] = $successCount;
 
         return $obj;
     }
@@ -190,7 +184,7 @@ final class NotifySendBatchResponse implements BaseModel
     public function withTotalCount(int $totalCount): self
     {
         $obj = clone $this;
-        $obj['total_count'] = $totalCount;
+        $obj['totalCount'] = $totalCount;
 
         return $obj;
     }
@@ -201,7 +195,7 @@ final class NotifySendBatchResponse implements BaseModel
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj['callback_url'] = $callbackURL;
+        $obj['callbackURL'] = $callbackURL;
 
         return $obj;
     }
@@ -212,7 +206,7 @@ final class NotifySendBatchResponse implements BaseModel
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj['request_id'] = $requestID;
+        $obj['requestID'] = $requestID;
 
         return $obj;
     }
@@ -223,7 +217,7 @@ final class NotifySendBatchResponse implements BaseModel
     public function withTemplateID(string $templateID): self
     {
         $obj = clone $this;
-        $obj['template_id'] = $templateID;
+        $obj['templateID'] = $templateID;
 
         return $obj;
     }

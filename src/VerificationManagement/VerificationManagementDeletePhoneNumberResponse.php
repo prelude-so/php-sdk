@@ -10,7 +10,7 @@ use Prelude\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type VerificationManagementDeletePhoneNumberResponseShape = array{
- *   phone_number: string
+ *   phoneNumber: string
  * }
  */
 final class VerificationManagementDeletePhoneNumberResponse implements BaseModel
@@ -21,15 +21,15 @@ final class VerificationManagementDeletePhoneNumberResponse implements BaseModel
     /**
      * The E.164 formatted phone number that was removed from the list.
      */
-    #[Required]
-    public string $phone_number;
+    #[Required('phone_number')]
+    public string $phoneNumber;
 
     /**
      * `new VerificationManagementDeletePhoneNumberResponse()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * VerificationManagementDeletePhoneNumberResponse::with(phone_number: ...)
+     * VerificationManagementDeletePhoneNumberResponse::with(phoneNumber: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -48,11 +48,11 @@ final class VerificationManagementDeletePhoneNumberResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $phone_number): self
+    public static function with(string $phoneNumber): self
     {
         $obj = new self;
 
-        $obj['phone_number'] = $phone_number;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }
@@ -63,7 +63,7 @@ final class VerificationManagementDeletePhoneNumberResponse implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj['phone_number'] = $phoneNumber;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }

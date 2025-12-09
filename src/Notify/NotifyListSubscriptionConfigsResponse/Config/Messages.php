@@ -12,9 +12,9 @@ use Prelude\Core\Contracts\BaseModel;
  * The subscription messages configuration.
  *
  * @phpstan-type MessagesShape = array{
- *   help_message?: string|null,
- *   start_message?: string|null,
- *   stop_message?: string|null,
+ *   helpMessage?: string|null,
+ *   startMessage?: string|null,
+ *   stopMessage?: string|null,
  * }
  */
 final class Messages implements BaseModel
@@ -25,20 +25,20 @@ final class Messages implements BaseModel
     /**
      * Message sent when user requests help.
      */
-    #[Optional]
-    public ?string $help_message;
+    #[Optional('help_message')]
+    public ?string $helpMessage;
 
     /**
      * Message sent when user subscribes.
      */
-    #[Optional]
-    public ?string $start_message;
+    #[Optional('start_message')]
+    public ?string $startMessage;
 
     /**
      * Message sent when user unsubscribes.
      */
-    #[Optional]
-    public ?string $stop_message;
+    #[Optional('stop_message')]
+    public ?string $stopMessage;
 
     public function __construct()
     {
@@ -51,15 +51,15 @@ final class Messages implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        ?string $help_message = null,
-        ?string $start_message = null,
-        ?string $stop_message = null,
+        ?string $helpMessage = null,
+        ?string $startMessage = null,
+        ?string $stopMessage = null,
     ): self {
         $obj = new self;
 
-        null !== $help_message && $obj['help_message'] = $help_message;
-        null !== $start_message && $obj['start_message'] = $start_message;
-        null !== $stop_message && $obj['stop_message'] = $stop_message;
+        null !== $helpMessage && $obj['helpMessage'] = $helpMessage;
+        null !== $startMessage && $obj['startMessage'] = $startMessage;
+        null !== $stopMessage && $obj['stopMessage'] = $stopMessage;
 
         return $obj;
     }
@@ -70,7 +70,7 @@ final class Messages implements BaseModel
     public function withHelpMessage(string $helpMessage): self
     {
         $obj = clone $this;
-        $obj['help_message'] = $helpMessage;
+        $obj['helpMessage'] = $helpMessage;
 
         return $obj;
     }
@@ -81,7 +81,7 @@ final class Messages implements BaseModel
     public function withStartMessage(string $startMessage): self
     {
         $obj = clone $this;
-        $obj['start_message'] = $startMessage;
+        $obj['startMessage'] = $startMessage;
 
         return $obj;
     }
@@ -92,7 +92,7 @@ final class Messages implements BaseModel
     public function withStopMessage(string $stopMessage): self
     {
         $obj = clone $this;
-        $obj['stop_message'] = $stopMessage;
+        $obj['stopMessage'] = $stopMessage;
 
         return $obj;
     }

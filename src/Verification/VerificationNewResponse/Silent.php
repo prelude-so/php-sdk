@@ -11,7 +11,7 @@ use Prelude\Core\Contracts\BaseModel;
 /**
  * The silent verification specific properties.
  *
- * @phpstan-type SilentShape = array{request_url: string}
+ * @phpstan-type SilentShape = array{requestURL: string}
  */
 final class Silent implements BaseModel
 {
@@ -21,15 +21,15 @@ final class Silent implements BaseModel
     /**
      * The URL to start the silent verification towards.
      */
-    #[Required]
-    public string $request_url;
+    #[Required('request_url')]
+    public string $requestURL;
 
     /**
      * `new Silent()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * Silent::with(request_url: ...)
+     * Silent::with(requestURL: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -48,11 +48,11 @@ final class Silent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $request_url): self
+    public static function with(string $requestURL): self
     {
         $obj = new self;
 
-        $obj['request_url'] = $request_url;
+        $obj['requestURL'] = $requestURL;
 
         return $obj;
     }
@@ -63,7 +63,7 @@ final class Silent implements BaseModel
     public function withRequestURL(string $requestURL): self
     {
         $obj = clone $this;
-        $obj['request_url'] = $requestURL;
+        $obj['requestURL'] = $requestURL;
 
         return $obj;
     }

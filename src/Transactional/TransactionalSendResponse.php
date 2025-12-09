@@ -12,13 +12,13 @@ use Prelude\Core\Contracts\BaseModel;
 /**
  * @phpstan-type TransactionalSendResponseShape = array{
  *   id: string,
- *   created_at: \DateTimeInterface,
- *   expires_at: \DateTimeInterface,
- *   template_id: string,
+ *   createdAt: \DateTimeInterface,
+ *   expiresAt: \DateTimeInterface,
+ *   templateID: string,
  *   to: string,
  *   variables: array<string,string>,
- *   callback_url?: string|null,
- *   correlation_id?: string|null,
+ *   callbackURL?: string|null,
+ *   correlationID?: string|null,
  *   from?: string|null,
  * }
  */
@@ -36,20 +36,20 @@ final class TransactionalSendResponse implements BaseModel
     /**
      * The message creation date.
      */
-    #[Required]
-    public \DateTimeInterface $created_at;
+    #[Required('created_at')]
+    public \DateTimeInterface $createdAt;
 
     /**
      * The message expiration date.
      */
-    #[Required]
-    public \DateTimeInterface $expires_at;
+    #[Required('expires_at')]
+    public \DateTimeInterface $expiresAt;
 
     /**
      * The template identifier.
      */
-    #[Required]
-    public string $template_id;
+    #[Required('template_id')]
+    public string $templateID;
 
     /**
      * The recipient's phone number.
@@ -68,14 +68,14 @@ final class TransactionalSendResponse implements BaseModel
     /**
      * The callback URL.
      */
-    #[Optional]
-    public ?string $callback_url;
+    #[Optional('callback_url')]
+    public ?string $callbackURL;
 
     /**
      * A user-defined identifier to correlate this transactional message with. It is returned in the response and any webhook events that refer to this transactional message.
      */
-    #[Optional]
-    public ?string $correlation_id;
+    #[Optional('correlation_id')]
+    public ?string $correlationID;
 
     /**
      * The Sender ID.
@@ -90,9 +90,9 @@ final class TransactionalSendResponse implements BaseModel
      * ```
      * TransactionalSendResponse::with(
      *   id: ...,
-     *   created_at: ...,
-     *   expires_at: ...,
-     *   template_id: ...,
+     *   createdAt: ...,
+     *   expiresAt: ...,
+     *   templateID: ...,
      *   to: ...,
      *   variables: ...,
      * )
@@ -124,26 +124,26 @@ final class TransactionalSendResponse implements BaseModel
      */
     public static function with(
         string $id,
-        \DateTimeInterface $created_at,
-        \DateTimeInterface $expires_at,
-        string $template_id,
+        \DateTimeInterface $createdAt,
+        \DateTimeInterface $expiresAt,
+        string $templateID,
         string $to,
         array $variables,
-        ?string $callback_url = null,
-        ?string $correlation_id = null,
+        ?string $callbackURL = null,
+        ?string $correlationID = null,
         ?string $from = null,
     ): self {
         $obj = new self;
 
         $obj['id'] = $id;
-        $obj['created_at'] = $created_at;
-        $obj['expires_at'] = $expires_at;
-        $obj['template_id'] = $template_id;
+        $obj['createdAt'] = $createdAt;
+        $obj['expiresAt'] = $expiresAt;
+        $obj['templateID'] = $templateID;
         $obj['to'] = $to;
         $obj['variables'] = $variables;
 
-        null !== $callback_url && $obj['callback_url'] = $callback_url;
-        null !== $correlation_id && $obj['correlation_id'] = $correlation_id;
+        null !== $callbackURL && $obj['callbackURL'] = $callbackURL;
+        null !== $correlationID && $obj['correlationID'] = $correlationID;
         null !== $from && $obj['from'] = $from;
 
         return $obj;
@@ -166,7 +166,7 @@ final class TransactionalSendResponse implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj['created_at'] = $createdAt;
+        $obj['createdAt'] = $createdAt;
 
         return $obj;
     }
@@ -177,7 +177,7 @@ final class TransactionalSendResponse implements BaseModel
     public function withExpiresAt(\DateTimeInterface $expiresAt): self
     {
         $obj = clone $this;
-        $obj['expires_at'] = $expiresAt;
+        $obj['expiresAt'] = $expiresAt;
 
         return $obj;
     }
@@ -188,7 +188,7 @@ final class TransactionalSendResponse implements BaseModel
     public function withTemplateID(string $templateID): self
     {
         $obj = clone $this;
-        $obj['template_id'] = $templateID;
+        $obj['templateID'] = $templateID;
 
         return $obj;
     }
@@ -223,7 +223,7 @@ final class TransactionalSendResponse implements BaseModel
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj['callback_url'] = $callbackURL;
+        $obj['callbackURL'] = $callbackURL;
 
         return $obj;
     }
@@ -234,7 +234,7 @@ final class TransactionalSendResponse implements BaseModel
     public function withCorrelationID(string $correlationID): self
     {
         $obj = clone $this;
-        $obj['correlation_id'] = $correlationID;
+        $obj['correlationID'] = $correlationID;
 
         return $obj;
     }

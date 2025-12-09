@@ -14,13 +14,13 @@ use Prelude\Lookup\LookupLookupResponse\OriginalNetworkInfo;
 
 /**
  * @phpstan-type LookupLookupResponseShape = array{
- *   caller_name?: string|null,
- *   country_code?: string|null,
+ *   callerName?: string|null,
+ *   countryCode?: string|null,
  *   flags?: list<value-of<Flag>>|null,
- *   line_type?: value-of<LineType>|null,
- *   network_info?: NetworkInfo|null,
- *   original_network_info?: OriginalNetworkInfo|null,
- *   phone_number?: string|null,
+ *   lineType?: value-of<LineType>|null,
+ *   networkInfo?: NetworkInfo|null,
+ *   originalNetworkInfo?: OriginalNetworkInfo|null,
+ *   phoneNumber?: string|null,
  * }
  */
 final class LookupLookupResponse implements BaseModel
@@ -31,14 +31,14 @@ final class LookupLookupResponse implements BaseModel
     /**
      * The CNAM (Caller ID Name) associated with the phone number. Contact us if you need to use this functionality. Once enabled, put `cnam` option to `type` query parameter.
      */
-    #[Optional]
-    public ?string $caller_name;
+    #[Optional('caller_name')]
+    public ?string $callerName;
 
     /**
      * The country code of the phone number.
      */
-    #[Optional]
-    public ?string $country_code;
+    #[Optional('country_code')]
+    public ?string $countryCode;
 
     /**
      * A list of flags associated with the phone number.
@@ -72,28 +72,28 @@ final class LookupLookupResponse implements BaseModel
      *   * `voice_mail` - A specific category of Interactive Voice Response (IVR) services.
      *   * `voip` - Specific ranges for providers of VoIP services to allow incoming calls from the regular telephony network.
      *
-     * @var value-of<LineType>|null $line_type
+     * @var value-of<LineType>|null $lineType
      */
-    #[Optional(enum: LineType::class)]
-    public ?string $line_type;
+    #[Optional('line_type', enum: LineType::class)]
+    public ?string $lineType;
 
     /**
      * The current carrier information.
      */
-    #[Optional]
-    public ?NetworkInfo $network_info;
+    #[Optional('network_info')]
+    public ?NetworkInfo $networkInfo;
 
     /**
      * The original carrier information.
      */
-    #[Optional]
-    public ?OriginalNetworkInfo $original_network_info;
+    #[Optional('original_network_info')]
+    public ?OriginalNetworkInfo $originalNetworkInfo;
 
     /**
      * The phone number.
      */
-    #[Optional]
-    public ?string $phone_number;
+    #[Optional('phone_number')]
+    public ?string $phoneNumber;
 
     public function __construct()
     {
@@ -106,32 +106,32 @@ final class LookupLookupResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<Flag|value-of<Flag>> $flags
-     * @param LineType|value-of<LineType> $line_type
+     * @param LineType|value-of<LineType> $lineType
      * @param NetworkInfo|array{
-     *   carrier_name?: string|null, mcc?: string|null, mnc?: string|null
-     * } $network_info
+     *   carrierName?: string|null, mcc?: string|null, mnc?: string|null
+     * } $networkInfo
      * @param OriginalNetworkInfo|array{
-     *   carrier_name?: string|null, mcc?: string|null, mnc?: string|null
-     * } $original_network_info
+     *   carrierName?: string|null, mcc?: string|null, mnc?: string|null
+     * } $originalNetworkInfo
      */
     public static function with(
-        ?string $caller_name = null,
-        ?string $country_code = null,
+        ?string $callerName = null,
+        ?string $countryCode = null,
         ?array $flags = null,
-        LineType|string|null $line_type = null,
-        NetworkInfo|array|null $network_info = null,
-        OriginalNetworkInfo|array|null $original_network_info = null,
-        ?string $phone_number = null,
+        LineType|string|null $lineType = null,
+        NetworkInfo|array|null $networkInfo = null,
+        OriginalNetworkInfo|array|null $originalNetworkInfo = null,
+        ?string $phoneNumber = null,
     ): self {
         $obj = new self;
 
-        null !== $caller_name && $obj['caller_name'] = $caller_name;
-        null !== $country_code && $obj['country_code'] = $country_code;
+        null !== $callerName && $obj['callerName'] = $callerName;
+        null !== $countryCode && $obj['countryCode'] = $countryCode;
         null !== $flags && $obj['flags'] = $flags;
-        null !== $line_type && $obj['line_type'] = $line_type;
-        null !== $network_info && $obj['network_info'] = $network_info;
-        null !== $original_network_info && $obj['original_network_info'] = $original_network_info;
-        null !== $phone_number && $obj['phone_number'] = $phone_number;
+        null !== $lineType && $obj['lineType'] = $lineType;
+        null !== $networkInfo && $obj['networkInfo'] = $networkInfo;
+        null !== $originalNetworkInfo && $obj['originalNetworkInfo'] = $originalNetworkInfo;
+        null !== $phoneNumber && $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }
@@ -142,7 +142,7 @@ final class LookupLookupResponse implements BaseModel
     public function withCallerName(string $callerName): self
     {
         $obj = clone $this;
-        $obj['caller_name'] = $callerName;
+        $obj['callerName'] = $callerName;
 
         return $obj;
     }
@@ -153,7 +153,7 @@ final class LookupLookupResponse implements BaseModel
     public function withCountryCode(string $countryCode): self
     {
         $obj = clone $this;
-        $obj['country_code'] = $countryCode;
+        $obj['countryCode'] = $countryCode;
 
         return $obj;
     }
@@ -200,7 +200,7 @@ final class LookupLookupResponse implements BaseModel
     public function withLineType(LineType|string $lineType): self
     {
         $obj = clone $this;
-        $obj['line_type'] = $lineType;
+        $obj['lineType'] = $lineType;
 
         return $obj;
     }
@@ -209,13 +209,13 @@ final class LookupLookupResponse implements BaseModel
      * The current carrier information.
      *
      * @param NetworkInfo|array{
-     *   carrier_name?: string|null, mcc?: string|null, mnc?: string|null
+     *   carrierName?: string|null, mcc?: string|null, mnc?: string|null
      * } $networkInfo
      */
     public function withNetworkInfo(NetworkInfo|array $networkInfo): self
     {
         $obj = clone $this;
-        $obj['network_info'] = $networkInfo;
+        $obj['networkInfo'] = $networkInfo;
 
         return $obj;
     }
@@ -224,14 +224,14 @@ final class LookupLookupResponse implements BaseModel
      * The original carrier information.
      *
      * @param OriginalNetworkInfo|array{
-     *   carrier_name?: string|null, mcc?: string|null, mnc?: string|null
+     *   carrierName?: string|null, mcc?: string|null, mnc?: string|null
      * } $originalNetworkInfo
      */
     public function withOriginalNetworkInfo(
         OriginalNetworkInfo|array $originalNetworkInfo
     ): self {
         $obj = clone $this;
-        $obj['original_network_info'] = $originalNetworkInfo;
+        $obj['originalNetworkInfo'] = $originalNetworkInfo;
 
         return $obj;
     }
@@ -242,7 +242,7 @@ final class LookupLookupResponse implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj['phone_number'] = $phoneNumber;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }

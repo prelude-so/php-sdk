@@ -35,7 +35,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->deletePhoneNumber(
             'allow',
-            ['phone_number' => '+30123456789']
+            ['phoneNumber' => '+30123456789']
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -50,7 +50,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->deletePhoneNumber(
             'allow',
-            ['phone_number' => '+30123456789']
+            ['phoneNumber' => '+30123456789']
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -89,7 +89,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->setPhoneNumber(
             'allow',
-            ['phone_number' => '+30123456789']
+            ['phoneNumber' => '+30123456789']
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -104,7 +104,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->setPhoneNumber(
             'allow',
-            ['phone_number' => '+30123456789']
+            ['phoneNumber' => '+30123456789']
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -118,7 +118,7 @@ final class VerificationManagementTest extends TestCase
     public function testSubmitSenderID(): void
     {
         $result = $this->client->verificationManagement->submitSenderID([
-            'sender_id' => 'Prelude',
+            'senderID' => 'Prelude',
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -132,7 +132,7 @@ final class VerificationManagementTest extends TestCase
     public function testSubmitSenderIDWithOptionalParams(): void
     {
         $result = $this->client->verificationManagement->submitSenderID([
-            'sender_id' => 'Prelude',
+            'senderID' => 'Prelude',
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType

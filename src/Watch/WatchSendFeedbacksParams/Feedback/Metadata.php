@@ -11,7 +11,7 @@ use Prelude\Core\Contracts\BaseModel;
 /**
  * The metadata for this feedback.
  *
- * @phpstan-type MetadataShape = array{correlation_id?: string|null}
+ * @phpstan-type MetadataShape = array{correlationID?: string|null}
  */
 final class Metadata implements BaseModel
 {
@@ -21,8 +21,8 @@ final class Metadata implements BaseModel
     /**
      * A user-defined identifier to correlate this feedback with. It is returned in the response and any webhook events that refer to this feedback.
      */
-    #[Optional]
-    public ?string $correlation_id;
+    #[Optional('correlation_id')]
+    public ?string $correlationID;
 
     public function __construct()
     {
@@ -34,11 +34,11 @@ final class Metadata implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(?string $correlation_id = null): self
+    public static function with(?string $correlationID = null): self
     {
         $obj = new self;
 
-        null !== $correlation_id && $obj['correlation_id'] = $correlation_id;
+        null !== $correlationID && $obj['correlationID'] = $correlationID;
 
         return $obj;
     }
@@ -49,7 +49,7 @@ final class Metadata implements BaseModel
     public function withCorrelationID(string $correlationID): self
     {
         $obj = clone $this;
-        $obj['correlation_id'] = $correlationID;
+        $obj['correlationID'] = $correlationID;
 
         return $obj;
     }

@@ -13,8 +13,8 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event\State;
 
 /**
  * @phpstan-type EventShape = array{
- *   config_id: string,
- *   phone_number: string,
+ *   configID: string,
+ *   phoneNumber: string,
  *   source: value-of<Source>,
  *   state: value-of<State>,
  *   timestamp: \DateTimeInterface,
@@ -29,14 +29,14 @@ final class Event implements BaseModel
     /**
      * The subscription configuration ID.
      */
-    #[Required]
-    public string $config_id;
+    #[Required('config_id')]
+    public string $configID;
 
     /**
      * The phone number in E.164 format.
      */
-    #[Required]
-    public string $phone_number;
+    #[Required('phone_number')]
+    public string $phoneNumber;
 
     /**
      * How the subscription state was changed:
@@ -78,7 +78,7 @@ final class Event implements BaseModel
      * To enforce required parameters use
      * ```
      * Event::with(
-     *   config_id: ..., phone_number: ..., source: ..., state: ..., timestamp: ...
+     *   configID: ..., phoneNumber: ..., source: ..., state: ..., timestamp: ...
      * )
      * ```
      *
@@ -107,8 +107,8 @@ final class Event implements BaseModel
      * @param State|value-of<State> $state
      */
     public static function with(
-        string $config_id,
-        string $phone_number,
+        string $configID,
+        string $phoneNumber,
         Source|string $source,
         State|string $state,
         \DateTimeInterface $timestamp,
@@ -116,8 +116,8 @@ final class Event implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj['config_id'] = $config_id;
-        $obj['phone_number'] = $phone_number;
+        $obj['configID'] = $configID;
+        $obj['phoneNumber'] = $phoneNumber;
         $obj['source'] = $source;
         $obj['state'] = $state;
         $obj['timestamp'] = $timestamp;
@@ -133,7 +133,7 @@ final class Event implements BaseModel
     public function withConfigID(string $configID): self
     {
         $obj = clone $this;
-        $obj['config_id'] = $configID;
+        $obj['configID'] = $configID;
 
         return $obj;
     }
@@ -144,7 +144,7 @@ final class Event implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj['phone_number'] = $phoneNumber;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }

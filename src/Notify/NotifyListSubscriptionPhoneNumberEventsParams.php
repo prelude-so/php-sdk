@@ -18,7 +18,7 @@ use Prelude\Core\Contracts\BaseModel;
  * @see Prelude\Services\NotifyService::listSubscriptionPhoneNumberEvents()
  *
  * @phpstan-type NotifyListSubscriptionPhoneNumberEventsParamsShape = array{
- *   config_id: string, cursor?: string, limit?: int
+ *   configID: string, cursor?: string, limit?: int
  * }
  */
 final class NotifyListSubscriptionPhoneNumberEventsParams implements BaseModel
@@ -28,7 +28,7 @@ final class NotifyListSubscriptionPhoneNumberEventsParams implements BaseModel
     use SdkParams;
 
     #[Required]
-    public string $config_id;
+    public string $configID;
 
     /**
      * Pagination cursor from the previous response.
@@ -47,7 +47,7 @@ final class NotifyListSubscriptionPhoneNumberEventsParams implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * NotifyListSubscriptionPhoneNumberEventsParams::with(config_id: ...)
+     * NotifyListSubscriptionPhoneNumberEventsParams::with(configID: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -67,13 +67,13 @@ final class NotifyListSubscriptionPhoneNumberEventsParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $config_id,
+        string $configID,
         ?string $cursor = null,
         ?int $limit = null
     ): self {
         $obj = new self;
 
-        $obj['config_id'] = $config_id;
+        $obj['configID'] = $configID;
 
         null !== $cursor && $obj['cursor'] = $cursor;
         null !== $limit && $obj['limit'] = $limit;
@@ -84,7 +84,7 @@ final class NotifyListSubscriptionPhoneNumberEventsParams implements BaseModel
     public function withConfigID(string $configID): self
     {
         $obj = clone $this;
-        $obj['config_id'] = $configID;
+        $obj['configID'] = $configID;
 
         return $obj;
     }

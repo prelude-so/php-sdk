@@ -13,15 +13,15 @@ use Prelude\Watch\WatchPredictParams\Signals\DevicePlatform;
  * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
  *
  * @phpstan-type SignalsShape = array{
- *   app_version?: string|null,
- *   device_id?: string|null,
- *   device_model?: string|null,
- *   device_platform?: value-of<DevicePlatform>|null,
+ *   appVersion?: string|null,
+ *   deviceID?: string|null,
+ *   deviceModel?: string|null,
+ *   devicePlatform?: value-of<DevicePlatform>|null,
  *   ip?: string|null,
- *   is_trusted_user?: bool|null,
- *   ja4_fingerprint?: string|null,
- *   os_version?: string|null,
- *   user_agent?: string|null,
+ *   isTrustedUser?: bool|null,
+ *   ja4Fingerprint?: string|null,
+ *   osVersion?: string|null,
+ *   userAgent?: string|null,
  * }
  */
 final class Signals implements BaseModel
@@ -32,28 +32,28 @@ final class Signals implements BaseModel
     /**
      * The version of your application.
      */
-    #[Optional]
-    public ?string $app_version;
+    #[Optional('app_version')]
+    public ?string $appVersion;
 
     /**
      * The unique identifier for the user's device. For Android, this corresponds to the `ANDROID_ID` and for iOS, this corresponds to the `identifierForVendor`.
      */
-    #[Optional]
-    public ?string $device_id;
+    #[Optional('device_id')]
+    public ?string $deviceID;
 
     /**
      * The model of the user's device.
      */
-    #[Optional]
-    public ?string $device_model;
+    #[Optional('device_model')]
+    public ?string $deviceModel;
 
     /**
      * The type of the user's device.
      *
-     * @var value-of<DevicePlatform>|null $device_platform
+     * @var value-of<DevicePlatform>|null $devicePlatform
      */
-    #[Optional(enum: DevicePlatform::class)]
-    public ?string $device_platform;
+    #[Optional('device_platform', enum: DevicePlatform::class)]
+    public ?string $devicePlatform;
 
     /**
      * The IP address of the user's device.
@@ -64,26 +64,26 @@ final class Signals implements BaseModel
     /**
      * This signal should provide a higher level of trust, indicating that the user is genuine. Contact us to discuss your use case. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      */
-    #[Optional]
-    public ?bool $is_trusted_user;
+    #[Optional('is_trusted_user')]
+    public ?bool $isTrustedUser;
 
     /**
      * The JA4 fingerprint observed for the connection. Prelude will infer it automatically when requests go through our client SDK (which uses Prelude's edge), but you can also provide it explicitly if you terminate TLS yourself.
      */
-    #[Optional]
-    public ?string $ja4_fingerprint;
+    #[Optional('ja4_fingerprint')]
+    public ?string $ja4Fingerprint;
 
     /**
      * The version of the user's device operating system.
      */
-    #[Optional]
-    public ?string $os_version;
+    #[Optional('os_version')]
+    public ?string $osVersion;
 
     /**
      * The user agent of the user's device. If the individual fields (os_version, device_platform, device_model) are provided, we will prioritize those values instead of parsing them from the user agent string.
      */
-    #[Optional]
-    public ?string $user_agent;
+    #[Optional('user_agent')]
+    public ?string $userAgent;
 
     public function __construct()
     {
@@ -95,30 +95,30 @@ final class Signals implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param DevicePlatform|value-of<DevicePlatform> $device_platform
+     * @param DevicePlatform|value-of<DevicePlatform> $devicePlatform
      */
     public static function with(
-        ?string $app_version = null,
-        ?string $device_id = null,
-        ?string $device_model = null,
-        DevicePlatform|string|null $device_platform = null,
+        ?string $appVersion = null,
+        ?string $deviceID = null,
+        ?string $deviceModel = null,
+        DevicePlatform|string|null $devicePlatform = null,
         ?string $ip = null,
-        ?bool $is_trusted_user = null,
-        ?string $ja4_fingerprint = null,
-        ?string $os_version = null,
-        ?string $user_agent = null,
+        ?bool $isTrustedUser = null,
+        ?string $ja4Fingerprint = null,
+        ?string $osVersion = null,
+        ?string $userAgent = null,
     ): self {
         $obj = new self;
 
-        null !== $app_version && $obj['app_version'] = $app_version;
-        null !== $device_id && $obj['device_id'] = $device_id;
-        null !== $device_model && $obj['device_model'] = $device_model;
-        null !== $device_platform && $obj['device_platform'] = $device_platform;
+        null !== $appVersion && $obj['appVersion'] = $appVersion;
+        null !== $deviceID && $obj['deviceID'] = $deviceID;
+        null !== $deviceModel && $obj['deviceModel'] = $deviceModel;
+        null !== $devicePlatform && $obj['devicePlatform'] = $devicePlatform;
         null !== $ip && $obj['ip'] = $ip;
-        null !== $is_trusted_user && $obj['is_trusted_user'] = $is_trusted_user;
-        null !== $ja4_fingerprint && $obj['ja4_fingerprint'] = $ja4_fingerprint;
-        null !== $os_version && $obj['os_version'] = $os_version;
-        null !== $user_agent && $obj['user_agent'] = $user_agent;
+        null !== $isTrustedUser && $obj['isTrustedUser'] = $isTrustedUser;
+        null !== $ja4Fingerprint && $obj['ja4Fingerprint'] = $ja4Fingerprint;
+        null !== $osVersion && $obj['osVersion'] = $osVersion;
+        null !== $userAgent && $obj['userAgent'] = $userAgent;
 
         return $obj;
     }
@@ -129,7 +129,7 @@ final class Signals implements BaseModel
     public function withAppVersion(string $appVersion): self
     {
         $obj = clone $this;
-        $obj['app_version'] = $appVersion;
+        $obj['appVersion'] = $appVersion;
 
         return $obj;
     }
@@ -140,7 +140,7 @@ final class Signals implements BaseModel
     public function withDeviceID(string $deviceID): self
     {
         $obj = clone $this;
-        $obj['device_id'] = $deviceID;
+        $obj['deviceID'] = $deviceID;
 
         return $obj;
     }
@@ -151,7 +151,7 @@ final class Signals implements BaseModel
     public function withDeviceModel(string $deviceModel): self
     {
         $obj = clone $this;
-        $obj['device_model'] = $deviceModel;
+        $obj['deviceModel'] = $deviceModel;
 
         return $obj;
     }
@@ -165,7 +165,7 @@ final class Signals implements BaseModel
         DevicePlatform|string $devicePlatform
     ): self {
         $obj = clone $this;
-        $obj['device_platform'] = $devicePlatform;
+        $obj['devicePlatform'] = $devicePlatform;
 
         return $obj;
     }
@@ -187,7 +187,7 @@ final class Signals implements BaseModel
     public function withIsTrustedUser(bool $isTrustedUser): self
     {
         $obj = clone $this;
-        $obj['is_trusted_user'] = $isTrustedUser;
+        $obj['isTrustedUser'] = $isTrustedUser;
 
         return $obj;
     }
@@ -198,7 +198,7 @@ final class Signals implements BaseModel
     public function withJa4Fingerprint(string $ja4Fingerprint): self
     {
         $obj = clone $this;
-        $obj['ja4_fingerprint'] = $ja4Fingerprint;
+        $obj['ja4Fingerprint'] = $ja4Fingerprint;
 
         return $obj;
     }
@@ -209,7 +209,7 @@ final class Signals implements BaseModel
     public function withOsVersion(string $osVersion): self
     {
         $obj = clone $this;
-        $obj['os_version'] = $osVersion;
+        $obj['osVersion'] = $osVersion;
 
         return $obj;
     }
@@ -220,7 +220,7 @@ final class Signals implements BaseModel
     public function withUserAgent(string $userAgent): self
     {
         $obj = clone $this;
-        $obj['user_agent'] = $userAgent;
+        $obj['userAgent'] = $userAgent;
 
         return $obj;
     }

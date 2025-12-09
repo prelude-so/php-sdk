@@ -10,7 +10,7 @@ use Prelude\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type PhoneNumberShape = array{
- *   created_at: \DateTimeInterface, phone_number: string
+ *   createdAt: \DateTimeInterface, phoneNumber: string
  * }
  */
 final class PhoneNumber implements BaseModel
@@ -21,21 +21,21 @@ final class PhoneNumber implements BaseModel
     /**
      * The date and time when the phone number was added to the list.
      */
-    #[Required]
-    public \DateTimeInterface $created_at;
+    #[Required('created_at')]
+    public \DateTimeInterface $createdAt;
 
     /**
      * An E.164 formatted phone number.
      */
-    #[Required]
-    public string $phone_number;
+    #[Required('phone_number')]
+    public string $phoneNumber;
 
     /**
      * `new PhoneNumber()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * PhoneNumber::with(created_at: ..., phone_number: ...)
+     * PhoneNumber::with(createdAt: ..., phoneNumber: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -55,13 +55,13 @@ final class PhoneNumber implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        \DateTimeInterface $created_at,
-        string $phone_number
+        \DateTimeInterface $createdAt,
+        string $phoneNumber
     ): self {
         $obj = new self;
 
-        $obj['created_at'] = $created_at;
-        $obj['phone_number'] = $phone_number;
+        $obj['createdAt'] = $createdAt;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }
@@ -72,7 +72,7 @@ final class PhoneNumber implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj['created_at'] = $createdAt;
+        $obj['createdAt'] = $createdAt;
 
         return $obj;
     }
@@ -83,7 +83,7 @@ final class PhoneNumber implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj['phone_number'] = $phoneNumber;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }

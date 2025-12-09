@@ -17,15 +17,15 @@ use Prelude\Notify\NotifySendBatchParams\PreferredChannel;
  * @see Prelude\Services\NotifyService::sendBatch()
  *
  * @phpstan-type NotifySendBatchParamsShape = array{
- *   template_id: string,
+ *   templateID: string,
  *   to: list<string>,
- *   callback_url?: string,
- *   correlation_id?: string,
- *   expires_at?: \DateTimeInterface,
+ *   callbackURL?: string,
+ *   correlationID?: string,
+ *   expiresAt?: \DateTimeInterface,
  *   from?: string,
  *   locale?: string,
- *   preferred_channel?: PreferredChannel|value-of<PreferredChannel>,
- *   schedule_at?: \DateTimeInterface,
+ *   preferredChannel?: PreferredChannel|value-of<PreferredChannel>,
+ *   scheduleAt?: \DateTimeInterface,
  *   variables?: array<string,string>,
  * }
  */
@@ -38,8 +38,8 @@ final class NotifySendBatchParams implements BaseModel
     /**
      * The template identifier configured by your Customer Success team.
      */
-    #[Required]
-    public string $template_id;
+    #[Required('template_id')]
+    public string $templateID;
 
     /**
      * The list of recipients' phone numbers in E.164 format.
@@ -52,20 +52,20 @@ final class NotifySendBatchParams implements BaseModel
     /**
      * The URL where webhooks will be sent for delivery events.
      */
-    #[Optional]
-    public ?string $callback_url;
+    #[Optional('callback_url')]
+    public ?string $callbackURL;
 
     /**
      * A user-defined identifier to correlate this request with your internal systems.
      */
-    #[Optional]
-    public ?string $correlation_id;
+    #[Optional('correlation_id')]
+    public ?string $correlationID;
 
     /**
      * The message expiration date in RFC3339 format. Messages will not be sent after this time.
      */
-    #[Optional]
-    public ?\DateTimeInterface $expires_at;
+    #[Optional('expires_at')]
+    public ?\DateTimeInterface $expiresAt;
 
     /**
      * The Sender ID. Must be approved for your account.
@@ -82,16 +82,16 @@ final class NotifySendBatchParams implements BaseModel
     /**
      * Preferred channel for delivery. If unavailable, automatic fallback applies.
      *
-     * @var value-of<PreferredChannel>|null $preferred_channel
+     * @var value-of<PreferredChannel>|null $preferredChannel
      */
-    #[Optional(enum: PreferredChannel::class)]
-    public ?string $preferred_channel;
+    #[Optional('preferred_channel', enum: PreferredChannel::class)]
+    public ?string $preferredChannel;
 
     /**
      * Schedule delivery in RFC3339 format. Marketing sends may be adjusted to comply with local time windows.
      */
-    #[Optional]
-    public ?\DateTimeInterface $schedule_at;
+    #[Optional('schedule_at')]
+    public ?\DateTimeInterface $scheduleAt;
 
     /**
      * The variables to be replaced in the template.
@@ -106,7 +106,7 @@ final class NotifySendBatchParams implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * NotifySendBatchParams::with(template_id: ..., to: ...)
+     * NotifySendBatchParams::with(templateID: ..., to: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -126,33 +126,33 @@ final class NotifySendBatchParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<string> $to
-     * @param PreferredChannel|value-of<PreferredChannel> $preferred_channel
+     * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
      * @param array<string,string> $variables
      */
     public static function with(
-        string $template_id,
+        string $templateID,
         array $to,
-        ?string $callback_url = null,
-        ?string $correlation_id = null,
-        ?\DateTimeInterface $expires_at = null,
+        ?string $callbackURL = null,
+        ?string $correlationID = null,
+        ?\DateTimeInterface $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
-        PreferredChannel|string|null $preferred_channel = null,
-        ?\DateTimeInterface $schedule_at = null,
+        PreferredChannel|string|null $preferredChannel = null,
+        ?\DateTimeInterface $scheduleAt = null,
         ?array $variables = null,
     ): self {
         $obj = new self;
 
-        $obj['template_id'] = $template_id;
+        $obj['templateID'] = $templateID;
         $obj['to'] = $to;
 
-        null !== $callback_url && $obj['callback_url'] = $callback_url;
-        null !== $correlation_id && $obj['correlation_id'] = $correlation_id;
-        null !== $expires_at && $obj['expires_at'] = $expires_at;
+        null !== $callbackURL && $obj['callbackURL'] = $callbackURL;
+        null !== $correlationID && $obj['correlationID'] = $correlationID;
+        null !== $expiresAt && $obj['expiresAt'] = $expiresAt;
         null !== $from && $obj['from'] = $from;
         null !== $locale && $obj['locale'] = $locale;
-        null !== $preferred_channel && $obj['preferred_channel'] = $preferred_channel;
-        null !== $schedule_at && $obj['schedule_at'] = $schedule_at;
+        null !== $preferredChannel && $obj['preferredChannel'] = $preferredChannel;
+        null !== $scheduleAt && $obj['scheduleAt'] = $scheduleAt;
         null !== $variables && $obj['variables'] = $variables;
 
         return $obj;
@@ -164,7 +164,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withTemplateID(string $templateID): self
     {
         $obj = clone $this;
-        $obj['template_id'] = $templateID;
+        $obj['templateID'] = $templateID;
 
         return $obj;
     }
@@ -188,7 +188,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj['callback_url'] = $callbackURL;
+        $obj['callbackURL'] = $callbackURL;
 
         return $obj;
     }
@@ -199,7 +199,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withCorrelationID(string $correlationID): self
     {
         $obj = clone $this;
-        $obj['correlation_id'] = $correlationID;
+        $obj['correlationID'] = $correlationID;
 
         return $obj;
     }
@@ -210,7 +210,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withExpiresAt(\DateTimeInterface $expiresAt): self
     {
         $obj = clone $this;
-        $obj['expires_at'] = $expiresAt;
+        $obj['expiresAt'] = $expiresAt;
 
         return $obj;
     }
@@ -246,7 +246,7 @@ final class NotifySendBatchParams implements BaseModel
         PreferredChannel|string $preferredChannel
     ): self {
         $obj = clone $this;
-        $obj['preferred_channel'] = $preferredChannel;
+        $obj['preferredChannel'] = $preferredChannel;
 
         return $obj;
     }
@@ -257,7 +257,7 @@ final class NotifySendBatchParams implements BaseModel
     public function withScheduleAt(\DateTimeInterface $scheduleAt): self
     {
         $obj = clone $this;
-        $obj['schedule_at'] = $scheduleAt;
+        $obj['scheduleAt'] = $scheduleAt;
 
         return $obj;
     }

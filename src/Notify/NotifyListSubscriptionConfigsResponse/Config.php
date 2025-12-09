@@ -14,12 +14,12 @@ use Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config\MoPhoneNumber;
 /**
  * @phpstan-type ConfigShape = array{
  *   id: string,
- *   callback_url: string,
- *   created_at: \DateTimeInterface,
+ *   callbackURL: string,
+ *   createdAt: \DateTimeInterface,
  *   messages: Messages,
  *   name: string,
- *   updated_at: \DateTimeInterface,
- *   mo_phone_numbers?: list<MoPhoneNumber>|null,
+ *   updatedAt: \DateTimeInterface,
+ *   moPhoneNumbers?: list<MoPhoneNumber>|null,
  * }
  */
 final class Config implements BaseModel
@@ -36,14 +36,14 @@ final class Config implements BaseModel
     /**
      * The URL to call when subscription status changes.
      */
-    #[Required]
-    public string $callback_url;
+    #[Required('callback_url')]
+    public string $callbackURL;
 
     /**
      * The date and time when the configuration was created.
      */
-    #[Required]
-    public \DateTimeInterface $created_at;
+    #[Required('created_at')]
+    public \DateTimeInterface $createdAt;
 
     /**
      * The subscription messages configuration.
@@ -60,16 +60,16 @@ final class Config implements BaseModel
     /**
      * The date and time when the configuration was last updated.
      */
-    #[Required]
-    public \DateTimeInterface $updated_at;
+    #[Required('updated_at')]
+    public \DateTimeInterface $updatedAt;
 
     /**
      * A list of phone numbers for receiving inbound messages.
      *
-     * @var list<MoPhoneNumber>|null $mo_phone_numbers
+     * @var list<MoPhoneNumber>|null $moPhoneNumbers
      */
-    #[Optional(list: MoPhoneNumber::class)]
-    public ?array $mo_phone_numbers;
+    #[Optional('mo_phone_numbers', list: MoPhoneNumber::class)]
+    public ?array $moPhoneNumbers;
 
     /**
      * `new Config()` is missing required properties by the API.
@@ -78,11 +78,11 @@ final class Config implements BaseModel
      * ```
      * Config::with(
      *   id: ...,
-     *   callback_url: ...,
-     *   created_at: ...,
+     *   callbackURL: ...,
+     *   createdAt: ...,
      *   messages: ...,
      *   name: ...,
-     *   updated_at: ...,
+     *   updatedAt: ...,
      * )
      * ```
      *
@@ -109,33 +109,33 @@ final class Config implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Messages|array{
-     *   help_message?: string|null,
-     *   start_message?: string|null,
-     *   stop_message?: string|null,
+     *   helpMessage?: string|null,
+     *   startMessage?: string|null,
+     *   stopMessage?: string|null,
      * } $messages
      * @param list<MoPhoneNumber|array{
-     *   country_code: string, phone_number: string
-     * }> $mo_phone_numbers
+     *   countryCode: string, phoneNumber: string
+     * }> $moPhoneNumbers
      */
     public static function with(
         string $id,
-        string $callback_url,
-        \DateTimeInterface $created_at,
+        string $callbackURL,
+        \DateTimeInterface $createdAt,
         Messages|array $messages,
         string $name,
-        \DateTimeInterface $updated_at,
-        ?array $mo_phone_numbers = null,
+        \DateTimeInterface $updatedAt,
+        ?array $moPhoneNumbers = null,
     ): self {
         $obj = new self;
 
         $obj['id'] = $id;
-        $obj['callback_url'] = $callback_url;
-        $obj['created_at'] = $created_at;
+        $obj['callbackURL'] = $callbackURL;
+        $obj['createdAt'] = $createdAt;
         $obj['messages'] = $messages;
         $obj['name'] = $name;
-        $obj['updated_at'] = $updated_at;
+        $obj['updatedAt'] = $updatedAt;
 
-        null !== $mo_phone_numbers && $obj['mo_phone_numbers'] = $mo_phone_numbers;
+        null !== $moPhoneNumbers && $obj['moPhoneNumbers'] = $moPhoneNumbers;
 
         return $obj;
     }
@@ -157,7 +157,7 @@ final class Config implements BaseModel
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj['callback_url'] = $callbackURL;
+        $obj['callbackURL'] = $callbackURL;
 
         return $obj;
     }
@@ -168,7 +168,7 @@ final class Config implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj['created_at'] = $createdAt;
+        $obj['createdAt'] = $createdAt;
 
         return $obj;
     }
@@ -177,9 +177,9 @@ final class Config implements BaseModel
      * The subscription messages configuration.
      *
      * @param Messages|array{
-     *   help_message?: string|null,
-     *   start_message?: string|null,
-     *   stop_message?: string|null,
+     *   helpMessage?: string|null,
+     *   startMessage?: string|null,
+     *   stopMessage?: string|null,
      * } $messages
      */
     public function withMessages(Messages|array $messages): self
@@ -207,7 +207,7 @@ final class Config implements BaseModel
     public function withUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $obj = clone $this;
-        $obj['updated_at'] = $updatedAt;
+        $obj['updatedAt'] = $updatedAt;
 
         return $obj;
     }
@@ -216,13 +216,13 @@ final class Config implements BaseModel
      * A list of phone numbers for receiving inbound messages.
      *
      * @param list<MoPhoneNumber|array{
-     *   country_code: string, phone_number: string
+     *   countryCode: string, phoneNumber: string
      * }> $moPhoneNumbers
      */
     public function withMoPhoneNumbers(array $moPhoneNumbers): self
     {
         $obj = clone $this;
-        $obj['mo_phone_numbers'] = $moPhoneNumbers;
+        $obj['moPhoneNumbers'] = $moPhoneNumbers;
 
         return $obj;
     }

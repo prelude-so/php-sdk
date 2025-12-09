@@ -12,7 +12,7 @@ use Prelude\Core\Contracts\BaseModel;
  * The current carrier information.
  *
  * @phpstan-type NetworkInfoShape = array{
- *   carrier_name?: string|null, mcc?: string|null, mnc?: string|null
+ *   carrierName?: string|null, mcc?: string|null, mnc?: string|null
  * }
  */
 final class NetworkInfo implements BaseModel
@@ -23,8 +23,8 @@ final class NetworkInfo implements BaseModel
     /**
      * The name of the carrier.
      */
-    #[Optional]
-    public ?string $carrier_name;
+    #[Optional('carrier_name')]
+    public ?string $carrierName;
 
     /**
      * Mobile Country Code.
@@ -49,13 +49,13 @@ final class NetworkInfo implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        ?string $carrier_name = null,
+        ?string $carrierName = null,
         ?string $mcc = null,
         ?string $mnc = null
     ): self {
         $obj = new self;
 
-        null !== $carrier_name && $obj['carrier_name'] = $carrier_name;
+        null !== $carrierName && $obj['carrierName'] = $carrierName;
         null !== $mcc && $obj['mcc'] = $mcc;
         null !== $mnc && $obj['mnc'] = $mnc;
 
@@ -68,7 +68,7 @@ final class NetworkInfo implements BaseModel
     public function withCarrierName(string $carrierName): self
     {
         $obj = clone $this;
-        $obj['carrier_name'] = $carrierName;
+        $obj['carrierName'] = $carrierName;
 
         return $obj;
     }

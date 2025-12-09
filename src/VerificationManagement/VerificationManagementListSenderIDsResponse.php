@@ -14,7 +14,7 @@ use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\S
  * A list of Sender ID.
  *
  * @phpstan-type VerificationManagementListSenderIDsResponseShape = array{
- *   sender_ids?: list<SenderID>|null
+ *   senderIDs?: list<SenderID>|null
  * }
  */
 final class VerificationManagementListSenderIDsResponse implements BaseModel
@@ -22,9 +22,9 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel
     /** @use SdkModel<VerificationManagementListSenderIDsResponseShape> */
     use SdkModel;
 
-    /** @var list<SenderID>|null $sender_ids */
-    #[Optional(list: SenderID::class)]
-    public ?array $sender_ids;
+    /** @var list<SenderID>|null $senderIDs */
+    #[Optional('sender_ids', list: SenderID::class)]
+    public ?array $senderIDs;
 
     public function __construct()
     {
@@ -37,27 +37,27 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<SenderID|array{
-     *   sender_id?: string|null, status?: value-of<Status>|null
-     * }> $sender_ids
+     *   senderID?: string|null, status?: value-of<Status>|null
+     * }> $senderIDs
      */
-    public static function with(?array $sender_ids = null): self
+    public static function with(?array $senderIDs = null): self
     {
         $obj = new self;
 
-        null !== $sender_ids && $obj['sender_ids'] = $sender_ids;
+        null !== $senderIDs && $obj['senderIDs'] = $senderIDs;
 
         return $obj;
     }
 
     /**
      * @param list<SenderID|array{
-     *   sender_id?: string|null, status?: value-of<Status>|null
+     *   senderID?: string|null, status?: value-of<Status>|null
      * }> $senderIDs
      */
     public function withSenderIDs(array $senderIDs): self
     {
         $obj = clone $this;
-        $obj['sender_ids'] = $senderIDs;
+        $obj['senderIDs'] = $senderIDs;
 
         return $obj;
     }

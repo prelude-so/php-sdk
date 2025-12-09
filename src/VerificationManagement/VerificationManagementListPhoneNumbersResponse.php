@@ -11,7 +11,7 @@ use Prelude\VerificationManagement\VerificationManagementListPhoneNumbersRespons
 
 /**
  * @phpstan-type VerificationManagementListPhoneNumbersResponseShape = array{
- *   phone_numbers: list<PhoneNumber>
+ *   phoneNumbers: list<PhoneNumber>
  * }
  */
 final class VerificationManagementListPhoneNumbersResponse implements BaseModel
@@ -22,17 +22,17 @@ final class VerificationManagementListPhoneNumbersResponse implements BaseModel
     /**
      * A list of phone numbers in the allow or block list.
      *
-     * @var list<PhoneNumber> $phone_numbers
+     * @var list<PhoneNumber> $phoneNumbers
      */
-    #[Required(list: PhoneNumber::class)]
-    public array $phone_numbers;
+    #[Required('phone_numbers', list: PhoneNumber::class)]
+    public array $phoneNumbers;
 
     /**
      * `new VerificationManagementListPhoneNumbersResponse()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * VerificationManagementListPhoneNumbersResponse::with(phone_numbers: ...)
+     * VerificationManagementListPhoneNumbersResponse::with(phoneNumbers: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -52,14 +52,14 @@ final class VerificationManagementListPhoneNumbersResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<PhoneNumber|array{
-     *   created_at: \DateTimeInterface, phone_number: string
-     * }> $phone_numbers
+     *   createdAt: \DateTimeInterface, phoneNumber: string
+     * }> $phoneNumbers
      */
-    public static function with(array $phone_numbers): self
+    public static function with(array $phoneNumbers): self
     {
         $obj = new self;
 
-        $obj['phone_numbers'] = $phone_numbers;
+        $obj['phoneNumbers'] = $phoneNumbers;
 
         return $obj;
     }
@@ -68,13 +68,13 @@ final class VerificationManagementListPhoneNumbersResponse implements BaseModel
      * A list of phone numbers in the allow or block list.
      *
      * @param list<PhoneNumber|array{
-     *   created_at: \DateTimeInterface, phone_number: string
+     *   createdAt: \DateTimeInterface, phoneNumber: string
      * }> $phoneNumbers
      */
     public function withPhoneNumbers(array $phoneNumbers): self
     {
         $obj = clone $this;
-        $obj['phone_numbers'] = $phoneNumbers;
+        $obj['phoneNumbers'] = $phoneNumbers;
 
         return $obj;
     }

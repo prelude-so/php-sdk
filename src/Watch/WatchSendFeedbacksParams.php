@@ -23,7 +23,7 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Type;
  *   feedbacks: list<Feedback|array{
  *     target: Target,
  *     type: value-of<Type>,
- *     dispatch_id?: string|null,
+ *     dispatchID?: string|null,
  *     metadata?: Metadata|null,
  *     signals?: Signals|null,
  *   }>,
@@ -70,7 +70,7 @@ final class WatchSendFeedbacksParams implements BaseModel
      * @param list<Feedback|array{
      *   target: Target,
      *   type: value-of<Type>,
-     *   dispatch_id?: string|null,
+     *   dispatchID?: string|null,
      *   metadata?: Metadata|null,
      *   signals?: Signals|null,
      * }> $feedbacks
@@ -90,7 +90,7 @@ final class WatchSendFeedbacksParams implements BaseModel
      * @param list<Feedback|array{
      *   target: Target,
      *   type: value-of<Type>,
-     *   dispatch_id?: string|null,
+     *   dispatchID?: string|null,
      *   metadata?: Metadata|null,
      *   signals?: Signals|null,
      * }> $feedbacks

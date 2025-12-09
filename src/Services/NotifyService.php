@@ -59,7 +59,7 @@ final class NotifyService implements NotifyContract
      *
      * Retrieve the current subscription status for a specific phone number within a subscription configuration.
      *
-     * @param array{config_id: string}|NotifyGetSubscriptionPhoneNumberParams $params
+     * @param array{configID: string}|NotifyGetSubscriptionPhoneNumberParams $params
      *
      * @throws APIException
      */
@@ -72,8 +72,8 @@ final class NotifyService implements NotifyContract
             $params,
             $requestOptions,
         );
-        $configID = $parsed['config_id'];
-        unset($parsed['config_id']);
+        $configID = $parsed['configID'];
+        unset($parsed['configID']);
 
         /** @var BaseResponse<NotifyGetSubscriptionPhoneNumberResponse> */
         $response = $this->client->request(
@@ -132,7 +132,7 @@ final class NotifyService implements NotifyContract
      * Events are ordered by timestamp in descending order (most recent first).
      *
      * @param array{
-     *   config_id: string, cursor?: string, limit?: int
+     *   configID: string, cursor?: string, limit?: int
      * }|NotifyListSubscriptionPhoneNumberEventsParams $params
      *
      * @throws APIException
@@ -146,8 +146,8 @@ final class NotifyService implements NotifyContract
             $params,
             $requestOptions,
         );
-        $configID = $parsed['config_id'];
-        unset($parsed['config_id']);
+        $configID = $parsed['configID'];
+        unset($parsed['configID']);
 
         /** @var BaseResponse<NotifyListSubscriptionPhoneNumberEventsResponse> */
         $response = $this->client->request(
@@ -208,15 +208,15 @@ final class NotifyService implements NotifyContract
      * Send transactional and marketing messages to your users via SMS and WhatsApp with automatic compliance enforcement.
      *
      * @param array{
-     *   template_id: string,
+     *   templateID: string,
      *   to: string,
-     *   callback_url?: string,
-     *   correlation_id?: string,
-     *   expires_at?: string|\DateTimeInterface,
+     *   callbackURL?: string,
+     *   correlationID?: string,
+     *   expiresAt?: string|\DateTimeInterface,
      *   from?: string,
      *   locale?: string,
-     *   preferred_channel?: 'sms'|'whatsapp'|PreferredChannel,
-     *   schedule_at?: string|\DateTimeInterface,
+     *   preferredChannel?: 'sms'|'whatsapp'|PreferredChannel,
+     *   scheduleAt?: string|\DateTimeInterface,
      *   variables?: array<string,string>,
      * }|NotifySendParams $params
      *
@@ -249,15 +249,15 @@ final class NotifyService implements NotifyContract
      * Send the same message to multiple recipients in a single request.
      *
      * @param array{
-     *   template_id: string,
+     *   templateID: string,
      *   to: list<string>,
-     *   callback_url?: string,
-     *   correlation_id?: string,
-     *   expires_at?: string|\DateTimeInterface,
+     *   callbackURL?: string,
+     *   correlationID?: string,
+     *   expiresAt?: string|\DateTimeInterface,
      *   from?: string,
      *   locale?: string,
-     *   preferred_channel?: 'sms'|'whatsapp'|NotifySendBatchParams\PreferredChannel,
-     *   schedule_at?: string|\DateTimeInterface,
+     *   preferredChannel?: 'sms'|'whatsapp'|NotifySendBatchParams\PreferredChannel,
+     *   scheduleAt?: string|\DateTimeInterface,
      *   variables?: array<string,string>,
      * }|NotifySendBatchParams $params
      *

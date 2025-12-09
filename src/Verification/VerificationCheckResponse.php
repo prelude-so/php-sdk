@@ -16,7 +16,7 @@ use Prelude\Verification\VerificationCheckResponse\Status;
  *   status: value-of<Status>,
  *   id?: string|null,
  *   metadata?: Metadata|null,
- *   request_id?: string|null,
+ *   requestID?: string|null,
  * }
  */
 final class VerificationCheckResponse implements BaseModel
@@ -44,8 +44,8 @@ final class VerificationCheckResponse implements BaseModel
     #[Optional]
     public ?Metadata $metadata;
 
-    #[Optional]
-    public ?string $request_id;
+    #[Optional('request_id')]
+    public ?string $requestID;
 
     /**
      * `new VerificationCheckResponse()` is missing required properties by the API.
@@ -72,13 +72,13 @@ final class VerificationCheckResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Status|value-of<Status> $status
-     * @param Metadata|array{correlation_id?: string|null} $metadata
+     * @param Metadata|array{correlationID?: string|null} $metadata
      */
     public static function with(
         Status|string $status,
         ?string $id = null,
         Metadata|array|null $metadata = null,
-        ?string $request_id = null,
+        ?string $requestID = null,
     ): self {
         $obj = new self;
 
@@ -86,7 +86,7 @@ final class VerificationCheckResponse implements BaseModel
 
         null !== $id && $obj['id'] = $id;
         null !== $metadata && $obj['metadata'] = $metadata;
-        null !== $request_id && $obj['request_id'] = $request_id;
+        null !== $requestID && $obj['requestID'] = $requestID;
 
         return $obj;
     }
@@ -118,7 +118,7 @@ final class VerificationCheckResponse implements BaseModel
     /**
      * The metadata for this verification.
      *
-     * @param Metadata|array{correlation_id?: string|null} $metadata
+     * @param Metadata|array{correlationID?: string|null} $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -131,7 +131,7 @@ final class VerificationCheckResponse implements BaseModel
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj['request_id'] = $requestID;
+        $obj['requestID'] = $requestID;
 
         return $obj;
     }

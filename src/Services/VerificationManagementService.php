@@ -37,7 +37,7 @@ final class VerificationManagementService implements VerificationManagementContr
      *
      * @param Action|value-of<Action> $action
      * @param array{
-     *   phone_number: string
+     *   phoneNumber: string
      * }|VerificationManagementDeletePhoneNumberParams $params
      *
      * @throws APIException
@@ -124,7 +124,7 @@ final class VerificationManagementService implements VerificationManagementContr
      *
      * @param VerificationManagementSetPhoneNumberParams\Action|value-of<VerificationManagementSetPhoneNumberParams\Action> $action
      * @param array{
-     *   phone_number: string
+     *   phoneNumber: string
      * }|VerificationManagementSetPhoneNumberParams $params
      *
      * @throws APIException
@@ -159,7 +159,7 @@ final class VerificationManagementService implements VerificationManagementContr
      * In order to get access to this endpoint, contact our support team.
      *
      * @param array{
-     *   sender_id: string
+     *   senderID: string
      * }|VerificationManagementSubmitSenderIDParams $params
      *
      * @throws APIException

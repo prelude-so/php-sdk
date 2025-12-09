@@ -50,7 +50,7 @@ final class NotifyTest extends TestCase
     {
         $result = $this->client->notify->getSubscriptionPhoneNumber(
             'phone_number',
-            ['config_id' => 'config_id']
+            ['configID' => 'config_id']
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -65,7 +65,7 @@ final class NotifyTest extends TestCase
     {
         $result = $this->client->notify->getSubscriptionPhoneNumber(
             'phone_number',
-            ['config_id' => 'config_id']
+            ['configID' => 'config_id']
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -92,7 +92,7 @@ final class NotifyTest extends TestCase
     {
         $result = $this->client->notify->listSubscriptionPhoneNumberEvents(
             'phone_number',
-            ['config_id' => 'config_id']
+            ['configID' => 'config_id']
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -107,7 +107,7 @@ final class NotifyTest extends TestCase
     {
         $result = $this->client->notify->listSubscriptionPhoneNumberEvents(
             'phone_number',
-            ['config_id' => 'config_id', 'cursor' => 'cursor', 'limit' => 1],
+            ['configID' => 'config_id', 'cursor' => 'cursor', 'limit' => 1],
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -140,7 +140,7 @@ final class NotifyTest extends TestCase
         }
 
         $result = $this->client->notify->send([
-            'template_id' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
+            'templateID' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
             'to' => '+33612345678',
         ]);
 
@@ -156,15 +156,15 @@ final class NotifyTest extends TestCase
         }
 
         $result = $this->client->notify->send([
-            'template_id' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
+            'templateID' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
             'to' => '+33612345678',
-            'callback_url' => 'https://your-app.com/webhooks/notify',
-            'correlation_id' => 'order-12345',
-            'expires_at' => new \DateTimeImmutable('2025-12-25T18:00:00Z'),
+            'callbackURL' => 'https://your-app.com/webhooks/notify',
+            'correlationID' => 'order-12345',
+            'expiresAt' => new \DateTimeImmutable('2025-12-25T18:00:00Z'),
             'from' => 'from',
             'locale' => 'el-GR',
-            'preferred_channel' => 'whatsapp',
-            'schedule_at' => new \DateTimeImmutable('2025-12-25T10:00:00Z'),
+            'preferredChannel' => 'whatsapp',
+            'scheduleAt' => new \DateTimeImmutable('2025-12-25T10:00:00Z'),
             'variables' => ['order_id' => '12345', 'amount' => '$49.99'],
         ]);
 
@@ -176,7 +176,7 @@ final class NotifyTest extends TestCase
     public function testSendBatch(): void
     {
         $result = $this->client->notify->sendBatch([
-            'template_id' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
+            'templateID' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
             'to' => ['+33612345678', '+15551234567'],
         ]);
 
@@ -188,15 +188,15 @@ final class NotifyTest extends TestCase
     public function testSendBatchWithOptionalParams(): void
     {
         $result = $this->client->notify->sendBatch([
-            'template_id' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
+            'templateID' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
             'to' => ['+33612345678', '+15551234567'],
-            'callback_url' => 'https://your-app.com/webhooks/notify',
-            'correlation_id' => 'campaign-12345',
-            'expires_at' => new \DateTimeImmutable('2025-12-25T18:00:00Z'),
+            'callbackURL' => 'https://your-app.com/webhooks/notify',
+            'correlationID' => 'campaign-12345',
+            'expiresAt' => new \DateTimeImmutable('2025-12-25T18:00:00Z'),
             'from' => 'from',
             'locale' => 'el-GR',
-            'preferred_channel' => 'whatsapp',
-            'schedule_at' => new \DateTimeImmutable('2025-12-25T10:00:00Z'),
+            'preferredChannel' => 'whatsapp',
+            'scheduleAt' => new \DateTimeImmutable('2025-12-25T10:00:00Z'),
             'variables' => ['order_id' => '12345', 'amount' => '$49.99'],
         ]);
 

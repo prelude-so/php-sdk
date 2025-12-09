@@ -10,7 +10,7 @@ use Prelude\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type MoPhoneNumberShape = array{
- *   country_code: string, phone_number: string
+ *   countryCode: string, phoneNumber: string
  * }
  */
 final class MoPhoneNumber implements BaseModel
@@ -21,21 +21,21 @@ final class MoPhoneNumber implements BaseModel
     /**
      * The ISO 3166-1 alpha-2 country code.
      */
-    #[Required]
-    public string $country_code;
+    #[Required('country_code')]
+    public string $countryCode;
 
     /**
      * The phone number in E.164 format for long codes, or short code format for short codes.
      */
-    #[Required]
-    public string $phone_number;
+    #[Required('phone_number')]
+    public string $phoneNumber;
 
     /**
      * `new MoPhoneNumber()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * MoPhoneNumber::with(country_code: ..., phone_number: ...)
+     * MoPhoneNumber::with(countryCode: ..., phoneNumber: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -54,14 +54,12 @@ final class MoPhoneNumber implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(
-        string $country_code,
-        string $phone_number
-    ): self {
+    public static function with(string $countryCode, string $phoneNumber): self
+    {
         $obj = new self;
 
-        $obj['country_code'] = $country_code;
-        $obj['phone_number'] = $phone_number;
+        $obj['countryCode'] = $countryCode;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }
@@ -72,7 +70,7 @@ final class MoPhoneNumber implements BaseModel
     public function withCountryCode(string $countryCode): self
     {
         $obj = clone $this;
-        $obj['country_code'] = $countryCode;
+        $obj['countryCode'] = $countryCode;
 
         return $obj;
     }
@@ -83,7 +81,7 @@ final class MoPhoneNumber implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj['phone_number'] = $phoneNumber;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }
