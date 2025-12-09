@@ -160,11 +160,11 @@ final class NotifyTest extends TestCase
             'to' => '+33612345678',
             'callback_url' => 'https://your-app.com/webhooks/notify',
             'correlation_id' => 'order-12345',
-            'expires_at' => '2025-12-25T18:00:00Z',
+            'expires_at' => new \DateTimeImmutable('2025-12-25T18:00:00Z'),
             'from' => 'from',
             'locale' => 'el-GR',
             'preferred_channel' => 'whatsapp',
-            'schedule_at' => '2025-12-25T10:00:00Z',
+            'schedule_at' => new \DateTimeImmutable('2025-12-25T10:00:00Z'),
             'variables' => ['order_id' => '12345', 'amount' => '$49.99'],
         ]);
 
@@ -192,11 +192,11 @@ final class NotifyTest extends TestCase
             'to' => ['+33612345678', '+15551234567'],
             'callback_url' => 'https://your-app.com/webhooks/notify',
             'correlation_id' => 'campaign-12345',
-            'expires_at' => '2025-12-25T18:00:00Z',
+            'expires_at' => new \DateTimeImmutable('2025-12-25T18:00:00Z'),
             'from' => 'from',
             'locale' => 'el-GR',
             'preferred_channel' => 'whatsapp',
-            'schedule_at' => '2025-12-25T10:00:00Z',
+            'schedule_at' => new \DateTimeImmutable('2025-12-25T10:00:00Z'),
             'variables' => ['order_id' => '12345', 'amount' => '$49.99'],
         ]);
 

@@ -8,6 +8,7 @@ use Prelude\Client;
 use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\Lookup\LookupLookupParams;
+use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\Lookup\LookupLookupResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\LookupContract;
@@ -24,7 +25,7 @@ final class LookupService implements LookupContract
      *
      * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
      *
-     * @param array{type?: list<'cnam'>}|LookupLookupParams $params
+     * @param array{type?: list<'cnam'|Type>}|LookupLookupParams $params
      *
      * @throws APIException
      */

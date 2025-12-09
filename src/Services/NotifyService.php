@@ -15,10 +15,12 @@ use Prelude\Notify\NotifyListSubscriptionConfigsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsParams;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams;
+use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams\State;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse;
 use Prelude\Notify\NotifySendBatchParams;
 use Prelude\Notify\NotifySendBatchResponse;
 use Prelude\Notify\NotifySendParams;
+use Prelude\Notify\NotifySendParams\PreferredChannel;
 use Prelude\Notify\NotifySendResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\NotifyContract;
@@ -171,7 +173,7 @@ final class NotifyService implements NotifyContract
      * You can optionally filter by subscription state (SUB or UNSUB).
      *
      * @param array{
-     *   cursor?: string, limit?: int, state?: 'SUB'|'UNSUB'
+     *   cursor?: string, limit?: int, state?: 'SUB'|'UNSUB'|State
      * }|NotifyListSubscriptionPhoneNumbersParams $params
      *
      * @throws APIException
@@ -213,7 +215,7 @@ final class NotifyService implements NotifyContract
      *   expires_at?: string|\DateTimeInterface,
      *   from?: string,
      *   locale?: string,
-     *   preferred_channel?: 'sms'|'whatsapp',
+     *   preferred_channel?: 'sms'|'whatsapp'|PreferredChannel,
      *   schedule_at?: string|\DateTimeInterface,
      *   variables?: array<string,string>,
      * }|NotifySendParams $params
@@ -254,7 +256,7 @@ final class NotifyService implements NotifyContract
      *   expires_at?: string|\DateTimeInterface,
      *   from?: string,
      *   locale?: string,
-     *   preferred_channel?: 'sms'|'whatsapp',
+     *   preferred_channel?: 'sms'|'whatsapp'|NotifySendBatchParams\PreferredChannel,
      *   schedule_at?: string|\DateTimeInterface,
      *   variables?: array<string,string>,
      * }|NotifySendBatchParams $params
