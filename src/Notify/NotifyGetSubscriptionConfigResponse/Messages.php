@@ -55,13 +55,13 @@ final class Messages implements BaseModel
         ?string $startMessage = null,
         ?string $stopMessage = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $helpMessage && $obj['helpMessage'] = $helpMessage;
-        null !== $startMessage && $obj['startMessage'] = $startMessage;
-        null !== $stopMessage && $obj['stopMessage'] = $stopMessage;
+        null !== $helpMessage && $self['helpMessage'] = $helpMessage;
+        null !== $startMessage && $self['startMessage'] = $startMessage;
+        null !== $stopMessage && $self['stopMessage'] = $stopMessage;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -69,10 +69,10 @@ final class Messages implements BaseModel
      */
     public function withHelpMessage(string $helpMessage): self
     {
-        $obj = clone $this;
-        $obj['helpMessage'] = $helpMessage;
+        $self = clone $this;
+        $self['helpMessage'] = $helpMessage;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -80,10 +80,10 @@ final class Messages implements BaseModel
      */
     public function withStartMessage(string $startMessage): self
     {
-        $obj = clone $this;
-        $obj['startMessage'] = $startMessage;
+        $self = clone $this;
+        $self['startMessage'] = $startMessage;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -91,9 +91,9 @@ final class Messages implements BaseModel
      */
     public function withStopMessage(string $stopMessage): self
     {
-        $obj = clone $this;
-        $obj['stopMessage'] = $stopMessage;
+        $self = clone $this;
+        $self['stopMessage'] = $stopMessage;
 
-        return $obj;
+        return $self;
     }
 }

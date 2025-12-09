@@ -71,13 +71,13 @@ final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
      */
     public static function with(array $events, ?string $nextCursor = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['events'] = $events;
+        $self['events'] = $events;
 
-        null !== $nextCursor && $obj['nextCursor'] = $nextCursor;
+        null !== $nextCursor && $self['nextCursor'] = $nextCursor;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -94,10 +94,10 @@ final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
      */
     public function withEvents(array $events): self
     {
-        $obj = clone $this;
-        $obj['events'] = $events;
+        $self = clone $this;
+        $self['events'] = $events;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -105,9 +105,9 @@ final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
      */
     public function withNextCursor(string $nextCursor): self
     {
-        $obj = clone $this;
-        $obj['nextCursor'] = $nextCursor;
+        $self = clone $this;
+        $self['nextCursor'] = $nextCursor;
 
-        return $obj;
+        return $self;
     }
 }

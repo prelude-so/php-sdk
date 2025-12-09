@@ -123,17 +123,17 @@ final class LookupLookupResponse implements BaseModel
         OriginalNetworkInfo|array|null $originalNetworkInfo = null,
         ?string $phoneNumber = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $callerName && $obj['callerName'] = $callerName;
-        null !== $countryCode && $obj['countryCode'] = $countryCode;
-        null !== $flags && $obj['flags'] = $flags;
-        null !== $lineType && $obj['lineType'] = $lineType;
-        null !== $networkInfo && $obj['networkInfo'] = $networkInfo;
-        null !== $originalNetworkInfo && $obj['originalNetworkInfo'] = $originalNetworkInfo;
-        null !== $phoneNumber && $obj['phoneNumber'] = $phoneNumber;
+        null !== $callerName && $self['callerName'] = $callerName;
+        null !== $countryCode && $self['countryCode'] = $countryCode;
+        null !== $flags && $self['flags'] = $flags;
+        null !== $lineType && $self['lineType'] = $lineType;
+        null !== $networkInfo && $self['networkInfo'] = $networkInfo;
+        null !== $originalNetworkInfo && $self['originalNetworkInfo'] = $originalNetworkInfo;
+        null !== $phoneNumber && $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -141,10 +141,10 @@ final class LookupLookupResponse implements BaseModel
      */
     public function withCallerName(string $callerName): self
     {
-        $obj = clone $this;
-        $obj['callerName'] = $callerName;
+        $self = clone $this;
+        $self['callerName'] = $callerName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -152,10 +152,10 @@ final class LookupLookupResponse implements BaseModel
      */
     public function withCountryCode(string $countryCode): self
     {
-        $obj = clone $this;
-        $obj['countryCode'] = $countryCode;
+        $self = clone $this;
+        $self['countryCode'] = $countryCode;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -167,10 +167,10 @@ final class LookupLookupResponse implements BaseModel
      */
     public function withFlags(array $flags): self
     {
-        $obj = clone $this;
-        $obj['flags'] = $flags;
+        $self = clone $this;
+        $self['flags'] = $flags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -199,10 +199,10 @@ final class LookupLookupResponse implements BaseModel
      */
     public function withLineType(LineType|string $lineType): self
     {
-        $obj = clone $this;
-        $obj['lineType'] = $lineType;
+        $self = clone $this;
+        $self['lineType'] = $lineType;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -214,10 +214,10 @@ final class LookupLookupResponse implements BaseModel
      */
     public function withNetworkInfo(NetworkInfo|array $networkInfo): self
     {
-        $obj = clone $this;
-        $obj['networkInfo'] = $networkInfo;
+        $self = clone $this;
+        $self['networkInfo'] = $networkInfo;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -230,10 +230,10 @@ final class LookupLookupResponse implements BaseModel
     public function withOriginalNetworkInfo(
         OriginalNetworkInfo|array $originalNetworkInfo
     ): self {
-        $obj = clone $this;
-        $obj['originalNetworkInfo'] = $originalNetworkInfo;
+        $self = clone $this;
+        $self['originalNetworkInfo'] = $originalNetworkInfo;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -241,9 +241,9 @@ final class LookupLookupResponse implements BaseModel
      */
     public function withPhoneNumber(string $phoneNumber): self
     {
-        $obj = clone $this;
-        $obj['phoneNumber'] = $phoneNumber;
+        $self = clone $this;
+        $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 }

@@ -111,15 +111,15 @@ final class WatchPredictParams implements BaseModel
         Metadata|array|null $metadata = null,
         Signals|array|null $signals = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['target'] = $target;
+        $self['target'] = $target;
 
-        null !== $dispatchID && $obj['dispatchID'] = $dispatchID;
-        null !== $metadata && $obj['metadata'] = $metadata;
-        null !== $signals && $obj['signals'] = $signals;
+        null !== $dispatchID && $self['dispatchID'] = $dispatchID;
+        null !== $metadata && $self['metadata'] = $metadata;
+        null !== $signals && $self['signals'] = $signals;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -129,10 +129,10 @@ final class WatchPredictParams implements BaseModel
      */
     public function withTarget(Target|array $target): self
     {
-        $obj = clone $this;
-        $obj['target'] = $target;
+        $self = clone $this;
+        $self['target'] = $target;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -140,10 +140,10 @@ final class WatchPredictParams implements BaseModel
      */
     public function withDispatchID(string $dispatchID): self
     {
-        $obj = clone $this;
-        $obj['dispatchID'] = $dispatchID;
+        $self = clone $this;
+        $self['dispatchID'] = $dispatchID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -153,10 +153,10 @@ final class WatchPredictParams implements BaseModel
      */
     public function withMetadata(Metadata|array $metadata): self
     {
-        $obj = clone $this;
-        $obj['metadata'] = $metadata;
+        $self = clone $this;
+        $self['metadata'] = $metadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -176,9 +176,9 @@ final class WatchPredictParams implements BaseModel
      */
     public function withSignals(Signals|array $signals): self
     {
-        $obj = clone $this;
-        $obj['signals'] = $signals;
+        $self = clone $this;
+        $self['signals'] = $signals;
 
-        return $obj;
+        return $self;
     }
 }

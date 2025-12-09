@@ -114,17 +114,17 @@ final class PhoneNumber implements BaseModel
         \DateTimeInterface $updatedAt,
         ?string $reason = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['configID'] = $configID;
-        $obj['phoneNumber'] = $phoneNumber;
-        $obj['source'] = $source;
-        $obj['state'] = $state;
-        $obj['updatedAt'] = $updatedAt;
+        $self['configID'] = $configID;
+        $self['phoneNumber'] = $phoneNumber;
+        $self['source'] = $source;
+        $self['state'] = $state;
+        $self['updatedAt'] = $updatedAt;
 
-        null !== $reason && $obj['reason'] = $reason;
+        null !== $reason && $self['reason'] = $reason;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -132,10 +132,10 @@ final class PhoneNumber implements BaseModel
      */
     public function withConfigID(string $configID): self
     {
-        $obj = clone $this;
-        $obj['configID'] = $configID;
+        $self = clone $this;
+        $self['configID'] = $configID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -143,10 +143,10 @@ final class PhoneNumber implements BaseModel
      */
     public function withPhoneNumber(string $phoneNumber): self
     {
-        $obj = clone $this;
-        $obj['phoneNumber'] = $phoneNumber;
+        $self = clone $this;
+        $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -160,10 +160,10 @@ final class PhoneNumber implements BaseModel
      */
     public function withSource(Source|string $source): self
     {
-        $obj = clone $this;
-        $obj['source'] = $source;
+        $self = clone $this;
+        $self['source'] = $source;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -175,10 +175,10 @@ final class PhoneNumber implements BaseModel
      */
     public function withState(State|string $state): self
     {
-        $obj = clone $this;
-        $obj['state'] = $state;
+        $self = clone $this;
+        $self['state'] = $state;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -186,10 +186,10 @@ final class PhoneNumber implements BaseModel
      */
     public function withUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $obj = clone $this;
-        $obj['updatedAt'] = $updatedAt;
+        $self = clone $this;
+        $self['updatedAt'] = $updatedAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -197,9 +197,9 @@ final class PhoneNumber implements BaseModel
      */
     public function withReason(string $reason): self
     {
-        $obj = clone $this;
-        $obj['reason'] = $reason;
+        $self = clone $this;
+        $self['reason'] = $reason;
 
-        return $obj;
+        return $self;
     }
 }

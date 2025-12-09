@@ -77,11 +77,11 @@ final class WatchSendFeedbacksParams implements BaseModel
      */
     public static function with(array $feedbacks): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['feedbacks'] = $feedbacks;
+        $self['feedbacks'] = $feedbacks;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -97,9 +97,9 @@ final class WatchSendFeedbacksParams implements BaseModel
      */
     public function withFeedbacks(array $feedbacks): self
     {
-        $obj = clone $this;
-        $obj['feedbacks'] = $feedbacks;
+        $self = clone $this;
+        $self['feedbacks'] = $feedbacks;
 
-        return $obj;
+        return $self;
     }
 }

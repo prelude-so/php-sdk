@@ -58,11 +58,11 @@ final class VerificationManagementSubmitSenderIDParams implements BaseModel
      */
     public static function with(string $senderID): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['senderID'] = $senderID;
+        $self['senderID'] = $senderID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -70,9 +70,9 @@ final class VerificationManagementSubmitSenderIDParams implements BaseModel
      */
     public function withSenderID(string $senderID): self
     {
-        $obj = clone $this;
-        $obj['senderID'] = $senderID;
+        $self = clone $this;
+        $self['senderID'] = $senderID;
 
-        return $obj;
+        return $self;
     }
 }

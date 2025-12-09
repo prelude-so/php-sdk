@@ -50,11 +50,11 @@ final class Silent implements BaseModel
      */
     public static function with(string $requestURL): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['requestURL'] = $requestURL;
+        $self['requestURL'] = $requestURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -62,9 +62,9 @@ final class Silent implements BaseModel
      */
     public function withRequestURL(string $requestURL): self
     {
-        $obj = clone $this;
-        $obj['requestURL'] = $requestURL;
+        $self = clone $this;
+        $self['requestURL'] = $requestURL;
 
-        return $obj;
+        return $self;
     }
 }

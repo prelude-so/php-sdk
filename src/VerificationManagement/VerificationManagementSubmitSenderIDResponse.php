@@ -76,14 +76,14 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel
         Status|string $status,
         ?string $reason = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['senderID'] = $senderID;
-        $obj['status'] = $status;
+        $self['senderID'] = $senderID;
+        $self['status'] = $status;
 
-        null !== $reason && $obj['reason'] = $reason;
+        null !== $reason && $self['reason'] = $reason;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -91,10 +91,10 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel
      */
     public function withSenderID(string $senderID): self
     {
-        $obj = clone $this;
-        $obj['senderID'] = $senderID;
+        $self = clone $this;
+        $self['senderID'] = $senderID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -107,10 +107,10 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel
      */
     public function withStatus(Status|string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -118,9 +118,9 @@ final class VerificationManagementSubmitSenderIDResponse implements BaseModel
      */
     public function withReason(string $reason): self
     {
-        $obj = clone $this;
-        $obj['reason'] = $reason;
+        $self = clone $this;
+        $self['reason'] = $reason;
 
-        return $obj;
+        return $self;
     }
 }

@@ -149,16 +149,16 @@ final class VerificationCreateParams implements BaseModel
         Options|array|null $options = null,
         Signals|array|null $signals = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['target'] = $target;
+        $self['target'] = $target;
 
-        null !== $dispatchID && $obj['dispatchID'] = $dispatchID;
-        null !== $metadata && $obj['metadata'] = $metadata;
-        null !== $options && $obj['options'] = $options;
-        null !== $signals && $obj['signals'] = $signals;
+        null !== $dispatchID && $self['dispatchID'] = $dispatchID;
+        null !== $metadata && $self['metadata'] = $metadata;
+        null !== $options && $self['options'] = $options;
+        null !== $signals && $self['signals'] = $signals;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -168,10 +168,10 @@ final class VerificationCreateParams implements BaseModel
      */
     public function withTarget(Target|array $target): self
     {
-        $obj = clone $this;
-        $obj['target'] = $target;
+        $self = clone $this;
+        $self['target'] = $target;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -179,10 +179,10 @@ final class VerificationCreateParams implements BaseModel
      */
     public function withDispatchID(string $dispatchID): self
     {
-        $obj = clone $this;
-        $obj['dispatchID'] = $dispatchID;
+        $self = clone $this;
+        $self['dispatchID'] = $dispatchID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -192,10 +192,10 @@ final class VerificationCreateParams implements BaseModel
      */
     public function withMetadata(Metadata|array $metadata): self
     {
-        $obj = clone $this;
-        $obj['metadata'] = $metadata;
+        $self = clone $this;
+        $self['metadata'] = $metadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -217,10 +217,10 @@ final class VerificationCreateParams implements BaseModel
      */
     public function withOptions(Options|array $options): self
     {
-        $obj = clone $this;
-        $obj['options'] = $options;
+        $self = clone $this;
+        $self['options'] = $options;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -240,9 +240,9 @@ final class VerificationCreateParams implements BaseModel
      */
     public function withSignals(Signals|array $signals): self
     {
-        $obj = clone $this;
-        $obj['signals'] = $signals;
+        $self = clone $this;
+        $self['signals'] = $signals;
 
-        return $obj;
+        return $self;
     }
 }

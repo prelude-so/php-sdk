@@ -72,13 +72,13 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel
      */
     public static function with(array $configs, ?string $nextCursor = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['configs'] = $configs;
+        $self['configs'] = $configs;
 
-        null !== $nextCursor && $obj['nextCursor'] = $nextCursor;
+        null !== $nextCursor && $self['nextCursor'] = $nextCursor;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -96,10 +96,10 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel
      */
     public function withConfigs(array $configs): self
     {
-        $obj = clone $this;
-        $obj['configs'] = $configs;
+        $self = clone $this;
+        $self['configs'] = $configs;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -107,9 +107,9 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel
      */
     public function withNextCursor(string $nextCursor): self
     {
-        $obj = clone $this;
-        $obj['nextCursor'] = $nextCursor;
+        $self = clone $this;
+        $self['nextCursor'] = $nextCursor;
 
-        return $obj;
+        return $self;
     }
 }

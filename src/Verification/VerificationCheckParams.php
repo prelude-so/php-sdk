@@ -66,12 +66,12 @@ final class VerificationCheckParams implements BaseModel
      */
     public static function with(string $code, Target|array $target): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['code'] = $code;
-        $obj['target'] = $target;
+        $self['code'] = $code;
+        $self['target'] = $target;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -79,10 +79,10 @@ final class VerificationCheckParams implements BaseModel
      */
     public function withCode(string $code): self
     {
-        $obj = clone $this;
-        $obj['code'] = $code;
+        $self = clone $this;
+        $self['code'] = $code;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -92,9 +92,9 @@ final class VerificationCheckParams implements BaseModel
      */
     public function withTarget(Target|array $target): self
     {
-        $obj = clone $this;
-        $obj['target'] = $target;
+        $self = clone $this;
+        $self['target'] = $target;
 
-        return $obj;
+        return $self;
     }
 }

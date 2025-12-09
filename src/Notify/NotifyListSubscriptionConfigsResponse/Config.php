@@ -126,18 +126,18 @@ final class Config implements BaseModel
         \DateTimeInterface $updatedAt,
         ?array $moPhoneNumbers = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['id'] = $id;
-        $obj['callbackURL'] = $callbackURL;
-        $obj['createdAt'] = $createdAt;
-        $obj['messages'] = $messages;
-        $obj['name'] = $name;
-        $obj['updatedAt'] = $updatedAt;
+        $self['id'] = $id;
+        $self['callbackURL'] = $callbackURL;
+        $self['createdAt'] = $createdAt;
+        $self['messages'] = $messages;
+        $self['name'] = $name;
+        $self['updatedAt'] = $updatedAt;
 
-        null !== $moPhoneNumbers && $obj['moPhoneNumbers'] = $moPhoneNumbers;
+        null !== $moPhoneNumbers && $self['moPhoneNumbers'] = $moPhoneNumbers;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -145,10 +145,10 @@ final class Config implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -156,10 +156,10 @@ final class Config implements BaseModel
      */
     public function withCallbackURL(string $callbackURL): self
     {
-        $obj = clone $this;
-        $obj['callbackURL'] = $callbackURL;
+        $self = clone $this;
+        $self['callbackURL'] = $callbackURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -167,10 +167,10 @@ final class Config implements BaseModel
      */
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $obj = clone $this;
-        $obj['createdAt'] = $createdAt;
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -184,10 +184,10 @@ final class Config implements BaseModel
      */
     public function withMessages(Messages|array $messages): self
     {
-        $obj = clone $this;
-        $obj['messages'] = $messages;
+        $self = clone $this;
+        $self['messages'] = $messages;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -195,10 +195,10 @@ final class Config implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -206,10 +206,10 @@ final class Config implements BaseModel
      */
     public function withUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $obj = clone $this;
-        $obj['updatedAt'] = $updatedAt;
+        $self = clone $this;
+        $self['updatedAt'] = $updatedAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -221,9 +221,9 @@ final class Config implements BaseModel
      */
     public function withMoPhoneNumbers(array $moPhoneNumbers): self
     {
-        $obj = clone $this;
-        $obj['moPhoneNumbers'] = $moPhoneNumbers;
+        $self = clone $this;
+        $self['moPhoneNumbers'] = $moPhoneNumbers;
 
-        return $obj;
+        return $self;
     }
 }

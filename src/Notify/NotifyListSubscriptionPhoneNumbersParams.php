@@ -64,13 +64,13 @@ final class NotifyListSubscriptionPhoneNumbersParams implements BaseModel
         ?int $limit = null,
         State|string|null $state = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $cursor && $obj['cursor'] = $cursor;
-        null !== $limit && $obj['limit'] = $limit;
-        null !== $state && $obj['state'] = $state;
+        null !== $cursor && $self['cursor'] = $cursor;
+        null !== $limit && $self['limit'] = $limit;
+        null !== $state && $self['state'] = $state;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -78,10 +78,10 @@ final class NotifyListSubscriptionPhoneNumbersParams implements BaseModel
      */
     public function withCursor(string $cursor): self
     {
-        $obj = clone $this;
-        $obj['cursor'] = $cursor;
+        $self = clone $this;
+        $self['cursor'] = $cursor;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -89,10 +89,10 @@ final class NotifyListSubscriptionPhoneNumbersParams implements BaseModel
      */
     public function withLimit(int $limit): self
     {
-        $obj = clone $this;
-        $obj['limit'] = $limit;
+        $self = clone $this;
+        $self['limit'] = $limit;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -102,9 +102,9 @@ final class NotifyListSubscriptionPhoneNumbersParams implements BaseModel
      */
     public function withState(State|string $state): self
     {
-        $obj = clone $this;
-        $obj['state'] = $state;
+        $self = clone $this;
+        $self['state'] = $state;
 
-        return $obj;
+        return $self;
     }
 }

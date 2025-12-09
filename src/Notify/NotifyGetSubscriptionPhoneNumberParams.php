@@ -53,18 +53,18 @@ final class NotifyGetSubscriptionPhoneNumberParams implements BaseModel
      */
     public static function with(string $configID): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['configID'] = $configID;
+        $self['configID'] = $configID;
 
-        return $obj;
+        return $self;
     }
 
     public function withConfigID(string $configID): self
     {
-        $obj = clone $this;
-        $obj['configID'] = $configID;
+        $self = clone $this;
+        $self['configID'] = $configID;
 
-        return $obj;
+        return $self;
     }
 }

@@ -70,13 +70,13 @@ final class WatchPredictResponse implements BaseModel
         Prediction|string $prediction,
         string $requestID
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['id'] = $id;
-        $obj['prediction'] = $prediction;
-        $obj['requestID'] = $requestID;
+        $self['id'] = $id;
+        $self['prediction'] = $prediction;
+        $self['requestID'] = $requestID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -84,10 +84,10 @@ final class WatchPredictResponse implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -97,10 +97,10 @@ final class WatchPredictResponse implements BaseModel
      */
     public function withPrediction(Prediction|string $prediction): self
     {
-        $obj = clone $this;
-        $obj['prediction'] = $prediction;
+        $self = clone $this;
+        $self['prediction'] = $prediction;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -108,9 +108,9 @@ final class WatchPredictResponse implements BaseModel
      */
     public function withRequestID(string $requestID): self
     {
-        $obj = clone $this;
-        $obj['requestID'] = $requestID;
+        $self = clone $this;
+        $self['requestID'] = $requestID;
 
-        return $obj;
+        return $self;
     }
 }

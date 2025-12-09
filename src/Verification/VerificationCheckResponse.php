@@ -80,15 +80,15 @@ final class VerificationCheckResponse implements BaseModel
         Metadata|array|null $metadata = null,
         ?string $requestID = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['status'] = $status;
+        $self['status'] = $status;
 
-        null !== $id && $obj['id'] = $id;
-        null !== $metadata && $obj['metadata'] = $metadata;
-        null !== $requestID && $obj['requestID'] = $requestID;
+        null !== $id && $self['id'] = $id;
+        null !== $metadata && $self['metadata'] = $metadata;
+        null !== $requestID && $self['requestID'] = $requestID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -98,10 +98,10 @@ final class VerificationCheckResponse implements BaseModel
      */
     public function withStatus(Status|string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -109,10 +109,10 @@ final class VerificationCheckResponse implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -122,17 +122,17 @@ final class VerificationCheckResponse implements BaseModel
      */
     public function withMetadata(Metadata|array $metadata): self
     {
-        $obj = clone $this;
-        $obj['metadata'] = $metadata;
+        $self = clone $this;
+        $self['metadata'] = $metadata;
 
-        return $obj;
+        return $self;
     }
 
     public function withRequestID(string $requestID): self
     {
-        $obj = clone $this;
-        $obj['requestID'] = $requestID;
+        $self = clone $this;
+        $self['requestID'] = $requestID;
 
-        return $obj;
+        return $self;
     }
 }

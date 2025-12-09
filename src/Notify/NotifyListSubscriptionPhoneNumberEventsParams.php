@@ -71,22 +71,22 @@ final class NotifyListSubscriptionPhoneNumberEventsParams implements BaseModel
         ?string $cursor = null,
         ?int $limit = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['configID'] = $configID;
+        $self['configID'] = $configID;
 
-        null !== $cursor && $obj['cursor'] = $cursor;
-        null !== $limit && $obj['limit'] = $limit;
+        null !== $cursor && $self['cursor'] = $cursor;
+        null !== $limit && $self['limit'] = $limit;
 
-        return $obj;
+        return $self;
     }
 
     public function withConfigID(string $configID): self
     {
-        $obj = clone $this;
-        $obj['configID'] = $configID;
+        $self = clone $this;
+        $self['configID'] = $configID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -94,10 +94,10 @@ final class NotifyListSubscriptionPhoneNumberEventsParams implements BaseModel
      */
     public function withCursor(string $cursor): self
     {
-        $obj = clone $this;
-        $obj['cursor'] = $cursor;
+        $self = clone $this;
+        $self['cursor'] = $cursor;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -105,9 +105,9 @@ final class NotifyListSubscriptionPhoneNumberEventsParams implements BaseModel
      */
     public function withLimit(int $limit): self
     {
-        $obj = clone $this;
-        $obj['limit'] = $limit;
+        $self = clone $this;
+        $self['limit'] = $limit;
 
-        return $obj;
+        return $self;
     }
 }

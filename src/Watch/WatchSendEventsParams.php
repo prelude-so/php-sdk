@@ -67,11 +67,11 @@ final class WatchSendEventsParams implements BaseModel
      */
     public static function with(array $events): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['events'] = $events;
+        $self['events'] = $events;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -83,9 +83,9 @@ final class WatchSendEventsParams implements BaseModel
      */
     public function withEvents(array $events): self
     {
-        $obj = clone $this;
-        $obj['events'] = $events;
+        $self = clone $this;
+        $self['events'] = $events;
 
-        return $obj;
+        return $self;
     }
 }
