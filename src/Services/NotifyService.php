@@ -5,21 +5,14 @@ declare(strict_types=1);
 namespace Prelude\Services;
 
 use Prelude\Client;
-use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\Notify\NotifyGetSubscriptionConfigResponse;
-use Prelude\Notify\NotifyGetSubscriptionPhoneNumberParams;
 use Prelude\Notify\NotifyGetSubscriptionPhoneNumberResponse;
-use Prelude\Notify\NotifyListSubscriptionConfigsParams;
 use Prelude\Notify\NotifyListSubscriptionConfigsResponse;
-use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsParams;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse;
-use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams\State;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse;
-use Prelude\Notify\NotifySendBatchParams;
 use Prelude\Notify\NotifySendBatchResponse;
-use Prelude\Notify\NotifySendParams;
 use Prelude\Notify\NotifySendParams\PreferredChannel;
 use Prelude\Notify\NotifySendResponse;
 use Prelude\RequestOptions;
@@ -28,14 +21,24 @@ use Prelude\ServiceContracts\NotifyContract;
 final class NotifyService implements NotifyContract
 {
     /**
+     * @api
+     */
+    public NotifyRawService $raw;
+
+    /**
      * @internal
      */
-    public function __construct(private Client $client) {}
+    public function __construct(private Client $client)
+    {
+        $this->raw = new NotifyRawService($client);
+    }
 
     /**
      * @api
      *
      * Retrieve a specific subscription management configuration by its ID.
+     *
+     * @param string $configID The subscription configuration ID
      *
      * @throws APIException
      */
@@ -43,13 +46,8 @@ final class NotifyService implements NotifyContract
         string $configID,
         ?RequestOptions $requestOptions = null
     ): NotifyGetSubscriptionConfigResponse {
-        /** @var BaseResponse<NotifyGetSubscriptionConfigResponse> */
-        $response = $this->client->request(
-            method: 'get',
-            path: ['v2/notify/management/subscriptions/%1$s', $configID],
-            options: $requestOptions,
-            convert: NotifyGetSubscriptionConfigResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->getSubscriptionConfig($configID, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -59,33 +57,20 @@ final class NotifyService implements NotifyContract
      *
      * Retrieve the current subscription status for a specific phone number within a subscription configuration.
      *
-     * @param array{configID: string}|NotifyGetSubscriptionPhoneNumberParams $params
+     * @param string $phoneNumber The phone number in E.164 format (e.g., +33612345678)
+     * @param string $configID The subscription configuration ID
      *
      * @throws APIException
      */
     public function getSubscriptionPhoneNumber(
         string $phoneNumber,
-        array|NotifyGetSubscriptionPhoneNumberParams $params,
+        string $configID,
         ?RequestOptions $requestOptions = null,
     ): NotifyGetSubscriptionPhoneNumberResponse {
-        [$parsed, $options] = NotifyGetSubscriptionPhoneNumberParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
-        $configID = $parsed['configID'];
-        unset($parsed['configID']);
+        $params = ['configID' => $configID];
 
-        /** @var BaseResponse<NotifyGetSubscriptionPhoneNumberResponse> */
-        $response = $this->client->request(
-            method: 'get',
-            path: [
-                'v2/notify/management/subscriptions/%1$s/phone_numbers/%2$s',
-                $configID,
-                $phoneNumber,
-            ],
-            options: $options,
-            convert: NotifyGetSubscriptionPhoneNumberResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->getSubscriptionPhoneNumber($phoneNumber, params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -97,29 +82,22 @@ final class NotifyService implements NotifyContract
      *
      * Each configuration represents a subscription management setup with phone numbers for receiving opt-out/opt-in requests and a callback URL for webhook events.
      *
-     * @param array{
-     *   cursor?: string, limit?: int
-     * }|NotifyListSubscriptionConfigsParams $params
+     * @param string $cursor Pagination cursor from the previous response
+     * @param int $limit Maximum number of configurations to return per page
      *
      * @throws APIException
      */
     public function listSubscriptionConfigs(
-        array|NotifyListSubscriptionConfigsParams $params,
+        ?string $cursor = null,
+        int $limit = 50,
         ?RequestOptions $requestOptions = null,
     ): NotifyListSubscriptionConfigsResponse {
-        [$parsed, $options] = NotifyListSubscriptionConfigsParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = ['cursor' => $cursor, 'limit' => $limit];
+        // @phpstan-ignore-next-line function.impossibleType
+        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
 
-        /** @var BaseResponse<NotifyListSubscriptionConfigsResponse> */
-        $response = $this->client->request(
-            method: 'get',
-            path: 'v2/notify/management/subscriptions',
-            query: $parsed,
-            options: $options,
-            convert: NotifyListSubscriptionConfigsResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->listSubscriptionConfigs(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -131,36 +109,26 @@ final class NotifyService implements NotifyContract
      *
      * Events are ordered by timestamp in descending order (most recent first).
      *
-     * @param array{
-     *   configID: string, cursor?: string, limit?: int
-     * }|NotifyListSubscriptionPhoneNumberEventsParams $params
+     * @param string $phoneNumber Path param: The phone number in E.164 format (e.g., +33612345678)
+     * @param string $configID Path param: The subscription configuration ID
+     * @param string $cursor Query param: Pagination cursor from the previous response
+     * @param int $limit Query param: Maximum number of events to return per page
      *
      * @throws APIException
      */
     public function listSubscriptionPhoneNumberEvents(
         string $phoneNumber,
-        array|NotifyListSubscriptionPhoneNumberEventsParams $params,
+        string $configID,
+        ?string $cursor = null,
+        int $limit = 50,
         ?RequestOptions $requestOptions = null,
     ): NotifyListSubscriptionPhoneNumberEventsResponse {
-        [$parsed, $options] = NotifyListSubscriptionPhoneNumberEventsParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
-        $configID = $parsed['configID'];
-        unset($parsed['configID']);
+        $params = ['configID' => $configID, 'cursor' => $cursor, 'limit' => $limit];
+        // @phpstan-ignore-next-line function.impossibleType
+        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
 
-        /** @var BaseResponse<NotifyListSubscriptionPhoneNumberEventsResponse> */
-        $response = $this->client->request(
-            method: 'get',
-            path: [
-                'v2/notify/management/subscriptions/%1$s/phone_numbers/%2$s/events',
-                $configID,
-                $phoneNumber,
-            ],
-            query: $parsed,
-            options: $options,
-            convert: NotifyListSubscriptionPhoneNumberEventsResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->listSubscriptionPhoneNumberEvents($phoneNumber, params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -172,32 +140,26 @@ final class NotifyService implements NotifyContract
      *
      * You can optionally filter by subscription state (SUB or UNSUB).
      *
-     * @param array{
-     *   cursor?: string, limit?: int, state?: 'SUB'|'UNSUB'|State
-     * }|NotifyListSubscriptionPhoneNumbersParams $params
+     * @param string $configID The subscription configuration ID
+     * @param string $cursor Pagination cursor from the previous response
+     * @param int $limit Maximum number of phone numbers to return per page
+     * @param 'SUB'|'UNSUB'|State $state Filter by subscription state
      *
      * @throws APIException
      */
     public function listSubscriptionPhoneNumbers(
         string $configID,
-        array|NotifyListSubscriptionPhoneNumbersParams $params,
+        ?string $cursor = null,
+        int $limit = 50,
+        string|State|null $state = null,
         ?RequestOptions $requestOptions = null,
     ): NotifyListSubscriptionPhoneNumbersResponse {
-        [$parsed, $options] = NotifyListSubscriptionPhoneNumbersParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = ['cursor' => $cursor, 'limit' => $limit, 'state' => $state];
+        // @phpstan-ignore-next-line function.impossibleType
+        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
 
-        /** @var BaseResponse<NotifyListSubscriptionPhoneNumbersResponse> */
-        $response = $this->client->request(
-            method: 'get',
-            path: [
-                'v2/notify/management/subscriptions/%1$s/phone_numbers', $configID,
-            ],
-            query: $parsed,
-            options: $options,
-            convert: NotifyListSubscriptionPhoneNumbersResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->listSubscriptionPhoneNumbers($configID, params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -207,38 +169,49 @@ final class NotifyService implements NotifyContract
      *
      * Send transactional and marketing messages to your users via SMS and WhatsApp with automatic compliance enforcement.
      *
-     * @param array{
-     *   templateID: string,
-     *   to: string,
-     *   callbackURL?: string,
-     *   correlationID?: string,
-     *   expiresAt?: string|\DateTimeInterface,
-     *   from?: string,
-     *   locale?: string,
-     *   preferredChannel?: 'sms'|'whatsapp'|PreferredChannel,
-     *   scheduleAt?: string|\DateTimeInterface,
-     *   variables?: array<string,string>,
-     * }|NotifySendParams $params
+     * @param string $templateID the template identifier configured by your Customer Success team
+     * @param string $to The recipient's phone number in E.164 format.
+     * @param string $callbackURL the URL where webhooks will be sent for message delivery events
+     * @param string $correlationID A user-defined identifier to correlate this message with your internal systems. It is returned in the response and any webhook events that refer to this message.
+     * @param string|\DateTimeInterface $expiresAt The message expiration date in RFC3339 format. The message will not be sent if this time is reached.
+     * @param string $from The Sender ID. Must be approved for your account.
+     * @param string $locale A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, the default set on the template will be used.
+     * @param 'sms'|'whatsapp'|PreferredChannel $preferredChannel The preferred channel to be used in priority for message delivery. If the channel is unavailable, the system will fallback to other available channels.
+     * @param string|\DateTimeInterface $scheduleAt Schedule the message for future delivery in RFC3339 format. Marketing messages can be scheduled up to 90 days in advance and will be automatically adjusted for compliance with local time window restrictions.
+     * @param array<string,string> $variables the variables to be replaced in the template
      *
      * @throws APIException
      */
     public function send(
-        array|NotifySendParams $params,
-        ?RequestOptions $requestOptions = null
+        string $templateID,
+        string $to,
+        ?string $callbackURL = null,
+        ?string $correlationID = null,
+        string|\DateTimeInterface|null $expiresAt = null,
+        ?string $from = null,
+        ?string $locale = null,
+        string|PreferredChannel|null $preferredChannel = null,
+        string|\DateTimeInterface|null $scheduleAt = null,
+        ?array $variables = null,
+        ?RequestOptions $requestOptions = null,
     ): NotifySendResponse {
-        [$parsed, $options] = NotifySendParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = [
+            'templateID' => $templateID,
+            'to' => $to,
+            'callbackURL' => $callbackURL,
+            'correlationID' => $correlationID,
+            'expiresAt' => $expiresAt,
+            'from' => $from,
+            'locale' => $locale,
+            'preferredChannel' => $preferredChannel,
+            'scheduleAt' => $scheduleAt,
+            'variables' => $variables,
+        ];
+        // @phpstan-ignore-next-line function.impossibleType
+        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
 
-        /** @var BaseResponse<NotifySendResponse> */
-        $response = $this->client->request(
-            method: 'post',
-            path: 'v2/notify',
-            body: (object) $parsed,
-            options: $options,
-            convert: NotifySendResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->send(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -248,38 +221,49 @@ final class NotifyService implements NotifyContract
      *
      * Send the same message to multiple recipients in a single request.
      *
-     * @param array{
-     *   templateID: string,
-     *   to: list<string>,
-     *   callbackURL?: string,
-     *   correlationID?: string,
-     *   expiresAt?: string|\DateTimeInterface,
-     *   from?: string,
-     *   locale?: string,
-     *   preferredChannel?: 'sms'|'whatsapp'|NotifySendBatchParams\PreferredChannel,
-     *   scheduleAt?: string|\DateTimeInterface,
-     *   variables?: array<string,string>,
-     * }|NotifySendBatchParams $params
+     * @param string $templateID the template identifier configured by your Customer Success team
+     * @param list<string> $to The list of recipients' phone numbers in E.164 format.
+     * @param string $callbackURL the URL where webhooks will be sent for delivery events
+     * @param string $correlationID a user-defined identifier to correlate this request with your internal systems
+     * @param string|\DateTimeInterface $expiresAt The message expiration date in RFC3339 format. Messages will not be sent after this time.
+     * @param string $from The Sender ID. Must be approved for your account.
+     * @param string $locale a BCP-47 formatted locale string
+     * @param 'sms'|'whatsapp'|\Prelude\Notify\NotifySendBatchParams\PreferredChannel $preferredChannel Preferred channel for delivery. If unavailable, automatic fallback applies.
+     * @param string|\DateTimeInterface $scheduleAt Schedule delivery in RFC3339 format. Marketing sends may be adjusted to comply with local time windows.
+     * @param array<string,string> $variables the variables to be replaced in the template
      *
      * @throws APIException
      */
     public function sendBatch(
-        array|NotifySendBatchParams $params,
-        ?RequestOptions $requestOptions = null
+        string $templateID,
+        array $to,
+        ?string $callbackURL = null,
+        ?string $correlationID = null,
+        string|\DateTimeInterface|null $expiresAt = null,
+        ?string $from = null,
+        ?string $locale = null,
+        string|\Prelude\Notify\NotifySendBatchParams\PreferredChannel|null $preferredChannel = null,
+        string|\DateTimeInterface|null $scheduleAt = null,
+        ?array $variables = null,
+        ?RequestOptions $requestOptions = null,
     ): NotifySendBatchResponse {
-        [$parsed, $options] = NotifySendBatchParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = [
+            'templateID' => $templateID,
+            'to' => $to,
+            'callbackURL' => $callbackURL,
+            'correlationID' => $correlationID,
+            'expiresAt' => $expiresAt,
+            'from' => $from,
+            'locale' => $locale,
+            'preferredChannel' => $preferredChannel,
+            'scheduleAt' => $scheduleAt,
+            'variables' => $variables,
+        ];
+        // @phpstan-ignore-next-line function.impossibleType
+        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
 
-        /** @var BaseResponse<NotifySendBatchResponse> */
-        $response = $this->client->request(
-            method: 'post',
-            path: 'v2/notify/batch',
-            body: (object) $parsed,
-            options: $options,
-            convert: NotifySendBatchResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->sendBatch(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }

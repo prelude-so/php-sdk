@@ -29,7 +29,7 @@ final class LookupTest extends TestCase
     #[Test]
     public function testLookup(): void
     {
-        $result = $this->client->lookup->lookup('+12065550100', []);
+        $result = $this->client->lookup->lookup('+12065550100');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(LookupLookupResponse::class, $result);

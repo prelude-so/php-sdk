@@ -4,75 +4,89 @@ declare(strict_types=1);
 
 namespace Prelude\ServiceContracts;
 
+use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
+use Prelude\VerificationManagement\VerificationManagementDeletePhoneNumberParams;
 use Prelude\VerificationManagement\VerificationManagementDeletePhoneNumberParams\Action;
 use Prelude\VerificationManagement\VerificationManagementDeletePhoneNumberResponse;
 use Prelude\VerificationManagement\VerificationManagementListPhoneNumbersResponse;
 use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse;
+use Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams;
 use Prelude\VerificationManagement\VerificationManagementSetPhoneNumberResponse;
+use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDParams;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse;
 
-interface VerificationManagementContract
+interface VerificationManagementRawContract
 {
     /**
      * @api
      *
      * @param Action|value-of<Action> $action The action type - either "allow" or "block"
-     * @param string $phoneNumber An E.164 formatted phone number to remove from the list.
+     * @param array<mixed>|VerificationManagementDeletePhoneNumberParams $params
+     *
+     * @return BaseResponse<VerificationManagementDeletePhoneNumberResponse>
      *
      * @throws APIException
      */
     public function deletePhoneNumber(
         Action|string $action,
-        string $phoneNumber,
+        array|VerificationManagementDeletePhoneNumberParams $params,
         ?RequestOptions $requestOptions = null,
-    ): VerificationManagementDeletePhoneNumberResponse;
+    ): BaseResponse;
 
     /**
      * @api
      *
      * @param \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action|value-of<\Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action> $action The action type - either "allow" or "block"
      *
+     * @return BaseResponse<VerificationManagementListPhoneNumbersResponse>
+     *
      * @throws APIException
      */
     public function listPhoneNumbers(
         \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action|string $action,
         ?RequestOptions $requestOptions = null,
-    ): VerificationManagementListPhoneNumbersResponse;
+    ): BaseResponse;
 
     /**
      * @api
+     *
+     * @return BaseResponse<VerificationManagementListSenderIDsResponse>
      *
      * @throws APIException
      */
     public function listSenderIDs(
         ?RequestOptions $requestOptions = null
-    ): VerificationManagementListSenderIDsResponse;
+    ): BaseResponse;
 
     /**
      * @api
      *
-     * @param \Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action|value-of<\Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action> $action The action type - either "allow" or "block"
-     * @param string $phoneNumber An E.164 formatted phone number to add to the list.
+     * @param VerificationManagementSetPhoneNumberParams\Action|value-of<VerificationManagementSetPhoneNumberParams\Action> $action The action type - either "allow" or "block"
+     * @param array<mixed>|VerificationManagementSetPhoneNumberParams $params
+     *
+     * @return BaseResponse<VerificationManagementSetPhoneNumberResponse>
      *
      * @throws APIException
      */
     public function setPhoneNumber(
-        \Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action|string $action,
-        string $phoneNumber,
+        VerificationManagementSetPhoneNumberParams\Action|string $action,
+        array|VerificationManagementSetPhoneNumberParams $params,
         ?RequestOptions $requestOptions = null,
-    ): VerificationManagementSetPhoneNumberResponse;
+    ): BaseResponse;
 
     /**
      * @api
      *
-     * @param string $senderID the sender ID to add
+     * @param array<mixed>|VerificationManagementSubmitSenderIDParams $params
+     *
+     * @return BaseResponse<VerificationManagementSubmitSenderIDResponse>
      *
      * @throws APIException
      */
     public function submitSenderID(
-        string $senderID,
-        ?RequestOptions $requestOptions = null
-    ): VerificationManagementSubmitSenderIDResponse;
+        array|VerificationManagementSubmitSenderIDParams $params,
+        ?RequestOptions $requestOptions = null,
+    ): BaseResponse;
 }

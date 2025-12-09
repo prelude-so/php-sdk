@@ -34,10 +34,10 @@ final class TransactionalTest extends TestCase
             $this->markTestSkipped('Prism doesn\'t support callbacks yet');
         }
 
-        $result = $this->client->transactional->send([
-            'templateID' => 'template_01hynf45qvevj844m9az2x2f3c',
-            'to' => '+30123456789',
-        ]);
+        $result = $this->client->transactional->send(
+            templateID: 'template_01hynf45qvevj844m9az2x2f3c',
+            to: '+30123456789'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(TransactionalSendResponse::class, $result);
@@ -50,17 +50,17 @@ final class TransactionalTest extends TestCase
             $this->markTestSkipped('Prism doesn\'t support callbacks yet');
         }
 
-        $result = $this->client->transactional->send([
-            'templateID' => 'template_01hynf45qvevj844m9az2x2f3c',
-            'to' => '+30123456789',
-            'callbackURL' => 'callback_url',
-            'correlationID' => 'correlation_id',
-            'expiresAt' => 'expires_at',
-            'from' => 'from',
-            'locale' => 'el-GR',
-            'preferredChannel' => 'whatsapp',
-            'variables' => ['foo' => 'bar'],
-        ]);
+        $result = $this->client->transactional->send(
+            templateID: 'template_01hynf45qvevj844m9az2x2f3c',
+            to: '+30123456789',
+            callbackURL: 'callback_url',
+            correlationID: 'correlation_id',
+            expiresAt: 'expires_at',
+            from: 'from',
+            locale: 'el-GR',
+            preferredChannel: 'whatsapp',
+            variables: ['foo' => 'bar'],
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(TransactionalSendResponse::class, $result);

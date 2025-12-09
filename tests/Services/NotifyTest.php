@@ -50,7 +50,7 @@ final class NotifyTest extends TestCase
     {
         $result = $this->client->notify->getSubscriptionPhoneNumber(
             'phone_number',
-            ['configID' => 'config_id']
+            configID: 'config_id'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -65,7 +65,7 @@ final class NotifyTest extends TestCase
     {
         $result = $this->client->notify->getSubscriptionPhoneNumber(
             'phone_number',
-            ['configID' => 'config_id']
+            configID: 'config_id'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -78,7 +78,7 @@ final class NotifyTest extends TestCase
     #[Test]
     public function testListSubscriptionConfigs(): void
     {
-        $result = $this->client->notify->listSubscriptionConfigs([]);
+        $result = $this->client->notify->listSubscriptionConfigs();
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(
@@ -92,7 +92,7 @@ final class NotifyTest extends TestCase
     {
         $result = $this->client->notify->listSubscriptionPhoneNumberEvents(
             'phone_number',
-            ['configID' => 'config_id']
+            configID: 'config_id'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -107,7 +107,9 @@ final class NotifyTest extends TestCase
     {
         $result = $this->client->notify->listSubscriptionPhoneNumberEvents(
             'phone_number',
-            ['configID' => 'config_id', 'cursor' => 'cursor', 'limit' => 1],
+            configID: 'config_id',
+            cursor: 'cursor',
+            limit: 1
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -120,10 +122,7 @@ final class NotifyTest extends TestCase
     #[Test]
     public function testListSubscriptionPhoneNumbers(): void
     {
-        $result = $this->client->notify->listSubscriptionPhoneNumbers(
-            'config_id',
-            []
-        );
+        $result = $this->client->notify->listSubscriptionPhoneNumbers('config_id');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(
@@ -139,10 +138,10 @@ final class NotifyTest extends TestCase
             $this->markTestSkipped('Prism doesn\'t support callbacks yet');
         }
 
-        $result = $this->client->notify->send([
-            'templateID' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
-            'to' => '+33612345678',
-        ]);
+        $result = $this->client->notify->send(
+            templateID: 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
+            to: '+33612345678'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(NotifySendResponse::class, $result);
@@ -155,18 +154,18 @@ final class NotifyTest extends TestCase
             $this->markTestSkipped('Prism doesn\'t support callbacks yet');
         }
 
-        $result = $this->client->notify->send([
-            'templateID' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
-            'to' => '+33612345678',
-            'callbackURL' => 'https://your-app.com/webhooks/notify',
-            'correlationID' => 'order-12345',
-            'expiresAt' => new \DateTimeImmutable('2025-12-25T18:00:00Z'),
-            'from' => 'from',
-            'locale' => 'el-GR',
-            'preferredChannel' => 'whatsapp',
-            'scheduleAt' => new \DateTimeImmutable('2025-12-25T10:00:00Z'),
-            'variables' => ['order_id' => '12345', 'amount' => '$49.99'],
-        ]);
+        $result = $this->client->notify->send(
+            templateID: 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
+            to: '+33612345678',
+            callbackURL: 'https://your-app.com/webhooks/notify',
+            correlationID: 'order-12345',
+            expiresAt: new \DateTimeImmutable('2025-12-25T18:00:00Z'),
+            from: 'from',
+            locale: 'el-GR',
+            preferredChannel: 'whatsapp',
+            scheduleAt: new \DateTimeImmutable('2025-12-25T10:00:00Z'),
+            variables: ['order_id' => '12345', 'amount' => '$49.99'],
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(NotifySendResponse::class, $result);
@@ -175,10 +174,10 @@ final class NotifyTest extends TestCase
     #[Test]
     public function testSendBatch(): void
     {
-        $result = $this->client->notify->sendBatch([
-            'templateID' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
-            'to' => ['+33612345678', '+15551234567'],
-        ]);
+        $result = $this->client->notify->sendBatch(
+            templateID: 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
+            to: ['+33612345678', '+15551234567'],
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(NotifySendBatchResponse::class, $result);
@@ -187,18 +186,18 @@ final class NotifyTest extends TestCase
     #[Test]
     public function testSendBatchWithOptionalParams(): void
     {
-        $result = $this->client->notify->sendBatch([
-            'templateID' => 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
-            'to' => ['+33612345678', '+15551234567'],
-            'callbackURL' => 'https://your-app.com/webhooks/notify',
-            'correlationID' => 'campaign-12345',
-            'expiresAt' => new \DateTimeImmutable('2025-12-25T18:00:00Z'),
-            'from' => 'from',
-            'locale' => 'el-GR',
-            'preferredChannel' => 'whatsapp',
-            'scheduleAt' => new \DateTimeImmutable('2025-12-25T10:00:00Z'),
-            'variables' => ['order_id' => '12345', 'amount' => '$49.99'],
-        ]);
+        $result = $this->client->notify->sendBatch(
+            templateID: 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
+            to: ['+33612345678', '+15551234567'],
+            callbackURL: 'https://your-app.com/webhooks/notify',
+            correlationID: 'campaign-12345',
+            expiresAt: new \DateTimeImmutable('2025-12-25T18:00:00Z'),
+            from: 'from',
+            locale: 'el-GR',
+            preferredChannel: 'whatsapp',
+            scheduleAt: new \DateTimeImmutable('2025-12-25T10:00:00Z'),
+            variables: ['order_id' => '12345', 'amount' => '$49.99'],
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(NotifySendBatchResponse::class, $result);
