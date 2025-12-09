@@ -138,21 +138,21 @@ final class NotifySendParams implements BaseModel
         ?\DateTimeInterface $scheduleAt = null,
         ?array $variables = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['templateID'] = $templateID;
-        $obj['to'] = $to;
+        $self['templateID'] = $templateID;
+        $self['to'] = $to;
 
-        null !== $callbackURL && $obj['callbackURL'] = $callbackURL;
-        null !== $correlationID && $obj['correlationID'] = $correlationID;
-        null !== $expiresAt && $obj['expiresAt'] = $expiresAt;
-        null !== $from && $obj['from'] = $from;
-        null !== $locale && $obj['locale'] = $locale;
-        null !== $preferredChannel && $obj['preferredChannel'] = $preferredChannel;
-        null !== $scheduleAt && $obj['scheduleAt'] = $scheduleAt;
-        null !== $variables && $obj['variables'] = $variables;
+        null !== $callbackURL && $self['callbackURL'] = $callbackURL;
+        null !== $correlationID && $self['correlationID'] = $correlationID;
+        null !== $expiresAt && $self['expiresAt'] = $expiresAt;
+        null !== $from && $self['from'] = $from;
+        null !== $locale && $self['locale'] = $locale;
+        null !== $preferredChannel && $self['preferredChannel'] = $preferredChannel;
+        null !== $scheduleAt && $self['scheduleAt'] = $scheduleAt;
+        null !== $variables && $self['variables'] = $variables;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -160,10 +160,10 @@ final class NotifySendParams implements BaseModel
      */
     public function withTemplateID(string $templateID): self
     {
-        $obj = clone $this;
-        $obj['templateID'] = $templateID;
+        $self = clone $this;
+        $self['templateID'] = $templateID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -171,10 +171,10 @@ final class NotifySendParams implements BaseModel
      */
     public function withTo(string $to): self
     {
-        $obj = clone $this;
-        $obj['to'] = $to;
+        $self = clone $this;
+        $self['to'] = $to;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -182,10 +182,10 @@ final class NotifySendParams implements BaseModel
      */
     public function withCallbackURL(string $callbackURL): self
     {
-        $obj = clone $this;
-        $obj['callbackURL'] = $callbackURL;
+        $self = clone $this;
+        $self['callbackURL'] = $callbackURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -193,10 +193,10 @@ final class NotifySendParams implements BaseModel
      */
     public function withCorrelationID(string $correlationID): self
     {
-        $obj = clone $this;
-        $obj['correlationID'] = $correlationID;
+        $self = clone $this;
+        $self['correlationID'] = $correlationID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -204,10 +204,10 @@ final class NotifySendParams implements BaseModel
      */
     public function withExpiresAt(\DateTimeInterface $expiresAt): self
     {
-        $obj = clone $this;
-        $obj['expiresAt'] = $expiresAt;
+        $self = clone $this;
+        $self['expiresAt'] = $expiresAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -215,10 +215,10 @@ final class NotifySendParams implements BaseModel
      */
     public function withFrom(string $from): self
     {
-        $obj = clone $this;
-        $obj['from'] = $from;
+        $self = clone $this;
+        $self['from'] = $from;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -226,10 +226,10 @@ final class NotifySendParams implements BaseModel
      */
     public function withLocale(string $locale): self
     {
-        $obj = clone $this;
-        $obj['locale'] = $locale;
+        $self = clone $this;
+        $self['locale'] = $locale;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -240,10 +240,10 @@ final class NotifySendParams implements BaseModel
     public function withPreferredChannel(
         PreferredChannel|string $preferredChannel
     ): self {
-        $obj = clone $this;
-        $obj['preferredChannel'] = $preferredChannel;
+        $self = clone $this;
+        $self['preferredChannel'] = $preferredChannel;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -251,10 +251,10 @@ final class NotifySendParams implements BaseModel
      */
     public function withScheduleAt(\DateTimeInterface $scheduleAt): self
     {
-        $obj = clone $this;
-        $obj['scheduleAt'] = $scheduleAt;
+        $self = clone $this;
+        $self['scheduleAt'] = $scheduleAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -264,9 +264,9 @@ final class NotifySendParams implements BaseModel
      */
     public function withVariables(array $variables): self
     {
-        $obj = clone $this;
-        $obj['variables'] = $variables;
+        $self = clone $this;
+        $self['variables'] = $variables;
 
-        return $obj;
+        return $self;
     }
 }

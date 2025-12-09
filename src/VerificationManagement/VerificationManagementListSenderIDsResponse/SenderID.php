@@ -52,12 +52,12 @@ final class SenderID implements BaseModel
         ?string $senderID = null,
         Status|string|null $status = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $senderID && $obj['senderID'] = $senderID;
-        null !== $status && $obj['status'] = $status;
+        null !== $senderID && $self['senderID'] = $senderID;
+        null !== $status && $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -65,10 +65,10 @@ final class SenderID implements BaseModel
      */
     public function withSenderID(string $senderID): self
     {
-        $obj = clone $this;
-        $obj['senderID'] = $senderID;
+        $self = clone $this;
+        $self['senderID'] = $senderID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -81,9 +81,9 @@ final class SenderID implements BaseModel
      */
     public function withStatus(Status|string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 }

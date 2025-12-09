@@ -62,12 +62,12 @@ final class AppRealm implements BaseModel
      */
     public static function with(Platform|string $platform, string $value): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['platform'] = $platform;
-        $obj['value'] = $value;
+        $self['platform'] = $platform;
+        $self['value'] = $value;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -77,10 +77,10 @@ final class AppRealm implements BaseModel
      */
     public function withPlatform(Platform|string $platform): self
     {
-        $obj = clone $this;
-        $obj['platform'] = $platform;
+        $self = clone $this;
+        $self['platform'] = $platform;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -89,9 +89,9 @@ final class AppRealm implements BaseModel
      */
     public function withValue(string $value): self
     {
-        $obj = clone $this;
-        $obj['value'] = $value;
+        $self = clone $this;
+        $self['value'] = $value;
 
-        return $obj;
+        return $self;
     }
 }

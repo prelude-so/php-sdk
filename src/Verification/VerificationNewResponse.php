@@ -134,19 +134,19 @@ final class VerificationNewResponse implements BaseModel
         ?string $requestID = null,
         Silent|array|null $silent = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['id'] = $id;
-        $obj['method'] = $method;
-        $obj['status'] = $status;
+        $self['id'] = $id;
+        $self['method'] = $method;
+        $self['status'] = $status;
 
-        null !== $channels && $obj['channels'] = $channels;
-        null !== $metadata && $obj['metadata'] = $metadata;
-        null !== $reason && $obj['reason'] = $reason;
-        null !== $requestID && $obj['requestID'] = $requestID;
-        null !== $silent && $obj['silent'] = $silent;
+        null !== $channels && $self['channels'] = $channels;
+        null !== $metadata && $self['metadata'] = $metadata;
+        null !== $reason && $self['reason'] = $reason;
+        null !== $requestID && $self['requestID'] = $requestID;
+        null !== $silent && $self['silent'] = $silent;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -154,10 +154,10 @@ final class VerificationNewResponse implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -167,10 +167,10 @@ final class VerificationNewResponse implements BaseModel
      */
     public function withMethod(Method|string $method): self
     {
-        $obj = clone $this;
-        $obj['method'] = $method;
+        $self = clone $this;
+        $self['method'] = $method;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -180,10 +180,10 @@ final class VerificationNewResponse implements BaseModel
      */
     public function withStatus(Status|string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -193,10 +193,10 @@ final class VerificationNewResponse implements BaseModel
      */
     public function withChannels(array $channels): self
     {
-        $obj = clone $this;
-        $obj['channels'] = $channels;
+        $self = clone $this;
+        $self['channels'] = $channels;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -206,10 +206,10 @@ final class VerificationNewResponse implements BaseModel
      */
     public function withMetadata(Metadata|array $metadata): self
     {
-        $obj = clone $this;
-        $obj['metadata'] = $metadata;
+        $self = clone $this;
+        $self['metadata'] = $metadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -227,18 +227,18 @@ final class VerificationNewResponse implements BaseModel
      */
     public function withReason(Reason|string $reason): self
     {
-        $obj = clone $this;
-        $obj['reason'] = $reason;
+        $self = clone $this;
+        $self['reason'] = $reason;
 
-        return $obj;
+        return $self;
     }
 
     public function withRequestID(string $requestID): self
     {
-        $obj = clone $this;
-        $obj['requestID'] = $requestID;
+        $self = clone $this;
+        $self['requestID'] = $requestID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -248,9 +248,9 @@ final class VerificationNewResponse implements BaseModel
      */
     public function withSilent(Silent|array $silent): self
     {
-        $obj = clone $this;
-        $obj['silent'] = $silent;
+        $self = clone $this;
+        $self['silent'] = $silent;
 
-        return $obj;
+        return $self;
     }
 }

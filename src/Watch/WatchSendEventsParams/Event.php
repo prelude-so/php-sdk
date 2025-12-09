@@ -73,13 +73,13 @@ final class Event implements BaseModel
         string $label,
         Target|array $target
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['confidence'] = $confidence;
-        $obj['label'] = $label;
-        $obj['target'] = $target;
+        $self['confidence'] = $confidence;
+        $self['label'] = $label;
+        $self['target'] = $target;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -89,10 +89,10 @@ final class Event implements BaseModel
      */
     public function withConfidence(Confidence|string $confidence): self
     {
-        $obj = clone $this;
-        $obj['confidence'] = $confidence;
+        $self = clone $this;
+        $self['confidence'] = $confidence;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -100,10 +100,10 @@ final class Event implements BaseModel
      */
     public function withLabel(string $label): self
     {
-        $obj = clone $this;
-        $obj['label'] = $label;
+        $self = clone $this;
+        $self['label'] = $label;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -113,9 +113,9 @@ final class Event implements BaseModel
      */
     public function withTarget(Target|array $target): self
     {
-        $obj = clone $this;
-        $obj['target'] = $target;
+        $self = clone $this;
+        $self['target'] = $target;
 
-        return $obj;
+        return $self;
     }
 }

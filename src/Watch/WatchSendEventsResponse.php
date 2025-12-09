@@ -61,12 +61,12 @@ final class WatchSendEventsResponse implements BaseModel
      */
     public static function with(string $requestID, Status|string $status): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['requestID'] = $requestID;
-        $obj['status'] = $status;
+        $self['requestID'] = $requestID;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -74,10 +74,10 @@ final class WatchSendEventsResponse implements BaseModel
      */
     public function withRequestID(string $requestID): self
     {
-        $obj = clone $this;
-        $obj['requestID'] = $requestID;
+        $self = clone $this;
+        $self['requestID'] = $requestID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -87,9 +87,9 @@ final class WatchSendEventsResponse implements BaseModel
      */
     public function withStatus(Status|string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 }

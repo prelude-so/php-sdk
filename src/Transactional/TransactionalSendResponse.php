@@ -133,20 +133,20 @@ final class TransactionalSendResponse implements BaseModel
         ?string $correlationID = null,
         ?string $from = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['id'] = $id;
-        $obj['createdAt'] = $createdAt;
-        $obj['expiresAt'] = $expiresAt;
-        $obj['templateID'] = $templateID;
-        $obj['to'] = $to;
-        $obj['variables'] = $variables;
+        $self['id'] = $id;
+        $self['createdAt'] = $createdAt;
+        $self['expiresAt'] = $expiresAt;
+        $self['templateID'] = $templateID;
+        $self['to'] = $to;
+        $self['variables'] = $variables;
 
-        null !== $callbackURL && $obj['callbackURL'] = $callbackURL;
-        null !== $correlationID && $obj['correlationID'] = $correlationID;
-        null !== $from && $obj['from'] = $from;
+        null !== $callbackURL && $self['callbackURL'] = $callbackURL;
+        null !== $correlationID && $self['correlationID'] = $correlationID;
+        null !== $from && $self['from'] = $from;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -154,10 +154,10 @@ final class TransactionalSendResponse implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -165,10 +165,10 @@ final class TransactionalSendResponse implements BaseModel
      */
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $obj = clone $this;
-        $obj['createdAt'] = $createdAt;
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -176,10 +176,10 @@ final class TransactionalSendResponse implements BaseModel
      */
     public function withExpiresAt(\DateTimeInterface $expiresAt): self
     {
-        $obj = clone $this;
-        $obj['expiresAt'] = $expiresAt;
+        $self = clone $this;
+        $self['expiresAt'] = $expiresAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -187,10 +187,10 @@ final class TransactionalSendResponse implements BaseModel
      */
     public function withTemplateID(string $templateID): self
     {
-        $obj = clone $this;
-        $obj['templateID'] = $templateID;
+        $self = clone $this;
+        $self['templateID'] = $templateID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -198,10 +198,10 @@ final class TransactionalSendResponse implements BaseModel
      */
     public function withTo(string $to): self
     {
-        $obj = clone $this;
-        $obj['to'] = $to;
+        $self = clone $this;
+        $self['to'] = $to;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -211,10 +211,10 @@ final class TransactionalSendResponse implements BaseModel
      */
     public function withVariables(array $variables): self
     {
-        $obj = clone $this;
-        $obj['variables'] = $variables;
+        $self = clone $this;
+        $self['variables'] = $variables;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -222,10 +222,10 @@ final class TransactionalSendResponse implements BaseModel
      */
     public function withCallbackURL(string $callbackURL): self
     {
-        $obj = clone $this;
-        $obj['callbackURL'] = $callbackURL;
+        $self = clone $this;
+        $self['callbackURL'] = $callbackURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -233,10 +233,10 @@ final class TransactionalSendResponse implements BaseModel
      */
     public function withCorrelationID(string $correlationID): self
     {
-        $obj = clone $this;
-        $obj['correlationID'] = $correlationID;
+        $self = clone $this;
+        $self['correlationID'] = $correlationID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -244,9 +244,9 @@ final class TransactionalSendResponse implements BaseModel
      */
     public function withFrom(string $from): self
     {
-        $obj = clone $this;
-        $obj['from'] = $from;
+        $self = clone $this;
+        $self['from'] = $from;
 
-        return $obj;
+        return $self;
     }
 }

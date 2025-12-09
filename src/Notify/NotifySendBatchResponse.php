@@ -126,19 +126,19 @@ final class NotifySendBatchResponse implements BaseModel
         ?string $templateID = null,
         ?array $variables = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['errorCount'] = $errorCount;
-        $obj['results'] = $results;
-        $obj['successCount'] = $successCount;
-        $obj['totalCount'] = $totalCount;
+        $self['errorCount'] = $errorCount;
+        $self['results'] = $results;
+        $self['successCount'] = $successCount;
+        $self['totalCount'] = $totalCount;
 
-        null !== $callbackURL && $obj['callbackURL'] = $callbackURL;
-        null !== $requestID && $obj['requestID'] = $requestID;
-        null !== $templateID && $obj['templateID'] = $templateID;
-        null !== $variables && $obj['variables'] = $variables;
+        null !== $callbackURL && $self['callbackURL'] = $callbackURL;
+        null !== $requestID && $self['requestID'] = $requestID;
+        null !== $templateID && $self['templateID'] = $templateID;
+        null !== $variables && $self['variables'] = $variables;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -146,10 +146,10 @@ final class NotifySendBatchResponse implements BaseModel
      */
     public function withErrorCount(int $errorCount): self
     {
-        $obj = clone $this;
-        $obj['errorCount'] = $errorCount;
+        $self = clone $this;
+        $self['errorCount'] = $errorCount;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -161,10 +161,10 @@ final class NotifySendBatchResponse implements BaseModel
      */
     public function withResults(array $results): self
     {
-        $obj = clone $this;
-        $obj['results'] = $results;
+        $self = clone $this;
+        $self['results'] = $results;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -172,10 +172,10 @@ final class NotifySendBatchResponse implements BaseModel
      */
     public function withSuccessCount(int $successCount): self
     {
-        $obj = clone $this;
-        $obj['successCount'] = $successCount;
+        $self = clone $this;
+        $self['successCount'] = $successCount;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -183,10 +183,10 @@ final class NotifySendBatchResponse implements BaseModel
      */
     public function withTotalCount(int $totalCount): self
     {
-        $obj = clone $this;
-        $obj['totalCount'] = $totalCount;
+        $self = clone $this;
+        $self['totalCount'] = $totalCount;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -194,10 +194,10 @@ final class NotifySendBatchResponse implements BaseModel
      */
     public function withCallbackURL(string $callbackURL): self
     {
-        $obj = clone $this;
-        $obj['callbackURL'] = $callbackURL;
+        $self = clone $this;
+        $self['callbackURL'] = $callbackURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -205,10 +205,10 @@ final class NotifySendBatchResponse implements BaseModel
      */
     public function withRequestID(string $requestID): self
     {
-        $obj = clone $this;
-        $obj['requestID'] = $requestID;
+        $self = clone $this;
+        $self['requestID'] = $requestID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -216,10 +216,10 @@ final class NotifySendBatchResponse implements BaseModel
      */
     public function withTemplateID(string $templateID): self
     {
-        $obj = clone $this;
-        $obj['templateID'] = $templateID;
+        $self = clone $this;
+        $self['templateID'] = $templateID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -229,9 +229,9 @@ final class NotifySendBatchResponse implements BaseModel
      */
     public function withVariables(array $variables): self
     {
-        $obj = clone $this;
-        $obj['variables'] = $variables;
+        $self = clone $this;
+        $self['variables'] = $variables;
 
-        return $obj;
+        return $self;
     }
 }

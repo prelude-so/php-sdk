@@ -95,18 +95,18 @@ final class Message implements BaseModel
         ?\DateTimeInterface $scheduleAt = null,
         ?string $to = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $id && $obj['id'] = $id;
-        null !== $correlationID && $obj['correlationID'] = $correlationID;
-        null !== $createdAt && $obj['createdAt'] = $createdAt;
-        null !== $expiresAt && $obj['expiresAt'] = $expiresAt;
-        null !== $from && $obj['from'] = $from;
-        null !== $locale && $obj['locale'] = $locale;
-        null !== $scheduleAt && $obj['scheduleAt'] = $scheduleAt;
-        null !== $to && $obj['to'] = $to;
+        null !== $id && $self['id'] = $id;
+        null !== $correlationID && $self['correlationID'] = $correlationID;
+        null !== $createdAt && $self['createdAt'] = $createdAt;
+        null !== $expiresAt && $self['expiresAt'] = $expiresAt;
+        null !== $from && $self['from'] = $from;
+        null !== $locale && $self['locale'] = $locale;
+        null !== $scheduleAt && $self['scheduleAt'] = $scheduleAt;
+        null !== $to && $self['to'] = $to;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -114,10 +114,10 @@ final class Message implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -125,10 +125,10 @@ final class Message implements BaseModel
      */
     public function withCorrelationID(string $correlationID): self
     {
-        $obj = clone $this;
-        $obj['correlationID'] = $correlationID;
+        $self = clone $this;
+        $self['correlationID'] = $correlationID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -136,10 +136,10 @@ final class Message implements BaseModel
      */
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $obj = clone $this;
-        $obj['createdAt'] = $createdAt;
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -147,10 +147,10 @@ final class Message implements BaseModel
      */
     public function withExpiresAt(\DateTimeInterface $expiresAt): self
     {
-        $obj = clone $this;
-        $obj['expiresAt'] = $expiresAt;
+        $self = clone $this;
+        $self['expiresAt'] = $expiresAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -158,10 +158,10 @@ final class Message implements BaseModel
      */
     public function withFrom(string $from): self
     {
-        $obj = clone $this;
-        $obj['from'] = $from;
+        $self = clone $this;
+        $self['from'] = $from;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -169,10 +169,10 @@ final class Message implements BaseModel
      */
     public function withLocale(string $locale): self
     {
-        $obj = clone $this;
-        $obj['locale'] = $locale;
+        $self = clone $this;
+        $self['locale'] = $locale;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -180,10 +180,10 @@ final class Message implements BaseModel
      */
     public function withScheduleAt(\DateTimeInterface $scheduleAt): self
     {
-        $obj = clone $this;
-        $obj['scheduleAt'] = $scheduleAt;
+        $self = clone $this;
+        $self['scheduleAt'] = $scheduleAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -191,9 +191,9 @@ final class Message implements BaseModel
      */
     public function withTo(string $to): self
     {
-        $obj = clone $this;
-        $obj['to'] = $to;
+        $self = clone $this;
+        $self['to'] = $to;
 
-        return $obj;
+        return $self;
     }
 }

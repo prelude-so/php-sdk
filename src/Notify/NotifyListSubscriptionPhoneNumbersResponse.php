@@ -73,13 +73,13 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
         array $phoneNumbers,
         ?string $nextCursor = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['phoneNumbers'] = $phoneNumbers;
+        $self['phoneNumbers'] = $phoneNumbers;
 
-        null !== $nextCursor && $obj['nextCursor'] = $nextCursor;
+        null !== $nextCursor && $self['nextCursor'] = $nextCursor;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -96,10 +96,10 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
      */
     public function withPhoneNumbers(array $phoneNumbers): self
     {
-        $obj = clone $this;
-        $obj['phoneNumbers'] = $phoneNumbers;
+        $self = clone $this;
+        $self['phoneNumbers'] = $phoneNumbers;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -107,9 +107,9 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
      */
     public function withNextCursor(string $nextCursor): self
     {
-        $obj = clone $this;
-        $obj['nextCursor'] = $nextCursor;
+        $self = clone $this;
+        $self['nextCursor'] = $nextCursor;
 
-        return $obj;
+        return $self;
     }
 }

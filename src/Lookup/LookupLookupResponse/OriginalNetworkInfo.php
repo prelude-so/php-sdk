@@ -53,13 +53,13 @@ final class OriginalNetworkInfo implements BaseModel
         ?string $mcc = null,
         ?string $mnc = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $carrierName && $obj['carrierName'] = $carrierName;
-        null !== $mcc && $obj['mcc'] = $mcc;
-        null !== $mnc && $obj['mnc'] = $mnc;
+        null !== $carrierName && $self['carrierName'] = $carrierName;
+        null !== $mcc && $self['mcc'] = $mcc;
+        null !== $mnc && $self['mnc'] = $mnc;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -67,10 +67,10 @@ final class OriginalNetworkInfo implements BaseModel
      */
     public function withCarrierName(string $carrierName): self
     {
-        $obj = clone $this;
-        $obj['carrierName'] = $carrierName;
+        $self = clone $this;
+        $self['carrierName'] = $carrierName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -78,10 +78,10 @@ final class OriginalNetworkInfo implements BaseModel
      */
     public function withMcc(string $mcc): self
     {
-        $obj = clone $this;
-        $obj['mcc'] = $mcc;
+        $self = clone $this;
+        $self['mcc'] = $mcc;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -89,9 +89,9 @@ final class OriginalNetworkInfo implements BaseModel
      */
     public function withMnc(string $mnc): self
     {
-        $obj = clone $this;
-        $obj['mnc'] = $mnc;
+        $self = clone $this;
+        $self['mnc'] = $mnc;
 
-        return $obj;
+        return $self;
     }
 }

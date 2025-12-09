@@ -36,11 +36,11 @@ final class Metadata implements BaseModel
      */
     public static function with(?string $correlationID = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $correlationID && $obj['correlationID'] = $correlationID;
+        null !== $correlationID && $self['correlationID'] = $correlationID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -48,9 +48,9 @@ final class Metadata implements BaseModel
      */
     public function withCorrelationID(string $correlationID): self
     {
-        $obj = clone $this;
-        $obj['correlationID'] = $correlationID;
+        $self = clone $this;
+        $self['correlationID'] = $correlationID;
 
-        return $obj;
+        return $self;
     }
 }

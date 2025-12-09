@@ -138,21 +138,21 @@ final class Options implements BaseModel
         ?string $templateID = null,
         ?array $variables = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $appRealm && $obj['appRealm'] = $appRealm;
-        null !== $callbackURL && $obj['callbackURL'] = $callbackURL;
-        null !== $codeSize && $obj['codeSize'] = $codeSize;
-        null !== $customCode && $obj['customCode'] = $customCode;
-        null !== $integration && $obj['integration'] = $integration;
-        null !== $locale && $obj['locale'] = $locale;
-        null !== $method && $obj['method'] = $method;
-        null !== $preferredChannel && $obj['preferredChannel'] = $preferredChannel;
-        null !== $senderID && $obj['senderID'] = $senderID;
-        null !== $templateID && $obj['templateID'] = $templateID;
-        null !== $variables && $obj['variables'] = $variables;
+        null !== $appRealm && $self['appRealm'] = $appRealm;
+        null !== $callbackURL && $self['callbackURL'] = $callbackURL;
+        null !== $codeSize && $self['codeSize'] = $codeSize;
+        null !== $customCode && $self['customCode'] = $customCode;
+        null !== $integration && $self['integration'] = $integration;
+        null !== $locale && $self['locale'] = $locale;
+        null !== $method && $self['method'] = $method;
+        null !== $preferredChannel && $self['preferredChannel'] = $preferredChannel;
+        null !== $senderID && $self['senderID'] = $senderID;
+        null !== $templateID && $self['templateID'] = $templateID;
+        null !== $variables && $self['variables'] = $variables;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -162,10 +162,10 @@ final class Options implements BaseModel
      */
     public function withAppRealm(AppRealm|array $appRealm): self
     {
-        $obj = clone $this;
-        $obj['appRealm'] = $appRealm;
+        $self = clone $this;
+        $self['appRealm'] = $appRealm;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -173,10 +173,10 @@ final class Options implements BaseModel
      */
     public function withCallbackURL(string $callbackURL): self
     {
-        $obj = clone $this;
-        $obj['callbackURL'] = $callbackURL;
+        $self = clone $this;
+        $self['callbackURL'] = $callbackURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -184,10 +184,10 @@ final class Options implements BaseModel
      */
     public function withCodeSize(int $codeSize): self
     {
-        $obj = clone $this;
-        $obj['codeSize'] = $codeSize;
+        $self = clone $this;
+        $self['codeSize'] = $codeSize;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -195,10 +195,10 @@ final class Options implements BaseModel
      */
     public function withCustomCode(string $customCode): self
     {
-        $obj = clone $this;
-        $obj['customCode'] = $customCode;
+        $self = clone $this;
+        $self['customCode'] = $customCode;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -208,10 +208,10 @@ final class Options implements BaseModel
      */
     public function withIntegration(Integration|string $integration): self
     {
-        $obj = clone $this;
-        $obj['integration'] = $integration;
+        $self = clone $this;
+        $self['integration'] = $integration;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -219,10 +219,10 @@ final class Options implements BaseModel
      */
     public function withLocale(string $locale): self
     {
-        $obj = clone $this;
-        $obj['locale'] = $locale;
+        $self = clone $this;
+        $self['locale'] = $locale;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -232,10 +232,10 @@ final class Options implements BaseModel
      */
     public function withMethod(Method|string $method): self
     {
-        $obj = clone $this;
-        $obj['method'] = $method;
+        $self = clone $this;
+        $self['method'] = $method;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -246,10 +246,10 @@ final class Options implements BaseModel
     public function withPreferredChannel(
         PreferredChannel|string $preferredChannel
     ): self {
-        $obj = clone $this;
-        $obj['preferredChannel'] = $preferredChannel;
+        $self = clone $this;
+        $self['preferredChannel'] = $preferredChannel;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -257,10 +257,10 @@ final class Options implements BaseModel
      */
     public function withSenderID(string $senderID): self
     {
-        $obj = clone $this;
-        $obj['senderID'] = $senderID;
+        $self = clone $this;
+        $self['senderID'] = $senderID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -268,10 +268,10 @@ final class Options implements BaseModel
      */
     public function withTemplateID(string $templateID): self
     {
-        $obj = clone $this;
-        $obj['templateID'] = $templateID;
+        $self = clone $this;
+        $self['templateID'] = $templateID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -281,9 +281,9 @@ final class Options implements BaseModel
      */
     public function withVariables(array $variables): self
     {
-        $obj = clone $this;
-        $obj['variables'] = $variables;
+        $self = clone $this;
+        $self['variables'] = $variables;
 
-        return $obj;
+        return $self;
     }
 }

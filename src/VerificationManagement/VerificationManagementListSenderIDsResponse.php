@@ -42,11 +42,11 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel
      */
     public static function with(?array $senderIDs = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $senderIDs && $obj['senderIDs'] = $senderIDs;
+        null !== $senderIDs && $self['senderIDs'] = $senderIDs;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -56,9 +56,9 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel
      */
     public function withSenderIDs(array $senderIDs): self
     {
-        $obj = clone $this;
-        $obj['senderIDs'] = $senderIDs;
+        $self = clone $this;
+        $self['senderIDs'] = $senderIDs;
 
-        return $obj;
+        return $self;
     }
 }
