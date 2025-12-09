@@ -35,9 +35,9 @@ final class VerificationTest extends TestCase
             $this->markTestSkipped('Prism doesn\'t support callbacks yet');
         }
 
-        $result = $this->client->verification->create([
-            'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
-        ]);
+        $result = $this->client->verification->create(
+            target: ['type' => 'phone_number', 'value' => '+30123456789']
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(VerificationNewResponse::class, $result);
@@ -50,11 +50,11 @@ final class VerificationTest extends TestCase
             $this->markTestSkipped('Prism doesn\'t support callbacks yet');
         }
 
-        $result = $this->client->verification->create([
-            'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
-            'dispatchID' => '123e4567-e89b-12d3-a456-426614174000',
-            'metadata' => ['correlationID' => 'correlation_id'],
-            'options' => [
+        $result = $this->client->verification->create(
+            target: ['type' => 'phone_number', 'value' => '+30123456789'],
+            dispatchID: '123e4567-e89b-12d3-a456-426614174000',
+            metadata: ['correlationID' => 'correlation_id'],
+            options: [
                 'appRealm' => ['platform' => 'android', 'value' => 'value'],
                 'callbackURL' => 'callback_url',
                 'codeSize' => 5,
@@ -67,7 +67,7 @@ final class VerificationTest extends TestCase
                 'templateID' => 'prelude:psd2',
                 'variables' => ['foo' => 'bar'],
             ],
-            'signals' => [
+            signals: [
                 'appVersion' => '1.2.34',
                 'deviceID' => '8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2',
                 'deviceModel' => 'iPhone17,2',
@@ -78,7 +78,7 @@ final class VerificationTest extends TestCase
                 'osVersion' => '18.0.1',
                 'userAgent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
             ],
-        ]);
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(VerificationNewResponse::class, $result);
@@ -87,10 +87,10 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCheck(): void
     {
-        $result = $this->client->verification->check([
-            'code' => '12345',
-            'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
-        ]);
+        $result = $this->client->verification->check(
+            code: '12345',
+            target: ['type' => 'phone_number', 'value' => '+30123456789'],
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(VerificationCheckResponse::class, $result);
@@ -99,10 +99,10 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCheckWithOptionalParams(): void
     {
-        $result = $this->client->verification->check([
-            'code' => '12345',
-            'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
-        ]);
+        $result = $this->client->verification->check(
+            code: '12345',
+            target: ['type' => 'phone_number', 'value' => '+30123456789'],
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(VerificationCheckResponse::class, $result);

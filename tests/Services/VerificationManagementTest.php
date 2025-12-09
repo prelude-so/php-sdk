@@ -35,7 +35,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->deletePhoneNumber(
             'allow',
-            ['phoneNumber' => '+30123456789']
+            phoneNumber: '+30123456789'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -50,7 +50,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->deletePhoneNumber(
             'allow',
-            ['phoneNumber' => '+30123456789']
+            phoneNumber: '+30123456789'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -89,7 +89,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->setPhoneNumber(
             'allow',
-            ['phoneNumber' => '+30123456789']
+            phoneNumber: '+30123456789'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -104,7 +104,7 @@ final class VerificationManagementTest extends TestCase
     {
         $result = $this->client->verificationManagement->setPhoneNumber(
             'allow',
-            ['phoneNumber' => '+30123456789']
+            phoneNumber: '+30123456789'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -117,9 +117,9 @@ final class VerificationManagementTest extends TestCase
     #[Test]
     public function testSubmitSenderID(): void
     {
-        $result = $this->client->verificationManagement->submitSenderID([
-            'senderID' => 'Prelude',
-        ]);
+        $result = $this->client->verificationManagement->submitSenderID(
+            senderID: 'Prelude'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(
@@ -131,9 +131,9 @@ final class VerificationManagementTest extends TestCase
     #[Test]
     public function testSubmitSenderIDWithOptionalParams(): void
     {
-        $result = $this->client->verificationManagement->submitSenderID([
-            'senderID' => 'Prelude',
-        ]);
+        $result = $this->client->verificationManagement->submitSenderID(
+            senderID: 'Prelude'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(
