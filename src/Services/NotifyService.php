@@ -6,6 +6,7 @@ namespace Prelude\Services;
 
 use Prelude\Client;
 use Prelude\Core\Exceptions\APIException;
+use Prelude\Core\Util;
 use Prelude\Notify\NotifyGetSubscriptionConfigResponse;
 use Prelude\Notify\NotifyGetSubscriptionPhoneNumberResponse;
 use Prelude\Notify\NotifyListSubscriptionConfigsResponse;
@@ -67,7 +68,7 @@ final class NotifyService implements NotifyContract
         string $configID,
         ?RequestOptions $requestOptions = null,
     ): NotifyGetSubscriptionPhoneNumberResponse {
-        $params = ['configID' => $configID];
+        $params = Util::removeNulls(['configID' => $configID]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->getSubscriptionPhoneNumber($phoneNumber, params: $params, requestOptions: $requestOptions);
@@ -92,9 +93,7 @@ final class NotifyService implements NotifyContract
         int $limit = 50,
         ?RequestOptions $requestOptions = null,
     ): NotifyListSubscriptionConfigsResponse {
-        $params = ['cursor' => $cursor, 'limit' => $limit];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(['cursor' => $cursor, 'limit' => $limit]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->listSubscriptionConfigs(params: $params, requestOptions: $requestOptions);
@@ -123,9 +122,9 @@ final class NotifyService implements NotifyContract
         int $limit = 50,
         ?RequestOptions $requestOptions = null,
     ): NotifyListSubscriptionPhoneNumberEventsResponse {
-        $params = ['configID' => $configID, 'cursor' => $cursor, 'limit' => $limit];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            ['configID' => $configID, 'cursor' => $cursor, 'limit' => $limit]
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->listSubscriptionPhoneNumberEvents($phoneNumber, params: $params, requestOptions: $requestOptions);
@@ -154,9 +153,9 @@ final class NotifyService implements NotifyContract
         string|State|null $state = null,
         ?RequestOptions $requestOptions = null,
     ): NotifyListSubscriptionPhoneNumbersResponse {
-        $params = ['cursor' => $cursor, 'limit' => $limit, 'state' => $state];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            ['cursor' => $cursor, 'limit' => $limit, 'state' => $state]
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->listSubscriptionPhoneNumbers($configID, params: $params, requestOptions: $requestOptions);
@@ -195,20 +194,20 @@ final class NotifyService implements NotifyContract
         ?array $variables = null,
         ?RequestOptions $requestOptions = null,
     ): NotifySendResponse {
-        $params = [
-            'templateID' => $templateID,
-            'to' => $to,
-            'callbackURL' => $callbackURL,
-            'correlationID' => $correlationID,
-            'expiresAt' => $expiresAt,
-            'from' => $from,
-            'locale' => $locale,
-            'preferredChannel' => $preferredChannel,
-            'scheduleAt' => $scheduleAt,
-            'variables' => $variables,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'templateID' => $templateID,
+                'to' => $to,
+                'callbackURL' => $callbackURL,
+                'correlationID' => $correlationID,
+                'expiresAt' => $expiresAt,
+                'from' => $from,
+                'locale' => $locale,
+                'preferredChannel' => $preferredChannel,
+                'scheduleAt' => $scheduleAt,
+                'variables' => $variables,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->send(params: $params, requestOptions: $requestOptions);
@@ -247,20 +246,20 @@ final class NotifyService implements NotifyContract
         ?array $variables = null,
         ?RequestOptions $requestOptions = null,
     ): NotifySendBatchResponse {
-        $params = [
-            'templateID' => $templateID,
-            'to' => $to,
-            'callbackURL' => $callbackURL,
-            'correlationID' => $correlationID,
-            'expiresAt' => $expiresAt,
-            'from' => $from,
-            'locale' => $locale,
-            'preferredChannel' => $preferredChannel,
-            'scheduleAt' => $scheduleAt,
-            'variables' => $variables,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'templateID' => $templateID,
+                'to' => $to,
+                'callbackURL' => $callbackURL,
+                'correlationID' => $correlationID,
+                'expiresAt' => $expiresAt,
+                'from' => $from,
+                'locale' => $locale,
+                'preferredChannel' => $preferredChannel,
+                'scheduleAt' => $scheduleAt,
+                'variables' => $variables,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->sendBatch(params: $params, requestOptions: $requestOptions);

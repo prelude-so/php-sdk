@@ -6,6 +6,7 @@ namespace Prelude\Services;
 
 use Prelude\Client;
 use Prelude\Core\Exceptions\APIException;
+use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationContract;
 use Prelude\Verification\VerificationCheckResponse;
@@ -79,15 +80,15 @@ final class VerificationService implements VerificationContract
         ?array $signals = null,
         ?RequestOptions $requestOptions = null,
     ): VerificationNewResponse {
-        $params = [
-            'target' => $target,
-            'dispatchID' => $dispatchID,
-            'metadata' => $metadata,
-            'options' => $options,
-            'signals' => $signals,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'target' => $target,
+                'dispatchID' => $dispatchID,
+                'metadata' => $metadata,
+                'options' => $options,
+                'signals' => $signals,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->create(params: $params, requestOptions: $requestOptions);
@@ -113,7 +114,7 @@ final class VerificationService implements VerificationContract
         array $target,
         ?RequestOptions $requestOptions = null
     ): VerificationCheckResponse {
-        $params = ['code' => $code, 'target' => $target];
+        $params = Util::removeNulls(['code' => $code, 'target' => $target]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->check(params: $params, requestOptions: $requestOptions);

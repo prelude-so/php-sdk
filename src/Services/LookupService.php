@@ -6,6 +6,7 @@ namespace Prelude\Services;
 
 use Prelude\Client;
 use Prelude\Core\Exceptions\APIException;
+use Prelude\Core\Util;
 use Prelude\Lookup\LookupLookupParams\Type;
 use Prelude\Lookup\LookupLookupResponse;
 use Prelude\RequestOptions;
@@ -42,9 +43,7 @@ final class LookupService implements LookupContract
         ?array $type = null,
         ?RequestOptions $requestOptions = null,
     ): LookupLookupResponse {
-        $params = ['type' => $type];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(['type' => $type]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->lookup($phoneNumber, params: $params, requestOptions: $requestOptions);

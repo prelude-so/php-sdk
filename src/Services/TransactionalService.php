@@ -6,6 +6,7 @@ namespace Prelude\Services;
 
 use Prelude\Client;
 use Prelude\Core\Exceptions\APIException;
+use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\TransactionalContract;
 use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
@@ -61,19 +62,19 @@ final class TransactionalService implements TransactionalContract
         ?array $variables = null,
         ?RequestOptions $requestOptions = null,
     ): TransactionalSendResponse {
-        $params = [
-            'templateID' => $templateID,
-            'to' => $to,
-            'callbackURL' => $callbackURL,
-            'correlationID' => $correlationID,
-            'expiresAt' => $expiresAt,
-            'from' => $from,
-            'locale' => $locale,
-            'preferredChannel' => $preferredChannel,
-            'variables' => $variables,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'templateID' => $templateID,
+                'to' => $to,
+                'callbackURL' => $callbackURL,
+                'correlationID' => $correlationID,
+                'expiresAt' => $expiresAt,
+                'from' => $from,
+                'locale' => $locale,
+                'preferredChannel' => $preferredChannel,
+                'variables' => $variables,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->send(params: $params, requestOptions: $requestOptions);

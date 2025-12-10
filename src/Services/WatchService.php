@@ -6,6 +6,7 @@ namespace Prelude\Services;
 
 use Prelude\Client;
 use Prelude\Core\Exceptions\APIException;
+use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\WatchContract;
 use Prelude\Watch\WatchPredictParams\Signals\DevicePlatform;
@@ -61,14 +62,14 @@ final class WatchService implements WatchContract
         ?array $signals = null,
         ?RequestOptions $requestOptions = null,
     ): WatchPredictResponse {
-        $params = [
-            'target' => $target,
-            'dispatchID' => $dispatchID,
-            'metadata' => $metadata,
-            'signals' => $signals,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'target' => $target,
+                'dispatchID' => $dispatchID,
+                'metadata' => $metadata,
+                'signals' => $signals,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->predict(params: $params, requestOptions: $requestOptions);
@@ -96,7 +97,7 @@ final class WatchService implements WatchContract
         array $events,
         ?RequestOptions $requestOptions = null
     ): WatchSendEventsResponse {
-        $params = ['events' => $events];
+        $params = Util::removeNulls(['events' => $events]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->sendEvents(params: $params, requestOptions: $requestOptions);
@@ -136,7 +137,7 @@ final class WatchService implements WatchContract
         array $feedbacks,
         ?RequestOptions $requestOptions = null
     ): WatchSendFeedbacksResponse {
-        $params = ['feedbacks' => $feedbacks];
+        $params = Util::removeNulls(['feedbacks' => $feedbacks]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->sendFeedbacks(params: $params, requestOptions: $requestOptions);
