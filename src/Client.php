@@ -7,6 +7,7 @@ namespace Prelude;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Prelude\Core\BaseClient;
+use Prelude\Core\Util;
 use Prelude\Services\LookupService;
 use Prelude\Services\NotifyService;
 use Prelude\Services\TransactionalService;
@@ -69,9 +70,9 @@ class Client extends BaseClient
                 'User-Agent' => sprintf('Prelude/PHP %s', '0.0.1'),
                 'X-Stainless-Lang' => 'php',
                 'X-Stainless-Package-Version' => '0.0.1',
-                'X-Stainless-OS' => $this->getNormalizedOS(),
-                'X-Stainless-Arch' => $this->getNormalizedArchitecture(),
-                'X-Stainless-Runtime' => 'php',
+                'X-Stainless-Arch' => Util::machtype(),
+                'X-Stainless-OS' => Util::ostype(),
+                'X-Stainless-Runtime' => php_sapi_name(),
                 'X-Stainless-Runtime-Version' => phpversion(),
             ],
             // x-release-please-end
