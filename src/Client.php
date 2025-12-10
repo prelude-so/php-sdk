@@ -63,11 +63,10 @@ class Client extends BaseClient
         );
 
         parent::__construct(
-            // x-release-please-start-version
             headers: [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
-                'User-Agent' => sprintf('Prelude/PHP %s', '0.0.1'),
+                'User-Agent' => sprintf('Prelude/PHP %s', VERSION),
                 'X-Stainless-Lang' => 'php',
                 'X-Stainless-Package-Version' => '0.0.1',
                 'X-Stainless-Arch' => Util::machtype(),
@@ -75,9 +74,8 @@ class Client extends BaseClient
                 'X-Stainless-Runtime' => php_sapi_name(),
                 'X-Stainless-Runtime-Version' => phpversion(),
             ],
-            // x-release-please-end
             baseUrl: $baseUrl,
-            options: $options,
+            options: $options
         );
 
         $this->lookup = new LookupService($this);
