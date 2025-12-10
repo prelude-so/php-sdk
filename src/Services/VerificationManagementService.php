@@ -6,6 +6,7 @@ namespace Prelude\Services;
 
 use Prelude\Client;
 use Prelude\Core\Exceptions\APIException;
+use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationManagementContract;
 use Prelude\VerificationManagement\VerificationManagementDeletePhoneNumberParams\Action;
@@ -49,7 +50,7 @@ final class VerificationManagementService implements VerificationManagementContr
         string $phoneNumber,
         ?RequestOptions $requestOptions = null,
     ): VerificationManagementDeletePhoneNumberResponse {
-        $params = ['phoneNumber' => $phoneNumber];
+        $params = Util::removeNulls(['phoneNumber' => $phoneNumber]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->deletePhoneNumber($action, params: $params, requestOptions: $requestOptions);
@@ -115,7 +116,7 @@ final class VerificationManagementService implements VerificationManagementContr
         string $phoneNumber,
         ?RequestOptions $requestOptions = null,
     ): VerificationManagementSetPhoneNumberResponse {
-        $params = ['phoneNumber' => $phoneNumber];
+        $params = Util::removeNulls(['phoneNumber' => $phoneNumber]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->setPhoneNumber($action, params: $params, requestOptions: $requestOptions);
@@ -138,7 +139,7 @@ final class VerificationManagementService implements VerificationManagementContr
         string $senderID,
         ?RequestOptions $requestOptions = null
     ): VerificationManagementSubmitSenderIDResponse {
-        $params = ['senderID' => $senderID];
+        $params = Util::removeNulls(['senderID' => $senderID]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->submitSenderID(params: $params, requestOptions: $requestOptions);
