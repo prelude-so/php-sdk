@@ -19,7 +19,7 @@ interface WatchRawContract
     /**
      * @api
      *
-     * @param array<mixed>|WatchPredictParams $params
+     * @param array<string,mixed>|WatchPredictParams $params
      *
      * @return BaseResponse<WatchPredictResponse>
      *
@@ -33,7 +33,7 @@ interface WatchRawContract
     /**
      * @api
      *
-     * @param array<mixed>|WatchSendEventsParams $params
+     * @param array<string,mixed>|WatchSendEventsParams $params
      *
      * @return BaseResponse<WatchSendEventsResponse>
      *
@@ -47,7 +47,7 @@ interface WatchRawContract
     /**
      * @api
      *
-     * @param array<mixed>|WatchSendFeedbacksParams $params
+     * @param array<string,mixed>|WatchSendFeedbacksParams $params
      *
      * @return BaseResponse<WatchSendFeedbacksResponse>
      *

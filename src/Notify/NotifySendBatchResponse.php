@@ -9,13 +9,13 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Notify\NotifySendBatchResponse\Result;
-use Prelude\Notify\NotifySendBatchResponse\Result\Error;
-use Prelude\Notify\NotifySendBatchResponse\Result\Message;
 
 /**
+ * @phpstan-import-type ResultShape from \Prelude\Notify\NotifySendBatchResponse\Result
+ *
  * @phpstan-type NotifySendBatchResponseShape = array{
  *   errorCount: int,
- *   results: list<Result>,
+ *   results: list<ResultShape>,
  *   successCount: int,
  *   totalCount: int,
  *   callbackURL?: string|null,
@@ -111,9 +111,7 @@ final class NotifySendBatchResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Result|array{
-     *   phoneNumber: string, success: bool, error?: Error|null, message?: Message|null
-     * }> $results
+     * @param list<ResultShape> $results
      * @param array<string,string> $variables
      */
     public static function with(
@@ -155,9 +153,7 @@ final class NotifySendBatchResponse implements BaseModel
     /**
      * The per-recipient result of the bulk send.
      *
-     * @param list<Result|array{
-     *   phoneNumber: string, success: bool, error?: Error|null, message?: Message|null
-     * }> $results
+     * @param list<ResultShape> $results
      */
     public function withResults(array $results): self
     {

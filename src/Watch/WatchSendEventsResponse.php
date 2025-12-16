@@ -11,7 +11,7 @@ use Prelude\Watch\WatchSendEventsResponse\Status;
 
 /**
  * @phpstan-type WatchSendEventsResponseShape = array{
- *   requestID: string, status: value-of<Status>
+ *   requestID: string, status: Status|value-of<Status>
  * }
  */
 final class WatchSendEventsResponse implements BaseModel

@@ -11,30 +11,22 @@ use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchPredictParams\Metadata;
 use Prelude\Watch\WatchPredictParams\Signals;
-use Prelude\Watch\WatchPredictParams\Signals\DevicePlatform;
 use Prelude\Watch\WatchPredictParams\Target;
-use Prelude\Watch\WatchPredictParams\Target\Type;
 
 /**
  * Predict the outcome of a verification based on Prelude’s anti-fraud system.
  *
  * @see Prelude\Services\WatchService::predict()
  *
+ * @phpstan-import-type TargetShape from \Prelude\Watch\WatchPredictParams\Target
+ * @phpstan-import-type MetadataShape from \Prelude\Watch\WatchPredictParams\Metadata
+ * @phpstan-import-type SignalsShape from \Prelude\Watch\WatchPredictParams\Signals
+ *
  * @phpstan-type WatchPredictParamsShape = array{
- *   target: Target|array{type: value-of<Type>, value: string},
- *   dispatchID?: string,
- *   metadata?: Metadata|array{correlationID?: string|null},
- *   signals?: Signals|array{
- *     appVersion?: string|null,
- *     deviceID?: string|null,
- *     deviceModel?: string|null,
- *     devicePlatform?: value-of<DevicePlatform>|null,
- *     ip?: string|null,
- *     isTrustedUser?: bool|null,
- *     ja4Fingerprint?: string|null,
- *     osVersion?: string|null,
- *     userAgent?: string|null,
- *   },
+ *   target: TargetShape,
+ *   dispatchID?: string|null,
+ *   metadata?: MetadataShape|null,
+ *   signals?: SignalsShape|null,
  * }
  */
 final class WatchPredictParams implements BaseModel
@@ -91,19 +83,9 @@ final class WatchPredictParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Target|array{type: value-of<Type>, value: string} $target
-     * @param Metadata|array{correlationID?: string|null} $metadata
-     * @param Signals|array{
-     *   appVersion?: string|null,
-     *   deviceID?: string|null,
-     *   deviceModel?: string|null,
-     *   devicePlatform?: value-of<DevicePlatform>|null,
-     *   ip?: string|null,
-     *   isTrustedUser?: bool|null,
-     *   ja4Fingerprint?: string|null,
-     *   osVersion?: string|null,
-     *   userAgent?: string|null,
-     * } $signals
+     * @param TargetShape $target
+     * @param MetadataShape $metadata
+     * @param SignalsShape $signals
      */
     public static function with(
         Target|array $target,
@@ -125,7 +107,7 @@ final class WatchPredictParams implements BaseModel
     /**
      * The prediction target. Only supports phone numbers for now.
      *
-     * @param Target|array{type: value-of<Type>, value: string} $target
+     * @param TargetShape $target
      */
     public function withTarget(Target|array $target): self
     {
@@ -149,7 +131,7 @@ final class WatchPredictParams implements BaseModel
     /**
      * The metadata for this prediction.
      *
-     * @param Metadata|array{correlationID?: string|null} $metadata
+     * @param MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -162,17 +144,7 @@ final class WatchPredictParams implements BaseModel
     /**
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
-     * @param Signals|array{
-     *   appVersion?: string|null,
-     *   deviceID?: string|null,
-     *   deviceModel?: string|null,
-     *   devicePlatform?: value-of<DevicePlatform>|null,
-     *   ip?: string|null,
-     *   isTrustedUser?: bool|null,
-     *   ja4Fingerprint?: string|null,
-     *   osVersion?: string|null,
-     *   userAgent?: string|null,
-     * } $signals
+     * @param SignalsShape $signals
      */
     public function withSignals(Signals|array $signals): self
     {

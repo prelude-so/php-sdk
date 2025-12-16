@@ -16,15 +16,18 @@ use Prelude\Verification\VerificationNewResponse\Silent;
 use Prelude\Verification\VerificationNewResponse\Status;
 
 /**
+ * @phpstan-import-type MetadataShape from \Prelude\Verification\VerificationNewResponse\Metadata
+ * @phpstan-import-type SilentShape from \Prelude\Verification\VerificationNewResponse\Silent
+ *
  * @phpstan-type VerificationNewResponseShape = array{
  *   id: string,
- *   method: value-of<Method>,
- *   status: value-of<Status>,
- *   channels?: list<value-of<Channel>>|null,
- *   metadata?: Metadata|null,
- *   reason?: value-of<Reason>|null,
+ *   method: Method|value-of<Method>,
+ *   status: Status|value-of<Status>,
+ *   channels?: list<Channel|value-of<Channel>>|null,
+ *   metadata?: null|Metadata|MetadataShape,
+ *   reason?: null|Reason|value-of<Reason>,
  *   requestID?: string|null,
- *   silent?: Silent|null,
+ *   silent?: null|Silent|SilentShape,
  * }
  */
 final class VerificationNewResponse implements BaseModel
@@ -120,9 +123,9 @@ final class VerificationNewResponse implements BaseModel
      * @param Method|value-of<Method> $method
      * @param Status|value-of<Status> $status
      * @param list<Channel|value-of<Channel>> $channels
-     * @param Metadata|array{correlationID?: string|null} $metadata
+     * @param MetadataShape $metadata
      * @param Reason|value-of<Reason> $reason
-     * @param Silent|array{requestURL: string} $silent
+     * @param SilentShape $silent
      */
     public static function with(
         string $id,
@@ -202,7 +205,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The metadata for this verification.
      *
-     * @param Metadata|array{correlationID?: string|null} $metadata
+     * @param MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -244,7 +247,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The silent verification specific properties.
      *
-     * @param Silent|array{requestURL: string} $silent
+     * @param SilentShape $silent
      */
     public function withSilent(Silent|array $silent): self
     {

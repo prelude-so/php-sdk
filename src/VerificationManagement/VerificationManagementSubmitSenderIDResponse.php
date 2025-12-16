@@ -12,7 +12,7 @@ use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse\
 
 /**
  * @phpstan-type VerificationManagementSubmitSenderIDResponseShape = array{
- *   senderID: string, status: value-of<Status>, reason?: string|null
+ *   senderID: string, status: Status|value-of<Status>, reason?: string|null
  * }
  */
 final class VerificationManagementSubmitSenderIDResponse implements BaseModel

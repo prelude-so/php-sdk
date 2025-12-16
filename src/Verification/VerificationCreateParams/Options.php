@@ -8,7 +8,6 @@ use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCreateParams\Options\AppRealm;
-use Prelude\Verification\VerificationCreateParams\Options\AppRealm\Platform;
 use Prelude\Verification\VerificationCreateParams\Options\Integration;
 use Prelude\Verification\VerificationCreateParams\Options\Method;
 use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
@@ -16,15 +15,17 @@ use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
 /**
  * Verification options.
  *
+ * @phpstan-import-type AppRealmShape from \Prelude\Verification\VerificationCreateParams\Options\AppRealm
+ *
  * @phpstan-type OptionsShape = array{
- *   appRealm?: AppRealm|null,
+ *   appRealm?: null|AppRealm|AppRealmShape,
  *   callbackURL?: string|null,
  *   codeSize?: int|null,
  *   customCode?: string|null,
- *   integration?: value-of<Integration>|null,
+ *   integration?: null|Integration|value-of<Integration>,
  *   locale?: string|null,
- *   method?: value-of<Method>|null,
- *   preferredChannel?: value-of<PreferredChannel>|null,
+ *   method?: null|Method|value-of<Method>,
+ *   preferredChannel?: null|PreferredChannel|value-of<PreferredChannel>,
  *   senderID?: string|null,
  *   templateID?: string|null,
  *   variables?: array<string,string>|null,
@@ -119,7 +120,7 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AppRealm|array{platform: value-of<Platform>, value: string} $appRealm
+     * @param AppRealmShape $appRealm
      * @param Integration|value-of<Integration> $integration
      * @param Method|value-of<Method> $method
      * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
@@ -158,7 +159,7 @@ final class Options implements BaseModel
     /**
      * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
      *
-     * @param AppRealm|array{platform: value-of<Platform>, value: string} $appRealm
+     * @param AppRealmShape $appRealm
      */
     public function withAppRealm(AppRealm|array $appRealm): self
     {

@@ -12,10 +12,12 @@ use Prelude\Verification\VerificationCheckResponse\Metadata;
 use Prelude\Verification\VerificationCheckResponse\Status;
 
 /**
+ * @phpstan-import-type MetadataShape from \Prelude\Verification\VerificationCheckResponse\Metadata
+ *
  * @phpstan-type VerificationCheckResponseShape = array{
- *   status: value-of<Status>,
+ *   status: Status|value-of<Status>,
  *   id?: string|null,
- *   metadata?: Metadata|null,
+ *   metadata?: null|Metadata|MetadataShape,
  *   requestID?: string|null,
  * }
  */
@@ -72,7 +74,7 @@ final class VerificationCheckResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Status|value-of<Status> $status
-     * @param Metadata|array{correlationID?: string|null} $metadata
+     * @param MetadataShape $metadata
      */
     public static function with(
         Status|string $status,
@@ -118,7 +120,7 @@ final class VerificationCheckResponse implements BaseModel
     /**
      * The metadata for this verification.
      *
-     * @param Metadata|array{correlationID?: string|null} $metadata
+     * @param MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {

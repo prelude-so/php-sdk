@@ -9,12 +9,12 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber;
-use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber\Source;
-use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber\State;
 
 /**
+ * @phpstan-import-type PhoneNumberShape from \Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber
+ *
  * @phpstan-type NotifyListSubscriptionPhoneNumbersResponseShape = array{
- *   phoneNumbers: list<PhoneNumber>, nextCursor?: string|null
+ *   phoneNumbers: list<PhoneNumberShape>, nextCursor?: string|null
  * }
  */
 final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
@@ -60,14 +60,7 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<PhoneNumber|array{
-     *   configID: string,
-     *   phoneNumber: string,
-     *   source: value-of<Source>,
-     *   state: value-of<State>,
-     *   updatedAt: \DateTimeInterface,
-     *   reason?: string|null,
-     * }> $phoneNumbers
+     * @param list<PhoneNumberShape> $phoneNumbers
      */
     public static function with(
         array $phoneNumbers,
@@ -85,14 +78,7 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
     /**
      * A list of phone numbers and their subscription statuses.
      *
-     * @param list<PhoneNumber|array{
-     *   configID: string,
-     *   phoneNumber: string,
-     *   source: value-of<Source>,
-     *   state: value-of<State>,
-     *   updatedAt: \DateTimeInterface,
-     *   reason?: string|null,
-     * }> $phoneNumbers
+     * @param list<PhoneNumberShape> $phoneNumbers
      */
     public function withPhoneNumbers(array $phoneNumbers): self
     {

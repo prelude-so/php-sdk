@@ -9,12 +9,12 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config;
-use Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config\Messages;
-use Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config\MoPhoneNumber;
 
 /**
+ * @phpstan-import-type ConfigShape from \Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config
+ *
  * @phpstan-type NotifyListSubscriptionConfigsResponseShape = array{
- *   configs: list<Config>, nextCursor?: string|null
+ *   configs: list<ConfigShape>, nextCursor?: string|null
  * }
  */
 final class NotifyListSubscriptionConfigsResponse implements BaseModel
@@ -60,15 +60,7 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Config|array{
-     *   id: string,
-     *   callbackURL: string,
-     *   createdAt: \DateTimeInterface,
-     *   messages: Messages,
-     *   name: string,
-     *   updatedAt: \DateTimeInterface,
-     *   moPhoneNumbers?: list<MoPhoneNumber>|null,
-     * }> $configs
+     * @param list<ConfigShape> $configs
      */
     public static function with(array $configs, ?string $nextCursor = null): self
     {
@@ -84,15 +76,7 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel
     /**
      * A list of subscription management configurations.
      *
-     * @param list<Config|array{
-     *   id: string,
-     *   callbackURL: string,
-     *   createdAt: \DateTimeInterface,
-     *   messages: Messages,
-     *   name: string,
-     *   updatedAt: \DateTimeInterface,
-     *   moPhoneNumbers?: list<MoPhoneNumber>|null,
-     * }> $configs
+     * @param list<ConfigShape> $configs
      */
     public function withConfigs(array $configs): self
     {

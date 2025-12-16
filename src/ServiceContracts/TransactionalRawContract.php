@@ -17,7 +17,7 @@ interface TransactionalRawContract
      *
      * @api
      *
-     * @param array<mixed>|TransactionalSendParams $params
+     * @param array<string,mixed>|TransactionalSendParams $params
      *
      * @return BaseResponse<TransactionalSendResponse>
      *

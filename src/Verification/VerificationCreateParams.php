@@ -11,48 +11,25 @@ use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCreateParams\Metadata;
 use Prelude\Verification\VerificationCreateParams\Options;
-use Prelude\Verification\VerificationCreateParams\Options\AppRealm;
-use Prelude\Verification\VerificationCreateParams\Options\Integration;
-use Prelude\Verification\VerificationCreateParams\Options\Method;
-use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
 use Prelude\Verification\VerificationCreateParams\Signals;
-use Prelude\Verification\VerificationCreateParams\Signals\DevicePlatform;
 use Prelude\Verification\VerificationCreateParams\Target;
-use Prelude\Verification\VerificationCreateParams\Target\Type;
 
 /**
  * Create a new verification for a specific phone number. If another non-expired verification exists (the request is performed within the verification window), this endpoint will perform a retry instead.
  *
  * @see Prelude\Services\VerificationService::create()
  *
+ * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCreateParams\Target
+ * @phpstan-import-type MetadataShape from \Prelude\Verification\VerificationCreateParams\Metadata
+ * @phpstan-import-type OptionsShape from \Prelude\Verification\VerificationCreateParams\Options
+ * @phpstan-import-type SignalsShape from \Prelude\Verification\VerificationCreateParams\Signals
+ *
  * @phpstan-type VerificationCreateParamsShape = array{
- *   target: Target|array{type: value-of<Type>, value: string},
- *   dispatchID?: string,
- *   metadata?: Metadata|array{correlationID?: string|null},
- *   options?: Options|array{
- *     appRealm?: AppRealm|null,
- *     callbackURL?: string|null,
- *     codeSize?: int|null,
- *     customCode?: string|null,
- *     integration?: value-of<Integration>|null,
- *     locale?: string|null,
- *     method?: value-of<Method>|null,
- *     preferredChannel?: value-of<PreferredChannel>|null,
- *     senderID?: string|null,
- *     templateID?: string|null,
- *     variables?: array<string,string>|null,
- *   },
- *   signals?: Signals|array{
- *     appVersion?: string|null,
- *     deviceID?: string|null,
- *     deviceModel?: string|null,
- *     devicePlatform?: value-of<DevicePlatform>|null,
- *     ip?: string|null,
- *     isTrustedUser?: bool|null,
- *     ja4Fingerprint?: string|null,
- *     osVersion?: string|null,
- *     userAgent?: string|null,
- *   },
+ *   target: TargetShape,
+ *   dispatchID?: string|null,
+ *   metadata?: MetadataShape|null,
+ *   options?: OptionsShape|null,
+ *   signals?: SignalsShape|null,
  * }
  */
 final class VerificationCreateParams implements BaseModel
@@ -115,32 +92,10 @@ final class VerificationCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Target|array{type: value-of<Type>, value: string} $target
-     * @param Metadata|array{correlationID?: string|null} $metadata
-     * @param Options|array{
-     *   appRealm?: AppRealm|null,
-     *   callbackURL?: string|null,
-     *   codeSize?: int|null,
-     *   customCode?: string|null,
-     *   integration?: value-of<Integration>|null,
-     *   locale?: string|null,
-     *   method?: value-of<Method>|null,
-     *   preferredChannel?: value-of<PreferredChannel>|null,
-     *   senderID?: string|null,
-     *   templateID?: string|null,
-     *   variables?: array<string,string>|null,
-     * } $options
-     * @param Signals|array{
-     *   appVersion?: string|null,
-     *   deviceID?: string|null,
-     *   deviceModel?: string|null,
-     *   devicePlatform?: value-of<DevicePlatform>|null,
-     *   ip?: string|null,
-     *   isTrustedUser?: bool|null,
-     *   ja4Fingerprint?: string|null,
-     *   osVersion?: string|null,
-     *   userAgent?: string|null,
-     * } $signals
+     * @param TargetShape $target
+     * @param MetadataShape $metadata
+     * @param OptionsShape $options
+     * @param SignalsShape $signals
      */
     public static function with(
         Target|array $target,
@@ -164,7 +119,7 @@ final class VerificationCreateParams implements BaseModel
     /**
      * The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      *
-     * @param Target|array{type: value-of<Type>, value: string} $target
+     * @param TargetShape $target
      */
     public function withTarget(Target|array $target): self
     {
@@ -188,7 +143,7 @@ final class VerificationCreateParams implements BaseModel
     /**
      * The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
      *
-     * @param Metadata|array{correlationID?: string|null} $metadata
+     * @param MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -201,19 +156,7 @@ final class VerificationCreateParams implements BaseModel
     /**
      * Verification options.
      *
-     * @param Options|array{
-     *   appRealm?: AppRealm|null,
-     *   callbackURL?: string|null,
-     *   codeSize?: int|null,
-     *   customCode?: string|null,
-     *   integration?: value-of<Integration>|null,
-     *   locale?: string|null,
-     *   method?: value-of<Method>|null,
-     *   preferredChannel?: value-of<PreferredChannel>|null,
-     *   senderID?: string|null,
-     *   templateID?: string|null,
-     *   variables?: array<string,string>|null,
-     * } $options
+     * @param OptionsShape $options
      */
     public function withOptions(Options|array $options): self
     {
@@ -226,17 +169,7 @@ final class VerificationCreateParams implements BaseModel
     /**
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
-     * @param Signals|array{
-     *   appVersion?: string|null,
-     *   deviceID?: string|null,
-     *   deviceModel?: string|null,
-     *   devicePlatform?: value-of<DevicePlatform>|null,
-     *   ip?: string|null,
-     *   isTrustedUser?: bool|null,
-     *   ja4Fingerprint?: string|null,
-     *   osVersion?: string|null,
-     *   userAgent?: string|null,
-     * } $signals
+     * @param SignalsShape $signals
      */
     public function withSignals(Signals|array $signals): self
     {

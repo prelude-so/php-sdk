@@ -9,24 +9,16 @@ use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Type;
 
 /**
  * Send feedback regarding your end-users verification funnel. Events will be analyzed for proactive fraud prevention and risk scoring.
  *
  * @see Prelude\Services\WatchService::sendFeedbacks()
  *
+ * @phpstan-import-type FeedbackShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback
+ *
  * @phpstan-type WatchSendFeedbacksParamsShape = array{
- *   feedbacks: list<Feedback|array{
- *     target: Target,
- *     type: value-of<Type>,
- *     dispatchID?: string|null,
- *     metadata?: Metadata|null,
- *     signals?: Signals|null,
- *   }>,
+ *   feedbacks: list<FeedbackShape>
  * }
  */
 final class WatchSendFeedbacksParams implements BaseModel
@@ -67,13 +59,7 @@ final class WatchSendFeedbacksParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Feedback|array{
-     *   target: Target,
-     *   type: value-of<Type>,
-     *   dispatchID?: string|null,
-     *   metadata?: Metadata|null,
-     *   signals?: Signals|null,
-     * }> $feedbacks
+     * @param list<FeedbackShape> $feedbacks
      */
     public static function with(array $feedbacks): self
     {
@@ -87,13 +73,7 @@ final class WatchSendFeedbacksParams implements BaseModel
     /**
      * A list of feedbacks to send.
      *
-     * @param list<Feedback|array{
-     *   target: Target,
-     *   type: value-of<Type>,
-     *   dispatchID?: string|null,
-     *   metadata?: Metadata|null,
-     *   signals?: Signals|null,
-     * }> $feedbacks
+     * @param list<FeedbackShape> $feedbacks
      */
     public function withFeedbacks(array $feedbacks): self
     {

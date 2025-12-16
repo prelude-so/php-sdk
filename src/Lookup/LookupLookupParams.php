@@ -15,7 +15,9 @@ use Prelude\Lookup\LookupLookupParams\Type;
  *
  * @see Prelude\Services\LookupService::lookup()
  *
- * @phpstan-type LookupLookupParamsShape = array{type?: list<Type|value-of<Type>>}
+ * @phpstan-type LookupLookupParamsShape = array{
+ *   type?: list<Type|value-of<Type>>|null
+ * }
  */
 final class LookupLookupParams implements BaseModel
 {
