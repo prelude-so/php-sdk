@@ -19,14 +19,14 @@ use Prelude\Notify\NotifySendBatchParams\PreferredChannel;
  * @phpstan-type NotifySendBatchParamsShape = array{
  *   templateID: string,
  *   to: list<string>,
- *   callbackURL?: string,
- *   correlationID?: string,
- *   expiresAt?: \DateTimeInterface,
- *   from?: string,
- *   locale?: string,
- *   preferredChannel?: PreferredChannel|value-of<PreferredChannel>,
- *   scheduleAt?: \DateTimeInterface,
- *   variables?: array<string,string>,
+ *   callbackURL?: string|null,
+ *   correlationID?: string|null,
+ *   expiresAt?: \DateTimeInterface|null,
+ *   from?: string|null,
+ *   locale?: string|null,
+ *   preferredChannel?: null|PreferredChannel|value-of<PreferredChannel>,
+ *   scheduleAt?: \DateTimeInterface|null,
+ *   variables?: array<string,string>|null,
  * }
  */
 final class NotifySendBatchParams implements BaseModel

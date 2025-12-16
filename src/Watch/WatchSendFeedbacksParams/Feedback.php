@@ -10,17 +10,20 @@ use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals\DevicePlatform;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Type;
 
 /**
+ * @phpstan-import-type TargetShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target
+ * @phpstan-import-type MetadataShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata
+ * @phpstan-import-type SignalsShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals
+ *
  * @phpstan-type FeedbackShape = array{
- *   target: Target,
- *   type: value-of<Type>,
+ *   target: Target|TargetShape,
+ *   type: Type|value-of<Type>,
  *   dispatchID?: string|null,
- *   metadata?: Metadata|null,
- *   signals?: Signals|null,
+ *   metadata?: null|Metadata|MetadataShape,
+ *   signals?: null|Signals|SignalsShape,
  * }
  */
 final class Feedback implements BaseModel
@@ -84,23 +87,10 @@ final class Feedback implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Target|array{
-     *   type: value-of<Target\Type>,
-     *   value: string,
-     * } $target
+     * @param TargetShape $target
      * @param Type|value-of<Type> $type
-     * @param Metadata|array{correlationID?: string|null} $metadata
-     * @param Signals|array{
-     *   appVersion?: string|null,
-     *   deviceID?: string|null,
-     *   deviceModel?: string|null,
-     *   devicePlatform?: value-of<DevicePlatform>|null,
-     *   ip?: string|null,
-     *   isTrustedUser?: bool|null,
-     *   ja4Fingerprint?: string|null,
-     *   osVersion?: string|null,
-     *   userAgent?: string|null,
-     * } $signals
+     * @param MetadataShape $metadata
+     * @param SignalsShape $signals
      */
     public static function with(
         Target|array $target,
@@ -124,10 +114,7 @@ final class Feedback implements BaseModel
     /**
      * The feedback target. Only supports phone numbers for now.
      *
-     * @param Target|array{
-     *   type: value-of<Target\Type>,
-     *   value: string,
-     * } $target
+     * @param TargetShape $target
      */
     public function withTarget(Target|array $target): self
     {
@@ -164,7 +151,7 @@ final class Feedback implements BaseModel
     /**
      * The metadata for this feedback.
      *
-     * @param Metadata|array{correlationID?: string|null} $metadata
+     * @param MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -177,17 +164,7 @@ final class Feedback implements BaseModel
     /**
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
-     * @param Signals|array{
-     *   appVersion?: string|null,
-     *   deviceID?: string|null,
-     *   deviceModel?: string|null,
-     *   devicePlatform?: value-of<DevicePlatform>|null,
-     *   ip?: string|null,
-     *   isTrustedUser?: bool|null,
-     *   ja4Fingerprint?: string|null,
-     *   osVersion?: string|null,
-     *   userAgent?: string|null,
-     * } $signals
+     * @param SignalsShape $signals
      */
     public function withSignals(Signals|array $signals): self
     {

@@ -12,7 +12,7 @@ use Prelude\Watch\WatchSendEventsParams\Event\Target\Type;
 /**
  * The event target. Only supports phone numbers for now.
  *
- * @phpstan-type TargetShape = array{type: value-of<Type>, value: string}
+ * @phpstan-type TargetShape = array{type: Type|value-of<Type>, value: string}
  */
 final class Target implements BaseModel
 {

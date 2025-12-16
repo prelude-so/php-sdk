@@ -23,7 +23,7 @@ interface VerificationManagementRawContract
      * @api
      *
      * @param Action|value-of<Action> $action The action type - either "allow" or "block"
-     * @param array<mixed>|VerificationManagementDeletePhoneNumberParams $params
+     * @param array<string,mixed>|VerificationManagementDeletePhoneNumberParams $params
      *
      * @return BaseResponse<VerificationManagementDeletePhoneNumberResponse>
      *
@@ -64,7 +64,7 @@ interface VerificationManagementRawContract
      * @api
      *
      * @param VerificationManagementSetPhoneNumberParams\Action|value-of<VerificationManagementSetPhoneNumberParams\Action> $action The action type - either "allow" or "block"
-     * @param array<mixed>|VerificationManagementSetPhoneNumberParams $params
+     * @param array<string,mixed>|VerificationManagementSetPhoneNumberParams $params
      *
      * @return BaseResponse<VerificationManagementSetPhoneNumberResponse>
      *
@@ -79,7 +79,7 @@ interface VerificationManagementRawContract
     /**
      * @api
      *
-     * @param array<mixed>|VerificationManagementSubmitSenderIDParams $params
+     * @param array<string,mixed>|VerificationManagementSubmitSenderIDParams $params
      *
      * @return BaseResponse<VerificationManagementSubmitSenderIDResponse>
      *

@@ -8,13 +8,14 @@ use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\SenderID;
-use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\SenderID\Status;
 
 /**
  * A list of Sender ID.
  *
+ * @phpstan-import-type SenderIDShape from \Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\SenderID
+ *
  * @phpstan-type VerificationManagementListSenderIDsResponseShape = array{
- *   senderIDs?: list<SenderID>|null
+ *   senderIDs?: list<SenderIDShape>|null
  * }
  */
 final class VerificationManagementListSenderIDsResponse implements BaseModel
@@ -36,9 +37,7 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<SenderID|array{
-     *   senderID?: string|null, status?: value-of<Status>|null
-     * }> $senderIDs
+     * @param list<SenderIDShape> $senderIDs
      */
     public static function with(?array $senderIDs = null): self
     {
@@ -50,9 +49,7 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel
     }
 
     /**
-     * @param list<SenderID|array{
-     *   senderID?: string|null, status?: value-of<Status>|null
-     * }> $senderIDs
+     * @param list<SenderIDShape> $senderIDs
      */
     public function withSenderIDs(array $senderIDs): self
     {

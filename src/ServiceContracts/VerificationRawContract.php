@@ -17,7 +17,7 @@ interface VerificationRawContract
     /**
      * @api
      *
-     * @param array<mixed>|VerificationCreateParams $params
+     * @param array<string,mixed>|VerificationCreateParams $params
      *
      * @return BaseResponse<VerificationNewResponse>
      *
@@ -31,7 +31,7 @@ interface VerificationRawContract
     /**
      * @api
      *
-     * @param array<mixed>|VerificationCheckParams $params
+     * @param array<string,mixed>|VerificationCheckParams $params
      *
      * @return BaseResponse<VerificationCheckResponse>
      *

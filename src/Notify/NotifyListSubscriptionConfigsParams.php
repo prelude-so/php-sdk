@@ -17,7 +17,7 @@ use Prelude\Core\Contracts\BaseModel;
  * @see Prelude\Services\NotifyService::listSubscriptionConfigs()
  *
  * @phpstan-type NotifyListSubscriptionConfigsParamsShape = array{
- *   cursor?: string, limit?: int
+ *   cursor?: string|null, limit?: int|null
  * }
  */
 final class NotifyListSubscriptionConfigsParams implements BaseModel

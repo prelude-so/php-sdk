@@ -11,7 +11,7 @@ use Prelude\Watch\WatchPredictResponse\Prediction;
 
 /**
  * @phpstan-type WatchPredictResponseShape = array{
- *   id: string, prediction: value-of<Prediction>, requestID: string
+ *   id: string, prediction: Prediction|value-of<Prediction>, requestID: string
  * }
  */
 final class WatchPredictResponse implements BaseModel

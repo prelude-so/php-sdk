@@ -18,7 +18,7 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams\State;
  * @see Prelude\Services\NotifyService::listSubscriptionPhoneNumbers()
  *
  * @phpstan-type NotifyListSubscriptionPhoneNumbersParamsShape = array{
- *   cursor?: string, limit?: int, state?: State|value-of<State>
+ *   cursor?: string|null, limit?: int|null, state?: null|State|value-of<State>
  * }
  */
 final class NotifyListSubscriptionPhoneNumbersParams implements BaseModel

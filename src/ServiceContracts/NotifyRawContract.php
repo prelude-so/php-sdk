@@ -41,7 +41,7 @@ interface NotifyRawContract
      * @api
      *
      * @param string $phoneNumber The phone number in E.164 format (e.g., +33612345678)
-     * @param array<mixed>|NotifyGetSubscriptionPhoneNumberParams $params
+     * @param array<string,mixed>|NotifyGetSubscriptionPhoneNumberParams $params
      *
      * @return BaseResponse<NotifyGetSubscriptionPhoneNumberResponse>
      *
@@ -56,7 +56,7 @@ interface NotifyRawContract
     /**
      * @api
      *
-     * @param array<mixed>|NotifyListSubscriptionConfigsParams $params
+     * @param array<string,mixed>|NotifyListSubscriptionConfigsParams $params
      *
      * @return BaseResponse<NotifyListSubscriptionConfigsResponse>
      *
@@ -71,7 +71,7 @@ interface NotifyRawContract
      * @api
      *
      * @param string $phoneNumber Path param: The phone number in E.164 format (e.g., +33612345678)
-     * @param array<mixed>|NotifyListSubscriptionPhoneNumberEventsParams $params
+     * @param array<string,mixed>|NotifyListSubscriptionPhoneNumberEventsParams $params
      *
      * @return BaseResponse<NotifyListSubscriptionPhoneNumberEventsResponse>
      *
@@ -87,7 +87,7 @@ interface NotifyRawContract
      * @api
      *
      * @param string $configID The subscription configuration ID
-     * @param array<mixed>|NotifyListSubscriptionPhoneNumbersParams $params
+     * @param array<string,mixed>|NotifyListSubscriptionPhoneNumbersParams $params
      *
      * @return BaseResponse<NotifyListSubscriptionPhoneNumbersResponse>
      *
@@ -102,7 +102,7 @@ interface NotifyRawContract
     /**
      * @api
      *
-     * @param array<mixed>|NotifySendParams $params
+     * @param array<string,mixed>|NotifySendParams $params
      *
      * @return BaseResponse<NotifySendResponse>
      *
@@ -116,7 +116,7 @@ interface NotifyRawContract
     /**
      * @api
      *
-     * @param array<mixed>|NotifySendBatchParams $params
+     * @param array<string,mixed>|NotifySendBatchParams $params
      *
      * @return BaseResponse<NotifySendBatchResponse>
      *

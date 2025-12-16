@@ -9,12 +9,12 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event;
-use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event\Source;
-use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event\State;
 
 /**
+ * @phpstan-import-type EventShape from \Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event
+ *
  * @phpstan-type NotifyListSubscriptionPhoneNumberEventsResponseShape = array{
- *   events: list<Event>, nextCursor?: string|null
+ *   events: list<EventShape>, nextCursor?: string|null
  * }
  */
 final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
@@ -60,14 +60,7 @@ final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Event|array{
-     *   configID: string,
-     *   phoneNumber: string,
-     *   source: value-of<Source>,
-     *   state: value-of<State>,
-     *   timestamp: \DateTimeInterface,
-     *   reason?: string|null,
-     * }> $events
+     * @param list<EventShape> $events
      */
     public static function with(array $events, ?string $nextCursor = null): self
     {
@@ -83,14 +76,7 @@ final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
     /**
      * A list of subscription events (status changes) ordered by timestamp descending.
      *
-     * @param list<Event|array{
-     *   configID: string,
-     *   phoneNumber: string,
-     *   source: value-of<Source>,
-     *   state: value-of<State>,
-     *   timestamp: \DateTimeInterface,
-     *   reason?: string|null,
-     * }> $events
+     * @param list<EventShape> $events
      */
     public function withEvents(array $events): self
     {

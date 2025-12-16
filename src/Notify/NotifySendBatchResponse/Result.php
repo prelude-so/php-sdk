@@ -12,8 +12,14 @@ use Prelude\Notify\NotifySendBatchResponse\Result\Error;
 use Prelude\Notify\NotifySendBatchResponse\Result\Message;
 
 /**
+ * @phpstan-import-type ErrorShape from \Prelude\Notify\NotifySendBatchResponse\Result\Error
+ * @phpstan-import-type MessageShape from \Prelude\Notify\NotifySendBatchResponse\Result\Message
+ *
  * @phpstan-type ResultShape = array{
- *   phoneNumber: string, success: bool, error?: Error|null, message?: Message|null
+ *   phoneNumber: string,
+ *   success: bool,
+ *   error?: null|Error|ErrorShape,
+ *   message?: null|Message|MessageShape,
  * }
  */
 final class Result implements BaseModel
@@ -69,17 +75,8 @@ final class Result implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Error|array{code?: string|null, message?: string|null} $error
-     * @param Message|array{
-     *   id?: string|null,
-     *   correlationID?: string|null,
-     *   createdAt?: \DateTimeInterface|null,
-     *   expiresAt?: \DateTimeInterface|null,
-     *   from?: string|null,
-     *   locale?: string|null,
-     *   scheduleAt?: \DateTimeInterface|null,
-     *   to?: string|null,
-     * } $message
+     * @param ErrorShape $error
+     * @param MessageShape $message
      */
     public static function with(
         string $phoneNumber,
@@ -123,7 +120,7 @@ final class Result implements BaseModel
     /**
      * Present only if success is false.
      *
-     * @param Error|array{code?: string|null, message?: string|null} $error
+     * @param ErrorShape $error
      */
     public function withError(Error|array $error): self
     {
@@ -136,16 +133,7 @@ final class Result implements BaseModel
     /**
      * Present only if success is true.
      *
-     * @param Message|array{
-     *   id?: string|null,
-     *   correlationID?: string|null,
-     *   createdAt?: \DateTimeInterface|null,
-     *   expiresAt?: \DateTimeInterface|null,
-     *   from?: string|null,
-     *   locale?: string|null,
-     *   scheduleAt?: \DateTimeInterface|null,
-     *   to?: string|null,
-     * } $message
+     * @param MessageShape $message
      */
     public function withMessage(Message|array $message): self
     {

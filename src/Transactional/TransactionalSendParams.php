@@ -20,13 +20,13 @@ use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
  * @phpstan-type TransactionalSendParamsShape = array{
  *   templateID: string,
  *   to: string,
- *   callbackURL?: string,
- *   correlationID?: string,
- *   expiresAt?: string,
- *   from?: string,
- *   locale?: string,
- *   preferredChannel?: PreferredChannel|value-of<PreferredChannel>,
- *   variables?: array<string,string>,
+ *   callbackURL?: string|null,
+ *   correlationID?: string|null,
+ *   expiresAt?: string|null,
+ *   from?: string|null,
+ *   locale?: string|null,
+ *   preferredChannel?: null|PreferredChannel|value-of<PreferredChannel>,
+ *   variables?: array<string,string>|null,
  * }
  */
 final class TransactionalSendParams implements BaseModel

@@ -16,7 +16,7 @@ interface LookupRawContract
      * @api
      *
      * @param string $phoneNumber An E.164 formatted phone number to look up.
-     * @param array<mixed>|LookupLookupParams $params
+     * @param array<string,mixed>|LookupLookupParams $params
      *
      * @return BaseResponse<LookupLookupResponse>
      *

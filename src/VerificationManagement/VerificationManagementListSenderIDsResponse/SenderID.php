@@ -11,7 +11,7 @@ use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\S
 
 /**
  * @phpstan-type SenderIDShape = array{
- *   senderID?: string|null, status?: value-of<Status>|null
+ *   senderID?: string|null, status?: null|Status|value-of<Status>
  * }
  */
 final class SenderID implements BaseModel

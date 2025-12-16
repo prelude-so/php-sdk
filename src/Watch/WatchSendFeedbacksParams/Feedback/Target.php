@@ -13,7 +13,7 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type;
  * The feedback target. Only supports phone numbers for now.
  *
  * @phpstan-type TargetShape = array{
- *   type: value-of<\Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type>,
+ *   type: \Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type|value-of<\Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type>,
  *   value: string,
  * }
  */

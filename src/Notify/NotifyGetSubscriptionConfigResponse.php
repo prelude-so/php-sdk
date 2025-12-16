@@ -12,14 +12,17 @@ use Prelude\Notify\NotifyGetSubscriptionConfigResponse\Messages;
 use Prelude\Notify\NotifyGetSubscriptionConfigResponse\MoPhoneNumber;
 
 /**
+ * @phpstan-import-type MessagesShape from \Prelude\Notify\NotifyGetSubscriptionConfigResponse\Messages
+ * @phpstan-import-type MoPhoneNumberShape from \Prelude\Notify\NotifyGetSubscriptionConfigResponse\MoPhoneNumber
+ *
  * @phpstan-type NotifyGetSubscriptionConfigResponseShape = array{
  *   id: string,
  *   callbackURL: string,
  *   createdAt: \DateTimeInterface,
- *   messages: Messages,
+ *   messages: Messages|MessagesShape,
  *   name: string,
  *   updatedAt: \DateTimeInterface,
- *   moPhoneNumbers?: list<MoPhoneNumber>|null,
+ *   moPhoneNumbers?: list<MoPhoneNumberShape>|null,
  * }
  */
 final class NotifyGetSubscriptionConfigResponse implements BaseModel
@@ -108,14 +111,8 @@ final class NotifyGetSubscriptionConfigResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Messages|array{
-     *   helpMessage?: string|null,
-     *   startMessage?: string|null,
-     *   stopMessage?: string|null,
-     * } $messages
-     * @param list<MoPhoneNumber|array{
-     *   countryCode: string, phoneNumber: string
-     * }> $moPhoneNumbers
+     * @param MessagesShape $messages
+     * @param list<MoPhoneNumberShape> $moPhoneNumbers
      */
     public static function with(
         string $id,
@@ -176,11 +173,7 @@ final class NotifyGetSubscriptionConfigResponse implements BaseModel
     /**
      * The subscription messages configuration.
      *
-     * @param Messages|array{
-     *   helpMessage?: string|null,
-     *   startMessage?: string|null,
-     *   stopMessage?: string|null,
-     * } $messages
+     * @param MessagesShape $messages
      */
     public function withMessages(Messages|array $messages): self
     {
@@ -215,9 +208,7 @@ final class NotifyGetSubscriptionConfigResponse implements BaseModel
     /**
      * A list of phone numbers for receiving inbound messages.
      *
-     * @param list<MoPhoneNumber|array{
-     *   countryCode: string, phoneNumber: string
-     * }> $moPhoneNumbers
+     * @param list<MoPhoneNumberShape> $moPhoneNumbers
      */
     public function withMoPhoneNumbers(array $moPhoneNumbers): self
     {

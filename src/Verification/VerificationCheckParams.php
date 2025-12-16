@@ -9,15 +9,16 @@ use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCheckParams\Target;
-use Prelude\Verification\VerificationCheckParams\Target\Type;
 
 /**
  * Check the validity of a verification code.
  *
  * @see Prelude\Services\VerificationService::check()
  *
+ * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCheckParams\Target
+ *
  * @phpstan-type VerificationCheckParamsShape = array{
- *   code: string, target: Target|array{type: value-of<Type>, value: string}
+ *   code: string, target: TargetShape
  * }
  */
 final class VerificationCheckParams implements BaseModel
@@ -62,7 +63,7 @@ final class VerificationCheckParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Target|array{type: value-of<Type>, value: string} $target
+     * @param TargetShape $target
      */
     public static function with(string $code, Target|array $target): self
     {
@@ -88,7 +89,7 @@ final class VerificationCheckParams implements BaseModel
     /**
      * The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      *
-     * @param Target|array{type: value-of<Type>, value: string} $target
+     * @param TargetShape $target
      */
     public function withTarget(Target|array $target): self
     {

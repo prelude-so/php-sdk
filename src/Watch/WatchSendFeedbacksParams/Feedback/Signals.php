@@ -16,7 +16,7 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals\DevicePlatform;
  *   appVersion?: string|null,
  *   deviceID?: string|null,
  *   deviceModel?: string|null,
- *   devicePlatform?: value-of<DevicePlatform>|null,
+ *   devicePlatform?: null|DevicePlatform|value-of<DevicePlatform>,
  *   ip?: string|null,
  *   isTrustedUser?: bool|null,
  *   ja4Fingerprint?: string|null,

@@ -15,8 +15,8 @@ use Prelude\Notify\NotifyGetSubscriptionPhoneNumberResponse\State;
  * @phpstan-type NotifyGetSubscriptionPhoneNumberResponseShape = array{
  *   configID: string,
  *   phoneNumber: string,
- *   source: value-of<Source>,
- *   state: value-of<State>,
+ *   source: Source|value-of<Source>,
+ *   state: State|value-of<State>,
  *   updatedAt: \DateTimeInterface,
  *   reason?: string|null,
  * }

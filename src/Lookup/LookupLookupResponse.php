@@ -13,13 +13,16 @@ use Prelude\Lookup\LookupLookupResponse\NetworkInfo;
 use Prelude\Lookup\LookupLookupResponse\OriginalNetworkInfo;
 
 /**
+ * @phpstan-import-type NetworkInfoShape from \Prelude\Lookup\LookupLookupResponse\NetworkInfo
+ * @phpstan-import-type OriginalNetworkInfoShape from \Prelude\Lookup\LookupLookupResponse\OriginalNetworkInfo
+ *
  * @phpstan-type LookupLookupResponseShape = array{
  *   callerName?: string|null,
  *   countryCode?: string|null,
- *   flags?: list<value-of<Flag>>|null,
- *   lineType?: value-of<LineType>|null,
- *   networkInfo?: NetworkInfo|null,
- *   originalNetworkInfo?: OriginalNetworkInfo|null,
+ *   flags?: list<Flag|value-of<Flag>>|null,
+ *   lineType?: null|LineType|value-of<LineType>,
+ *   networkInfo?: null|NetworkInfo|NetworkInfoShape,
+ *   originalNetworkInfo?: null|OriginalNetworkInfo|OriginalNetworkInfoShape,
  *   phoneNumber?: string|null,
  * }
  */
@@ -107,12 +110,8 @@ final class LookupLookupResponse implements BaseModel
      *
      * @param list<Flag|value-of<Flag>> $flags
      * @param LineType|value-of<LineType> $lineType
-     * @param NetworkInfo|array{
-     *   carrierName?: string|null, mcc?: string|null, mnc?: string|null
-     * } $networkInfo
-     * @param OriginalNetworkInfo|array{
-     *   carrierName?: string|null, mcc?: string|null, mnc?: string|null
-     * } $originalNetworkInfo
+     * @param NetworkInfoShape $networkInfo
+     * @param OriginalNetworkInfoShape $originalNetworkInfo
      */
     public static function with(
         ?string $callerName = null,
@@ -208,9 +207,7 @@ final class LookupLookupResponse implements BaseModel
     /**
      * The current carrier information.
      *
-     * @param NetworkInfo|array{
-     *   carrierName?: string|null, mcc?: string|null, mnc?: string|null
-     * } $networkInfo
+     * @param NetworkInfoShape $networkInfo
      */
     public function withNetworkInfo(NetworkInfo|array $networkInfo): self
     {
@@ -223,9 +220,7 @@ final class LookupLookupResponse implements BaseModel
     /**
      * The original carrier information.
      *
-     * @param OriginalNetworkInfo|array{
-     *   carrierName?: string|null, mcc?: string|null, mnc?: string|null
-     * } $originalNetworkInfo
+     * @param OriginalNetworkInfoShape $originalNetworkInfo
      */
     public function withOriginalNetworkInfo(
         OriginalNetworkInfo|array $originalNetworkInfo

@@ -19,14 +19,14 @@ use Prelude\Notify\NotifySendParams\PreferredChannel;
  * @phpstan-type NotifySendParamsShape = array{
  *   templateID: string,
  *   to: string,
- *   callbackURL?: string,
- *   correlationID?: string,
- *   expiresAt?: \DateTimeInterface,
- *   from?: string,
- *   locale?: string,
- *   preferredChannel?: PreferredChannel|value-of<PreferredChannel>,
- *   scheduleAt?: \DateTimeInterface,
- *   variables?: array<string,string>,
+ *   callbackURL?: string|null,
+ *   correlationID?: string|null,
+ *   expiresAt?: \DateTimeInterface|null,
+ *   from?: string|null,
+ *   locale?: string|null,
+ *   preferredChannel?: null|PreferredChannel|value-of<PreferredChannel>,
+ *   scheduleAt?: \DateTimeInterface|null,
+ *   variables?: array<string,string>|null,
  * }
  */
 final class NotifySendParams implements BaseModel

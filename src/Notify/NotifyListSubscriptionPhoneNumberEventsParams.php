@@ -18,7 +18,7 @@ use Prelude\Core\Contracts\BaseModel;
  * @see Prelude\Services\NotifyService::listSubscriptionPhoneNumberEvents()
  *
  * @phpstan-type NotifyListSubscriptionPhoneNumberEventsParamsShape = array{
- *   configID: string, cursor?: string, limit?: int
+ *   configID: string, cursor?: string|null, limit?: int|null
  * }
  */
 final class NotifyListSubscriptionPhoneNumberEventsParams implements BaseModel
