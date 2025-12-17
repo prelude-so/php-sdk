@@ -37,7 +37,7 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<SenderIDShape> $senderIDs
+     * @param list<SenderIDShape>|null $senderIDs
      */
     public static function with(?array $senderIDs = null): self
     {

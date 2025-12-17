@@ -44,7 +44,7 @@ final class LookupLookupParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Type|value-of<Type>> $type
+     * @param list<Type|value-of<Type>>|null $type
      */
     public static function with(?array $type = null): self
     {

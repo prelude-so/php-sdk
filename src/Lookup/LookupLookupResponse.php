@@ -108,10 +108,10 @@ final class LookupLookupResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Flag|value-of<Flag>> $flags
-     * @param LineType|value-of<LineType> $lineType
-     * @param NetworkInfoShape $networkInfo
-     * @param OriginalNetworkInfoShape $originalNetworkInfo
+     * @param list<Flag|value-of<Flag>>|null $flags
+     * @param LineType|value-of<LineType>|null $lineType
+     * @param NetworkInfo|NetworkInfoShape|null $networkInfo
+     * @param OriginalNetworkInfo|OriginalNetworkInfoShape|null $originalNetworkInfo
      */
     public static function with(
         ?string $callerName = null,
@@ -207,7 +207,7 @@ final class LookupLookupResponse implements BaseModel
     /**
      * The current carrier information.
      *
-     * @param NetworkInfoShape $networkInfo
+     * @param NetworkInfo|NetworkInfoShape $networkInfo
      */
     public function withNetworkInfo(NetworkInfo|array $networkInfo): self
     {
@@ -220,7 +220,7 @@ final class LookupLookupResponse implements BaseModel
     /**
      * The original carrier information.
      *
-     * @param OriginalNetworkInfoShape $originalNetworkInfo
+     * @param OriginalNetworkInfo|OriginalNetworkInfoShape $originalNetworkInfo
      */
     public function withOriginalNetworkInfo(
         OriginalNetworkInfo|array $originalNetworkInfo

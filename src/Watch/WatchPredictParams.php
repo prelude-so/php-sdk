@@ -23,10 +23,10 @@ use Prelude\Watch\WatchPredictParams\Target;
  * @phpstan-import-type SignalsShape from \Prelude\Watch\WatchPredictParams\Signals
  *
  * @phpstan-type WatchPredictParamsShape = array{
- *   target: TargetShape,
+ *   target: Target|TargetShape,
  *   dispatchID?: string|null,
- *   metadata?: MetadataShape|null,
- *   signals?: SignalsShape|null,
+ *   metadata?: null|Metadata|MetadataShape,
+ *   signals?: null|Signals|SignalsShape,
  * }
  */
 final class WatchPredictParams implements BaseModel
@@ -83,9 +83,9 @@ final class WatchPredictParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param TargetShape $target
-     * @param MetadataShape $metadata
-     * @param SignalsShape $signals
+     * @param Target|TargetShape $target
+     * @param Metadata|MetadataShape|null $metadata
+     * @param Signals|SignalsShape|null $signals
      */
     public static function with(
         Target|array $target,
@@ -107,7 +107,7 @@ final class WatchPredictParams implements BaseModel
     /**
      * The prediction target. Only supports phone numbers for now.
      *
-     * @param TargetShape $target
+     * @param Target|TargetShape $target
      */
     public function withTarget(Target|array $target): self
     {
@@ -131,7 +131,7 @@ final class WatchPredictParams implements BaseModel
     /**
      * The metadata for this prediction.
      *
-     * @param MetadataShape $metadata
+     * @param Metadata|MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -144,7 +144,7 @@ final class WatchPredictParams implements BaseModel
     /**
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
-     * @param SignalsShape $signals
+     * @param Signals|SignalsShape $signals
      */
     public function withSignals(Signals|array $signals): self
     {

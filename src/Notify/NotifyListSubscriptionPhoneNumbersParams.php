@@ -57,7 +57,7 @@ final class NotifyListSubscriptionPhoneNumbersParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param State|value-of<State> $state
+     * @param State|value-of<State>|null $state
      */
     public static function with(
         ?string $cursor = null,

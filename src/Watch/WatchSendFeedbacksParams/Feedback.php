@@ -87,10 +87,10 @@ final class Feedback implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param TargetShape $target
+     * @param Target|TargetShape $target
      * @param Type|value-of<Type> $type
-     * @param MetadataShape $metadata
-     * @param SignalsShape $signals
+     * @param Metadata|MetadataShape|null $metadata
+     * @param Signals|SignalsShape|null $signals
      */
     public static function with(
         Target|array $target,
@@ -114,7 +114,7 @@ final class Feedback implements BaseModel
     /**
      * The feedback target. Only supports phone numbers for now.
      *
-     * @param TargetShape $target
+     * @param Target|TargetShape $target
      */
     public function withTarget(Target|array $target): self
     {
@@ -151,7 +151,7 @@ final class Feedback implements BaseModel
     /**
      * The metadata for this feedback.
      *
-     * @param MetadataShape $metadata
+     * @param Metadata|MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -164,7 +164,7 @@ final class Feedback implements BaseModel
     /**
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
-     * @param SignalsShape $signals
+     * @param Signals|SignalsShape $signals
      */
     public function withSignals(Signals|array $signals): self
     {

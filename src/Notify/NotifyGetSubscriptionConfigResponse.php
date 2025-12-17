@@ -111,8 +111,8 @@ final class NotifyGetSubscriptionConfigResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param MessagesShape $messages
-     * @param list<MoPhoneNumberShape> $moPhoneNumbers
+     * @param Messages|MessagesShape $messages
+     * @param list<MoPhoneNumberShape>|null $moPhoneNumbers
      */
     public static function with(
         string $id,
@@ -173,7 +173,7 @@ final class NotifyGetSubscriptionConfigResponse implements BaseModel
     /**
      * The subscription messages configuration.
      *
-     * @param MessagesShape $messages
+     * @param Messages|MessagesShape $messages
      */
     public function withMessages(Messages|array $messages): self
     {

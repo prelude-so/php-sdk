@@ -75,8 +75,8 @@ final class Result implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param ErrorShape $error
-     * @param MessageShape $message
+     * @param Error|ErrorShape|null $error
+     * @param Message|MessageShape|null $message
      */
     public static function with(
         string $phoneNumber,
@@ -120,7 +120,7 @@ final class Result implements BaseModel
     /**
      * Present only if success is false.
      *
-     * @param ErrorShape $error
+     * @param Error|ErrorShape $error
      */
     public function withError(Error|array $error): self
     {
@@ -133,7 +133,7 @@ final class Result implements BaseModel
     /**
      * Present only if success is true.
      *
-     * @param MessageShape $message
+     * @param Message|MessageShape $message
      */
     public function withMessage(Message|array $message): self
     {

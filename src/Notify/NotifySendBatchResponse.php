@@ -112,7 +112,7 @@ final class NotifySendBatchResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<ResultShape> $results
-     * @param array<string,string> $variables
+     * @param array<string,string>|null $variables
      */
     public static function with(
         int $errorCount,
