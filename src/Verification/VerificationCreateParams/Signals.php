@@ -95,7 +95,7 @@ final class Signals implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param DevicePlatform|value-of<DevicePlatform> $devicePlatform
+     * @param DevicePlatform|value-of<DevicePlatform>|null $devicePlatform
      */
     public static function with(
         ?string $appVersion = null,

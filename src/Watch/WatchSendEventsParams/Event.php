@@ -69,7 +69,7 @@ final class Event implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Confidence|value-of<Confidence> $confidence
-     * @param TargetShape $target
+     * @param Target|TargetShape $target
      */
     public static function with(
         Confidence|string $confidence,
@@ -112,7 +112,7 @@ final class Event implements BaseModel
     /**
      * The event target. Only supports phone numbers for now.
      *
-     * @param TargetShape $target
+     * @param Target|TargetShape $target
      */
     public function withTarget(Target|array $target): self
     {

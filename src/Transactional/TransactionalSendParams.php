@@ -121,8 +121,8 @@ final class TransactionalSendParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
-     * @param array<string,string> $variables
+     * @param PreferredChannel|value-of<PreferredChannel>|null $preferredChannel
+     * @param array<string,string>|null $variables
      */
     public static function with(
         string $templateID,

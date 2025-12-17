@@ -18,7 +18,7 @@ use Prelude\Verification\VerificationCheckParams\Target;
  * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCheckParams\Target
  *
  * @phpstan-type VerificationCheckParamsShape = array{
- *   code: string, target: TargetShape
+ *   code: string, target: Target|TargetShape
  * }
  */
 final class VerificationCheckParams implements BaseModel
@@ -63,7 +63,7 @@ final class VerificationCheckParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param TargetShape $target
+     * @param Target|TargetShape $target
      */
     public static function with(string $code, Target|array $target): self
     {
@@ -89,7 +89,7 @@ final class VerificationCheckParams implements BaseModel
     /**
      * The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      *
-     * @param TargetShape $target
+     * @param Target|TargetShape $target
      */
     public function withTarget(Target|array $target): self
     {

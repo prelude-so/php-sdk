@@ -120,11 +120,11 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AppRealmShape $appRealm
-     * @param Integration|value-of<Integration> $integration
-     * @param Method|value-of<Method> $method
-     * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
-     * @param array<string,string> $variables
+     * @param AppRealm|AppRealmShape|null $appRealm
+     * @param Integration|value-of<Integration>|null $integration
+     * @param Method|value-of<Method>|null $method
+     * @param PreferredChannel|value-of<PreferredChannel>|null $preferredChannel
+     * @param array<string,string>|null $variables
      */
     public static function with(
         AppRealm|array|null $appRealm = null,
@@ -159,7 +159,7 @@ final class Options implements BaseModel
     /**
      * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
      *
-     * @param AppRealmShape $appRealm
+     * @param AppRealm|AppRealmShape $appRealm
      */
     public function withAppRealm(AppRealm|array $appRealm): self
     {

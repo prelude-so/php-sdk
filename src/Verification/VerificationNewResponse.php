@@ -122,10 +122,10 @@ final class VerificationNewResponse implements BaseModel
      *
      * @param Method|value-of<Method> $method
      * @param Status|value-of<Status> $status
-     * @param list<Channel|value-of<Channel>> $channels
-     * @param MetadataShape $metadata
-     * @param Reason|value-of<Reason> $reason
-     * @param SilentShape $silent
+     * @param list<Channel|value-of<Channel>>|null $channels
+     * @param Metadata|MetadataShape|null $metadata
+     * @param Reason|value-of<Reason>|null $reason
+     * @param Silent|SilentShape|null $silent
      */
     public static function with(
         string $id,
@@ -205,7 +205,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The metadata for this verification.
      *
-     * @param MetadataShape $metadata
+     * @param Metadata|MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -247,7 +247,7 @@ final class VerificationNewResponse implements BaseModel
     /**
      * The silent verification specific properties.
      *
-     * @param SilentShape $silent
+     * @param Silent|SilentShape $silent
      */
     public function withSilent(Silent|array $silent): self
     {

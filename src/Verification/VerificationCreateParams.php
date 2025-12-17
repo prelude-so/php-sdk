@@ -25,11 +25,11 @@ use Prelude\Verification\VerificationCreateParams\Target;
  * @phpstan-import-type SignalsShape from \Prelude\Verification\VerificationCreateParams\Signals
  *
  * @phpstan-type VerificationCreateParamsShape = array{
- *   target: TargetShape,
+ *   target: Target|TargetShape,
  *   dispatchID?: string|null,
- *   metadata?: MetadataShape|null,
- *   options?: OptionsShape|null,
- *   signals?: SignalsShape|null,
+ *   metadata?: null|Metadata|MetadataShape,
+ *   options?: null|Options|OptionsShape,
+ *   signals?: null|Signals|SignalsShape,
  * }
  */
 final class VerificationCreateParams implements BaseModel
@@ -92,10 +92,10 @@ final class VerificationCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param TargetShape $target
-     * @param MetadataShape $metadata
-     * @param OptionsShape $options
-     * @param SignalsShape $signals
+     * @param Target|TargetShape $target
+     * @param Metadata|MetadataShape|null $metadata
+     * @param Options|OptionsShape|null $options
+     * @param Signals|SignalsShape|null $signals
      */
     public static function with(
         Target|array $target,
@@ -119,7 +119,7 @@ final class VerificationCreateParams implements BaseModel
     /**
      * The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      *
-     * @param TargetShape $target
+     * @param Target|TargetShape $target
      */
     public function withTarget(Target|array $target): self
     {
@@ -143,7 +143,7 @@ final class VerificationCreateParams implements BaseModel
     /**
      * The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
      *
-     * @param MetadataShape $metadata
+     * @param Metadata|MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -156,7 +156,7 @@ final class VerificationCreateParams implements BaseModel
     /**
      * Verification options.
      *
-     * @param OptionsShape $options
+     * @param Options|OptionsShape $options
      */
     public function withOptions(Options|array $options): self
     {
@@ -169,7 +169,7 @@ final class VerificationCreateParams implements BaseModel
     /**
      * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
      *
-     * @param SignalsShape $signals
+     * @param Signals|SignalsShape $signals
      */
     public function withSignals(Signals|array $signals): self
     {

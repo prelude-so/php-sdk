@@ -74,7 +74,7 @@ final class VerificationCheckResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Status|value-of<Status> $status
-     * @param MetadataShape $metadata
+     * @param Metadata|MetadataShape|null $metadata
      */
     public static function with(
         Status|string $status,
@@ -120,7 +120,7 @@ final class VerificationCheckResponse implements BaseModel
     /**
      * The metadata for this verification.
      *
-     * @param MetadataShape $metadata
+     * @param Metadata|MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
