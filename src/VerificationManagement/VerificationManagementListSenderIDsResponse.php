@@ -15,7 +15,7 @@ use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\S
  * @phpstan-import-type SenderIDShape from \Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse\SenderID
  *
  * @phpstan-type VerificationManagementListSenderIDsResponseShape = array{
- *   senderIDs?: list<SenderIDShape>|null
+ *   senderIDs?: list<SenderID|SenderIDShape>|null
  * }
  */
 final class VerificationManagementListSenderIDsResponse implements BaseModel
@@ -37,7 +37,7 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<SenderIDShape>|null $senderIDs
+     * @param list<SenderID|SenderIDShape>|null $senderIDs
      */
     public static function with(?array $senderIDs = null): self
     {
@@ -49,7 +49,7 @@ final class VerificationManagementListSenderIDsResponse implements BaseModel
     }
 
     /**
-     * @param list<SenderIDShape> $senderIDs
+     * @param list<SenderID|SenderIDShape> $senderIDs
      */
     public function withSenderIDs(array $senderIDs): self
     {

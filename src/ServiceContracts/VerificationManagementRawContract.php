@@ -17,13 +17,17 @@ use Prelude\VerificationManagement\VerificationManagementSetPhoneNumberResponse;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDParams;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse;
 
+/**
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 interface VerificationManagementRawContract
 {
     /**
      * @api
      *
-     * @param Action|value-of<Action> $action The action type - either "allow" or "block"
+     * @param Action|string $action The action type - either "allow" or "block"
      * @param array<string,mixed>|VerificationManagementDeletePhoneNumberParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VerificationManagementDeletePhoneNumberResponse>
      *
@@ -32,13 +36,14 @@ interface VerificationManagementRawContract
     public function deletePhoneNumber(
         Action|string $action,
         array|VerificationManagementDeletePhoneNumberParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
-     * @param \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action|value-of<\Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action> $action The action type - either "allow" or "block"
+     * @param \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action|string $action The action type - either "allow" or "block"
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VerificationManagementListPhoneNumbersResponse>
      *
@@ -46,25 +51,28 @@ interface VerificationManagementRawContract
      */
     public function listPhoneNumbers(
         \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action|string $action,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
+     *
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VerificationManagementListSenderIDsResponse>
      *
      * @throws APIException
      */
     public function listSenderIDs(
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 
     /**
      * @api
      *
-     * @param VerificationManagementSetPhoneNumberParams\Action|value-of<VerificationManagementSetPhoneNumberParams\Action> $action The action type - either "allow" or "block"
+     * @param VerificationManagementSetPhoneNumberParams\Action|string $action The action type - either "allow" or "block"
      * @param array<string,mixed>|VerificationManagementSetPhoneNumberParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VerificationManagementSetPhoneNumberResponse>
      *
@@ -73,13 +81,14 @@ interface VerificationManagementRawContract
     public function setPhoneNumber(
         VerificationManagementSetPhoneNumberParams\Action|string $action,
         array|VerificationManagementSetPhoneNumberParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|VerificationManagementSubmitSenderIDParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VerificationManagementSubmitSenderIDResponse>
      *
@@ -87,6 +96,6 @@ interface VerificationManagementRawContract
      */
     public function submitSenderID(
         array|VerificationManagementSubmitSenderIDParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

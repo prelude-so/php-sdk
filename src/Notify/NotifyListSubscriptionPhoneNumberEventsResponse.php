@@ -14,7 +14,7 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event;
  * @phpstan-import-type EventShape from \Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse\Event
  *
  * @phpstan-type NotifyListSubscriptionPhoneNumberEventsResponseShape = array{
- *   events: list<EventShape>, nextCursor?: string|null
+ *   events: list<Event|EventShape>, nextCursor?: string|null
  * }
  */
 final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
@@ -60,7 +60,7 @@ final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<EventShape> $events
+     * @param list<Event|EventShape> $events
      */
     public static function with(array $events, ?string $nextCursor = null): self
     {
@@ -76,7 +76,7 @@ final class NotifyListSubscriptionPhoneNumberEventsResponse implements BaseModel
     /**
      * A list of subscription events (status changes) ordered by timestamp descending.
      *
-     * @param list<EventShape> $events
+     * @param list<Event|EventShape> $events
      */
     public function withEvents(array $events): self
     {

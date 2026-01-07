@@ -14,7 +14,7 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber;
  * @phpstan-import-type PhoneNumberShape from \Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse\PhoneNumber
  *
  * @phpstan-type NotifyListSubscriptionPhoneNumbersResponseShape = array{
- *   phoneNumbers: list<PhoneNumberShape>, nextCursor?: string|null
+ *   phoneNumbers: list<PhoneNumber|PhoneNumberShape>, nextCursor?: string|null
  * }
  */
 final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
@@ -60,7 +60,7 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<PhoneNumberShape> $phoneNumbers
+     * @param list<PhoneNumber|PhoneNumberShape> $phoneNumbers
      */
     public static function with(
         array $phoneNumbers,
@@ -78,7 +78,7 @@ final class NotifyListSubscriptionPhoneNumbersResponse implements BaseModel
     /**
      * A list of phone numbers and their subscription statuses.
      *
-     * @param list<PhoneNumberShape> $phoneNumbers
+     * @param list<PhoneNumber|PhoneNumberShape> $phoneNumbers
      */
     public function withPhoneNumbers(array $phoneNumbers): self
     {

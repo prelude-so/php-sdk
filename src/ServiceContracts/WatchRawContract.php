@@ -14,12 +14,16 @@ use Prelude\Watch\WatchSendEventsResponse;
 use Prelude\Watch\WatchSendFeedbacksParams;
 use Prelude\Watch\WatchSendFeedbacksResponse;
 
+/**
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 interface WatchRawContract
 {
     /**
      * @api
      *
      * @param array<string,mixed>|WatchPredictParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<WatchPredictResponse>
      *
@@ -27,13 +31,14 @@ interface WatchRawContract
      */
     public function predict(
         array|WatchPredictParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|WatchSendEventsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<WatchSendEventsResponse>
      *
@@ -41,13 +46,14 @@ interface WatchRawContract
      */
     public function sendEvents(
         array|WatchSendEventsParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|WatchSendFeedbacksParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<WatchSendFeedbacksResponse>
      *
@@ -55,6 +61,6 @@ interface WatchRawContract
      */
     public function sendFeedbacks(
         array|WatchSendFeedbacksParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

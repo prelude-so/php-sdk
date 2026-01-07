@@ -13,6 +13,9 @@ use Prelude\Transactional\TransactionalSendParams;
 use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
 use Prelude\Transactional\TransactionalSendResponse;
 
+/**
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 final class TransactionalRawService implements TransactionalRawContract
 {
     // @phpstan-ignore-next-line
@@ -36,9 +39,10 @@ final class TransactionalRawService implements TransactionalRawContract
      *   expiresAt?: string,
      *   from?: string,
      *   locale?: string,
-     *   preferredChannel?: 'sms'|'rcs'|'whatsapp'|PreferredChannel,
+     *   preferredChannel?: PreferredChannel|value-of<PreferredChannel>,
      *   variables?: array<string,string>,
      * }|TransactionalSendParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<TransactionalSendResponse>
      *
@@ -46,7 +50,7 @@ final class TransactionalRawService implements TransactionalRawContract
      */
     public function send(
         array|TransactionalSendParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = TransactionalSendParams::parseRequest(
             $params,

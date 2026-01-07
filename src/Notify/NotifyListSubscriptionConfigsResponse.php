@@ -14,7 +14,7 @@ use Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config;
  * @phpstan-import-type ConfigShape from \Prelude\Notify\NotifyListSubscriptionConfigsResponse\Config
  *
  * @phpstan-type NotifyListSubscriptionConfigsResponseShape = array{
- *   configs: list<ConfigShape>, nextCursor?: string|null
+ *   configs: list<Config|ConfigShape>, nextCursor?: string|null
  * }
  */
 final class NotifyListSubscriptionConfigsResponse implements BaseModel
@@ -60,7 +60,7 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<ConfigShape> $configs
+     * @param list<Config|ConfigShape> $configs
      */
     public static function with(array $configs, ?string $nextCursor = null): self
     {
@@ -76,7 +76,7 @@ final class NotifyListSubscriptionConfigsResponse implements BaseModel
     /**
      * A list of subscription management configurations.
      *
-     * @param list<ConfigShape> $configs
+     * @param list<Config|ConfigShape> $configs
      */
     public function withConfigs(array $configs): self
     {

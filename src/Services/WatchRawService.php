@@ -10,15 +10,25 @@ use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\WatchRawContract;
 use Prelude\Watch\WatchPredictParams;
-use Prelude\Watch\WatchPredictParams\Signals\DevicePlatform;
-use Prelude\Watch\WatchPredictParams\Target\Type;
+use Prelude\Watch\WatchPredictParams\Metadata;
+use Prelude\Watch\WatchPredictParams\Signals;
+use Prelude\Watch\WatchPredictParams\Target;
 use Prelude\Watch\WatchPredictResponse;
 use Prelude\Watch\WatchSendEventsParams;
-use Prelude\Watch\WatchSendEventsParams\Event\Confidence;
+use Prelude\Watch\WatchSendEventsParams\Event;
 use Prelude\Watch\WatchSendEventsResponse;
 use Prelude\Watch\WatchSendFeedbacksParams;
+use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 use Prelude\Watch\WatchSendFeedbacksResponse;
 
+/**
+ * @phpstan-import-type TargetShape from \Prelude\Watch\WatchPredictParams\Target
+ * @phpstan-import-type MetadataShape from \Prelude\Watch\WatchPredictParams\Metadata
+ * @phpstan-import-type SignalsShape from \Prelude\Watch\WatchPredictParams\Signals
+ * @phpstan-import-type EventShape from \Prelude\Watch\WatchSendEventsParams\Event
+ * @phpstan-import-type FeedbackShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 final class WatchRawService implements WatchRawContract
 {
     // @phpstan-ignore-next-line
@@ -33,21 +43,12 @@ final class WatchRawService implements WatchRawContract
      * Predict the outcome of a verification based on Prelude’s anti-fraud system.
      *
      * @param array{
-     *   target: array{type: 'phone_number'|'email_address'|Type, value: string},
+     *   target: Target|TargetShape,
      *   dispatchID?: string,
-     *   metadata?: array{correlationID?: string},
-     *   signals?: array{
-     *     appVersion?: string,
-     *     deviceID?: string,
-     *     deviceModel?: string,
-     *     devicePlatform?: 'android'|'ios'|'ipados'|'tvos'|'web'|DevicePlatform,
-     *     ip?: string,
-     *     isTrustedUser?: bool,
-     *     ja4Fingerprint?: string,
-     *     osVersion?: string,
-     *     userAgent?: string,
-     *   },
+     *   metadata?: Metadata|MetadataShape,
+     *   signals?: Signals|SignalsShape,
      * }|WatchPredictParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<WatchPredictResponse>
      *
@@ -55,7 +56,7 @@ final class WatchRawService implements WatchRawContract
      */
     public function predict(
         array|WatchPredictParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = WatchPredictParams::parseRequest(
             $params,
@@ -77,16 +78,8 @@ final class WatchRawService implements WatchRawContract
      *
      * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
      *
-     * @param array{
-     *   events: list<array{
-     *     confidence: 'maximum'|'high'|'neutral'|'low'|'minimum'|Confidence,
-     *     label: string,
-     *     target: array{
-     *       type: 'phone_number'|'email_address'|WatchSendEventsParams\Event\Target\Type,
-     *       value: string,
-     *     },
-     *   }>,
-     * }|WatchSendEventsParams $params
+     * @param array{events: list<Event|EventShape>}|WatchSendEventsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<WatchSendEventsResponse>
      *
@@ -94,7 +87,7 @@ final class WatchRawService implements WatchRawContract
      */
     public function sendEvents(
         array|WatchSendEventsParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = WatchSendEventsParams::parseRequest(
             $params,
@@ -117,27 +110,9 @@ final class WatchRawService implements WatchRawContract
      * Send feedback regarding your end-users verification funnel. Events will be analyzed for proactive fraud prevention and risk scoring.
      *
      * @param array{
-     *   feedbacks: list<array{
-     *     target: array{
-     *       type: 'phone_number'|'email_address'|WatchSendFeedbacksParams\Feedback\Target\Type,
-     *       value: string,
-     *     },
-     *     type: 'verification.started'|'verification.completed'|WatchSendFeedbacksParams\Feedback\Type,
-     *     dispatchID?: string,
-     *     metadata?: array{correlationID?: string},
-     *     signals?: array{
-     *       appVersion?: string,
-     *       deviceID?: string,
-     *       deviceModel?: string,
-     *       devicePlatform?: 'android'|'ios'|'ipados'|'tvos'|'web'|WatchSendFeedbacksParams\Feedback\Signals\DevicePlatform,
-     *       ip?: string,
-     *       isTrustedUser?: bool,
-     *       ja4Fingerprint?: string,
-     *       osVersion?: string,
-     *       userAgent?: string,
-     *     },
-     *   }>,
+     *   feedbacks: list<Feedback|FeedbackShape>
      * }|WatchSendFeedbacksParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<WatchSendFeedbacksResponse>
      *
@@ -145,7 +120,7 @@ final class WatchRawService implements WatchRawContract
      */
     public function sendFeedbacks(
         array|WatchSendFeedbacksParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = WatchSendFeedbacksParams::parseRequest(
             $params,

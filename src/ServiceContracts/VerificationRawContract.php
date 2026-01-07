@@ -12,12 +12,16 @@ use Prelude\Verification\VerificationCheckResponse;
 use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationNewResponse;
 
+/**
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 interface VerificationRawContract
 {
     /**
      * @api
      *
      * @param array<string,mixed>|VerificationCreateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VerificationNewResponse>
      *
@@ -25,13 +29,14 @@ interface VerificationRawContract
      */
     public function create(
         array|VerificationCreateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|VerificationCheckParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VerificationCheckResponse>
      *
@@ -39,6 +44,6 @@ interface VerificationRawContract
      */
     public function check(
         array|VerificationCheckParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

@@ -22,7 +22,7 @@ use Prelude\Notify\NotifyGetSubscriptionConfigResponse\MoPhoneNumber;
  *   messages: Messages|MessagesShape,
  *   name: string,
  *   updatedAt: \DateTimeInterface,
- *   moPhoneNumbers?: list<MoPhoneNumberShape>|null,
+ *   moPhoneNumbers?: list<MoPhoneNumber|MoPhoneNumberShape>|null,
  * }
  */
 final class NotifyGetSubscriptionConfigResponse implements BaseModel
@@ -112,7 +112,7 @@ final class NotifyGetSubscriptionConfigResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Messages|MessagesShape $messages
-     * @param list<MoPhoneNumberShape>|null $moPhoneNumbers
+     * @param list<MoPhoneNumber|MoPhoneNumberShape>|null $moPhoneNumbers
      */
     public static function with(
         string $id,
@@ -208,7 +208,7 @@ final class NotifyGetSubscriptionConfigResponse implements BaseModel
     /**
      * A list of phone numbers for receiving inbound messages.
      *
-     * @param list<MoPhoneNumberShape> $moPhoneNumbers
+     * @param list<MoPhoneNumber|MoPhoneNumberShape> $moPhoneNumbers
      */
     public function withMoPhoneNumbers(array $moPhoneNumbers): self
     {

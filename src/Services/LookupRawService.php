@@ -13,6 +13,9 @@ use Prelude\Lookup\LookupLookupResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\LookupRawContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 final class LookupRawService implements LookupRawContract
 {
     // @phpstan-ignore-next-line
@@ -27,7 +30,8 @@ final class LookupRawService implements LookupRawContract
      * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
      *
      * @param string $phoneNumber An E.164 formatted phone number to look up.
-     * @param array{type?: list<'cnam'|Type>}|LookupLookupParams $params
+     * @param array{type?: list<Type|value-of<Type>>}|LookupLookupParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<LookupLookupResponse>
      *
@@ -36,7 +40,7 @@ final class LookupRawService implements LookupRawContract
     public function lookup(
         string $phoneNumber,
         array|LookupLookupParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = LookupLookupParams::parseRequest(
             $params,
