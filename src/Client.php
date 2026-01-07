@@ -16,8 +16,8 @@ use Prelude\Services\VerificationService;
 use Prelude\Services\WatchService;
 
 /**
- * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  * @phpstan-import-type NormalizedRequest from \Prelude\Core\BaseClient
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  */
 class Client extends BaseClient
 {
@@ -53,17 +53,26 @@ class Client extends BaseClient
      */
     public WatchService $watch;
 
-    public function __construct(?string $apiToken = null, ?string $baseUrl = null)
-    {
+    /**
+     * @param RequestOpts|null $requestOptions
+     */
+    public function __construct(
+        ?string $apiToken = null,
+        ?string $baseUrl = null,
+        RequestOptions|array|null $requestOptions = null,
+    ) {
         $this->apiToken = (string) ($apiToken ?? getenv('API_TOKEN'));
 
         $baseUrl ??= getenv('PRELUDE_BASE_URL') ?: 'https://api.prelude.dev';
 
-        $options = RequestOptions::with(
-            uriFactory: Psr17FactoryDiscovery::findUriFactory(),
-            streamFactory: Psr17FactoryDiscovery::findStreamFactory(),
-            requestFactory: Psr17FactoryDiscovery::findRequestFactory(),
-            transporter: Psr18ClientDiscovery::find(),
+        $options = RequestOptions::parse(
+            RequestOptions::with(
+                uriFactory: Psr17FactoryDiscovery::findUriFactory(),
+                streamFactory: Psr17FactoryDiscovery::findStreamFactory(),
+                requestFactory: Psr17FactoryDiscovery::findRequestFactory(),
+                transporter: Psr18ClientDiscovery::find(),
+            ),
+            $requestOptions,
         );
 
         parent::__construct(
