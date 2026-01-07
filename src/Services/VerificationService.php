@@ -10,14 +10,20 @@ use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationContract;
 use Prelude\Verification\VerificationCheckResponse;
-use Prelude\Verification\VerificationCreateParams\Options\AppRealm\Platform;
-use Prelude\Verification\VerificationCreateParams\Options\Integration;
-use Prelude\Verification\VerificationCreateParams\Options\Method;
-use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
-use Prelude\Verification\VerificationCreateParams\Signals\DevicePlatform;
-use Prelude\Verification\VerificationCreateParams\Target\Type;
+use Prelude\Verification\VerificationCreateParams\Metadata;
+use Prelude\Verification\VerificationCreateParams\Options;
+use Prelude\Verification\VerificationCreateParams\Signals;
+use Prelude\Verification\VerificationCreateParams\Target;
 use Prelude\Verification\VerificationNewResponse;
 
+/**
+ * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCreateParams\Target
+ * @phpstan-import-type MetadataShape from \Prelude\Verification\VerificationCreateParams\Metadata
+ * @phpstan-import-type OptionsShape from \Prelude\Verification\VerificationCreateParams\Options
+ * @phpstan-import-type SignalsShape from \Prelude\Verification\VerificationCreateParams\Signals
+ * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCheckParams\Target as TargetShape1
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 final class VerificationService implements VerificationContract
 {
     /**
@@ -38,47 +44,22 @@ final class VerificationService implements VerificationContract
      *
      * Create a new verification for a specific phone number. If another non-expired verification exists (the request is performed within the verification window), this endpoint will perform a retry instead.
      *
-     * @param array{
-     *   type: 'phone_number'|'email_address'|Type, value: string
-     * } $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     * @param Target|TargetShape $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      * @param string $dispatchID the identifier of the dispatch that came from the front-end SDK
-     * @param array{
-     *   correlationID?: string
-     * } $metadata The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
-     * @param array{
-     *   appRealm?: array{platform: 'android'|Platform, value: string},
-     *   callbackURL?: string,
-     *   codeSize?: int,
-     *   customCode?: string,
-     *   integration?: 'auth0'|'supabase'|Integration,
-     *   locale?: string,
-     *   method?: 'auto'|'voice'|'message'|Method,
-     *   preferredChannel?: 'sms'|'rcs'|'whatsapp'|'viber'|'zalo'|'telegram'|PreferredChannel,
-     *   senderID?: string,
-     *   templateID?: string,
-     *   variables?: array<string,string>,
-     * } $options Verification options
-     * @param array{
-     *   appVersion?: string,
-     *   deviceID?: string,
-     *   deviceModel?: string,
-     *   devicePlatform?: 'android'|'ios'|'ipados'|'tvos'|'web'|DevicePlatform,
-     *   ip?: string,
-     *   isTrustedUser?: bool,
-     *   ja4Fingerprint?: string,
-     *   osVersion?: string,
-     *   userAgent?: string,
-     * } $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     * @param Metadata|MetadataShape $metadata The metadata for this verification. This object will be returned with every response or webhook sent that refers to this verification.
+     * @param Options|OptionsShape $options Verification options
+     * @param Signals|SignalsShape $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function create(
-        array $target,
+        Target|array $target,
         ?string $dispatchID = null,
-        ?array $metadata = null,
-        ?array $options = null,
-        ?array $signals = null,
-        ?RequestOptions $requestOptions = null,
+        Metadata|array|null $metadata = null,
+        Options|array|null $options = null,
+        Signals|array|null $signals = null,
+        RequestOptions|array|null $requestOptions = null,
     ): VerificationNewResponse {
         $params = Util::removeNulls(
             [
@@ -102,17 +83,15 @@ final class VerificationService implements VerificationContract
      * Check the validity of a verification code.
      *
      * @param string $code the OTP code to validate
-     * @param array{
-     *   type: 'phone_number'|'email_address'|\Prelude\Verification\VerificationCheckParams\Target\Type,
-     *   value: string,
-     * } $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     * @param \Prelude\Verification\VerificationCheckParams\Target|TargetShape1 $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function check(
         string $code,
-        array $target,
-        ?RequestOptions $requestOptions = null
+        \Prelude\Verification\VerificationCheckParams\Target|array $target,
+        RequestOptions|array|null $requestOptions = null,
     ): VerificationCheckResponse {
         $params = Util::removeNulls(['code' => $code, 'target' => $target]);
 

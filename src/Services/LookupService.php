@@ -12,6 +12,9 @@ use Prelude\Lookup\LookupLookupResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\LookupContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 final class LookupService implements LookupContract
 {
     /**
@@ -33,15 +36,16 @@ final class LookupService implements LookupContract
      * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
      *
      * @param string $phoneNumber An E.164 formatted phone number to look up.
-     * @param list<'cnam'|Type> $type Optional features. Possible values are:
+     * @param list<Type|value-of<Type>> $type Optional features. Possible values are:
      *   * `cnam` - Retrieve CNAM (Caller ID Name) along with other information. Contact us if you need to use this functionality.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function lookup(
         string $phoneNumber,
         ?array $type = null,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): LookupLookupResponse {
         $params = Util::removeNulls(['type' => $type]);
 

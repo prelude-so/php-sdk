@@ -21,12 +21,16 @@ use Prelude\Notify\NotifySendParams;
 use Prelude\Notify\NotifySendResponse;
 use Prelude\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 interface NotifyRawContract
 {
     /**
      * @api
      *
      * @param string $configID The subscription configuration ID
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifyGetSubscriptionConfigResponse>
      *
@@ -34,7 +38,7 @@ interface NotifyRawContract
      */
     public function getSubscriptionConfig(
         string $configID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 
     /**
@@ -42,6 +46,7 @@ interface NotifyRawContract
      *
      * @param string $phoneNumber The phone number in E.164 format (e.g., +33612345678)
      * @param array<string,mixed>|NotifyGetSubscriptionPhoneNumberParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifyGetSubscriptionPhoneNumberResponse>
      *
@@ -50,13 +55,14 @@ interface NotifyRawContract
     public function getSubscriptionPhoneNumber(
         string $phoneNumber,
         array|NotifyGetSubscriptionPhoneNumberParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|NotifyListSubscriptionConfigsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifyListSubscriptionConfigsResponse>
      *
@@ -64,7 +70,7 @@ interface NotifyRawContract
      */
     public function listSubscriptionConfigs(
         array|NotifyListSubscriptionConfigsParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
@@ -72,6 +78,7 @@ interface NotifyRawContract
      *
      * @param string $phoneNumber Path param: The phone number in E.164 format (e.g., +33612345678)
      * @param array<string,mixed>|NotifyListSubscriptionPhoneNumberEventsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifyListSubscriptionPhoneNumberEventsResponse>
      *
@@ -80,7 +87,7 @@ interface NotifyRawContract
     public function listSubscriptionPhoneNumberEvents(
         string $phoneNumber,
         array|NotifyListSubscriptionPhoneNumberEventsParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
@@ -88,6 +95,7 @@ interface NotifyRawContract
      *
      * @param string $configID The subscription configuration ID
      * @param array<string,mixed>|NotifyListSubscriptionPhoneNumbersParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifyListSubscriptionPhoneNumbersResponse>
      *
@@ -96,13 +104,14 @@ interface NotifyRawContract
     public function listSubscriptionPhoneNumbers(
         string $configID,
         array|NotifyListSubscriptionPhoneNumbersParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|NotifySendParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifySendResponse>
      *
@@ -110,13 +119,14 @@ interface NotifyRawContract
      */
     public function send(
         array|NotifySendParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|NotifySendBatchParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifySendBatchResponse>
      *
@@ -124,6 +134,6 @@ interface NotifyRawContract
      */
     public function sendBatch(
         array|NotifySendBatchParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

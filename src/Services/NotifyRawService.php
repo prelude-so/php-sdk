@@ -25,6 +25,9 @@ use Prelude\Notify\NotifySendResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\NotifyRawContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 final class NotifyRawService implements NotifyRawContract
 {
     // @phpstan-ignore-next-line
@@ -39,6 +42,7 @@ final class NotifyRawService implements NotifyRawContract
      * Retrieve a specific subscription management configuration by its ID.
      *
      * @param string $configID The subscription configuration ID
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifyGetSubscriptionConfigResponse>
      *
@@ -46,7 +50,7 @@ final class NotifyRawService implements NotifyRawContract
      */
     public function getSubscriptionConfig(
         string $configID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse {
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
@@ -64,6 +68,7 @@ final class NotifyRawService implements NotifyRawContract
      *
      * @param string $phoneNumber The phone number in E.164 format (e.g., +33612345678)
      * @param array{configID: string}|NotifyGetSubscriptionPhoneNumberParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifyGetSubscriptionPhoneNumberResponse>
      *
@@ -72,7 +77,7 @@ final class NotifyRawService implements NotifyRawContract
     public function getSubscriptionPhoneNumber(
         string $phoneNumber,
         array|NotifyGetSubscriptionPhoneNumberParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = NotifyGetSubscriptionPhoneNumberParams::parseRequest(
             $params,
@@ -104,6 +109,7 @@ final class NotifyRawService implements NotifyRawContract
      * @param array{
      *   cursor?: string, limit?: int
      * }|NotifyListSubscriptionConfigsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifyListSubscriptionConfigsResponse>
      *
@@ -111,7 +117,7 @@ final class NotifyRawService implements NotifyRawContract
      */
     public function listSubscriptionConfigs(
         array|NotifyListSubscriptionConfigsParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = NotifyListSubscriptionConfigsParams::parseRequest(
             $params,
@@ -139,6 +145,7 @@ final class NotifyRawService implements NotifyRawContract
      * @param array{
      *   configID: string, cursor?: string, limit?: int
      * }|NotifyListSubscriptionPhoneNumberEventsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifyListSubscriptionPhoneNumberEventsResponse>
      *
@@ -147,7 +154,7 @@ final class NotifyRawService implements NotifyRawContract
     public function listSubscriptionPhoneNumberEvents(
         string $phoneNumber,
         array|NotifyListSubscriptionPhoneNumberEventsParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = NotifyListSubscriptionPhoneNumberEventsParams::parseRequest(
             $params,
@@ -179,8 +186,9 @@ final class NotifyRawService implements NotifyRawContract
      *
      * @param string $configID The subscription configuration ID
      * @param array{
-     *   cursor?: string, limit?: int, state?: 'SUB'|'UNSUB'|State
+     *   cursor?: string, limit?: int, state?: State|value-of<State>
      * }|NotifyListSubscriptionPhoneNumbersParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifyListSubscriptionPhoneNumbersResponse>
      *
@@ -189,7 +197,7 @@ final class NotifyRawService implements NotifyRawContract
     public function listSubscriptionPhoneNumbers(
         string $configID,
         array|NotifyListSubscriptionPhoneNumbersParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = NotifyListSubscriptionPhoneNumbersParams::parseRequest(
             $params,
@@ -218,13 +226,14 @@ final class NotifyRawService implements NotifyRawContract
      *   to: string,
      *   callbackURL?: string,
      *   correlationID?: string,
-     *   expiresAt?: string|\DateTimeInterface,
+     *   expiresAt?: \DateTimeInterface,
      *   from?: string,
      *   locale?: string,
-     *   preferredChannel?: 'sms'|'whatsapp'|PreferredChannel,
-     *   scheduleAt?: string|\DateTimeInterface,
+     *   preferredChannel?: PreferredChannel|value-of<PreferredChannel>,
+     *   scheduleAt?: \DateTimeInterface,
      *   variables?: array<string,string>,
      * }|NotifySendParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifySendResponse>
      *
@@ -232,7 +241,7 @@ final class NotifyRawService implements NotifyRawContract
      */
     public function send(
         array|NotifySendParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = NotifySendParams::parseRequest(
             $params,
@@ -259,13 +268,14 @@ final class NotifyRawService implements NotifyRawContract
      *   to: list<string>,
      *   callbackURL?: string,
      *   correlationID?: string,
-     *   expiresAt?: string|\DateTimeInterface,
+     *   expiresAt?: \DateTimeInterface,
      *   from?: string,
      *   locale?: string,
-     *   preferredChannel?: 'sms'|'whatsapp'|NotifySendBatchParams\PreferredChannel,
-     *   scheduleAt?: string|\DateTimeInterface,
+     *   preferredChannel?: NotifySendBatchParams\PreferredChannel|value-of<NotifySendBatchParams\PreferredChannel>,
+     *   scheduleAt?: \DateTimeInterface,
      *   variables?: array<string,string>,
      * }|NotifySendBatchParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<NotifySendBatchResponse>
      *
@@ -273,7 +283,7 @@ final class NotifyRawService implements NotifyRawContract
      */
     public function sendBatch(
         array|NotifySendBatchParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = NotifySendBatchParams::parseRequest(
             $params,

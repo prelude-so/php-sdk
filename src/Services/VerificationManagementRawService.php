@@ -19,6 +19,9 @@ use Prelude\VerificationManagement\VerificationManagementSetPhoneNumberResponse;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDParams;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse;
 
+/**
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 final class VerificationManagementRawService implements VerificationManagementRawContract
 {
     // @phpstan-ignore-next-line
@@ -40,6 +43,7 @@ final class VerificationManagementRawService implements VerificationManagementRa
      * @param array{
      *   phoneNumber: string
      * }|VerificationManagementDeletePhoneNumberParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VerificationManagementDeletePhoneNumberResponse>
      *
@@ -48,7 +52,7 @@ final class VerificationManagementRawService implements VerificationManagementRa
     public function deletePhoneNumber(
         Action|string $action,
         array|VerificationManagementDeletePhoneNumberParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = VerificationManagementDeletePhoneNumberParams::parseRequest(
             $params,
@@ -73,6 +77,7 @@ final class VerificationManagementRawService implements VerificationManagementRa
      * In order to get access to this endpoint, contact our support team.
      *
      * @param \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action|value-of<\Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action> $action The action type - either "allow" or "block"
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VerificationManagementListPhoneNumbersResponse>
      *
@@ -80,7 +85,7 @@ final class VerificationManagementRawService implements VerificationManagementRa
      */
     public function listPhoneNumbers(
         \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action|string $action,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
@@ -98,12 +103,14 @@ final class VerificationManagementRawService implements VerificationManagementRa
      *
      * In order to get access to this endpoint, contact our support team.
      *
+     * @param RequestOpts|null $requestOptions
+     *
      * @return BaseResponse<VerificationManagementListSenderIDsResponse>
      *
      * @throws APIException
      */
     public function listSenderIDs(
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse {
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
@@ -127,6 +134,7 @@ final class VerificationManagementRawService implements VerificationManagementRa
      * @param array{
      *   phoneNumber: string
      * }|VerificationManagementSetPhoneNumberParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VerificationManagementSetPhoneNumberResponse>
      *
@@ -135,7 +143,7 @@ final class VerificationManagementRawService implements VerificationManagementRa
     public function setPhoneNumber(
         VerificationManagementSetPhoneNumberParams\Action|string $action,
         array|VerificationManagementSetPhoneNumberParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = VerificationManagementSetPhoneNumberParams::parseRequest(
             $params,
@@ -162,6 +170,7 @@ final class VerificationManagementRawService implements VerificationManagementRa
      * @param array{
      *   senderID: string
      * }|VerificationManagementSubmitSenderIDParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VerificationManagementSubmitSenderIDResponse>
      *
@@ -169,7 +178,7 @@ final class VerificationManagementRawService implements VerificationManagementRa
      */
     public function submitSenderID(
         array|VerificationManagementSubmitSenderIDParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = VerificationManagementSubmitSenderIDParams::parseRequest(
             $params,

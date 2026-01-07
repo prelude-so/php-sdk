@@ -9,13 +9,23 @@ use Prelude\Core\Exceptions\APIException;
 use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\WatchContract;
-use Prelude\Watch\WatchPredictParams\Signals\DevicePlatform;
-use Prelude\Watch\WatchPredictParams\Target\Type;
+use Prelude\Watch\WatchPredictParams\Metadata;
+use Prelude\Watch\WatchPredictParams\Signals;
+use Prelude\Watch\WatchPredictParams\Target;
 use Prelude\Watch\WatchPredictResponse;
-use Prelude\Watch\WatchSendEventsParams\Event\Confidence;
+use Prelude\Watch\WatchSendEventsParams\Event;
 use Prelude\Watch\WatchSendEventsResponse;
+use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 use Prelude\Watch\WatchSendFeedbacksResponse;
 
+/**
+ * @phpstan-import-type TargetShape from \Prelude\Watch\WatchPredictParams\Target
+ * @phpstan-import-type MetadataShape from \Prelude\Watch\WatchPredictParams\Metadata
+ * @phpstan-import-type SignalsShape from \Prelude\Watch\WatchPredictParams\Signals
+ * @phpstan-import-type EventShape from \Prelude\Watch\WatchSendEventsParams\Event
+ * @phpstan-import-type FeedbackShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 final class WatchService implements WatchContract
 {
     /**
@@ -36,31 +46,20 @@ final class WatchService implements WatchContract
      *
      * Predict the outcome of a verification based on Prelude’s anti-fraud system.
      *
-     * @param array{
-     *   type: 'phone_number'|'email_address'|Type, value: string
-     * } $target The prediction target. Only supports phone numbers for now.
+     * @param Target|TargetShape $target The prediction target. Only supports phone numbers for now.
      * @param string $dispatchID the identifier of the dispatch that came from the front-end SDK
-     * @param array{correlationID?: string} $metadata the metadata for this prediction
-     * @param array{
-     *   appVersion?: string,
-     *   deviceID?: string,
-     *   deviceModel?: string,
-     *   devicePlatform?: 'android'|'ios'|'ipados'|'tvos'|'web'|DevicePlatform,
-     *   ip?: string,
-     *   isTrustedUser?: bool,
-     *   ja4Fingerprint?: string,
-     *   osVersion?: string,
-     *   userAgent?: string,
-     * } $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     * @param Metadata|MetadataShape $metadata the metadata for this prediction
+     * @param Signals|SignalsShape $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function predict(
-        array $target,
+        Target|array $target,
         ?string $dispatchID = null,
-        ?array $metadata = null,
-        ?array $signals = null,
-        ?RequestOptions $requestOptions = null,
+        Metadata|array|null $metadata = null,
+        Signals|array|null $signals = null,
+        RequestOptions|array|null $requestOptions = null,
     ): WatchPredictResponse {
         $params = Util::removeNulls(
             [
@@ -82,20 +81,14 @@ final class WatchService implements WatchContract
      *
      * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
      *
-     * @param list<array{
-     *   confidence: 'maximum'|'high'|'neutral'|'low'|'minimum'|Confidence,
-     *   label: string,
-     *   target: array{
-     *     type: 'phone_number'|'email_address'|\Prelude\Watch\WatchSendEventsParams\Event\Target\Type,
-     *     value: string,
-     *   },
-     * }> $events A list of events to dispatch
+     * @param list<Event|EventShape> $events a list of events to dispatch
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function sendEvents(
         array $events,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): WatchSendEventsResponse {
         $params = Util::removeNulls(['events' => $events]);
 
@@ -110,32 +103,14 @@ final class WatchService implements WatchContract
      *
      * Send feedback regarding your end-users verification funnel. Events will be analyzed for proactive fraud prevention and risk scoring.
      *
-     * @param list<array{
-     *   target: array{
-     *     type: 'phone_number'|'email_address'|\Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target\Type,
-     *     value: string,
-     *   },
-     *   type: 'verification.started'|'verification.completed'|\Prelude\Watch\WatchSendFeedbacksParams\Feedback\Type,
-     *   dispatchID?: string,
-     *   metadata?: array{correlationID?: string},
-     *   signals?: array{
-     *     appVersion?: string,
-     *     deviceID?: string,
-     *     deviceModel?: string,
-     *     devicePlatform?: 'android'|'ios'|'ipados'|'tvos'|'web'|\Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals\DevicePlatform,
-     *     ip?: string,
-     *     isTrustedUser?: bool,
-     *     ja4Fingerprint?: string,
-     *     osVersion?: string,
-     *     userAgent?: string,
-     *   },
-     * }> $feedbacks A list of feedbacks to send.
+     * @param list<Feedback|FeedbackShape> $feedbacks a list of feedbacks to send
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function sendFeedbacks(
         array $feedbacks,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): WatchSendFeedbacksResponse {
         $params = Util::removeNulls(['feedbacks' => $feedbacks]);
 

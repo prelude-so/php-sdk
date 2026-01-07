@@ -16,6 +16,9 @@ use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse;
 use Prelude\VerificationManagement\VerificationManagementSetPhoneNumberResponse;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse;
 
+/**
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 final class VerificationManagementService implements VerificationManagementContract
 {
     /**
@@ -42,13 +45,14 @@ final class VerificationManagementService implements VerificationManagementContr
      *
      * @param Action|value-of<Action> $action The action type - either "allow" or "block"
      * @param string $phoneNumber An E.164 formatted phone number to remove from the list.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function deletePhoneNumber(
         Action|string $action,
         string $phoneNumber,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): VerificationManagementDeletePhoneNumberResponse {
         $params = Util::removeNulls(['phoneNumber' => $phoneNumber]);
 
@@ -66,12 +70,13 @@ final class VerificationManagementService implements VerificationManagementContr
      * In order to get access to this endpoint, contact our support team.
      *
      * @param \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action|value-of<\Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action> $action The action type - either "allow" or "block"
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function listPhoneNumbers(
         \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersParams\Action|string $action,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): VerificationManagementListPhoneNumbersResponse {
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->listPhoneNumbers($action, requestOptions: $requestOptions);
@@ -86,10 +91,12 @@ final class VerificationManagementService implements VerificationManagementContr
      *
      * In order to get access to this endpoint, contact our support team.
      *
+     * @param RequestOpts|null $requestOptions
+     *
      * @throws APIException
      */
     public function listSenderIDs(
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): VerificationManagementListSenderIDsResponse {
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->listSenderIDs(requestOptions: $requestOptions);
@@ -108,13 +115,14 @@ final class VerificationManagementService implements VerificationManagementContr
      *
      * @param \Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action|value-of<\Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action> $action The action type - either "allow" or "block"
      * @param string $phoneNumber An E.164 formatted phone number to add to the list.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function setPhoneNumber(
         \Prelude\VerificationManagement\VerificationManagementSetPhoneNumberParams\Action|string $action,
         string $phoneNumber,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): VerificationManagementSetPhoneNumberResponse {
         $params = Util::removeNulls(['phoneNumber' => $phoneNumber]);
 
@@ -132,12 +140,13 @@ final class VerificationManagementService implements VerificationManagementContr
      * In order to get access to this endpoint, contact our support team.
      *
      * @param string $senderID the sender ID to add
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function submitSenderID(
         string $senderID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): VerificationManagementSubmitSenderIDResponse {
         $params = Util::removeNulls(['senderID' => $senderID]);
 

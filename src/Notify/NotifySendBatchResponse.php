@@ -15,7 +15,7 @@ use Prelude\Notify\NotifySendBatchResponse\Result;
  *
  * @phpstan-type NotifySendBatchResponseShape = array{
  *   errorCount: int,
- *   results: list<ResultShape>,
+ *   results: list<Result|ResultShape>,
  *   successCount: int,
  *   totalCount: int,
  *   callbackURL?: string|null,
@@ -111,7 +111,7 @@ final class NotifySendBatchResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<ResultShape> $results
+     * @param list<Result|ResultShape> $results
      * @param array<string,string>|null $variables
      */
     public static function with(
@@ -153,7 +153,7 @@ final class NotifySendBatchResponse implements BaseModel
     /**
      * The per-recipient result of the bulk send.
      *
-     * @param list<ResultShape> $results
+     * @param list<Result|ResultShape> $results
      */
     public function withResults(array $results): self
     {

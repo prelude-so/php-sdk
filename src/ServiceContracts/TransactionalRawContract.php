@@ -10,6 +10,9 @@ use Prelude\RequestOptions;
 use Prelude\Transactional\TransactionalSendParams;
 use Prelude\Transactional\TransactionalSendResponse;
 
+/**
+ * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ */
 interface TransactionalRawContract
 {
     /**
@@ -18,6 +21,7 @@ interface TransactionalRawContract
      * @api
      *
      * @param array<string,mixed>|TransactionalSendParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<TransactionalSendResponse>
      *
@@ -25,6 +29,6 @@ interface TransactionalRawContract
      */
     public function send(
         array|TransactionalSendParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

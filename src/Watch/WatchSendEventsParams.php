@@ -17,7 +17,7 @@ use Prelude\Watch\WatchSendEventsParams\Event;
  *
  * @phpstan-import-type EventShape from \Prelude\Watch\WatchSendEventsParams\Event
  *
- * @phpstan-type WatchSendEventsParamsShape = array{events: list<EventShape>}
+ * @phpstan-type WatchSendEventsParamsShape = array{events: list<Event|EventShape>}
  */
 final class WatchSendEventsParams implements BaseModel
 {
@@ -57,7 +57,7 @@ final class WatchSendEventsParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<EventShape> $events
+     * @param list<Event|EventShape> $events
      */
     public static function with(array $events): self
     {
@@ -71,7 +71,7 @@ final class WatchSendEventsParams implements BaseModel
     /**
      * A list of events to dispatch.
      *
-     * @param list<EventShape> $events
+     * @param list<Event|EventShape> $events
      */
     public function withEvents(array $events): self
     {

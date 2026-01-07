@@ -18,7 +18,7 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
  * @phpstan-import-type FeedbackShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback
  *
  * @phpstan-type WatchSendFeedbacksParamsShape = array{
- *   feedbacks: list<FeedbackShape>
+ *   feedbacks: list<Feedback|FeedbackShape>
  * }
  */
 final class WatchSendFeedbacksParams implements BaseModel
@@ -59,7 +59,7 @@ final class WatchSendFeedbacksParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<FeedbackShape> $feedbacks
+     * @param list<Feedback|FeedbackShape> $feedbacks
      */
     public static function with(array $feedbacks): self
     {
@@ -73,7 +73,7 @@ final class WatchSendFeedbacksParams implements BaseModel
     /**
      * A list of feedbacks to send.
      *
-     * @param list<FeedbackShape> $feedbacks
+     * @param list<Feedback|FeedbackShape> $feedbacks
      */
     public function withFeedbacks(array $feedbacks): self
     {

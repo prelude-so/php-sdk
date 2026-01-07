@@ -16,8 +16,8 @@ use Prelude\Services\VerificationService;
 use Prelude\Services\WatchService;
 
 /**
- * @phpstan-import-type NormalizedRequest from \Prelude\Core\BaseClient
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
+ * @phpstan-import-type NormalizedRequest from \Prelude\Core\BaseClient
  */
 class Client extends BaseClient
 {

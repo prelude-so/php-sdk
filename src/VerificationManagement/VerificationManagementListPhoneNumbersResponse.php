@@ -13,7 +13,7 @@ use Prelude\VerificationManagement\VerificationManagementListPhoneNumbersRespons
  * @phpstan-import-type PhoneNumberShape from \Prelude\VerificationManagement\VerificationManagementListPhoneNumbersResponse\PhoneNumber
  *
  * @phpstan-type VerificationManagementListPhoneNumbersResponseShape = array{
- *   phoneNumbers: list<PhoneNumberShape>
+ *   phoneNumbers: list<PhoneNumber|PhoneNumberShape>
  * }
  */
 final class VerificationManagementListPhoneNumbersResponse implements BaseModel
@@ -53,7 +53,7 @@ final class VerificationManagementListPhoneNumbersResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<PhoneNumberShape> $phoneNumbers
+     * @param list<PhoneNumber|PhoneNumberShape> $phoneNumbers
      */
     public static function with(array $phoneNumbers): self
     {
@@ -67,7 +67,7 @@ final class VerificationManagementListPhoneNumbersResponse implements BaseModel
     /**
      * A list of phone numbers in the allow or block list.
      *
-     * @param list<PhoneNumberShape> $phoneNumbers
+     * @param list<PhoneNumber|PhoneNumberShape> $phoneNumbers
      */
     public function withPhoneNumbers(array $phoneNumbers): self
     {
