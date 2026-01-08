@@ -6,7 +6,6 @@ namespace Prelude\Core\Concerns;
 
 use Prelude\Core\Conversion;
 use Prelude\Core\Conversion\DumpState;
-use Prelude\Core\Util;
 use Prelude\RequestOptions;
 
 /**
@@ -21,10 +20,9 @@ trait SdkParams
      */
     public static function parseRequest(mixed $params, array|RequestOptions|null $options): array
     {
-        $value = is_array($params) ? Util::array_filter_omit($params) : $params;
         $converter = self::converter();
         $state = new DumpState;
-        $dumped = (array) Conversion::dump($converter, value: $value, state: $state);
+        $dumped = (array) Conversion::dump($converter, value: $params, state: $state);
         // @phpstan-ignore-next-line argument.type
         $opts = RequestOptions::parse($options);
 
