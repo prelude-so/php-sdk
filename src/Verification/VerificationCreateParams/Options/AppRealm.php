@@ -10,7 +10,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Verification\VerificationCreateParams\Options\AppRealm\Platform;
 
 /**
- * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
+ * This allows automatic OTP retrieval on mobile apps and web browsers. Supported platforms are Android (SMS Retriever API) and Web (WebOTP API).
  *
  * @phpstan-type AppRealmShape = array{
  *   platform: Platform|value-of<Platform>, value: string
@@ -22,7 +22,7 @@ final class AppRealm implements BaseModel
     use SdkModel;
 
     /**
-     * The platform the SMS will be sent to. We are currently only supporting "android".
+     * The platform for automatic OTP retrieval. Use "android" for the SMS Retriever API or "web" for the WebOTP API.
      *
      * @var value-of<Platform> $platform
      */
@@ -30,8 +30,9 @@ final class AppRealm implements BaseModel
     public string $platform;
 
     /**
-     * The Android SMS Retriever API hash code that identifies your app.
-     * For more information, see [Google documentation](https://developers.google.com/identity/sms-retriever/verify#computing_your_apps_hash_string).
+     * The value depends on the platform:
+     * - For Android: The SMS Retriever API hash code (11 characters). See [Google documentation](https://developers.google.com/identity/sms-retriever/verify#computing_your_apps_hash_string).
+     * - For Web: The origin domain (e.g., "example.com" or "www.example.com"). See [WebOTP API documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebOTP_API).
      */
     #[Required]
     public string $value;
@@ -73,7 +74,7 @@ final class AppRealm implements BaseModel
     }
 
     /**
-     * The platform the SMS will be sent to. We are currently only supporting "android".
+     * The platform for automatic OTP retrieval. Use "android" for the SMS Retriever API or "web" for the WebOTP API.
      *
      * @param Platform|value-of<Platform> $platform
      */
@@ -86,8 +87,9 @@ final class AppRealm implements BaseModel
     }
 
     /**
-     * The Android SMS Retriever API hash code that identifies your app.
-     * For more information, see [Google documentation](https://developers.google.com/identity/sms-retriever/verify#computing_your_apps_hash_string).
+     * The value depends on the platform:
+     * - For Android: The SMS Retriever API hash code (11 characters). See [Google documentation](https://developers.google.com/identity/sms-retriever/verify#computing_your_apps_hash_string).
+     * - For Web: The origin domain (e.g., "example.com" or "www.example.com"). See [WebOTP API documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebOTP_API).
      */
     public function withValue(string $value): self
     {
