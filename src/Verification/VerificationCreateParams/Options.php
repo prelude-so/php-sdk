@@ -37,7 +37,7 @@ final class Options implements BaseModel
     use SdkModel;
 
     /**
-     * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
+     * This allows automatic OTP retrieval on mobile apps and web browsers. Supported platforms are Android (SMS Retriever API) and Web (WebOTP API).
      */
     #[Optional('app_realm')]
     public ?AppRealm $appRealm;
@@ -157,7 +157,7 @@ final class Options implements BaseModel
     }
 
     /**
-     * This allows you to automatically retrieve and fill the OTP code on mobile apps. Currently only Android devices are supported.
+     * This allows automatic OTP retrieval on mobile apps and web browsers. Supported platforms are Android (SMS Retriever API) and Web (WebOTP API).
      *
      * @param AppRealm|AppRealmShape $appRealm
      */
