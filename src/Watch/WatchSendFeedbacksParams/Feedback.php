@@ -9,21 +9,17 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Type;
 
 /**
  * @phpstan-import-type TargetShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target
  * @phpstan-import-type MetadataShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata
- * @phpstan-import-type SignalsShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback\Signals
  *
  * @phpstan-type FeedbackShape = array{
  *   target: Target|TargetShape,
  *   type: Type|value-of<Type>,
- *   dispatchID?: string|null,
  *   metadata?: null|Metadata|MetadataShape,
- *   signals?: null|Signals|SignalsShape,
  * }
  */
 final class Feedback implements BaseModel
@@ -46,22 +42,10 @@ final class Feedback implements BaseModel
     public string $type;
 
     /**
-     * The identifier of the dispatch that came from the front-end SDK.
-     */
-    #[Optional('dispatch_id')]
-    public ?string $dispatchID;
-
-    /**
      * The metadata for this feedback.
      */
     #[Optional]
     public ?Metadata $metadata;
-
-    /**
-     * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
-     */
-    #[Optional]
-    public ?Signals $signals;
 
     /**
      * `new Feedback()` is missing required properties by the API.
@@ -90,23 +74,18 @@ final class Feedback implements BaseModel
      * @param Target|TargetShape $target
      * @param Type|value-of<Type> $type
      * @param Metadata|MetadataShape|null $metadata
-     * @param Signals|SignalsShape|null $signals
      */
     public static function with(
         Target|array $target,
         Type|string $type,
-        ?string $dispatchID = null,
-        Metadata|array|null $metadata = null,
-        Signals|array|null $signals = null,
+        Metadata|array|null $metadata = null
     ): self {
         $self = new self;
 
         $self['target'] = $target;
         $self['type'] = $type;
 
-        null !== $dispatchID && $self['dispatchID'] = $dispatchID;
         null !== $metadata && $self['metadata'] = $metadata;
-        null !== $signals && $self['signals'] = $signals;
 
         return $self;
     }
@@ -138,17 +117,6 @@ final class Feedback implements BaseModel
     }
 
     /**
-     * The identifier of the dispatch that came from the front-end SDK.
-     */
-    public function withDispatchID(string $dispatchID): self
-    {
-        $self = clone $this;
-        $self['dispatchID'] = $dispatchID;
-
-        return $self;
-    }
-
-    /**
      * The metadata for this feedback.
      *
      * @param Metadata|MetadataShape $metadata
@@ -157,19 +125,6 @@ final class Feedback implements BaseModel
     {
         $self = clone $this;
         $self['metadata'] = $metadata;
-
-        return $self;
-    }
-
-    /**
-     * The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
-     *
-     * @param Signals|SignalsShape $signals
-     */
-    public function withSignals(Signals|array $signals): self
-    {
-        $self = clone $this;
-        $self['signals'] = $signals;
 
         return $self;
     }
