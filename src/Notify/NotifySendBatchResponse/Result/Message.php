@@ -7,6 +7,7 @@ namespace Prelude\Notify\NotifySendBatchResponse\Result;
 use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Notify\NotifySendBatchResponse\Result\Message\Encoding;
 
 /**
  * Present only if success is true.
@@ -15,6 +16,8 @@ use Prelude\Core\Contracts\BaseModel;
  *   id?: string|null,
  *   correlationID?: string|null,
  *   createdAt?: \DateTimeInterface|null,
+ *   encoding?: null|Encoding|value-of<Encoding>,
+ *   estimatedSegmentCount?: int|null,
  *   expiresAt?: \DateTimeInterface|null,
  *   from?: string|null,
  *   locale?: string|null,
@@ -44,6 +47,20 @@ final class Message implements BaseModel
      */
     #[Optional('created_at')]
     public ?\DateTimeInterface $createdAt;
+
+    /**
+     * The SMS encoding type based on message content. GSM-7 supports standard characters (up to 160 chars per segment), while UCS-2 supports Unicode including emoji (up to 70 chars per segment). Only present for SMS messages.
+     *
+     * @var value-of<Encoding>|null $encoding
+     */
+    #[Optional(enum: Encoding::class)]
+    public ?string $encoding;
+
+    /**
+     * The estimated number of SMS segments for this message. This value is not contractual; the actual segment count will be determined after the SMS is sent by the provider. Only present for SMS messages.
+     */
+    #[Optional('estimated_segment_count')]
+    public ?int $estimatedSegmentCount;
 
     /**
      * The message expiration date in RFC3339 format.
@@ -84,11 +101,15 @@ final class Message implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Encoding|value-of<Encoding>|null $encoding
      */
     public static function with(
         ?string $id = null,
         ?string $correlationID = null,
         ?\DateTimeInterface $createdAt = null,
+        Encoding|string|null $encoding = null,
+        ?int $estimatedSegmentCount = null,
         ?\DateTimeInterface $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
@@ -100,6 +121,8 @@ final class Message implements BaseModel
         null !== $id && $self['id'] = $id;
         null !== $correlationID && $self['correlationID'] = $correlationID;
         null !== $createdAt && $self['createdAt'] = $createdAt;
+        null !== $encoding && $self['encoding'] = $encoding;
+        null !== $estimatedSegmentCount && $self['estimatedSegmentCount'] = $estimatedSegmentCount;
         null !== $expiresAt && $self['expiresAt'] = $expiresAt;
         null !== $from && $self['from'] = $from;
         null !== $locale && $self['locale'] = $locale;
@@ -138,6 +161,30 @@ final class Message implements BaseModel
     {
         $self = clone $this;
         $self['createdAt'] = $createdAt;
+
+        return $self;
+    }
+
+    /**
+     * The SMS encoding type based on message content. GSM-7 supports standard characters (up to 160 chars per segment), while UCS-2 supports Unicode including emoji (up to 70 chars per segment). Only present for SMS messages.
+     *
+     * @param Encoding|value-of<Encoding> $encoding
+     */
+    public function withEncoding(Encoding|string $encoding): self
+    {
+        $self = clone $this;
+        $self['encoding'] = $encoding;
+
+        return $self;
+    }
+
+    /**
+     * The estimated number of SMS segments for this message. This value is not contractual; the actual segment count will be determined after the SMS is sent by the provider. Only present for SMS messages.
+     */
+    public function withEstimatedSegmentCount(int $estimatedSegmentCount): self
+    {
+        $self = clone $this;
+        $self['estimatedSegmentCount'] = $estimatedSegmentCount;
 
         return $self;
     }
