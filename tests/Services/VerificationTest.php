@@ -59,7 +59,6 @@ final class VerificationTest extends TestCase
                 'callbackURL' => 'callback_url',
                 'codeSize' => 5,
                 'customCode' => '123456',
-                'integration' => 'auth0',
                 'locale' => 'el-GR',
                 'method' => 'auto',
                 'preferredChannel' => 'sms',
