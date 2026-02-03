@@ -6,6 +6,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
+use Prelude\Core\Util;
 use Prelude\VerificationManagement\VerificationManagementDeletePhoneNumberResponse;
 use Prelude\VerificationManagement\VerificationManagementListPhoneNumbersResponse;
 use Prelude\VerificationManagement\VerificationManagementListSenderIDsResponse;
@@ -24,7 +25,7 @@ final class VerificationManagementTest extends TestCase
     {
         parent::setUp();
 
-        $testUrl = getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
+        $testUrl = Util::getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
         $client = new Client(apiToken: 'My API Token', baseUrl: $testUrl);
 
         $this->client = $client;
