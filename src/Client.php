@@ -61,9 +61,9 @@ class Client extends BaseClient
         ?string $baseUrl = null,
         RequestOptions|array|null $requestOptions = null,
     ) {
-        $this->apiToken = (string) ($apiToken ?? getenv('API_TOKEN'));
+        $this->apiToken = (string) ($apiToken ?? Util::getenv('API_TOKEN'));
 
-        $baseUrl ??= getenv('PRELUDE_BASE_URL') ?: 'https://api.prelude.dev';
+        $baseUrl ??= Util::getenv('PRELUDE_BASE_URL') ?: 'https://api.prelude.dev';
 
         $options = RequestOptions::parse(
             RequestOptions::with(
