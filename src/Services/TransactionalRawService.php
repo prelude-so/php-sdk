@@ -10,10 +10,12 @@ use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\TransactionalRawContract;
 use Prelude\Transactional\TransactionalSendParams;
+use Prelude\Transactional\TransactionalSendParams\Document;
 use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
 use Prelude\Transactional\TransactionalSendResponse;
 
 /**
+ * @phpstan-import-type DocumentShape from \Prelude\Transactional\TransactionalSendParams\Document
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  */
 final class TransactionalRawService implements TransactionalRawContract
@@ -36,6 +38,7 @@ final class TransactionalRawService implements TransactionalRawContract
      *   to: string,
      *   callbackURL?: string,
      *   correlationID?: string,
+     *   document?: Document|DocumentShape,
      *   expiresAt?: string,
      *   from?: string,
      *   locale?: string,

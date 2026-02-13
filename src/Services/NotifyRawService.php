@@ -20,12 +20,15 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse;
 use Prelude\Notify\NotifySendBatchParams;
 use Prelude\Notify\NotifySendBatchResponse;
 use Prelude\Notify\NotifySendParams;
+use Prelude\Notify\NotifySendParams\Document;
 use Prelude\Notify\NotifySendParams\PreferredChannel;
 use Prelude\Notify\NotifySendResponse;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\NotifyRawContract;
 
 /**
+ * @phpstan-import-type DocumentShape from \Prelude\Notify\NotifySendParams\Document
+ * @phpstan-import-type DocumentShape from \Prelude\Notify\NotifySendBatchParams\Document as DocumentShape1
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  */
 final class NotifyRawService implements NotifyRawContract
@@ -226,6 +229,7 @@ final class NotifyRawService implements NotifyRawContract
      *   to: string,
      *   callbackURL?: string,
      *   correlationID?: string,
+     *   document?: Document|DocumentShape,
      *   expiresAt?: \DateTimeInterface,
      *   from?: string,
      *   locale?: string,
@@ -268,6 +272,7 @@ final class NotifyRawService implements NotifyRawContract
      *   to: list<string>,
      *   callbackURL?: string,
      *   correlationID?: string,
+     *   document?: NotifySendBatchParams\Document|DocumentShape1,
      *   expiresAt?: \DateTimeInterface,
      *   from?: string,
      *   locale?: string,

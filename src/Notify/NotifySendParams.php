@@ -9,6 +9,7 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Notify\NotifySendParams\Document;
 use Prelude\Notify\NotifySendParams\PreferredChannel;
 
 /**
@@ -16,11 +17,14 @@ use Prelude\Notify\NotifySendParams\PreferredChannel;
  *
  * @see Prelude\Services\NotifyService::send()
  *
+ * @phpstan-import-type DocumentShape from \Prelude\Notify\NotifySendParams\Document
+ *
  * @phpstan-type NotifySendParamsShape = array{
  *   templateID: string,
  *   to: string,
  *   callbackURL?: string|null,
  *   correlationID?: string|null,
+ *   document?: null|Document|DocumentShape,
  *   expiresAt?: \DateTimeInterface|null,
  *   from?: string|null,
  *   locale?: string|null,
@@ -58,6 +62,12 @@ final class NotifySendParams implements BaseModel
      */
     #[Optional('correlation_id')]
     public ?string $correlationID;
+
+    /**
+     * A document to attach to the message. Only supported on WhatsApp templates that have a document header.
+     */
+    #[Optional]
+    public ?Document $document;
 
     /**
      * The message expiration date in RFC3339 format. The message will not be sent if this time is reached.
@@ -123,6 +133,7 @@ final class NotifySendParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param Document|DocumentShape|null $document
      * @param PreferredChannel|value-of<PreferredChannel>|null $preferredChannel
      * @param array<string,string>|null $variables
      */
@@ -131,6 +142,7 @@ final class NotifySendParams implements BaseModel
         string $to,
         ?string $callbackURL = null,
         ?string $correlationID = null,
+        Document|array|null $document = null,
         ?\DateTimeInterface $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
@@ -145,6 +157,7 @@ final class NotifySendParams implements BaseModel
 
         null !== $callbackURL && $self['callbackURL'] = $callbackURL;
         null !== $correlationID && $self['correlationID'] = $correlationID;
+        null !== $document && $self['document'] = $document;
         null !== $expiresAt && $self['expiresAt'] = $expiresAt;
         null !== $from && $self['from'] = $from;
         null !== $locale && $self['locale'] = $locale;
@@ -195,6 +208,19 @@ final class NotifySendParams implements BaseModel
     {
         $self = clone $this;
         $self['correlationID'] = $correlationID;
+
+        return $self;
+    }
+
+    /**
+     * A document to attach to the message. Only supported on WhatsApp templates that have a document header.
+     *
+     * @param Document|DocumentShape $document
+     */
+    public function withDocument(Document|array $document): self
+    {
+        $self = clone $this;
+        $self['document'] = $document;
 
         return $self;
     }

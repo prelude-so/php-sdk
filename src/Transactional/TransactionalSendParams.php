@@ -9,6 +9,7 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Transactional\TransactionalSendParams\Document;
 use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
 
 /**
@@ -17,11 +18,14 @@ use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
  * @deprecated
  * @see Prelude\Services\TransactionalService::send()
  *
+ * @phpstan-import-type DocumentShape from \Prelude\Transactional\TransactionalSendParams\Document
+ *
  * @phpstan-type TransactionalSendParamsShape = array{
  *   templateID: string,
  *   to: string,
  *   callbackURL?: string|null,
  *   correlationID?: string|null,
+ *   document?: null|Document|DocumentShape,
  *   expiresAt?: string|null,
  *   from?: string|null,
  *   locale?: string|null,
@@ -58,6 +62,12 @@ final class TransactionalSendParams implements BaseModel
      */
     #[Optional('correlation_id')]
     public ?string $correlationID;
+
+    /**
+     * A document to attach to the message. Only supported on WhatsApp templates that have a document header.
+     */
+    #[Optional]
+    public ?Document $document;
 
     /**
      * The message expiration date.
@@ -121,6 +131,7 @@ final class TransactionalSendParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param Document|DocumentShape|null $document
      * @param PreferredChannel|value-of<PreferredChannel>|null $preferredChannel
      * @param array<string,string>|null $variables
      */
@@ -129,6 +140,7 @@ final class TransactionalSendParams implements BaseModel
         string $to,
         ?string $callbackURL = null,
         ?string $correlationID = null,
+        Document|array|null $document = null,
         ?string $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
@@ -142,6 +154,7 @@ final class TransactionalSendParams implements BaseModel
 
         null !== $callbackURL && $self['callbackURL'] = $callbackURL;
         null !== $correlationID && $self['correlationID'] = $correlationID;
+        null !== $document && $self['document'] = $document;
         null !== $expiresAt && $self['expiresAt'] = $expiresAt;
         null !== $from && $self['from'] = $from;
         null !== $locale && $self['locale'] = $locale;
@@ -191,6 +204,19 @@ final class TransactionalSendParams implements BaseModel
     {
         $self = clone $this;
         $self['correlationID'] = $correlationID;
+
+        return $self;
+    }
+
+    /**
+     * A document to attach to the message. Only supported on WhatsApp templates that have a document header.
+     *
+     * @param Document|DocumentShape $document
+     */
+    public function withDocument(Document|array $document): self
+    {
+        $self = clone $this;
+        $self['document'] = $document;
 
         return $self;
     }
