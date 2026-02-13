@@ -9,6 +9,7 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Notify\NotifySendBatchParams\Document;
 use Prelude\Notify\NotifySendBatchParams\PreferredChannel;
 
 /**
@@ -16,11 +17,14 @@ use Prelude\Notify\NotifySendBatchParams\PreferredChannel;
  *
  * @see Prelude\Services\NotifyService::sendBatch()
  *
+ * @phpstan-import-type DocumentShape from \Prelude\Notify\NotifySendBatchParams\Document
+ *
  * @phpstan-type NotifySendBatchParamsShape = array{
  *   templateID: string,
  *   to: list<string>,
  *   callbackURL?: string|null,
  *   correlationID?: string|null,
+ *   document?: null|Document|DocumentShape,
  *   expiresAt?: \DateTimeInterface|null,
  *   from?: string|null,
  *   locale?: string|null,
@@ -60,6 +64,12 @@ final class NotifySendBatchParams implements BaseModel
      */
     #[Optional('correlation_id')]
     public ?string $correlationID;
+
+    /**
+     * A document to attach to the message. Only supported on WhatsApp templates that have a document header.
+     */
+    #[Optional]
+    public ?Document $document;
 
     /**
      * The message expiration date in RFC3339 format. Messages will not be sent after this time.
@@ -126,6 +136,7 @@ final class NotifySendBatchParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<string> $to
+     * @param Document|DocumentShape|null $document
      * @param PreferredChannel|value-of<PreferredChannel>|null $preferredChannel
      * @param array<string,string>|null $variables
      */
@@ -134,6 +145,7 @@ final class NotifySendBatchParams implements BaseModel
         array $to,
         ?string $callbackURL = null,
         ?string $correlationID = null,
+        Document|array|null $document = null,
         ?\DateTimeInterface $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
@@ -148,6 +160,7 @@ final class NotifySendBatchParams implements BaseModel
 
         null !== $callbackURL && $self['callbackURL'] = $callbackURL;
         null !== $correlationID && $self['correlationID'] = $correlationID;
+        null !== $document && $self['document'] = $document;
         null !== $expiresAt && $self['expiresAt'] = $expiresAt;
         null !== $from && $self['from'] = $from;
         null !== $locale && $self['locale'] = $locale;
@@ -200,6 +213,19 @@ final class NotifySendBatchParams implements BaseModel
     {
         $self = clone $this;
         $self['correlationID'] = $correlationID;
+
+        return $self;
+    }
+
+    /**
+     * A document to attach to the message. Only supported on WhatsApp templates that have a document header.
+     *
+     * @param Document|DocumentShape $document
+     */
+    public function withDocument(Document|array $document): self
+    {
+        $self = clone $this;
+        $self['document'] = $document;
 
         return $self;
     }

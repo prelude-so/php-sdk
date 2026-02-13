@@ -56,6 +56,9 @@ final class TransactionalTest extends TestCase
             to: '+30123456789',
             callbackURL: 'callback_url',
             correlationID: 'correlation_id',
+            document: [
+                'filename' => 'invoice.pdf', 'url' => 'https://example.com/invoice.pdf',
+            ],
             expiresAt: 'expires_at',
             from: 'from',
             locale: 'el-GR',

@@ -160,6 +160,9 @@ final class NotifyTest extends TestCase
             to: '+33612345678',
             callbackURL: 'https://your-app.com/webhooks/notify',
             correlationID: 'order-12345',
+            document: [
+                'filename' => 'invoice.pdf', 'url' => 'https://example.com/invoice.pdf',
+            ],
             expiresAt: new \DateTimeImmutable('2025-12-25T18:00:00Z'),
             from: 'from',
             locale: 'el-GR',
@@ -192,6 +195,9 @@ final class NotifyTest extends TestCase
             to: ['+33612345678', '+15551234567'],
             callbackURL: 'https://your-app.com/webhooks/notify',
             correlationID: 'campaign-12345',
+            document: [
+                'filename' => 'invoice.pdf', 'url' => 'https://example.com/invoice.pdf',
+            ],
             expiresAt: new \DateTimeImmutable('2025-12-25T18:00:00Z'),
             from: 'from',
             locale: 'el-GR',
