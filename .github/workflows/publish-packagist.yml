@@ -12,7 +12,7 @@ jobs:
 
       - name: Publish to Packagist
         run: |-
-          curl --fail-with-body -X POST -H 'Content-Type: application/json' "https://packagist.org/api/update-package?username=${PACKAGIST_USERNAME}&apiToken=${PACKAGIST_SAFE_KEY}" -d '{"repository":"https://www.github.com/stainless-sdks/prelude-php"}'
+          curl --fail-with-body -X POST -H 'Content-Type: application/json' "https://packagist.org/api/update-package?username=${PACKAGIST_USERNAME}&apiToken=${PACKAGIST_SAFE_KEY}" -d '{"repository":"https://www.github.com/prelude-so/php-sdk"}'
         env:
           PACKAGIST_USERNAME: ${{ secrets.PRELUDE_PACKAGIST_USERNAME || secrets.PACKAGIST_USERNAME }}
           PACKAGIST_SAFE_KEY: ${{ secrets.PRELUDE_PACKAGIST_SAFE_KEY || secrets.PACKAGIST_SAFE_KEY }}
