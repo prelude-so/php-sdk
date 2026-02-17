@@ -10,22 +10,10 @@ The REST API documentation can be found on [docs.prelude.so](https://docs.prelud
 
 ## Installation
 
-To use this package, install via Composer by adding the following to your application's `composer.json`:
-
 <!-- x-release-please-start-version -->
 
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "git@github.com:prelude-so/php-sdk.git"
-    }
-  ],
-  "require": {
-    "placeholder/placeholder": "dev-main"
-  }
-}
+```
+composer require "placeholder/placeholder 0.0.1"
 ```
 
 <!-- x-release-please-end -->
