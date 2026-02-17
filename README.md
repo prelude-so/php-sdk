@@ -10,13 +10,9 @@ The REST API documentation can be found on [docs.prelude.so](https://docs.prelud
 
 ## Installation
 
-<!-- x-release-please-start-version -->
-
 ```
-composer require "placeholder/placeholder 0.0.1"
+composer require "prelude-so/php-sdk 0.0.1"
 ```
-
-<!-- x-release-please-end -->
 
 ## Usage
 
@@ -164,4 +160,4 @@ PHP 8.1.0 or higher.
 
 ## Contributing
 
-See [the contributing documentation](https://github.com/prelude-so/php-sdk/tree/main/CONTRIBUTING.md).
+See [the contributing documentation](https://github.com/stainless-sdks/prelude-php/tree/main/CONTRIBUTING.md).
