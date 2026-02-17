@@ -13,7 +13,7 @@ The REST API documentation can be found on [docs.prelude.so](https://docs.prelud
 <!-- x-release-please-start-version -->
 
 ```
-composer require "placeholder/placeholder 0.0.1"
+composer require "placeholder/placeholder 0.1.0"
 ```
 
 <!-- x-release-please-end -->
