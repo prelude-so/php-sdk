@@ -27,7 +27,7 @@
     "sort-packages": true
   },
   "description": "Prelude PHP SDK",
-  "name": "placeholder/placeholder",
+  "name": "prelude-so/php-sdk",
   "require": {
     "php": "^8.1",
     "php-http/discovery": "^1",
