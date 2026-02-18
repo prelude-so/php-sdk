@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (2026-02-18)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/prelude-so/php-sdk/compare/v0.1.0...v0.1.1)
+
+### Chores
+
+* **release:** add packagist trigger on published release ([5512d9a](https://github.com/prelude-so/php-sdk/commit/5512d9aa69e775b39708b44c9aa9240c37e0dc9e))
+
 ## 0.1.0 (2026-02-17)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/prelude-so/php-sdk/compare/v0.0.1...v0.1.0)
