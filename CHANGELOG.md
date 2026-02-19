@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.2 (2026-02-19)
+
+Full Changelog: [v0.1.1...v0.1.2](https://github.com/prelude-so/php-sdk/compare/v0.1.1...v0.1.2)
+
+### Chores
+
+* update mock server docs ([d197b4e](https://github.com/prelude-so/php-sdk/commit/d197b4ee1dacb30276c630c31096b84bc0b8c7d9))
+
 ## 0.1.1 (2026-02-18)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/prelude-so/php-sdk/compare/v0.1.0...v0.1.1)
