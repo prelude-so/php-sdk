@@ -136,7 +136,7 @@ final class NotifyTest extends TestCase
     public function testSend(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism doesn\'t support callbacks yet');
+            $this->markTestSkipped('Mock server doesn\'t support callbacks yet');
         }
 
         $result = $this->client->notify->send(
@@ -152,7 +152,7 @@ final class NotifyTest extends TestCase
     public function testSendWithOptionalParams(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism doesn\'t support callbacks yet');
+            $this->markTestSkipped('Mock server doesn\'t support callbacks yet');
         }
 
         $result = $this->client->notify->send(
