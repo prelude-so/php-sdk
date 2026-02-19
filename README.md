@@ -13,7 +13,7 @@ The REST API documentation can be found on [docs.prelude.so](https://docs.prelud
 <!-- x-release-please-start-version -->
 
 ```
-composer require "prelude-so/php-sdk 0.1.0"
+composer require "prelude-so/php-sdk 0.1.1"
 ```
 
 <!-- x-release-please-end -->
