@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.0 (2026-02-27)
+
+Full Changelog: [v0.1.1...v0.2.0](https://github.com/prelude-so/php-sdk/compare/v0.1.1...v0.2.0)
+
+### Features
+
+* **api:** add webhook verification ([46709c7](https://github.com/prelude-so/php-sdk/commit/46709c7a67a6df24fa785193340d4ca2fe938e41))
+
+
+### Chores
+
+* **docs:** add missing descriptions ([1e43dca](https://github.com/prelude-so/php-sdk/commit/1e43dca29019cc08891b1dfdcfb34f2994ee4c80))
+* **internal:** upgrade phpunit ([04981db](https://github.com/prelude-so/php-sdk/commit/04981db00793d5860507f73146db9881c1f143cd))
+* update mock server docs ([d197b4e](https://github.com/prelude-so/php-sdk/commit/d197b4ee1dacb30276c630c31096b84bc0b8c7d9))
+
 ## 0.1.1 (2026-02-18)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/prelude-so/php-sdk/compare/v0.1.0...v0.1.1)
