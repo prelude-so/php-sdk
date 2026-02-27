@@ -20,6 +20,8 @@ use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDParams;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse;
 
 /**
+ * Verify phone numbers.
+ *
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  */
 final class VerificationManagementRawService implements VerificationManagementRawContract

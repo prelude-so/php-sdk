@@ -14,6 +14,8 @@ use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
 use Prelude\Transactional\TransactionalSendResponse;
 
 /**
+ * Send transactional messages (deprecated - use Notify API instead).
+ *
  * @phpstan-import-type DocumentShape from \Prelude\Transactional\TransactionalSendParams\Document
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  */
