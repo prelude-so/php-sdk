@@ -9,7 +9,6 @@ use Prelude\Client;
 use Prelude\Core\Util;
 use Prelude\Verification\VerificationCheckResponse;
 use Prelude\Verification\VerificationNewResponse;
-use Tests\UnsupportedMockTests;
 
 /**
  * @internal
@@ -32,10 +31,6 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCreate(): void
     {
-        if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Mock server doesn\'t support callbacks yet');
-        }
-
         $result = $this->client->verification->create(
             target: ['type' => 'phone_number', 'value' => '+30123456789']
         );
@@ -47,10 +42,6 @@ final class VerificationTest extends TestCase
     #[Test]
     public function testCreateWithOptionalParams(): void
     {
-        if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Mock server doesn\'t support callbacks yet');
-        }
-
         $result = $this->client->verification->create(
             target: ['type' => 'phone_number', 'value' => '+30123456789'],
             dispatchID: '123e4567-e89b-12d3-a456-426614174000',
