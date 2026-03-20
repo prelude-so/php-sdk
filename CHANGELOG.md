@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.2.0 (2026-03-20)
+
+Full Changelog: [v0.1.1...v0.2.0](https://github.com/prelude-so/php-sdk/compare/v0.1.1...v0.2.0)
+
+### Features
+
+* **api:** add webhook verification ([46709c7](https://github.com/prelude-so/php-sdk/commit/46709c7a67a6df24fa785193340d4ca2fe938e41))
+* **api:** api update ([bf9a9c3](https://github.com/prelude-so/php-sdk/commit/bf9a9c34b4e49fa934e74bda08e132de37c5204d))
+
+
+### Chores
+
+* **docs:** add missing descriptions ([1e43dca](https://github.com/prelude-so/php-sdk/commit/1e43dca29019cc08891b1dfdcfb34f2994ee4c80))
+* **internal:** tweak CI branches ([4f79aa9](https://github.com/prelude-so/php-sdk/commit/4f79aa915b39c33153eda7b960e8ecfbb5ebaec0))
+* **internal:** upgrade phpunit ([04981db](https://github.com/prelude-so/php-sdk/commit/04981db00793d5860507f73146db9881c1f143cd))
+* **test:** do not count install time for mock server timeout ([4232f24](https://github.com/prelude-so/php-sdk/commit/4232f2489b4580aa9144f2246b77c38d50e99b97))
+* **tests:** bump steady to v0.19.4 ([76885a7](https://github.com/prelude-so/php-sdk/commit/76885a755726b272aa0d6d543a101f5cbd533d8a))
+* **tests:** bump steady to v0.19.5 ([0ac1998](https://github.com/prelude-so/php-sdk/commit/0ac1998efaa1c3548aa6e40c599f238dd0ddffb9))
+* update mock server docs ([d197b4e](https://github.com/prelude-so/php-sdk/commit/d197b4ee1dacb30276c630c31096b84bc0b8c7d9))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([b83710d](https://github.com/prelude-so/php-sdk/commit/b83710d0893e29417d545911f3a5b9ee5b3e1ab7))
+
 ## 0.1.1 (2026-02-18)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/prelude-so/php-sdk/compare/v0.1.0...v0.1.1)

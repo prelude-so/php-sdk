@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use Prelude\Client;
 use Prelude\Core\Util;
 use Prelude\Transactional\TransactionalSendResponse;
-use Tests\UnsupportedMockTests;
 
 /**
  * @internal
@@ -31,10 +30,6 @@ final class TransactionalTest extends TestCase
     #[Test]
     public function testSend(): void
     {
-        if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism doesn\'t support callbacks yet');
-        }
-
         $result = $this->client->transactional->send(
             templateID: 'template_01hynf45qvevj844m9az2x2f3c',
             to: '+30123456789'
@@ -47,10 +42,6 @@ final class TransactionalTest extends TestCase
     #[Test]
     public function testSendWithOptionalParams(): void
     {
-        if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism doesn\'t support callbacks yet');
-        }
-
         $result = $this->client->transactional->send(
             templateID: 'template_01hynf45qvevj844m9az2x2f3c',
             to: '+30123456789',

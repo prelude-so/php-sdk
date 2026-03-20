@@ -14,7 +14,6 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse;
 use Prelude\Notify\NotifySendBatchResponse;
 use Prelude\Notify\NotifySendResponse;
-use Tests\UnsupportedMockTests;
 
 /**
  * @internal
@@ -135,10 +134,6 @@ final class NotifyTest extends TestCase
     #[Test]
     public function testSend(): void
     {
-        if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism doesn\'t support callbacks yet');
-        }
-
         $result = $this->client->notify->send(
             templateID: 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
             to: '+33612345678'
@@ -151,10 +146,6 @@ final class NotifyTest extends TestCase
     #[Test]
     public function testSendWithOptionalParams(): void
     {
-        if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism doesn\'t support callbacks yet');
-        }
-
         $result = $this->client->notify->send(
             templateID: 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
             to: '+33612345678',
