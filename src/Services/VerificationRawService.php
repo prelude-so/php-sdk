@@ -19,6 +19,8 @@ use Prelude\Verification\VerificationCreateParams\Target;
 use Prelude\Verification\VerificationNewResponse;
 
 /**
+ * Verify phone numbers.
+ *
  * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCreateParams\Target
  * @phpstan-import-type MetadataShape from \Prelude\Verification\VerificationCreateParams\Metadata
  * @phpstan-import-type OptionsShape from \Prelude\Verification\VerificationCreateParams\Options

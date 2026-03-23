@@ -21,6 +21,8 @@ use Prelude\RequestOptions;
 use Prelude\ServiceContracts\NotifyContract;
 
 /**
+ * Send transactional and marketing messages with compliance enforcement.
+ *
  * @phpstan-import-type DocumentShape from \Prelude\Notify\NotifySendParams\Document
  * @phpstan-import-type DocumentShape from \Prelude\Notify\NotifySendBatchParams\Document as DocumentShape1
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions

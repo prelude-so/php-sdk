@@ -22,6 +22,8 @@ use Prelude\Watch\WatchSendFeedbacksParams\Feedback;
 use Prelude\Watch\WatchSendFeedbacksResponse;
 
 /**
+ * Evaluate email addresses and phone numbers for trustworthiness.
+ *
  * @phpstan-import-type TargetShape from \Prelude\Watch\WatchPredictParams\Target
  * @phpstan-import-type MetadataShape from \Prelude\Watch\WatchPredictParams\Metadata
  * @phpstan-import-type SignalsShape from \Prelude\Watch\WatchPredictParams\Signals

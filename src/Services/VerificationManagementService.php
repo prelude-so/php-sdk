@@ -17,6 +17,8 @@ use Prelude\VerificationManagement\VerificationManagementSetPhoneNumberResponse;
 use Prelude\VerificationManagement\VerificationManagementSubmitSenderIDResponse;
 
 /**
+ * Verify phone numbers.
+ *
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  */
 final class VerificationManagementService implements VerificationManagementContract

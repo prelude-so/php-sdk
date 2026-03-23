@@ -13,6 +13,8 @@ use Prelude\RequestOptions;
 use Prelude\ServiceContracts\LookupContract;
 
 /**
+ * Retrieve detailed information about a phone number including carrier data, line type, and portability status.
+ *
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  */
 final class LookupService implements LookupContract
