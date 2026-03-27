@@ -179,7 +179,7 @@ final class NotifyService implements NotifyContract
     /**
      * @api
      *
-     * Send transactional and marketing messages to your users via SMS and WhatsApp with automatic compliance enforcement.
+     * Send transactional and marketing messages to your users via SMS, RCS and WhatsApp with automatic compliance enforcement.
      *
      * @param string $templateID the template identifier configured by your Customer Success team
      * @param string $to The recipient's phone number in E.164 format.
