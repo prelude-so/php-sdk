@@ -224,7 +224,7 @@ final class NotifyRawService implements NotifyRawContract
     /**
      * @api
      *
-     * Send transactional and marketing messages to your users via SMS and WhatsApp with automatic compliance enforcement.
+     * Send transactional and marketing messages to your users via SMS, RCS and WhatsApp with automatic compliance enforcement.
      *
      * @param array{
      *   templateID: string,
