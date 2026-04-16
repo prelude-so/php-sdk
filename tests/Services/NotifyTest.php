@@ -150,6 +150,7 @@ final class NotifyTest extends TestCase
             templateID: 'template_01k8ap1btqf5r9fq2c8ax5fhc9',
             to: '+33612345678',
             callbackURL: 'https://your-app.com/webhooks/notify',
+            context: ['replyTo' => 'im_01k8aq2zggeyssvt53zgvpx63a'],
             correlationID: 'order-12345',
             document: [
                 'filename' => 'invoice.pdf', 'url' => 'https://example.com/invoice.pdf',
@@ -159,6 +160,7 @@ final class NotifyTest extends TestCase
             locale: 'el-GR',
             preferredChannel: 'whatsapp',
             scheduleAt: new \DateTimeImmutable('2025-12-25T10:00:00Z'),
+            text: 'Thanks for reaching out! We\'ll look into your request.',
             variables: ['order_id' => '12345', 'amount' => '$49.99'],
         );
 
