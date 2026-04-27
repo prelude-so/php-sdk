@@ -28,7 +28,7 @@ final class WatchSendFeedbacksParams implements BaseModel
     use SdkParams;
 
     /**
-     * A list of feedbacks to send.
+     * A list of feedbacks to send. A maximum of 100 feedbacks can be sent in a single request.
      *
      * @var list<Feedback> $feedbacks
      */
@@ -71,7 +71,7 @@ final class WatchSendFeedbacksParams implements BaseModel
     }
 
     /**
-     * A list of feedbacks to send.
+     * A list of feedbacks to send. A maximum of 100 feedbacks can be sent in a single request.
      *
      * @param list<Feedback|FeedbackShape> $feedbacks
      */

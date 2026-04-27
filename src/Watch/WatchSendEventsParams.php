@@ -26,7 +26,7 @@ final class WatchSendEventsParams implements BaseModel
     use SdkParams;
 
     /**
-     * A list of events to dispatch.
+     * A list of events to dispatch. A maximum of 100 events can be sent in a single request.
      *
      * @var list<Event> $events
      */
@@ -69,7 +69,7 @@ final class WatchSendEventsParams implements BaseModel
     }
 
     /**
-     * A list of events to dispatch.
+     * A list of events to dispatch. A maximum of 100 events can be sent in a single request.
      *
      * @param list<Event|EventShape> $events
      */
