@@ -74,7 +74,14 @@ final class NotifySendParams implements BaseModel
     public ?string $correlationID;
 
     /**
-     * A document to attach to the message. Only supported on WhatsApp templates that have a document header.
+     * A media attachment to include in the message header. Supported on
+     * WhatsApp templates registered with a `DOCUMENT`, `IMAGE`, or
+     * `VIDEO` header. The media type is determined by the template's
+     * registered header format; send the matching file type for each.
+     *
+     * - `DOCUMENT` headers accept PDF and other document formats; `filename` is required and displayed to the recipient.
+     * - `IMAGE` headers accept `.png`, `.jpg`, `.jpeg`, and `.webp` URLs; `filename` is ignored.
+     * - `VIDEO` headers accept `.mp4` and `.3gp` URLs; `filename` is ignored.
      */
     #[Optional]
     public ?Document $document;
@@ -247,7 +254,14 @@ final class NotifySendParams implements BaseModel
     }
 
     /**
-     * A document to attach to the message. Only supported on WhatsApp templates that have a document header.
+     * A media attachment to include in the message header. Supported on
+     * WhatsApp templates registered with a `DOCUMENT`, `IMAGE`, or
+     * `VIDEO` header. The media type is determined by the template's
+     * registered header format; send the matching file type for each.
+     *
+     * - `DOCUMENT` headers accept PDF and other document formats; `filename` is required and displayed to the recipient.
+     * - `IMAGE` headers accept `.png`, `.jpg`, `.jpeg`, and `.webp` URLs; `filename` is ignored.
+     * - `VIDEO` headers accept `.mp4` and `.3gp` URLs; `filename` is ignored.
      *
      * @param Document|DocumentShape $document
      */
