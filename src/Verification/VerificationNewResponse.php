@@ -12,6 +12,7 @@ use Prelude\Verification\VerificationNewResponse\Channel;
 use Prelude\Verification\VerificationNewResponse\Metadata;
 use Prelude\Verification\VerificationNewResponse\Method;
 use Prelude\Verification\VerificationNewResponse\Reason;
+use Prelude\Verification\VerificationNewResponse\RiskFactor;
 use Prelude\Verification\VerificationNewResponse\Silent;
 use Prelude\Verification\VerificationNewResponse\Status;
 
@@ -27,6 +28,7 @@ use Prelude\Verification\VerificationNewResponse\Status;
  *   metadata?: null|Metadata|MetadataShape,
  *   reason?: null|Reason|value-of<Reason>,
  *   requestID?: string|null,
+ *   riskFactors?: list<RiskFactor|value-of<RiskFactor>>|null,
  *   silent?: null|Silent|SilentShape,
  * }
  */
@@ -95,6 +97,24 @@ final class VerificationNewResponse implements BaseModel
     public ?string $requestID;
 
     /**
+     * The risk factors that contributed to the verification being blocked. Only present when status is "blocked" and the anti-fraud system detected specific risk signals.
+     *  * `behavioral_pattern` - The phone number past behavior during verification flows exhibits suspicious patterns.
+     *  * `device_attribute` - The device exhibits characteristics associated with suspicious activity patterns.
+     *  * `fraud_database` - The phone number has been flagged as suspicious in one or more of our fraud databases.
+     *  * `location_discrepancy` - The phone number prefix and IP address discrepancy indicates potential fraud.
+     *  * `network_fingerprint` - The network connection exhibits characteristics associated with suspicious activity patterns.
+     *  * `poor_conversion_history` - The phone number has a history of poorly converting to a verified phone number.
+     *  * `prefix_concentration` - The phone number is part of a range known to be associated with suspicious activity patterns.
+     *  * `suspected_request_tampering` - The SDK signature is invalid and the request is considered to be tampered with.
+     *  * `suspicious_ip_address` - The IP address is deemed to be associated with suspicious activity patterns.
+     *  * `temporary_phone_number` - The phone number is known to be a temporary or disposable number.
+     *
+     * @var list<value-of<RiskFactor>>|null $riskFactors
+     */
+    #[Optional('risk_factors', list: RiskFactor::class)]
+    public ?array $riskFactors;
+
+    /**
      * The silent verification specific properties.
      */
     #[Optional]
@@ -129,6 +149,7 @@ final class VerificationNewResponse implements BaseModel
      * @param list<Channel|value-of<Channel>>|null $channels
      * @param Metadata|MetadataShape|null $metadata
      * @param Reason|value-of<Reason>|null $reason
+     * @param list<RiskFactor|value-of<RiskFactor>>|null $riskFactors
      * @param Silent|SilentShape|null $silent
      */
     public static function with(
@@ -139,6 +160,7 @@ final class VerificationNewResponse implements BaseModel
         Metadata|array|null $metadata = null,
         Reason|string|null $reason = null,
         ?string $requestID = null,
+        ?array $riskFactors = null,
         Silent|array|null $silent = null,
     ): self {
         $self = new self;
@@ -151,6 +173,7 @@ final class VerificationNewResponse implements BaseModel
         null !== $metadata && $self['metadata'] = $metadata;
         null !== $reason && $self['reason'] = $reason;
         null !== $requestID && $self['requestID'] = $requestID;
+        null !== $riskFactors && $self['riskFactors'] = $riskFactors;
         null !== $silent && $self['silent'] = $silent;
 
         return $self;
@@ -248,6 +271,29 @@ final class VerificationNewResponse implements BaseModel
     {
         $self = clone $this;
         $self['requestID'] = $requestID;
+
+        return $self;
+    }
+
+    /**
+     * The risk factors that contributed to the verification being blocked. Only present when status is "blocked" and the anti-fraud system detected specific risk signals.
+     *  * `behavioral_pattern` - The phone number past behavior during verification flows exhibits suspicious patterns.
+     *  * `device_attribute` - The device exhibits characteristics associated with suspicious activity patterns.
+     *  * `fraud_database` - The phone number has been flagged as suspicious in one or more of our fraud databases.
+     *  * `location_discrepancy` - The phone number prefix and IP address discrepancy indicates potential fraud.
+     *  * `network_fingerprint` - The network connection exhibits characteristics associated with suspicious activity patterns.
+     *  * `poor_conversion_history` - The phone number has a history of poorly converting to a verified phone number.
+     *  * `prefix_concentration` - The phone number is part of a range known to be associated with suspicious activity patterns.
+     *  * `suspected_request_tampering` - The SDK signature is invalid and the request is considered to be tampered with.
+     *  * `suspicious_ip_address` - The IP address is deemed to be associated with suspicious activity patterns.
+     *  * `temporary_phone_number` - The phone number is known to be a temporary or disposable number.
+     *
+     * @param list<RiskFactor|value-of<RiskFactor>> $riskFactors
+     */
+    public function withRiskFactors(array $riskFactors): self
+    {
+        $self = clone $this;
+        $self['riskFactors'] = $riskFactors;
 
         return $self;
     }

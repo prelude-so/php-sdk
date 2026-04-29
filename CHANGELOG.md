@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.3.0 (2026-04-27)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/prelude-so/php-sdk/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** api update ([05f31b4](https://github.com/prelude-so/php-sdk/commit/05f31b47c72a6b4fd45f6add94d208c35abcde27))
+* **api:** api update ([f5ef0b5](https://github.com/prelude-so/php-sdk/commit/f5ef0b588041c3b86d5680baa8137646552bd7de))
+* **api:** api update ([591625f](https://github.com/prelude-so/php-sdk/commit/591625f6f849f6c2ce7893ba99a3a17344fa0946))
+* **api:** api update ([e9aafc6](https://github.com/prelude-so/php-sdk/commit/e9aafc6513bf80f587f3ed493f31ad0b890f0e63))
+
+
+### Bug Fixes
+
+* **client:** properly generate file params ([7dfe5fa](https://github.com/prelude-so/php-sdk/commit/7dfe5fa0b5a7802dff5cebab3cf12fc2b7607a7d))
+* **client:** resolve serialization issue with unions and enums ([e855185](https://github.com/prelude-so/php-sdk/commit/e855185891ff2e010a309c1d7fe20955b7182772))
+* populate enum-typed properties with enum instances ([6253be5](https://github.com/prelude-so/php-sdk/commit/6253be5d01bd873b1a7eda968794b633b2f84bc6))
+* revert enum parsing change that lead to unconditional failure ([d29d797](https://github.com/prelude-so/php-sdk/commit/d29d797c4f9c24720575c211e754db268d20b4f9))
+
+
+### Chores
+
+* **internal:** update multipart form array serialization ([9c75abc](https://github.com/prelude-so/php-sdk/commit/9c75abc89eb0f03e0a3fb2b07f9dd3e5cd692881))
+* **tests:** bump steady to v0.19.6 ([26c3f36](https://github.com/prelude-so/php-sdk/commit/26c3f367b95d42344c2782612077ef0f158a1ea3))
+* **tests:** bump steady to v0.19.7 ([b7af1c7](https://github.com/prelude-so/php-sdk/commit/b7af1c7d533a366fd4b7d32ea28aa7a36e0cc591))
+* **tests:** bump steady to v0.20.1 ([00a0117](https://github.com/prelude-so/php-sdk/commit/00a0117527dda5b1572d26c002f4561b169e1f66))
+* **tests:** bump steady to v0.20.2 ([5bb0d90](https://github.com/prelude-so/php-sdk/commit/5bb0d90c0fb59f13fffa133bd45ef9ea3e523b74))
+* **tests:** bump steady to v0.22.1 ([365604c](https://github.com/prelude-so/php-sdk/commit/365604c899455e9326bf8fff286eccdc12a2c69f))
+
 ## 0.2.0 (2026-03-20)
 
 Full Changelog: [v0.1.1...v0.2.0](https://github.com/prelude-so/php-sdk/compare/v0.1.1...v0.2.0)

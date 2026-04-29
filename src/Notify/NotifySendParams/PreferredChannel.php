@@ -11,5 +11,7 @@ enum PreferredChannel: string
 {
     case SMS = 'sms';
 
+    case RCS = 'rcs';
+
     case WHATSAPP = 'whatsapp';
 }

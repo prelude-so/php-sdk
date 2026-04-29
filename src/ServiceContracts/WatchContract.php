@@ -47,7 +47,7 @@ interface WatchContract
     /**
      * @api
      *
-     * @param list<Event|EventShape> $events a list of events to dispatch
+     * @param list<Event|EventShape> $events A list of events to dispatch. A maximum of 100 events can be sent in a single request.
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
@@ -60,7 +60,7 @@ interface WatchContract
     /**
      * @api
      *
-     * @param list<Feedback|FeedbackShape> $feedbacks a list of feedbacks to send
+     * @param list<Feedback|FeedbackShape> $feedbacks A list of feedbacks to send. A maximum of 100 feedbacks can be sent in a single request.
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
