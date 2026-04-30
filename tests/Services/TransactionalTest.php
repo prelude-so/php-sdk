@@ -48,7 +48,7 @@ final class TransactionalTest extends TestCase
             callbackURL: 'callback_url',
             correlationID: 'correlation_id',
             document: [
-                'filename' => 'invoice.pdf', 'url' => 'https://example.com/invoice.pdf',
+                'url' => 'https://example.com/invoice.pdf', 'filename' => 'invoice.pdf',
             ],
             expiresAt: 'expires_at',
             from: 'from',

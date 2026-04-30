@@ -153,7 +153,7 @@ final class NotifyTest extends TestCase
             context: ['replyTo' => 'im_01k8aq2zggeyssvt53zgvpx63a'],
             correlationID: 'order-12345',
             document: [
-                'filename' => 'invoice.pdf', 'url' => 'https://example.com/invoice.pdf',
+                'url' => 'https://example.com/invoice.pdf', 'filename' => 'invoice.pdf',
             ],
             expiresAt: new \DateTimeImmutable('2025-12-25T18:00:00Z'),
             from: 'from',
@@ -189,7 +189,7 @@ final class NotifyTest extends TestCase
             callbackURL: 'https://your-app.com/webhooks/notify',
             correlationID: 'campaign-12345',
             document: [
-                'filename' => 'invoice.pdf', 'url' => 'https://example.com/invoice.pdf',
+                'url' => 'https://example.com/invoice.pdf', 'filename' => 'invoice.pdf',
             ],
             expiresAt: new \DateTimeImmutable('2025-12-25T18:00:00Z'),
             from: 'from',
