@@ -12,14 +12,12 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams\State;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse;
 use Prelude\Notify\NotifySendBatchResponse;
-use Prelude\Notify\NotifySendParams\Context;
 use Prelude\Notify\NotifySendParams\Document;
 use Prelude\Notify\NotifySendParams\PreferredChannel;
 use Prelude\Notify\NotifySendResponse;
 use Prelude\RequestOptions;
 
 /**
- * @phpstan-import-type ContextShape from \Prelude\Notify\NotifySendParams\Context
  * @phpstan-import-type DocumentShape from \Prelude\Notify\NotifySendParams\Document
  * @phpstan-import-type DocumentShape from \Prelude\Notify\NotifySendBatchParams\Document as DocumentShape1
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
@@ -113,7 +111,6 @@ interface NotifyContract
      * @param string $templateID the template identifier configured by your Customer Success team
      * @param string $to The recipient's phone number in E.164 format.
      * @param string $callbackURL the URL where webhooks will be sent for message delivery events
-     * @param Context|ContextShape $context Context for replying to an inbound message. When provided, the message is sent as a WhatsApp reply within the 24-hour conversation window.
      * @param string $correlationID A user-defined identifier to correlate this message with your internal systems. It is returned in the response and any webhook events that refer to this message.
      * @param Document|DocumentShape $document A media attachment to include in the message header. Supported on
      * WhatsApp templates registered with a `DOCUMENT`, `IMAGE`, or
@@ -128,7 +125,6 @@ interface NotifyContract
      * @param string $locale A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, the default set on the template will be used.
      * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel The preferred channel to be used in priority for message delivery. If the channel is unavailable, the system will fallback to other available channels.
      * @param \DateTimeInterface $scheduleAt Schedule the message for future delivery in RFC3339 format. Marketing messages can be scheduled up to 90 days in advance and will be automatically adjusted for compliance with local time window restrictions.
-     * @param string $text The reply message body. Required when `context.reply_to` is provided. Used for 2-way WhatsApp messaging to send free-form text replies within a conversation window.
      * @param array<string,string> $variables the variables to be replaced in the template
      * @param RequestOpts|null $requestOptions
      *
@@ -138,7 +134,6 @@ interface NotifyContract
         string $templateID,
         string $to,
         ?string $callbackURL = null,
-        Context|array|null $context = null,
         ?string $correlationID = null,
         Document|array|null $document = null,
         ?\DateTimeInterface $expiresAt = null,
@@ -146,7 +141,6 @@ interface NotifyContract
         ?string $locale = null,
         PreferredChannel|string|null $preferredChannel = null,
         ?\DateTimeInterface $scheduleAt = null,
-        ?string $text = null,
         ?array $variables = null,
         RequestOptions|array|null $requestOptions = null,
     ): NotifySendResponse;
