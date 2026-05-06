@@ -20,7 +20,6 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse;
 use Prelude\Notify\NotifySendBatchParams;
 use Prelude\Notify\NotifySendBatchResponse;
 use Prelude\Notify\NotifySendParams;
-use Prelude\Notify\NotifySendParams\Context;
 use Prelude\Notify\NotifySendParams\Document;
 use Prelude\Notify\NotifySendParams\PreferredChannel;
 use Prelude\Notify\NotifySendResponse;
@@ -30,7 +29,6 @@ use Prelude\ServiceContracts\NotifyRawContract;
 /**
  * Send transactional and marketing messages with compliance enforcement.
  *
- * @phpstan-import-type ContextShape from \Prelude\Notify\NotifySendParams\Context
  * @phpstan-import-type DocumentShape from \Prelude\Notify\NotifySendParams\Document
  * @phpstan-import-type DocumentShape from \Prelude\Notify\NotifySendBatchParams\Document as DocumentShape1
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
@@ -232,7 +230,6 @@ final class NotifyRawService implements NotifyRawContract
      *   templateID: string,
      *   to: string,
      *   callbackURL?: string,
-     *   context?: Context|ContextShape,
      *   correlationID?: string,
      *   document?: Document|DocumentShape,
      *   expiresAt?: \DateTimeInterface,
@@ -240,7 +237,6 @@ final class NotifyRawService implements NotifyRawContract
      *   locale?: string,
      *   preferredChannel?: PreferredChannel|value-of<PreferredChannel>,
      *   scheduleAt?: \DateTimeInterface,
-     *   text?: string,
      *   variables?: array<string,string>,
      * }|NotifySendParams $params
      * @param RequestOpts|null $requestOptions
