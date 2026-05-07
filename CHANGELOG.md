@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.4.0 (2026-05-07)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/prelude-so/php-sdk/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** api update ([81113cb](https://github.com/prelude-so/php-sdk/commit/81113cb30937a7f9e65bd63ca368c67d3e3f676b))
+* **api:** api update ([1dde99a](https://github.com/prelude-so/php-sdk/commit/1dde99a3273cd5c82e5859a31260e8c18ef973ef))
+* **api:** api update ([208340c](https://github.com/prelude-so/php-sdk/commit/208340c3d490bdf54d5d916ca702920d1805f132))
+* support setting headers via env ([e4e26d8](https://github.com/prelude-so/php-sdk/commit/e4e26d8eb475e258ef2175eb1095a86b70107fff))
+
+
+### Chores
+
+* **internal:** codegen related update ([568d4c3](https://github.com/prelude-so/php-sdk/commit/568d4c3b06cd1d43b3bccacf24e6392047129aa5))
+* **internal:** version bump ([ac4643a](https://github.com/prelude-so/php-sdk/commit/ac4643a4cff434e2467a31d2bd432205146ee35a))
+
 ## 0.3.0 (2026-04-27)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/prelude-so/php-sdk/compare/v0.2.0...v0.3.0)

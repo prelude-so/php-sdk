@@ -9,7 +9,6 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
-use Prelude\Notify\NotifySendParams\Context;
 use Prelude\Notify\NotifySendParams\Document;
 use Prelude\Notify\NotifySendParams\PreferredChannel;
 
@@ -18,14 +17,12 @@ use Prelude\Notify\NotifySendParams\PreferredChannel;
  *
  * @see Prelude\Services\NotifyService::send()
  *
- * @phpstan-import-type ContextShape from \Prelude\Notify\NotifySendParams\Context
  * @phpstan-import-type DocumentShape from \Prelude\Notify\NotifySendParams\Document
  *
  * @phpstan-type NotifySendParamsShape = array{
  *   templateID: string,
  *   to: string,
  *   callbackURL?: string|null,
- *   context?: null|Context|ContextShape,
  *   correlationID?: string|null,
  *   document?: null|Document|DocumentShape,
  *   expiresAt?: \DateTimeInterface|null,
@@ -33,7 +30,6 @@ use Prelude\Notify\NotifySendParams\PreferredChannel;
  *   locale?: string|null,
  *   preferredChannel?: null|PreferredChannel|value-of<PreferredChannel>,
  *   scheduleAt?: \DateTimeInterface|null,
- *   text?: string|null,
  *   variables?: array<string,string>|null,
  * }
  */
@@ -62,19 +58,20 @@ final class NotifySendParams implements BaseModel
     public ?string $callbackURL;
 
     /**
-     * Context for replying to an inbound message. When provided, the message is sent as a WhatsApp reply within the 24-hour conversation window.
-     */
-    #[Optional]
-    public ?Context $context;
-
-    /**
      * A user-defined identifier to correlate this message with your internal systems. It is returned in the response and any webhook events that refer to this message.
      */
     #[Optional('correlation_id')]
     public ?string $correlationID;
 
     /**
-     * A document to attach to the message. Only supported on WhatsApp templates that have a document header.
+     * A media attachment to include in the message header. Supported on
+     * WhatsApp templates registered with a `DOCUMENT`, `IMAGE`, or
+     * `VIDEO` header. The media type is determined by the template's
+     * registered header format; send the matching file type for each.
+     *
+     * - `DOCUMENT` headers accept PDF and other document formats; `filename` is required and displayed to the recipient.
+     * - `IMAGE` headers accept `.png`, `.jpg`, `.jpeg`, and `.webp` URLs; `filename` is ignored.
+     * - `VIDEO` headers accept `.mp4` and `.3gp` URLs; `filename` is ignored.
      */
     #[Optional]
     public ?Document $document;
@@ -112,12 +109,6 @@ final class NotifySendParams implements BaseModel
     public ?\DateTimeInterface $scheduleAt;
 
     /**
-     * The reply message body. Required when `context.reply_to` is provided. Used for 2-way WhatsApp messaging to send free-form text replies within a conversation window.
-     */
-    #[Optional]
-    public ?string $text;
-
-    /**
      * The variables to be replaced in the template.
      *
      * @var array<string,string>|null $variables
@@ -149,7 +140,6 @@ final class NotifySendParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Context|ContextShape|null $context
      * @param Document|DocumentShape|null $document
      * @param PreferredChannel|value-of<PreferredChannel>|null $preferredChannel
      * @param array<string,string>|null $variables
@@ -158,7 +148,6 @@ final class NotifySendParams implements BaseModel
         string $templateID,
         string $to,
         ?string $callbackURL = null,
-        Context|array|null $context = null,
         ?string $correlationID = null,
         Document|array|null $document = null,
         ?\DateTimeInterface $expiresAt = null,
@@ -166,7 +155,6 @@ final class NotifySendParams implements BaseModel
         ?string $locale = null,
         PreferredChannel|string|null $preferredChannel = null,
         ?\DateTimeInterface $scheduleAt = null,
-        ?string $text = null,
         ?array $variables = null,
     ): self {
         $self = new self;
@@ -175,7 +163,6 @@ final class NotifySendParams implements BaseModel
         $self['to'] = $to;
 
         null !== $callbackURL && $self['callbackURL'] = $callbackURL;
-        null !== $context && $self['context'] = $context;
         null !== $correlationID && $self['correlationID'] = $correlationID;
         null !== $document && $self['document'] = $document;
         null !== $expiresAt && $self['expiresAt'] = $expiresAt;
@@ -183,7 +170,6 @@ final class NotifySendParams implements BaseModel
         null !== $locale && $self['locale'] = $locale;
         null !== $preferredChannel && $self['preferredChannel'] = $preferredChannel;
         null !== $scheduleAt && $self['scheduleAt'] = $scheduleAt;
-        null !== $text && $self['text'] = $text;
         null !== $variables && $self['variables'] = $variables;
 
         return $self;
@@ -223,19 +209,6 @@ final class NotifySendParams implements BaseModel
     }
 
     /**
-     * Context for replying to an inbound message. When provided, the message is sent as a WhatsApp reply within the 24-hour conversation window.
-     *
-     * @param Context|ContextShape $context
-     */
-    public function withContext(Context|array $context): self
-    {
-        $self = clone $this;
-        $self['context'] = $context;
-
-        return $self;
-    }
-
-    /**
      * A user-defined identifier to correlate this message with your internal systems. It is returned in the response and any webhook events that refer to this message.
      */
     public function withCorrelationID(string $correlationID): self
@@ -247,7 +220,14 @@ final class NotifySendParams implements BaseModel
     }
 
     /**
-     * A document to attach to the message. Only supported on WhatsApp templates that have a document header.
+     * A media attachment to include in the message header. Supported on
+     * WhatsApp templates registered with a `DOCUMENT`, `IMAGE`, or
+     * `VIDEO` header. The media type is determined by the template's
+     * registered header format; send the matching file type for each.
+     *
+     * - `DOCUMENT` headers accept PDF and other document formats; `filename` is required and displayed to the recipient.
+     * - `IMAGE` headers accept `.png`, `.jpg`, `.jpeg`, and `.webp` URLs; `filename` is ignored.
+     * - `VIDEO` headers accept `.mp4` and `.3gp` URLs; `filename` is ignored.
      *
      * @param Document|DocumentShape $document
      */
@@ -313,17 +293,6 @@ final class NotifySendParams implements BaseModel
     {
         $self = clone $this;
         $self['scheduleAt'] = $scheduleAt;
-
-        return $self;
-    }
-
-    /**
-     * The reply message body. Required when `context.reply_to` is provided. Used for 2-way WhatsApp messaging to send free-form text replies within a conversation window.
-     */
-    public function withText(string $text): self
-    {
-        $self = clone $this;
-        $self['text'] = $text;
 
         return $self;
     }

@@ -25,7 +25,14 @@ interface TransactionalContract
      * @param string $to the recipient's phone number
      * @param string $callbackURL the callback URL
      * @param string $correlationID A user-defined identifier to correlate this transactional message with. It is returned in the response and any webhook events that refer to this transactionalmessage.
-     * @param Document|DocumentShape $document A document to attach to the message. Only supported on WhatsApp templates that have a document header.
+     * @param Document|DocumentShape $document A media attachment to include in the message header. Supported on
+     * WhatsApp templates registered with a `DOCUMENT`, `IMAGE`, or
+     * `VIDEO` header. The media type is determined by the template's
+     * registered header format; send the matching file type for each.
+     *
+     * - `DOCUMENT` headers accept PDF and other document formats; `filename` is required and displayed to the recipient.
+     * - `IMAGE` headers accept `.png`, `.jpg`, `.jpeg`, and `.webp` URLs; `filename` is ignored.
+     * - `VIDEO` headers accept `.mp4` and `.3gp` URLs; `filename` is ignored.
      * @param string $expiresAt the message expiration date
      * @param string $from the Sender ID
      * @param string $locale A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, the default set on the template will be used.
