@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Prelude\Verification\VerificationNewResponse;
 
 /**
- * The reason why the verification was blocked. Only present when status is "blocked".
+ * The reason why the verification was blocked. Only present when status is "blocked" or "shadow_blocked".
  *  * `expired_signature` - The signature of the SDK signals is expired. They should be sent within
  *    the hour following their collection.
  *  * `in_block_list` - The phone number is part of the configured block list.

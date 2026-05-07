@@ -10,6 +10,7 @@ namespace Prelude\Verification\VerificationNewResponse;
  *  * `retry` - A new attempt was created for an existing verification window.
  *  * `challenged` - The verification is suspicious and is restricted to non-SMS and non-voice channels only. This mode must be enabled for your customer account by Prelude support.
  *  * `blocked` - The verification was blocked.
+ *  * `shadow_blocked` - The verification triggered a block rule but the decision was not enforced; this is used to dry-run anti-fraud configuration. This mode must be enabled for your customer account by Prelude support.
  */
 enum Status: string
 {
@@ -20,4 +21,6 @@ enum Status: string
     case CHALLENGED = 'challenged';
 
     case BLOCKED = 'blocked';
+
+    case SHADOW_BLOCKED = 'shadow_blocked';
 }

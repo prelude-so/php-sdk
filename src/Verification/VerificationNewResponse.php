@@ -57,6 +57,7 @@ final class VerificationNewResponse implements BaseModel
      *  * `retry` - A new attempt was created for an existing verification window.
      *  * `challenged` - The verification is suspicious and is restricted to non-SMS and non-voice channels only. This mode must be enabled for your customer account by Prelude support.
      *  * `blocked` - The verification was blocked.
+     *  * `shadow_blocked` - The verification triggered a block rule but the decision was not enforced; this is used to dry-run anti-fraud configuration. This mode must be enabled for your customer account by Prelude support.
      *
      * @var value-of<Status> $status
      */
@@ -78,7 +79,7 @@ final class VerificationNewResponse implements BaseModel
     public ?Metadata $metadata;
 
     /**
-     * The reason why the verification was blocked. Only present when status is "blocked".
+     * The reason why the verification was blocked. Only present when status is "blocked" or "shadow_blocked".
      *  * `expired_signature` - The signature of the SDK signals is expired. They should be sent within
      *    the hour following their collection.
      *  * `in_block_list` - The phone number is part of the configured block list.
@@ -97,7 +98,7 @@ final class VerificationNewResponse implements BaseModel
     public ?string $requestID;
 
     /**
-     * The risk factors that contributed to the verification being blocked. Only present when status is "blocked" and the anti-fraud system detected specific risk signals.
+     * The risk factors that contributed to the verification being blocked. Only present when status is "blocked" or "shadow_blocked" and the anti-fraud system detected specific risk signals.
      *  * `behavioral_pattern` - The phone number past behavior during verification flows exhibits suspicious patterns.
      *  * `device_attribute` - The device exhibits characteristics associated with suspicious activity patterns.
      *  * `fraud_database` - The phone number has been flagged as suspicious in one or more of our fraud databases.
@@ -209,6 +210,7 @@ final class VerificationNewResponse implements BaseModel
      *  * `retry` - A new attempt was created for an existing verification window.
      *  * `challenged` - The verification is suspicious and is restricted to non-SMS and non-voice channels only. This mode must be enabled for your customer account by Prelude support.
      *  * `blocked` - The verification was blocked.
+     *  * `shadow_blocked` - The verification triggered a block rule but the decision was not enforced; this is used to dry-run anti-fraud configuration. This mode must be enabled for your customer account by Prelude support.
      *
      * @param Status|value-of<Status> $status
      */
@@ -247,7 +249,7 @@ final class VerificationNewResponse implements BaseModel
     }
 
     /**
-     * The reason why the verification was blocked. Only present when status is "blocked".
+     * The reason why the verification was blocked. Only present when status is "blocked" or "shadow_blocked".
      *  * `expired_signature` - The signature of the SDK signals is expired. They should be sent within
      *    the hour following their collection.
      *  * `in_block_list` - The phone number is part of the configured block list.
@@ -276,7 +278,7 @@ final class VerificationNewResponse implements BaseModel
     }
 
     /**
-     * The risk factors that contributed to the verification being blocked. Only present when status is "blocked" and the anti-fraud system detected specific risk signals.
+     * The risk factors that contributed to the verification being blocked. Only present when status is "blocked" or "shadow_blocked" and the anti-fraud system detected specific risk signals.
      *  * `behavioral_pattern` - The phone number past behavior during verification flows exhibits suspicious patterns.
      *  * `device_attribute` - The device exhibits characteristics associated with suspicious activity patterns.
      *  * `fraud_database` - The phone number has been flagged as suspicious in one or more of our fraud databases.
