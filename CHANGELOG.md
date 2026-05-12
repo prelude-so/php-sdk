@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.5.0 (2026-05-12)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/prelude-so/php-sdk/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **api:** api update ([ba9c2db](https://github.com/prelude-so/php-sdk/commit/ba9c2dbc5ce5293973c75acfa1ba31f9c137a0d9))
+* **api:** api update ([5cf7bd7](https://github.com/prelude-so/php-sdk/commit/5cf7bd7d6c8f9e55702e3693f8964e65c5ba9791))
+
+
+### Bug Fixes
+
+* guzzle requires special handling to enable streaming ([6184692](https://github.com/prelude-so/php-sdk/commit/6184692775cd6e30a590ef49f012673382fde733))
+
 ## 0.4.0 (2026-05-07)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/prelude-so/php-sdk/compare/v0.3.0...v0.4.0)
