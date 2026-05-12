@@ -25,7 +25,8 @@ final class Event implements BaseModel
     use SdkModel;
 
     /**
-     * A confidence level you want to assign to the event.
+     * The level of trust you place in this event, in increasing order of trust: `minimum`, `low`, `neutral`, `high`, `maximum`.
+     * Prelude uses this value to weight your signals when scoring traffic — events flagged with `minimum` confidence indicate end-users you trust the least to be legitimate, and the pipeline will use these signals to filter them out.
      *
      * @var value-of<Confidence> $confidence
      */
@@ -86,7 +87,8 @@ final class Event implements BaseModel
     }
 
     /**
-     * A confidence level you want to assign to the event.
+     * The level of trust you place in this event, in increasing order of trust: `minimum`, `low`, `neutral`, `high`, `maximum`.
+     * Prelude uses this value to weight your signals when scoring traffic — events flagged with `minimum` confidence indicate end-users you trust the least to be legitimate, and the pipeline will use these signals to filter them out.
      *
      * @param Confidence|value-of<Confidence> $confidence
      */
