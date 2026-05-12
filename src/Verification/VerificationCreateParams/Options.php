@@ -21,6 +21,7 @@ use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
  *   callbackURL?: string|null,
  *   codeSize?: int|null,
  *   customCode?: string|null,
+ *   forceChallenge?: bool|null,
  *   locale?: string|null,
  *   method?: null|Method|value-of<Method>,
  *   preferredChannel?: null|PreferredChannel|value-of<PreferredChannel>,
@@ -57,6 +58,12 @@ final class Options implements BaseModel
      */
     #[Optional('custom_code')]
     public ?string $customCode;
+
+    /**
+     * When `true`, the verification is routed through challenge-safe channels (non-SMS/Voice) regardless of country eligibility or any antispam outcome. The resulting verification has `status: "challenged"`. Use this when you have your own signal that the request is suspicious and want stricter routing — the verification is **not** classified as fraud and does not contribute to anti-fraud counters or risk factors. This feature is disabled by default — contact Prelude support to enable it on your account.
+     */
+    #[Optional('force_challenge')]
+    public ?bool $forceChallenge;
 
     /**
      * A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, it defaults to US English.
@@ -120,6 +127,7 @@ final class Options implements BaseModel
         ?string $callbackURL = null,
         ?int $codeSize = null,
         ?string $customCode = null,
+        ?bool $forceChallenge = null,
         ?string $locale = null,
         Method|string|null $method = null,
         PreferredChannel|string|null $preferredChannel = null,
@@ -133,6 +141,7 @@ final class Options implements BaseModel
         null !== $callbackURL && $self['callbackURL'] = $callbackURL;
         null !== $codeSize && $self['codeSize'] = $codeSize;
         null !== $customCode && $self['customCode'] = $customCode;
+        null !== $forceChallenge && $self['forceChallenge'] = $forceChallenge;
         null !== $locale && $self['locale'] = $locale;
         null !== $method && $self['method'] = $method;
         null !== $preferredChannel && $self['preferredChannel'] = $preferredChannel;
@@ -185,6 +194,17 @@ final class Options implements BaseModel
     {
         $self = clone $this;
         $self['customCode'] = $customCode;
+
+        return $self;
+    }
+
+    /**
+     * When `true`, the verification is routed through challenge-safe channels (non-SMS/Voice) regardless of country eligibility or any antispam outcome. The resulting verification has `status: "challenged"`. Use this when you have your own signal that the request is suspicious and want stricter routing — the verification is **not** classified as fraud and does not contribute to anti-fraud counters or risk factors. This feature is disabled by default — contact Prelude support to enable it on your account.
+     */
+    public function withForceChallenge(bool $forceChallenge): self
+    {
+        $self = clone $this;
+        $self['forceChallenge'] = $forceChallenge;
 
         return $self;
     }
