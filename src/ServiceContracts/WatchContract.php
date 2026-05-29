@@ -28,7 +28,7 @@ interface WatchContract
     /**
      * @api
      *
-     * @param Target|TargetShape $target The prediction target. Only supports phone numbers for now.
+     * @param Target|TargetShape $target the signup identifier to score — a phone number or email address
      * @param string $dispatchID the identifier of the dispatch that came from the front-end SDK
      * @param Metadata|MetadataShape $metadata the metadata for this prediction
      * @param Signals|SignalsShape $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).

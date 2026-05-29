@@ -10,7 +10,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchPredictParams\Target\Type;
 
 /**
- * The prediction target. Only supports phone numbers for now.
+ * The signup identifier to score — a phone number or email address.
  *
  * @phpstan-type TargetShape = array{type: Type|value-of<Type>, value: string}
  */

@@ -14,7 +14,7 @@ use Prelude\Watch\WatchPredictParams\Signals;
 use Prelude\Watch\WatchPredictParams\Target;
 
 /**
- * Predict the outcome of a verification based on Prelude’s anti-fraud system.
+ * At signup, score the user's phone number or email address (target) as legitimate or suspicious. Scoring-only — does not update counters by itself. When using Feedback, call predict before verification.started on the same target (and correlation_id when used) so feedback can warm Watch auth-start counters. Use Events for product fraud labels; use Feedback only if you run your own phone verification funnel outside Prelude Verify.
  *
  * @see Prelude\Services\WatchService::predict()
  *
@@ -36,7 +36,7 @@ final class WatchPredictParams implements BaseModel
     use SdkParams;
 
     /**
-     * The prediction target. Only supports phone numbers for now.
+     * The signup identifier to score — a phone number or email address.
      */
     #[Required]
     public Target $target;
@@ -105,7 +105,7 @@ final class WatchPredictParams implements BaseModel
     }
 
     /**
-     * The prediction target. Only supports phone numbers for now.
+     * The signup identifier to score — a phone number or email address.
      *
      * @param Target|TargetShape $target
      */

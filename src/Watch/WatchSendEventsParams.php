@@ -11,7 +11,7 @@ use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchSendEventsParams\Event;
 
 /**
- * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
+ * Send custom fraud signals from your application (labels and confidence levels). Events capture product-specific risk patterns and are weighted when scoring traffic. Use without Predict or Feedback if you only need to report product-side abuse (for example account.banned). Feedback is a separate, optional endpoint for self-hosted phone verification funnels.
  *
  * @see Prelude\Services\WatchService::sendEvents()
  *
