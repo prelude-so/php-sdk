@@ -94,6 +94,11 @@ final class VerificationTest extends TestCase
         $result = $this->client->verification->check(
             code: '12345',
             target: ['type' => 'phone_number', 'value' => '+30123456789'],
+            psd2: [
+                'amount' => '99999.99',
+                'currency' => 'EUR',
+                'recipient' => 'Rainbow LLC',
+            ],
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType

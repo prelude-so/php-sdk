@@ -27,7 +27,7 @@ final class VerificationCheckResponse implements BaseModel
     use SdkModel;
 
     /**
-     * The status of the check.
+     * The status of the check. For `prelude:psd2` codes, `transaction_missing` is returned when the `psd2` block is omitted, and `transaction_mismatch` when the submitted variables differ from those provided at issuance.
      *
      * @var value-of<Status> $status
      */
@@ -94,7 +94,7 @@ final class VerificationCheckResponse implements BaseModel
     }
 
     /**
-     * The status of the check.
+     * The status of the check. For `prelude:psd2` codes, `transaction_missing` is returned when the `psd2` block is omitted, and `transaction_mismatch` when the submitted variables differ from those provided at issuance.
      *
      * @param Status|value-of<Status> $status
      */
