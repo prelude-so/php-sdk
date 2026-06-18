@@ -28,6 +28,7 @@ use Prelude\Notify\NotifySendBatchParams\PreferredChannel;
  *   expiresAt?: \DateTimeInterface|null,
  *   from?: string|null,
  *   locale?: string|null,
+ *   maxAutoRetries?: int|null,
  *   preferredChannel?: null|PreferredChannel|value-of<PreferredChannel>,
  *   scheduleAt?: \DateTimeInterface|null,
  *   variables?: array<string,string>|null,
@@ -97,6 +98,12 @@ final class NotifySendBatchParams implements BaseModel
     public ?string $locale;
 
     /**
+     * Maximum number of automatic retry attempts across channels for each send in the batch, in addition to the first attempt. For example, `2` allows up to 3 total delivery attempts per recipient. Lower values reduce delivery cost on hard-to-reach numbers at the expense of deliverability. When omitted, your account's configured default applies.
+     */
+    #[Optional('max_auto_retries')]
+    public ?int $maxAutoRetries;
+
+    /**
      * Preferred channel for delivery. If unavailable, automatic fallback applies.
      *
      * @var value-of<PreferredChannel>|null $preferredChannel
@@ -156,6 +163,7 @@ final class NotifySendBatchParams implements BaseModel
         ?\DateTimeInterface $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
+        ?int $maxAutoRetries = null,
         PreferredChannel|string|null $preferredChannel = null,
         ?\DateTimeInterface $scheduleAt = null,
         ?array $variables = null,
@@ -171,6 +179,7 @@ final class NotifySendBatchParams implements BaseModel
         null !== $expiresAt && $self['expiresAt'] = $expiresAt;
         null !== $from && $self['from'] = $from;
         null !== $locale && $self['locale'] = $locale;
+        null !== $maxAutoRetries && $self['maxAutoRetries'] = $maxAutoRetries;
         null !== $preferredChannel && $self['preferredChannel'] = $preferredChannel;
         null !== $scheduleAt && $self['scheduleAt'] = $scheduleAt;
         null !== $variables && $self['variables'] = $variables;
@@ -273,6 +282,17 @@ final class NotifySendBatchParams implements BaseModel
     {
         $self = clone $this;
         $self['locale'] = $locale;
+
+        return $self;
+    }
+
+    /**
+     * Maximum number of automatic retry attempts across channels for each send in the batch, in addition to the first attempt. For example, `2` allows up to 3 total delivery attempts per recipient. Lower values reduce delivery cost on hard-to-reach numbers at the expense of deliverability. When omitted, your account's configured default applies.
+     */
+    public function withMaxAutoRetries(int $maxAutoRetries): self
+    {
+        $self = clone $this;
+        $self['maxAutoRetries'] = $maxAutoRetries;
 
         return $self;
     }

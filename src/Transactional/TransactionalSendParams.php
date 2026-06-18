@@ -29,6 +29,7 @@ use Prelude\Transactional\TransactionalSendParams\PreferredChannel;
  *   expiresAt?: string|null,
  *   from?: string|null,
  *   locale?: string|null,
+ *   maxAutoRetries?: int|null,
  *   preferredChannel?: null|PreferredChannel|value-of<PreferredChannel>,
  *   variables?: array<string,string>|null,
  * }
@@ -95,6 +96,12 @@ final class TransactionalSendParams implements BaseModel
     public ?string $locale;
 
     /**
+     * Maximum number of automatic retry attempts across channels for this send, in addition to the first attempt. For example, `2` allows up to 3 total delivery attempts. When omitted, your account's configured default applies.
+     */
+    #[Optional('max_auto_retries')]
+    public ?int $maxAutoRetries;
+
+    /**
      * The preferred delivery channel for the message. When specified, the system will prioritize sending via the requested channel if the template is configured for it.
      *
      * If not specified and the template is configured for WhatsApp, the message will be sent via WhatsApp first, with automatic fallback to SMS if WhatsApp delivery is unavailable.
@@ -151,6 +158,7 @@ final class TransactionalSendParams implements BaseModel
         ?string $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
+        ?int $maxAutoRetries = null,
         PreferredChannel|string|null $preferredChannel = null,
         ?array $variables = null,
     ): self {
@@ -165,6 +173,7 @@ final class TransactionalSendParams implements BaseModel
         null !== $expiresAt && $self['expiresAt'] = $expiresAt;
         null !== $from && $self['from'] = $from;
         null !== $locale && $self['locale'] = $locale;
+        null !== $maxAutoRetries && $self['maxAutoRetries'] = $maxAutoRetries;
         null !== $preferredChannel && $self['preferredChannel'] = $preferredChannel;
         null !== $variables && $self['variables'] = $variables;
 
@@ -264,6 +273,17 @@ final class TransactionalSendParams implements BaseModel
     {
         $self = clone $this;
         $self['locale'] = $locale;
+
+        return $self;
+    }
+
+    /**
+     * Maximum number of automatic retry attempts across channels for this send, in addition to the first attempt. For example, `2` allows up to 3 total delivery attempts. When omitted, your account's configured default applies.
+     */
+    public function withMaxAutoRetries(int $maxAutoRetries): self
+    {
+        $self = clone $this;
+        $self['maxAutoRetries'] = $maxAutoRetries;
 
         return $self;
     }

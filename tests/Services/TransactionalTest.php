@@ -53,6 +53,7 @@ final class TransactionalTest extends TestCase
             expiresAt: 'expires_at',
             from: 'from',
             locale: 'el-GR',
+            maxAutoRetries: 2,
             preferredChannel: 'whatsapp',
             variables: ['foo' => 'bar'],
         );

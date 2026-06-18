@@ -28,6 +28,7 @@ use Prelude\Notify\NotifySendParams\PreferredChannel;
  *   expiresAt?: \DateTimeInterface|null,
  *   from?: string|null,
  *   locale?: string|null,
+ *   maxAutoRetries?: int|null,
  *   preferredChannel?: null|PreferredChannel|value-of<PreferredChannel>,
  *   scheduleAt?: \DateTimeInterface|null,
  *   variables?: array<string,string>|null,
@@ -95,6 +96,12 @@ final class NotifySendParams implements BaseModel
     public ?string $locale;
 
     /**
+     * Maximum number of automatic retry attempts across channels for this send, in addition to the first attempt. For example, `2` allows up to 3 total delivery attempts. Lower values reduce delivery cost on hard-to-reach numbers at the expense of deliverability. When omitted, your account's configured default applies.
+     */
+    #[Optional('max_auto_retries')]
+    public ?int $maxAutoRetries;
+
+    /**
      * The preferred channel to be used in priority for message delivery. If the channel is unavailable, the system will fallback to other available channels.
      *
      * @var value-of<PreferredChannel>|null $preferredChannel
@@ -153,6 +160,7 @@ final class NotifySendParams implements BaseModel
         ?\DateTimeInterface $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
+        ?int $maxAutoRetries = null,
         PreferredChannel|string|null $preferredChannel = null,
         ?\DateTimeInterface $scheduleAt = null,
         ?array $variables = null,
@@ -168,6 +176,7 @@ final class NotifySendParams implements BaseModel
         null !== $expiresAt && $self['expiresAt'] = $expiresAt;
         null !== $from && $self['from'] = $from;
         null !== $locale && $self['locale'] = $locale;
+        null !== $maxAutoRetries && $self['maxAutoRetries'] = $maxAutoRetries;
         null !== $preferredChannel && $self['preferredChannel'] = $preferredChannel;
         null !== $scheduleAt && $self['scheduleAt'] = $scheduleAt;
         null !== $variables && $self['variables'] = $variables;
@@ -268,6 +277,17 @@ final class NotifySendParams implements BaseModel
     {
         $self = clone $this;
         $self['locale'] = $locale;
+
+        return $self;
+    }
+
+    /**
+     * Maximum number of automatic retry attempts across channels for this send, in addition to the first attempt. For example, `2` allows up to 3 total delivery attempts. Lower values reduce delivery cost on hard-to-reach numbers at the expense of deliverability. When omitted, your account's configured default applies.
+     */
+    public function withMaxAutoRetries(int $maxAutoRetries): self
+    {
+        $self = clone $this;
+        $self['maxAutoRetries'] = $maxAutoRetries;
 
         return $self;
     }
