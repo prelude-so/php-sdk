@@ -56,6 +56,7 @@ final class TransactionalService implements TransactionalContract
      * @param string $expiresAt the message expiration date
      * @param string $from the Sender ID
      * @param string $locale A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, the default set on the template will be used.
+     * @param int $maxAutoRetries Maximum number of automatic retry attempts across channels for this send, in addition to the first attempt. For example, `2` allows up to 3 total delivery attempts. When omitted, your account's configured default applies.
      * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel The preferred delivery channel for the message. When specified, the system will prioritize sending via the requested channel if the template is configured for it.
      *
      * If not specified and the template is configured for WhatsApp, the message will be sent via WhatsApp first, with automatic fallback to SMS if WhatsApp delivery is unavailable.
@@ -75,6 +76,7 @@ final class TransactionalService implements TransactionalContract
         ?string $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
+        ?int $maxAutoRetries = null,
         PreferredChannel|string|null $preferredChannel = null,
         ?array $variables = null,
         RequestOptions|array|null $requestOptions = null,
@@ -89,6 +91,7 @@ final class TransactionalService implements TransactionalContract
                 'expiresAt' => $expiresAt,
                 'from' => $from,
                 'locale' => $locale,
+                'maxAutoRetries' => $maxAutoRetries,
                 'preferredChannel' => $preferredChannel,
                 'variables' => $variables,
             ],
