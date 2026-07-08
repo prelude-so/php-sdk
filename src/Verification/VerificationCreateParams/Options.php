@@ -80,7 +80,7 @@ final class Options implements BaseModel
     public ?string $method;
 
     /**
-     * The preferred channel to be used in priority for verification.
+     * The channel to prioritize when delivering the verification. Prelude prioritizes this channel on the first attempt and continues to prefer it on retries while an untried route on that channel remains; once those are exhausted, retries fall back to the next best available route. If the channel is unavailable (for example, when a verification is challenged), Prelude uses the best available route instead.
      *
      * @var value-of<PreferredChannel>|null $preferredChannel
      */
@@ -234,7 +234,7 @@ final class Options implements BaseModel
     }
 
     /**
-     * The preferred channel to be used in priority for verification.
+     * The channel to prioritize when delivering the verification. Prelude prioritizes this channel on the first attempt and continues to prefer it on retries while an untried route on that channel remains; once those are exhausted, retries fall back to the next best available route. If the channel is unavailable (for example, when a verification is challenged), Prelude uses the best available route instead.
      *
      * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel
      */
