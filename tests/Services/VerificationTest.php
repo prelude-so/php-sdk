@@ -49,6 +49,7 @@ final class VerificationTest extends TestCase
             options: [
                 'appRealm' => ['platform' => 'android', 'value' => 'value'],
                 'callbackURL' => 'callback_url',
+                'channels' => ['whatsapp', 'sms'],
                 'codeSize' => 5,
                 'customCode' => '123456',
                 'forceChallenge' => true,
