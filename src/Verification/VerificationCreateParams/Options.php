@@ -25,6 +25,7 @@ use Prelude\Verification\VerificationCreateParams\Options\PreferredChannel;
  *   customCode?: string|null,
  *   forceChallenge?: bool|null,
  *   locale?: string|null,
+ *   maxAutoFallbacks?: int|null,
  *   method?: null|Method|value-of<Method>,
  *   preferredChannel?: null|PreferredChannel|value-of<PreferredChannel>,
  *   senderID?: string|null,
@@ -50,7 +51,7 @@ final class Options implements BaseModel
     public ?string $callbackURL;
 
     /**
-     * The channels this verification may use, in the order they are tried. Channels you omit are never used, including on retries. Every channel you list must be enabled on your account and active in the destination country, otherwise the request fails with `channel_not_enabled_in_region`. Prelude still picks the best provider within each channel. Cannot be combined with `preferred_channel`. Voice is requested through `method` instead. Disabled by default — contact support to enable it.
+     * The channels this verification may use, in the order they are tried. Channels you omit are never used, including on retries. This option can only be set when the verification is created. The list is recorded on the verification and applies for its whole lifecycle, so `channels` sent while retrying an existing verification is ignored — unlike `preferred_channel`, which is honored on every retry. Every channel you list must be enabled on your account and active in the destination country, otherwise the request fails with `channel_not_enabled_in_region`. Prelude still picks the best provider within each channel. Cannot be combined with `preferred_channel`. Voice is requested through `method` instead. Disabled by default — contact support to enable it.
      *
      * @var list<value-of<Channel>>|null $channels
      */
@@ -80,6 +81,14 @@ final class Options implements BaseModel
      */
     #[Optional]
     public ?string $locale;
+
+    /**
+     * Maximum number of delivery attempts Prelude may add on its own after the one you requested. `0` means a single attempt: if it cannot be delivered, Prelude neither tries another provider nor another channel, and does not retry automatically. `1` allows one additional attempt, and so on — a value larger than the number of routes available for the destination simply behaves like the default. When omitted, Prelude retries as your account is configured, across as many channels as the route offers.
+     *
+     * This option can only be set when the verification is created. The value is recorded on the verification and applies for its whole lifecycle, so a `max_auto_fallbacks` sent while retrying an existing verification is ignored — the limit cannot be raised or lowered after the fact. A retry you ask for is not an automatic attempt, so it gets a fresh allowance of the same limit. This option is disabled by default — contact Prelude support to enable it on your account.
+     */
+    #[Optional('max_auto_fallbacks')]
+    public ?int $maxAutoFallbacks;
 
     /**
      * The method used for verifying this phone number. The 'voice' option provides an accessible alternative for visually impaired users by delivering the verification code through a phone call rather than a text message. It also allows verification of landline numbers that cannot receive SMS messages. The 'message' option explicitly requests message delivery (SMS, WhatsApp ...) and skips silent verification, useful for scenarios requiring direct user interaction.
@@ -141,6 +150,7 @@ final class Options implements BaseModel
         ?string $customCode = null,
         ?bool $forceChallenge = null,
         ?string $locale = null,
+        ?int $maxAutoFallbacks = null,
         Method|string|null $method = null,
         PreferredChannel|string|null $preferredChannel = null,
         ?string $senderID = null,
@@ -156,6 +166,7 @@ final class Options implements BaseModel
         null !== $customCode && $self['customCode'] = $customCode;
         null !== $forceChallenge && $self['forceChallenge'] = $forceChallenge;
         null !== $locale && $self['locale'] = $locale;
+        null !== $maxAutoFallbacks && $self['maxAutoFallbacks'] = $maxAutoFallbacks;
         null !== $method && $self['method'] = $method;
         null !== $preferredChannel && $self['preferredChannel'] = $preferredChannel;
         null !== $senderID && $self['senderID'] = $senderID;
@@ -190,7 +201,7 @@ final class Options implements BaseModel
     }
 
     /**
-     * The channels this verification may use, in the order they are tried. Channels you omit are never used, including on retries. Every channel you list must be enabled on your account and active in the destination country, otherwise the request fails with `channel_not_enabled_in_region`. Prelude still picks the best provider within each channel. Cannot be combined with `preferred_channel`. Voice is requested through `method` instead. Disabled by default — contact support to enable it.
+     * The channels this verification may use, in the order they are tried. Channels you omit are never used, including on retries. This option can only be set when the verification is created. The list is recorded on the verification and applies for its whole lifecycle, so `channels` sent while retrying an existing verification is ignored — unlike `preferred_channel`, which is honored on every retry. Every channel you list must be enabled on your account and active in the destination country, otherwise the request fails with `channel_not_enabled_in_region`. Prelude still picks the best provider within each channel. Cannot be combined with `preferred_channel`. Voice is requested through `method` instead. Disabled by default — contact support to enable it.
      *
      * @param list<Channel|value-of<Channel>> $channels
      */
@@ -242,6 +253,19 @@ final class Options implements BaseModel
     {
         $self = clone $this;
         $self['locale'] = $locale;
+
+        return $self;
+    }
+
+    /**
+     * Maximum number of delivery attempts Prelude may add on its own after the one you requested. `0` means a single attempt: if it cannot be delivered, Prelude neither tries another provider nor another channel, and does not retry automatically. `1` allows one additional attempt, and so on — a value larger than the number of routes available for the destination simply behaves like the default. When omitted, Prelude retries as your account is configured, across as many channels as the route offers.
+     *
+     * This option can only be set when the verification is created. The value is recorded on the verification and applies for its whole lifecycle, so a `max_auto_fallbacks` sent while retrying an existing verification is ignored — the limit cannot be raised or lowered after the fact. A retry you ask for is not an automatic attempt, so it gets a fresh allowance of the same limit. This option is disabled by default — contact Prelude support to enable it on your account.
+     */
+    public function withMaxAutoFallbacks(int $maxAutoFallbacks): self
+    {
+        $self = clone $this;
+        $self['maxAutoFallbacks'] = $maxAutoFallbacks;
 
         return $self;
     }
