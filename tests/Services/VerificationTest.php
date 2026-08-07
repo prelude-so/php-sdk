@@ -54,6 +54,7 @@ final class VerificationTest extends TestCase
                 'customCode' => '123456',
                 'forceChallenge' => true,
                 'locale' => 'el-GR',
+                'maxAutoFallbacks' => 0,
                 'method' => 'auto',
                 'preferredChannel' => 'sms',
                 'senderID' => 'sender_id',
