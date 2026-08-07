@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.5.0 (2026-08-07)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/prelude-so/php-sdk/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **api:** api update ([fa54d6d](https://github.com/prelude-so/php-sdk/commit/fa54d6d01381966a3e140e95e047109251caac4e))
+* **api:** api update ([3f36e64](https://github.com/prelude-so/php-sdk/commit/3f36e64cf7efdf51b7b8106c7a41b29735fd0fce))
+* **api:** api update ([2a93d54](https://github.com/prelude-so/php-sdk/commit/2a93d54e028279675a1c3859168fad36086858c0))
+* **api:** api update ([ba7d060](https://github.com/prelude-so/php-sdk/commit/ba7d060f8e911c4981f3f64d719cf44698c77816))
+* **api:** api update ([80de17d](https://github.com/prelude-so/php-sdk/commit/80de17dba07ea7e1f6c7b41cc3980c7190bbf844))
+* **api:** api update ([300ed73](https://github.com/prelude-so/php-sdk/commit/300ed734a1ff0ce3fd531dcbba022df33ba2ac36))
+* **api:** api update ([bb6ff19](https://github.com/prelude-so/php-sdk/commit/bb6ff195d5fca14721f75de5c9590d5dbff4665d))
+* **api:** api update ([ba9c2db](https://github.com/prelude-so/php-sdk/commit/ba9c2dbc5ce5293973c75acfa1ba31f9c137a0d9))
+* **api:** api update ([5cf7bd7](https://github.com/prelude-so/php-sdk/commit/5cf7bd7d6c8f9e55702e3693f8964e65c5ba9791))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([c37e2f8](https://github.com/prelude-so/php-sdk/commit/c37e2f86e4c9780b8c127dd7df157ffc0a2e937a))
+
+
+### Bug Fixes
+
+* guzzle requires special handling to enable streaming ([6184692](https://github.com/prelude-so/php-sdk/commit/6184692775cd6e30a590ef49f012673382fde733))
+
 ## 0.4.0 (2026-05-07)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/prelude-so/php-sdk/compare/v0.3.0...v0.4.0)
