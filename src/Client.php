@@ -7,6 +7,7 @@ namespace Prelude;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Prelude\Core\BaseClient;
+use Prelude\Core\Implementation\StreamingHttpClient;
 use Prelude\Core\Util;
 use Prelude\Services\LookupService;
 use Prelude\Services\NotifyService;
@@ -74,6 +75,11 @@ class Client extends BaseClient
             ),
             $requestOptions,
         );
+
+        if (is_null($options->streamingTransporter)) {
+            assert(!is_null($options->transporter));
+            $options->streamingTransporter = new StreamingHttpClient($options->transporter);
+        }
 
         /** @var array<string, string|null> $headers */
         $headers = [

@@ -25,7 +25,9 @@ final class Event implements BaseModel
     use SdkModel;
 
     /**
-     * A confidence level you want to assign to the event.
+     * How much this event tells us to trust the end-user's legitimacy — not how certain you are that the event occurred. In increasing order of trust: `minimum`, `low`, `neutral`, `high`, `maximum`.
+     *
+     * Use `minimum` for an event tied to a user you trust the least to be legitimate (e.g. a `payment.chargeback`), and `maximum` for an event tied to a highly trustworthy user (e.g. a confirmed 3DS payment). Prelude weights these signals when scoring traffic: it filters out users tied to low-confidence events while preserving the experience for users tied to high-confidence ones.
      *
      * @var value-of<Confidence> $confidence
      */
@@ -86,7 +88,9 @@ final class Event implements BaseModel
     }
 
     /**
-     * A confidence level you want to assign to the event.
+     * How much this event tells us to trust the end-user's legitimacy — not how certain you are that the event occurred. In increasing order of trust: `minimum`, `low`, `neutral`, `high`, `maximum`.
+     *
+     * Use `minimum` for an event tied to a user you trust the least to be legitimate (e.g. a `payment.chargeback`), and `maximum` for an event tied to a highly trustworthy user (e.g. a confirmed 3DS payment). Prelude weights these signals when scoring traffic: it filters out users tied to low-confidence events while preserving the experience for users tied to high-confidence ones.
      *
      * @param Confidence|value-of<Confidence> $confidence
      */

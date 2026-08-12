@@ -196,6 +196,7 @@ final class NotifyService implements NotifyContract
      * @param \DateTimeInterface $expiresAt The message expiration date in RFC3339 format. The message will not be sent if this time is reached.
      * @param string $from The Sender ID. Must be approved for your account.
      * @param string $locale A BCP-47 formatted locale string with the language the text message will be sent to. If there's no locale set, the language will be determined by the country code of the phone number. If the language specified doesn't exist, the default set on the template will be used.
+     * @param int $maxAutoRetries Maximum number of automatic retry attempts across channels for this send, in addition to the first attempt. For example, `2` allows up to 3 total delivery attempts. Lower values reduce delivery cost on hard-to-reach numbers at the expense of deliverability. When omitted, your account's configured default applies.
      * @param PreferredChannel|value-of<PreferredChannel> $preferredChannel The preferred channel to be used in priority for message delivery. If the channel is unavailable, the system will fallback to other available channels.
      * @param \DateTimeInterface $scheduleAt Schedule the message for future delivery in RFC3339 format. Marketing messages can be scheduled up to 90 days in advance and will be automatically adjusted for compliance with local time window restrictions.
      * @param array<string,string> $variables the variables to be replaced in the template
@@ -212,6 +213,7 @@ final class NotifyService implements NotifyContract
         ?\DateTimeInterface $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
+        ?int $maxAutoRetries = null,
         PreferredChannel|string|null $preferredChannel = null,
         ?\DateTimeInterface $scheduleAt = null,
         ?array $variables = null,
@@ -227,6 +229,7 @@ final class NotifyService implements NotifyContract
                 'expiresAt' => $expiresAt,
                 'from' => $from,
                 'locale' => $locale,
+                'maxAutoRetries' => $maxAutoRetries,
                 'preferredChannel' => $preferredChannel,
                 'scheduleAt' => $scheduleAt,
                 'variables' => $variables,
@@ -259,6 +262,7 @@ final class NotifyService implements NotifyContract
      * @param \DateTimeInterface $expiresAt The message expiration date in RFC3339 format. Messages will not be sent after this time.
      * @param string $from The Sender ID. Must be approved for your account.
      * @param string $locale a BCP-47 formatted locale string
+     * @param int $maxAutoRetries Maximum number of automatic retry attempts across channels for each send in the batch, in addition to the first attempt. For example, `2` allows up to 3 total delivery attempts per recipient. Lower values reduce delivery cost on hard-to-reach numbers at the expense of deliverability. When omitted, your account's configured default applies.
      * @param \Prelude\Notify\NotifySendBatchParams\PreferredChannel|value-of<\Prelude\Notify\NotifySendBatchParams\PreferredChannel> $preferredChannel Preferred channel for delivery. If unavailable, automatic fallback applies.
      * @param \DateTimeInterface $scheduleAt Schedule delivery in RFC3339 format. Marketing sends may be adjusted to comply with local time windows.
      * @param array<string,string> $variables the variables to be replaced in the template
@@ -275,6 +279,7 @@ final class NotifyService implements NotifyContract
         ?\DateTimeInterface $expiresAt = null,
         ?string $from = null,
         ?string $locale = null,
+        ?int $maxAutoRetries = null,
         \Prelude\Notify\NotifySendBatchParams\PreferredChannel|string|null $preferredChannel = null,
         ?\DateTimeInterface $scheduleAt = null,
         ?array $variables = null,
@@ -290,6 +295,7 @@ final class NotifyService implements NotifyContract
                 'expiresAt' => $expiresAt,
                 'from' => $from,
                 'locale' => $locale,
+                'maxAutoRetries' => $maxAutoRetries,
                 'preferredChannel' => $preferredChannel,
                 'scheduleAt' => $scheduleAt,
                 'variables' => $variables,

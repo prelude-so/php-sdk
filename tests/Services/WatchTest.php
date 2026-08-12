@@ -71,7 +71,7 @@ final class WatchTest extends TestCase
             events: [
                 [
                     'confidence' => 'maximum',
-                    'label' => 'onboarding.start',
+                    'label' => 'account.banned',
                     'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
                 ],
             ],
@@ -88,7 +88,7 @@ final class WatchTest extends TestCase
             events: [
                 [
                     'confidence' => 'maximum',
-                    'label' => 'onboarding.start',
+                    'label' => 'account.banned',
                     'target' => ['type' => 'phone_number', 'value' => '+30123456789'],
                 ],
             ],

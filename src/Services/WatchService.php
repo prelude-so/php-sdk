@@ -46,9 +46,9 @@ final class WatchService implements WatchContract
     /**
      * @api
      *
-     * Predict the outcome of a verification based on Prelude’s anti-fraud system.
+     * At signup, score the user's phone number or email address (target) as legitimate or suspicious. Scoring-only — does not update counters by itself. When using Feedback, call predict before verification.started on the same target (and correlation_id when used) so feedback can warm Watch auth-start counters. Use Events for product fraud labels; use Feedback only if you run your own phone verification funnel outside Prelude Verify.
      *
-     * @param Target|TargetShape $target The prediction target. Only supports phone numbers for now.
+     * @param Target|TargetShape $target the signup identifier to score — a phone number or email address
      * @param string $dispatchID the identifier of the dispatch that came from the front-end SDK
      * @param Metadata|MetadataShape $metadata the metadata for this prediction
      * @param Signals|SignalsShape $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
@@ -81,7 +81,7 @@ final class WatchService implements WatchContract
     /**
      * @api
      *
-     * Send real-time event data from end-user interactions within your application. Events will be analyzed for proactive fraud prevention and risk scoring.
+     * Send custom fraud signals from your application (labels and confidence levels). Events capture product-specific risk patterns and are weighted when scoring traffic. Use without Predict or Feedback if you only need to report product-side abuse (for example account.banned). Feedback is a separate, optional endpoint for self-hosted phone verification funnels.
      *
      * @param list<Event|EventShape> $events A list of events to dispatch. A maximum of 100 events can be sent in a single request.
      * @param RequestOpts|null $requestOptions
@@ -103,7 +103,7 @@ final class WatchService implements WatchContract
     /**
      * @api
      *
-     * Send feedback regarding your end-users verification funnel. Events will be analyzed for proactive fraud prevention and risk scoring.
+     * Optional. Report verification-funnel steps (verification.started, verification.completed) when you run phone verification outside Prelude Verify. Feeds Watch abuse-rate counters for your own flow. Call Predict on the same target before verification.started and reuse metadata.correlation_id so auth-start counters receive predict signals; without a linked predict, only attempt-rate counters update on started. Not required if you only use Events and/or Predict, or if Verify already handles verification for that traffic.
      *
      * @param list<Feedback|FeedbackShape> $feedbacks A list of feedbacks to send. A maximum of 100 feedbacks can be sent in a single request.
      * @param RequestOpts|null $requestOptions

@@ -44,6 +44,7 @@ final class TransactionalRawService implements TransactionalRawContract
      *   expiresAt?: string,
      *   from?: string,
      *   locale?: string,
+     *   maxAutoRetries?: int,
      *   preferredChannel?: PreferredChannel|value-of<PreferredChannel>,
      *   variables?: array<string,string>,
      * }|TransactionalSendParams $params

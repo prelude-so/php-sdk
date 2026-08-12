@@ -49,9 +49,12 @@ final class VerificationTest extends TestCase
             options: [
                 'appRealm' => ['platform' => 'android', 'value' => 'value'],
                 'callbackURL' => 'callback_url',
+                'channels' => ['whatsapp', 'sms'],
                 'codeSize' => 5,
                 'customCode' => '123456',
+                'forceChallenge' => true,
                 'locale' => 'el-GR',
+                'maxAutoFallbacks' => 0,
                 'method' => 'auto',
                 'preferredChannel' => 'sms',
                 'senderID' => 'sender_id',
@@ -93,6 +96,11 @@ final class VerificationTest extends TestCase
         $result = $this->client->verification->check(
             code: '12345',
             target: ['type' => 'phone_number', 'value' => '+30123456789'],
+            psd2: [
+                'amount' => '99999.99',
+                'currency' => 'EUR',
+                'recipient' => 'Rainbow LLC',
+            ],
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
