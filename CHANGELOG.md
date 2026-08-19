@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.6.0 (2026-08-19)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/prelude-so/php-sdk/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** api update ([439fa73](https://github.com/prelude-so/php-sdk/commit/439fa730887faa971a76f51236a7a1d43f63794e))
+
+
+### Chores
+
+* **internal:** allow the mock server port to be set with STAINLESS_MOCK_PORT ([86cb6d1](https://github.com/prelude-so/php-sdk/commit/86cb6d1458474ff7198c01f489eed1212e4515f6))
+* **internal:** codegen related update ([d628ff7](https://github.com/prelude-so/php-sdk/commit/d628ff77cd62179cd4ba27976414e9505ff4de54))
+* **internal:** codegen related update ([a01e798](https://github.com/prelude-so/php-sdk/commit/a01e798a4236ff39855f30823daf923c084da06a))
+
 ## 0.5.0 (2026-08-07)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/prelude-so/php-sdk/compare/v0.4.0...v0.5.0)
