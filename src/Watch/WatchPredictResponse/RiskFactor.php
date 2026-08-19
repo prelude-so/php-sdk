@@ -6,6 +6,8 @@ namespace Prelude\Watch\WatchPredictResponse;
 
 enum RiskFactor: string
 {
+    case ACCOUNT_RISK_PROFILE = 'account_risk_profile';
+
     case BEHAVIORAL_PATTERN = 'behavioral_pattern';
 
     case DEVICE_ATTRIBUTE = 'device_attribute';
