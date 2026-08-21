@@ -46,6 +46,7 @@ final class WatchPredictResponse implements BaseModel
 
     /**
      * The risk factors that contributed to the suspicious prediction. Only present when prediction is "suspicious" and the anti-fraud system detected specific risk signals.
+     *  * `account_risk_profile` - The target matches a risk profile derived from the outcomes reported on your own account, rather than from a signal shared across accounts.
      *  * `behavioral_pattern` - The phone number past behavior during verification flows exhibits suspicious patterns.
      *  * `device_attribute` - The device exhibits characteristics associated with suspicious activity patterns.
      *  * `fraud_database` - The phone number has been flagged as suspicious in one or more of our fraud databases.
@@ -143,6 +144,7 @@ final class WatchPredictResponse implements BaseModel
 
     /**
      * The risk factors that contributed to the suspicious prediction. Only present when prediction is "suspicious" and the anti-fraud system detected specific risk signals.
+     *  * `account_risk_profile` - The target matches a risk profile derived from the outcomes reported on your own account, rather than from a signal shared across accounts.
      *  * `behavioral_pattern` - The phone number past behavior during verification flows exhibits suspicious patterns.
      *  * `device_attribute` - The device exhibits characteristics associated with suspicious activity patterns.
      *  * `fraud_database` - The phone number has been flagged as suspicious in one or more of our fraud databases.

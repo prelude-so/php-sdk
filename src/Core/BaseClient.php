@@ -12,6 +12,7 @@ use Prelude\Core\Conversion\Contracts\ConverterSource;
 use Prelude\Core\Exceptions\APIConnectionException;
 use Prelude\Core\Exceptions\APIStatusException;
 use Prelude\Core\Implementation\RawResponse;
+use Prelude\Core\Implementation\StreamingHttpClient;
 use Prelude\RequestOptions;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Message\RequestInterface;
@@ -129,10 +130,7 @@ abstract class BaseClient
         $parsedPath = Util::parsePath($path);
 
         /** @var array<string,mixed> $mergedQuery */
-        $mergedQuery = array_merge_recursive(
-            $query,
-            $options->extraQueryParams ?? []
-        );
+        $mergedQuery = [...$query, ...($options->extraQueryParams ?? [])];
         $uri = Util::joinUri($this->baseUrl, path: $parsedPath, query: $mergedQuery)->__toString();
         $idempotencyHeaders = $this->idempotencyHeader && !array_key_exists($this->idempotencyHeader, array: $headers)
             ? [$this->idempotencyHeader => $this->generateIdempotencyKey()]
@@ -249,7 +247,13 @@ abstract class BaseClient
         $err = null;
 
         try {
-            $rsp = $transporter->sendRequest($req);
+            if ($transporter instanceof StreamingHttpClient) {
+                $rsp = $transporter->sendRequest($req, timeout: $opts->timeout);
+            } elseif (is_a($transporter, '\GuzzleHttp\Client')) {
+                $rsp = $transporter->send($req, ['timeout' => $opts->timeout]);
+            } else {
+                $rsp = $transporter->sendRequest($req);
+            }
         } catch (ClientExceptionInterface $e) {
             $err = $e;
         }
