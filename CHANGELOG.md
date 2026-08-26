@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.0 (2026-08-26)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/prelude-so/php-sdk/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* **api:** api update ([0275b51](https://github.com/prelude-so/php-sdk/commit/0275b51b7b1b5f71916e21f9577163c1ea80c430))
+
 ## 0.6.0 (2026-08-19)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/prelude-so/php-sdk/compare/v0.5.0...v0.6.0)
