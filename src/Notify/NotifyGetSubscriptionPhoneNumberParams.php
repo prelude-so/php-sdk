@@ -12,6 +12,8 @@ use Prelude\Core\Contracts\BaseModel;
 /**
  * Retrieve the current subscription status for a specific phone number within a subscription configuration.
  *
+ * In order to get access to this endpoint, contact our support team.
+ *
  * @see Prelude\Services\NotifyService::getSubscriptionPhoneNumber()
  *
  * @phpstan-type NotifyGetSubscriptionPhoneNumberParamsShape = array{
