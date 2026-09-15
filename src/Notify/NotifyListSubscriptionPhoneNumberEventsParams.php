@@ -15,6 +15,8 @@ use Prelude\Core\Contracts\BaseModel;
  *
  * Events are ordered by timestamp in descending order (most recent first).
  *
+ * In order to get access to this endpoint, contact our support team.
+ *
  * @see Prelude\Services\NotifyService::listSubscriptionPhoneNumberEvents()
  *
  * @phpstan-type NotifyListSubscriptionPhoneNumberEventsParamsShape = array{

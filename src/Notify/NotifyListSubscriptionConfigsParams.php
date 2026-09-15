@@ -14,6 +14,8 @@ use Prelude\Core\Contracts\BaseModel;
  *
  * Each configuration represents a subscription management setup with phone numbers for receiving opt-out/opt-in requests and a callback URL for webhook events.
  *
+ * In order to get access to this endpoint, contact our support team.
+ *
  * @see Prelude\Services\NotifyService::listSubscriptionConfigs()
  *
  * @phpstan-type NotifyListSubscriptionConfigsParamsShape = array{
