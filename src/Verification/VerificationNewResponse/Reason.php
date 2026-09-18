@@ -11,8 +11,8 @@ namespace Prelude\Verification\VerificationNewResponse;
  *  * `in_block_list` - The phone number is part of the configured block list.
  *  * `invalid_phone_line` - The phone number is not a valid line number (e.g. landline).
  *  * `invalid_phone_number` - The phone number is not a valid phone number (e.g. unallocated range).
- *  * `invalid_signature` - The signature of the SDK signals is invalid.
- *  * `repeated_attempts` - The phone number has made too many verification attempts.
+ *  * `invalid_signature` - The SDK signature did not verify, so the request cannot be attributed to the device it claims to come from.
+ *  * `repeated_attempts` - The phone number exceeded the allowed number of verification attempts in a short period.
  *  * `suspicious` - The verification attempt was deemed suspicious by the anti-fraud system.
  */
 enum Reason: string

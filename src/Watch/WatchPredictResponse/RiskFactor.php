@@ -8,23 +8,41 @@ enum RiskFactor: string
 {
     case ACCOUNT_RISK_PROFILE = 'account_risk_profile';
 
-    case BEHAVIORAL_PATTERN = 'behavioral_pattern';
+    case AUTOMATION_SIGNATURE = 'automation_signature';
 
-    case DEVICE_ATTRIBUTE = 'device_attribute';
+    case CARRIER_NOT_PERMITTED = 'carrier_not_permitted';
+
+    case CLIENT_FINGERPRINT_MISMATCH = 'client_fingerprint_mismatch';
+
+    case CUSTOM_POLICY = 'custom_policy';
+
+    case DEVICE_EMULATOR = 'device_emulator';
+
+    case DEVICE_NOT_PERMITTED = 'device_not_permitted';
+
+    case DEVICE_REUSE = 'device_reuse';
+
+    case EXPIRED_SIGNALS = 'expired_signals';
 
     case FRAUD_DATABASE = 'fraud_database';
 
-    case LOCATION_DISCREPANCY = 'location_discrepancy';
+    case INVALID_SIGNATURE = 'invalid_signature';
 
-    case NETWORK_FINGERPRINT = 'network_fingerprint';
+    case IP_CONCENTRATION = 'ip_concentration';
+
+    case IP_REPUTATION = 'ip_reputation';
+
+    case LOCATION_MISMATCH = 'location_mismatch';
+
+    case MISSING_SIGNALS = 'missing_signals';
+
+    case NUMBER_RANGE_ABUSE = 'number_range_abuse';
 
     case POOR_CONVERSION_HISTORY = 'poor_conversion_history';
 
-    case PREFIX_CONCENTRATION = 'prefix_concentration';
+    case PROXY_NETWORK = 'proxy_network';
 
-    case SUSPECTED_REQUEST_TAMPERING = 'suspected_request_tampering';
-
-    case SUSPICIOUS_IP_ADDRESS = 'suspicious_ip_address';
+    case REPEATED_ATTEMPTS = 'repeated_attempts';
 
     case TEMPORARY_PHONE_NUMBER = 'temporary_phone_number';
 }
