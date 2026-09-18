@@ -13,7 +13,7 @@ The REST API documentation can be found on [docs.prelude.so](https://docs.prelud
 <!-- x-release-please-start-version -->
 
 ```
-composer require "prelude-so/php-sdk 0.7.0"
+composer require "prelude-so/php-sdk 0.8.0"
 ```
 
 <!-- x-release-please-end -->
@@ -39,10 +39,10 @@ var_dump($verification->id);
 
 ### Value Objects
 
-It is recommended to use the static `with` constructor `Dog::with(name: "Joey")`
+It is recommended to use the static `with` constructor `Target::with(type: 'phone_number', ...)`
 and named parameters to initialize value objects.
 
-However, builders are also provided `(new Dog)->withName("Joey")`.
+However, builders are also provided `(new Target)->withType('phone_number')`.
 
 ### Handling errors
 

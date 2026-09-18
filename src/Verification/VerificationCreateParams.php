@@ -9,20 +9,20 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Signals;
+use Prelude\Target;
 use Prelude\Verification\VerificationCreateParams\Metadata;
 use Prelude\Verification\VerificationCreateParams\Options;
-use Prelude\Verification\VerificationCreateParams\Signals;
-use Prelude\Verification\VerificationCreateParams\Target;
 
 /**
  * Create a new verification for a specific phone number. If another non-expired verification exists (the request is performed within the verification window), this endpoint will perform a retry instead.
  *
  * @see Prelude\Services\VerificationService::create()
  *
- * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCreateParams\Target
+ * @phpstan-import-type TargetShape from \Prelude\Target
  * @phpstan-import-type MetadataShape from \Prelude\Verification\VerificationCreateParams\Metadata
  * @phpstan-import-type OptionsShape from \Prelude\Verification\VerificationCreateParams\Options
- * @phpstan-import-type SignalsShape from \Prelude\Verification\VerificationCreateParams\Signals
+ * @phpstan-import-type SignalsShape from \Prelude\Signals
  *
  * @phpstan-type VerificationCreateParamsShape = array{
  *   target: Target|TargetShape,

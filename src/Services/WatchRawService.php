@@ -9,10 +9,12 @@ use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\WatchRawContract;
+use Prelude\Signals;
+use Prelude\Target;
+use Prelude\Watch\WatchEvaluateParams;
+use Prelude\Watch\WatchEvaluateResponse;
 use Prelude\Watch\WatchPredictParams;
 use Prelude\Watch\WatchPredictParams\Metadata;
-use Prelude\Watch\WatchPredictParams\Signals;
-use Prelude\Watch\WatchPredictParams\Target;
 use Prelude\Watch\WatchPredictResponse;
 use Prelude\Watch\WatchSendEventsParams;
 use Prelude\Watch\WatchSendEventsParams\Event;
@@ -24,11 +26,11 @@ use Prelude\Watch\WatchSendFeedbacksResponse;
 /**
  * Evaluate email addresses and phone numbers for trustworthiness.
  *
- * @phpstan-import-type TargetShape from \Prelude\Watch\WatchPredictParams\Target
  * @phpstan-import-type MetadataShape from \Prelude\Watch\WatchPredictParams\Metadata
- * @phpstan-import-type SignalsShape from \Prelude\Watch\WatchPredictParams\Signals
  * @phpstan-import-type EventShape from \Prelude\Watch\WatchSendEventsParams\Event
  * @phpstan-import-type FeedbackShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback
+ * @phpstan-import-type TargetShape from \Prelude\Target
+ * @phpstan-import-type SignalsShape from \Prelude\Signals
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  */
 final class WatchRawService implements WatchRawContract
@@ -38,6 +40,45 @@ final class WatchRawService implements WatchRawContract
      * @internal
      */
     public function __construct(private Client $client) {}
+
+    /**
+     * @api
+     *
+     * **Beta.** The request and response shapes may still change, and flows and recipes are configured by Prelude on your behalf for now. Talk to us before you build against it.
+     *
+     * Score a target against the rules configured for one moment in your product — signup, checkout, password reset. The flow selects which recipes run; each recipe scores its rules against a threshold and returns its own verdict, and the evaluation answers with the most severe verdict and action across them. Where Predict returns a single model-derived outcome, Eval returns the full breakdown, so you can see which rules fired and which could not run. Scoring-only — it does not update counters by itself.
+     *
+     * @param array{
+     *   flowID: string,
+     *   target: Target|TargetShape,
+     *   attributes?: array<string,string>,
+     *   dispatchID?: string,
+     *   signals?: Signals|SignalsShape,
+     * }|WatchEvaluateParams $params
+     * @param RequestOpts|null $requestOptions
+     *
+     * @return BaseResponse<WatchEvaluateResponse>
+     *
+     * @throws APIException
+     */
+    public function evaluate(
+        array|WatchEvaluateParams $params,
+        RequestOptions|array|null $requestOptions = null,
+    ): BaseResponse {
+        [$parsed, $options] = WatchEvaluateParams::parseRequest(
+            $params,
+            $requestOptions,
+        );
+
+        // @phpstan-ignore-next-line return.type
+        return $this->client->request(
+            method: 'post',
+            path: 'v2/watch/eval',
+            body: (object) $parsed,
+            options: $options,
+            convert: WatchEvaluateResponse::class,
+        );
+    }
 
     /**
      * @api

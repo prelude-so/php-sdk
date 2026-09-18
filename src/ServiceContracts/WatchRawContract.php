@@ -7,6 +7,8 @@ namespace Prelude\ServiceContracts;
 use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
+use Prelude\Watch\WatchEvaluateParams;
+use Prelude\Watch\WatchEvaluateResponse;
 use Prelude\Watch\WatchPredictParams;
 use Prelude\Watch\WatchPredictResponse;
 use Prelude\Watch\WatchSendEventsParams;
@@ -19,6 +21,21 @@ use Prelude\Watch\WatchSendFeedbacksResponse;
  */
 interface WatchRawContract
 {
+    /**
+     * @api
+     *
+     * @param array<string,mixed>|WatchEvaluateParams $params
+     * @param RequestOpts|null $requestOptions
+     *
+     * @return BaseResponse<WatchEvaluateResponse>
+     *
+     * @throws APIException
+     */
+    public function evaluate(
+        array|WatchEvaluateParams $params,
+        RequestOptions|array|null $requestOptions = null,
+    ): BaseResponse;
+
     /**
      * @api
      *

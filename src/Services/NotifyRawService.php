@@ -17,6 +17,8 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams\State;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse;
+use Prelude\Notify\NotifyReplyParams;
+use Prelude\Notify\NotifyReplyResponse;
 use Prelude\Notify\NotifySendBatchParams;
 use Prelude\Notify\NotifySendBatchResponse;
 use Prelude\Notify\NotifySendParams;
@@ -228,6 +230,43 @@ final class NotifyRawService implements NotifyRawContract
             query: $parsed,
             options: $options,
             convert: NotifyListSubscriptionPhoneNumbersResponse::class,
+        );
+    }
+
+    /**
+     * @api
+     *
+     * Send a free-form text reply to an inbound WhatsApp message within the 24-hour conversation window. See [WhatsApp 2-Way Messaging](/notify/v2/documentation/whatsapp) for details.
+     *
+     * @param array{
+     *   replyTo: string,
+     *   text: string,
+     *   to: string,
+     *   callbackURL?: string,
+     *   correlationID?: string,
+     * }|NotifyReplyParams $params
+     * @param RequestOpts|null $requestOptions
+     *
+     * @return BaseResponse<NotifyReplyResponse>
+     *
+     * @throws APIException
+     */
+    public function reply(
+        array|NotifyReplyParams $params,
+        RequestOptions|array|null $requestOptions = null,
+    ): BaseResponse {
+        [$parsed, $options] = NotifyReplyParams::parseRequest(
+            $params,
+            $requestOptions,
+        );
+
+        // @phpstan-ignore-next-line return.type
+        return $this->client->request(
+            method: 'post',
+            path: 'v2/notify/reply',
+            body: (object) $parsed,
+            options: $options,
+            convert: NotifyReplyResponse::class,
         );
     }
 

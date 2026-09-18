@@ -12,6 +12,7 @@ use Prelude\Notify\NotifyGetSubscriptionPhoneNumberResponse;
 use Prelude\Notify\NotifyListSubscriptionConfigsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse;
+use Prelude\Notify\NotifyReplyResponse;
 use Prelude\Notify\NotifySendBatchResponse;
 use Prelude\Notify\NotifySendResponse;
 
@@ -129,6 +130,34 @@ final class NotifyTest extends TestCase
             NotifyListSubscriptionPhoneNumbersResponse::class,
             $result
         );
+    }
+
+    #[Test]
+    public function testReply(): void
+    {
+        $result = $this->client->notify->reply(
+            replyTo: 'im_01k8aq2zggeyssvt53zgvpx63a',
+            text: 'Thanks for reaching out! We\'ll look into your request.',
+            to: '+33612345678',
+        );
+
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(NotifyReplyResponse::class, $result);
+    }
+
+    #[Test]
+    public function testReplyWithOptionalParams(): void
+    {
+        $result = $this->client->notify->reply(
+            replyTo: 'im_01k8aq2zggeyssvt53zgvpx63a',
+            text: 'Thanks for reaching out! We\'ll look into your request.',
+            to: '+33612345678',
+            callbackURL: 'https://your-app.com/webhooks/notify',
+            correlationID: 'support-ticket-42',
+        );
+
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(NotifyReplyResponse::class, $result);
     }
 
     #[Test]
