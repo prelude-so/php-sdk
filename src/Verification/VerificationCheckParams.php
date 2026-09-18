@@ -9,15 +9,15 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Target;
 use Prelude\Verification\VerificationCheckParams\Psd2;
-use Prelude\Verification\VerificationCheckParams\Target;
 
 /**
  * Check the validity of a verification code.
  *
  * @see Prelude\Services\VerificationService::check()
  *
- * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCheckParams\Target
+ * @phpstan-import-type TargetShape from \Prelude\Target
  * @phpstan-import-type Psd2Shape from \Prelude\Verification\VerificationCheckParams\Psd2
  *
  * @phpstan-type VerificationCheckParamsShape = array{

@@ -9,9 +9,10 @@ use Prelude\Core\Exceptions\APIException;
 use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\WatchContract;
+use Prelude\Signals;
+use Prelude\Target;
+use Prelude\Watch\WatchEvaluateResponse;
 use Prelude\Watch\WatchPredictParams\Metadata;
-use Prelude\Watch\WatchPredictParams\Signals;
-use Prelude\Watch\WatchPredictParams\Target;
 use Prelude\Watch\WatchPredictResponse;
 use Prelude\Watch\WatchSendEventsParams\Event;
 use Prelude\Watch\WatchSendEventsResponse;
@@ -21,11 +22,11 @@ use Prelude\Watch\WatchSendFeedbacksResponse;
 /**
  * Evaluate email addresses and phone numbers for trustworthiness.
  *
- * @phpstan-import-type TargetShape from \Prelude\Watch\WatchPredictParams\Target
  * @phpstan-import-type MetadataShape from \Prelude\Watch\WatchPredictParams\Metadata
- * @phpstan-import-type SignalsShape from \Prelude\Watch\WatchPredictParams\Signals
  * @phpstan-import-type EventShape from \Prelude\Watch\WatchSendEventsParams\Event
  * @phpstan-import-type FeedbackShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback
+ * @phpstan-import-type TargetShape from \Prelude\Target
+ * @phpstan-import-type SignalsShape from \Prelude\Signals
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  */
 final class WatchService implements WatchContract
@@ -41,6 +42,48 @@ final class WatchService implements WatchContract
     public function __construct(private Client $client)
     {
         $this->raw = new WatchRawService($client);
+    }
+
+    /**
+     * @api
+     *
+     * **Beta.** The request and response shapes may still change, and flows and recipes are configured by Prelude on your behalf for now. Talk to us before you build against it.
+     *
+     * Score a target against the rules configured for one moment in your product — signup, checkout, password reset. The flow selects which recipes run; each recipe scores its rules against a threshold and returns its own verdict, and the evaluation answers with the most severe verdict and action across them. Where Predict returns a single model-derived outcome, Eval returns the full breakdown, so you can see which rules fired and which could not run. Scoring-only — it does not update counters by itself.
+     *
+     * @param string $flowID The flow to evaluate. A flow names the moment you are guarding and selects the recipes that run.
+     * @param Target|TargetShape $target the identifier to score — a phone number or email address
+     * @param array<string,string> $attributes Values for the attributes the flow's recipes declare, keyed without the `attr.` namespace a rule uses to reference them.
+     *
+     * An attribute a recipe declares and this request omits is treated as missing evidence, not as an empty value: the rules reading it report `NOT_EVALUATED` rather than being scored as though the condition were false. A key no recipe in the flow declares is ignored rather than rejected, so one payload can serve flows that read different attributes.
+     * @param string $dispatchID The identifier of the dispatch that came from the front-end SDK. Signals it carries fill in anything the request did not state; the request wins where both supply a value.
+     * @param Signals|SignalsShape $signals The signals used for anti-fraud. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     * @param RequestOpts|null $requestOptions
+     *
+     * @throws APIException
+     */
+    public function evaluate(
+        string $flowID,
+        Target|array $target,
+        ?array $attributes = null,
+        ?string $dispatchID = null,
+        Signals|array|null $signals = null,
+        RequestOptions|array|null $requestOptions = null,
+    ): WatchEvaluateResponse {
+        $params = Util::removeNulls(
+            [
+                'flowID' => $flowID,
+                'target' => $target,
+                'attributes' => $attributes,
+                'dispatchID' => $dispatchID,
+                'signals' => $signals,
+            ],
+        );
+
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->evaluate(params: $params, requestOptions: $requestOptions);
+
+        return $response->parse();
     }
 
     /**

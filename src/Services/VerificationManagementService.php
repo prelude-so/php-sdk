@@ -9,6 +9,7 @@ use Prelude\Core\Exceptions\APIException;
 use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationManagementContract;
+use Prelude\Services\VerificationManagement\SandboxService;
 use Prelude\VerificationManagement\VerificationManagementDeletePhoneNumberParams\Action;
 use Prelude\VerificationManagement\VerificationManagementDeletePhoneNumberResponse;
 use Prelude\VerificationManagement\VerificationManagementListPhoneNumbersResponse;
@@ -29,11 +30,17 @@ final class VerificationManagementService implements VerificationManagementContr
     public VerificationManagementRawService $raw;
 
     /**
+     * @api
+     */
+    public SandboxService $sandbox;
+
+    /**
      * @internal
      */
     public function __construct(private Client $client)
     {
         $this->raw = new VerificationManagementRawService($client);
+        $this->sandbox = new SandboxService($client);
     }
 
     /**

@@ -11,6 +11,7 @@ use Prelude\Notify\NotifyListSubscriptionConfigsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams\State;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse;
+use Prelude\Notify\NotifyReplyResponse;
 use Prelude\Notify\NotifySendBatchResponse;
 use Prelude\Notify\NotifySendParams\Document;
 use Prelude\Notify\NotifySendParams\PreferredChannel;
@@ -104,6 +105,27 @@ interface NotifyContract
         State|string|null $state = null,
         RequestOptions|array|null $requestOptions = null,
     ): NotifyListSubscriptionPhoneNumbersResponse;
+
+    /**
+     * @api
+     *
+     * @param string $replyTo The inbound message ID (prefixed with `im_`) to reply to. This ID is provided in the `inbound.message.received` webhook event.
+     * @param string $text the reply message body sent as a free-form WhatsApp text
+     * @param string $to The recipient's phone number in E.164 format. Must match the phone number that sent the original inbound message.
+     * @param string $callbackURL the URL where webhooks will be sent for delivery events of this reply
+     * @param string $correlationID A user-defined identifier to correlate this reply with your internal systems. It is returned in the response and any webhook events that refer to this message.
+     * @param RequestOpts|null $requestOptions
+     *
+     * @throws APIException
+     */
+    public function reply(
+        string $replyTo,
+        string $text,
+        string $to,
+        ?string $callbackURL = null,
+        ?string $correlationID = null,
+        RequestOptions|array|null $requestOptions = null,
+    ): NotifyReplyResponse;
 
     /**
      * @api

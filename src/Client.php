@@ -9,6 +9,7 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Prelude\Core\BaseClient;
 use Prelude\Core\Implementation\StreamingHttpClient;
 use Prelude\Core\Util;
+use Prelude\Services\IntelService;
 use Prelude\Services\LookupService;
 use Prelude\Services\NotifyService;
 use Prelude\Services\TransactionalService;
@@ -53,6 +54,11 @@ class Client extends BaseClient
      * @api
      */
     public WatchService $watch;
+
+    /**
+     * @api
+     */
+    public IntelService $intel;
 
     /**
      * @param RequestOpts|null $requestOptions
@@ -116,6 +122,7 @@ class Client extends BaseClient
         $this->verification = new VerificationService($this);
         $this->verificationManagement = new VerificationManagementService($this);
         $this->watch = new WatchService($this);
+        $this->intel = new IntelService($this);
     }
 
     /** @return array<string,string> */
