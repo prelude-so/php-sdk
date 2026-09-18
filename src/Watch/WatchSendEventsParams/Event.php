@@ -7,11 +7,11 @@ namespace Prelude\Watch\WatchSendEventsParams;
 use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Target;
 use Prelude\Watch\WatchSendEventsParams\Event\Confidence;
-use Prelude\Watch\WatchSendEventsParams\Event\Target;
 
 /**
- * @phpstan-import-type TargetShape from \Prelude\Watch\WatchSendEventsParams\Event\Target
+ * @phpstan-import-type TargetShape from \Prelude\Target
  *
  * @phpstan-type EventShape = array{
  *   confidence: Confidence|value-of<Confidence>,

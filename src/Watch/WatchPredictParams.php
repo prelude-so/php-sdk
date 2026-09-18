@@ -9,18 +9,18 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Concerns\SdkParams;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Signals;
+use Prelude\Target;
 use Prelude\Watch\WatchPredictParams\Metadata;
-use Prelude\Watch\WatchPredictParams\Signals;
-use Prelude\Watch\WatchPredictParams\Target;
 
 /**
  * At signup, score the user's phone number or email address (target) as legitimate or suspicious. Scoring-only — does not update counters by itself. When using Feedback, call predict before verification.started on the same target (and correlation_id when used) so feedback can warm Watch auth-start counters. Use Events for product fraud labels; use Feedback only if you run your own phone verification funnel outside Prelude Verify.
  *
  * @see Prelude\Services\WatchService::predict()
  *
- * @phpstan-import-type TargetShape from \Prelude\Watch\WatchPredictParams\Target
+ * @phpstan-import-type TargetShape from \Prelude\Target
  * @phpstan-import-type MetadataShape from \Prelude\Watch\WatchPredictParams\Metadata
- * @phpstan-import-type SignalsShape from \Prelude\Watch\WatchPredictParams\Signals
+ * @phpstan-import-type SignalsShape from \Prelude\Signals
  *
  * @phpstan-type WatchPredictParamsShape = array{
  *   target: Target|TargetShape,

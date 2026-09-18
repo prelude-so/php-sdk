@@ -13,6 +13,7 @@ use Prelude\Notify\NotifyListSubscriptionConfigsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams\State;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse;
+use Prelude\Notify\NotifyReplyResponse;
 use Prelude\Notify\NotifySendBatchResponse;
 use Prelude\Notify\NotifySendParams\Document;
 use Prelude\Notify\NotifySendParams\PreferredChannel;
@@ -182,6 +183,44 @@ final class NotifyService implements NotifyContract
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->listSubscriptionPhoneNumbers($configID, params: $params, requestOptions: $requestOptions);
+
+        return $response->parse();
+    }
+
+    /**
+     * @api
+     *
+     * Send a free-form text reply to an inbound WhatsApp message within the 24-hour conversation window. See [WhatsApp 2-Way Messaging](/notify/v2/documentation/whatsapp) for details.
+     *
+     * @param string $replyTo The inbound message ID (prefixed with `im_`) to reply to. This ID is provided in the `inbound.message.received` webhook event.
+     * @param string $text the reply message body sent as a free-form WhatsApp text
+     * @param string $to The recipient's phone number in E.164 format. Must match the phone number that sent the original inbound message.
+     * @param string $callbackURL the URL where webhooks will be sent for delivery events of this reply
+     * @param string $correlationID A user-defined identifier to correlate this reply with your internal systems. It is returned in the response and any webhook events that refer to this message.
+     * @param RequestOpts|null $requestOptions
+     *
+     * @throws APIException
+     */
+    public function reply(
+        string $replyTo,
+        string $text,
+        string $to,
+        ?string $callbackURL = null,
+        ?string $correlationID = null,
+        RequestOptions|array|null $requestOptions = null,
+    ): NotifyReplyResponse {
+        $params = Util::removeNulls(
+            [
+                'replyTo' => $replyTo,
+                'text' => $text,
+                'to' => $to,
+                'callbackURL' => $callbackURL,
+                'correlationID' => $correlationID,
+            ],
+        );
+
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->reply(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }

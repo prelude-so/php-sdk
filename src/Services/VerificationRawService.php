@@ -9,25 +9,24 @@ use Prelude\Core\Contracts\BaseResponse;
 use Prelude\Core\Exceptions\APIException;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationRawContract;
+use Prelude\Signals;
+use Prelude\Target;
 use Prelude\Verification\VerificationCheckParams;
 use Prelude\Verification\VerificationCheckParams\Psd2;
 use Prelude\Verification\VerificationCheckResponse;
 use Prelude\Verification\VerificationCreateParams;
 use Prelude\Verification\VerificationCreateParams\Metadata;
 use Prelude\Verification\VerificationCreateParams\Options;
-use Prelude\Verification\VerificationCreateParams\Signals;
-use Prelude\Verification\VerificationCreateParams\Target;
 use Prelude\Verification\VerificationNewResponse;
 
 /**
  * Verify phone numbers.
  *
- * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCreateParams\Target
  * @phpstan-import-type MetadataShape from \Prelude\Verification\VerificationCreateParams\Metadata
  * @phpstan-import-type OptionsShape from \Prelude\Verification\VerificationCreateParams\Options
- * @phpstan-import-type SignalsShape from \Prelude\Verification\VerificationCreateParams\Signals
- * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCheckParams\Target as TargetShape1
+ * @phpstan-import-type SignalsShape from \Prelude\Signals
  * @phpstan-import-type Psd2Shape from \Prelude\Verification\VerificationCheckParams\Psd2
+ * @phpstan-import-type TargetShape from \Prelude\Target
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  */
 final class VerificationRawService implements VerificationRawContract
@@ -81,9 +80,7 @@ final class VerificationRawService implements VerificationRawContract
      * Check the validity of a verification code.
      *
      * @param array{
-     *   code: string,
-     *   target: VerificationCheckParams\Target|TargetShape1,
-     *   psd2?: Psd2|Psd2Shape,
+     *   code: string, target: Target|TargetShape, psd2?: Psd2|Psd2Shape
      * }|VerificationCheckParams $params
      * @param RequestOpts|null $requestOptions
      *

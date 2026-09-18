@@ -8,12 +8,12 @@ use Prelude\Core\Attributes\Optional;
 use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
+use Prelude\Target;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata;
-use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target;
 use Prelude\Watch\WatchSendFeedbacksParams\Feedback\Type;
 
 /**
- * @phpstan-import-type TargetShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback\Target
+ * @phpstan-import-type TargetShape from \Prelude\Target
  * @phpstan-import-type MetadataShape from \Prelude\Watch\WatchSendFeedbacksParams\Feedback\Metadata
  *
  * @phpstan-type FeedbackShape = array{

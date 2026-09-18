@@ -15,6 +15,8 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsParams;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumberEventsResponse;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams;
 use Prelude\Notify\NotifyListSubscriptionPhoneNumbersResponse;
+use Prelude\Notify\NotifyReplyParams;
+use Prelude\Notify\NotifyReplyResponse;
 use Prelude\Notify\NotifySendBatchParams;
 use Prelude\Notify\NotifySendBatchResponse;
 use Prelude\Notify\NotifySendParams;
@@ -104,6 +106,21 @@ interface NotifyRawContract
     public function listSubscriptionPhoneNumbers(
         string $configID,
         array|NotifyListSubscriptionPhoneNumbersParams $params,
+        RequestOptions|array|null $requestOptions = null,
+    ): BaseResponse;
+
+    /**
+     * @api
+     *
+     * @param array<string,mixed>|NotifyReplyParams $params
+     * @param RequestOpts|null $requestOptions
+     *
+     * @return BaseResponse<NotifyReplyResponse>
+     *
+     * @throws APIException
+     */
+    public function reply(
+        array|NotifyReplyParams $params,
         RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 

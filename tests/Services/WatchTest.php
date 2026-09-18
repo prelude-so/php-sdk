@@ -7,6 +7,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prelude\Client;
 use Prelude\Core\Util;
+use Prelude\Watch\WatchEvaluateResponse;
 use Prelude\Watch\WatchPredictResponse;
 use Prelude\Watch\WatchSendEventsResponse;
 use Prelude\Watch\WatchSendFeedbacksResponse;
@@ -27,6 +28,44 @@ final class WatchTest extends TestCase
         $client = new Client(apiToken: 'My API Token', baseUrl: $testUrl);
 
         $this->client = $client;
+    }
+
+    #[Test]
+    public function testEvaluate(): void
+    {
+        $result = $this->client->watch->evaluate(
+            flowID: 'flo_01jc0t6fwwfgfsq1md24mhyztj',
+            target: ['type' => 'phone_number', 'value' => '+30123456789'],
+        );
+
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(WatchEvaluateResponse::class, $result);
+    }
+
+    #[Test]
+    public function testEvaluateWithOptionalParams(): void
+    {
+        $result = $this->client->watch->evaluate(
+            flowID: 'flo_01jc0t6fwwfgfsq1md24mhyztj',
+            target: ['type' => 'phone_number', 'value' => '+30123456789'],
+            attributes: ['plan_tier' => 'free', 'account_age_days' => '3'],
+            dispatchID: '123e4567-e89b-12d3-a456-426614174000',
+            signals: [
+                'appVersion' => '1.2.34',
+                'deviceID' => '8F0B8FDD-C2CB-4387-B20A-56E9B2E5A0D2',
+                'deviceModel' => 'iPhone17,2',
+                'devicePlatform' => 'ios',
+                'existingUser' => false,
+                'ip' => '203.0.113.123',
+                'isTrustedUser' => false,
+                'ja4Fingerprint' => 't13d1516h2_8daaf6152771_e5627efa2ab1',
+                'osVersion' => '18.0.1',
+                'userAgent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
+            ],
+        );
+
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(WatchEvaluateResponse::class, $result);
     }
 
     #[Test]

@@ -9,23 +9,23 @@ use Prelude\Core\Exceptions\APIException;
 use Prelude\Core\Util;
 use Prelude\RequestOptions;
 use Prelude\ServiceContracts\VerificationContract;
+use Prelude\Services\Verification\PhoneService;
+use Prelude\Signals;
+use Prelude\Target;
 use Prelude\Verification\VerificationCheckParams\Psd2;
 use Prelude\Verification\VerificationCheckResponse;
 use Prelude\Verification\VerificationCreateParams\Metadata;
 use Prelude\Verification\VerificationCreateParams\Options;
-use Prelude\Verification\VerificationCreateParams\Signals;
-use Prelude\Verification\VerificationCreateParams\Target;
 use Prelude\Verification\VerificationNewResponse;
 
 /**
  * Verify phone numbers.
  *
- * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCreateParams\Target
  * @phpstan-import-type MetadataShape from \Prelude\Verification\VerificationCreateParams\Metadata
  * @phpstan-import-type OptionsShape from \Prelude\Verification\VerificationCreateParams\Options
- * @phpstan-import-type SignalsShape from \Prelude\Verification\VerificationCreateParams\Signals
- * @phpstan-import-type TargetShape from \Prelude\Verification\VerificationCheckParams\Target as TargetShape1
+ * @phpstan-import-type SignalsShape from \Prelude\Signals
  * @phpstan-import-type Psd2Shape from \Prelude\Verification\VerificationCheckParams\Psd2
+ * @phpstan-import-type TargetShape from \Prelude\Target
  * @phpstan-import-type RequestOpts from \Prelude\RequestOptions
  */
 final class VerificationService implements VerificationContract
@@ -36,11 +36,17 @@ final class VerificationService implements VerificationContract
     public VerificationRawService $raw;
 
     /**
+     * @api
+     */
+    public PhoneService $phone;
+
+    /**
      * @internal
      */
     public function __construct(private Client $client)
     {
         $this->raw = new VerificationRawService($client);
+        $this->phone = new PhoneService($client);
     }
 
     /**
@@ -87,7 +93,7 @@ final class VerificationService implements VerificationContract
      * Check the validity of a verification code.
      *
      * @param string $code the OTP code to validate
-     * @param \Prelude\Verification\VerificationCheckParams\Target|TargetShape1 $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
+     * @param Target|TargetShape $target The verification target. Either a phone number or an email address. To use the email verification feature contact us to discuss your use case.
      * @param Psd2|Psd2Shape $psd2 Required when checking a code issued under the `prelude:psd2` template. The submitted variables must match those provided at issuance; any mismatch invalidates the code (PSD2 SCA RTS Article 5 dynamic linking). Ignored on non-PSD2 verifications.
      * @param RequestOpts|null $requestOptions
      *
@@ -95,7 +101,7 @@ final class VerificationService implements VerificationContract
      */
     public function check(
         string $code,
-        \Prelude\Verification\VerificationCheckParams\Target|array $target,
+        Target|array $target,
         Psd2|array|null $psd2 = null,
         RequestOptions|array|null $requestOptions = null,
     ): VerificationCheckResponse {
