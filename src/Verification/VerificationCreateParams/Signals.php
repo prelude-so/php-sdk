@@ -17,6 +17,7 @@ use Prelude\Verification\VerificationCreateParams\Signals\DevicePlatform;
  *   deviceID?: string|null,
  *   deviceModel?: string|null,
  *   devicePlatform?: null|DevicePlatform|value-of<DevicePlatform>,
+ *   existingUser?: bool|null,
  *   ip?: string|null,
  *   isTrustedUser?: bool|null,
  *   ja4Fingerprint?: string|null,
@@ -54,6 +55,12 @@ final class Signals implements BaseModel
      */
     #[Optional('device_platform', enum: DevicePlatform::class)]
     public ?string $devicePlatform;
+
+    /**
+     * Whether the end-user already exists in your system, for example an existing account signing in again rather than a first-time signup. Unlike `is_trusted_user`, this signal does not bypass fraud checks; it is taken into account as one additional anti-fraud signal. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     */
+    #[Optional('existing_user')]
+    public ?bool $existingUser;
 
     /**
      * The public IP v4 or v6 address of the end-user's device. You should collect this from your backend. If your backend is behind a proxy, use the `X-Forwarded-For`, `Forwarded`, `True-Client-IP`, `CF-Connecting-IP` or an equivalent header to get the actual public IP of the end-user's device.
@@ -102,6 +109,7 @@ final class Signals implements BaseModel
         ?string $deviceID = null,
         ?string $deviceModel = null,
         DevicePlatform|string|null $devicePlatform = null,
+        ?bool $existingUser = null,
         ?string $ip = null,
         ?bool $isTrustedUser = null,
         ?string $ja4Fingerprint = null,
@@ -114,6 +122,7 @@ final class Signals implements BaseModel
         null !== $deviceID && $self['deviceID'] = $deviceID;
         null !== $deviceModel && $self['deviceModel'] = $deviceModel;
         null !== $devicePlatform && $self['devicePlatform'] = $devicePlatform;
+        null !== $existingUser && $self['existingUser'] = $existingUser;
         null !== $ip && $self['ip'] = $ip;
         null !== $isTrustedUser && $self['isTrustedUser'] = $isTrustedUser;
         null !== $ja4Fingerprint && $self['ja4Fingerprint'] = $ja4Fingerprint;
@@ -166,6 +175,17 @@ final class Signals implements BaseModel
     ): self {
         $self = clone $this;
         $self['devicePlatform'] = $devicePlatform;
+
+        return $self;
+    }
+
+    /**
+     * Whether the end-user already exists in your system, for example an existing account signing in again rather than a first-time signup. Unlike `is_trusted_user`, this signal does not bypass fraud checks; it is taken into account as one additional anti-fraud signal. For more details, refer to [Signals](/verify/v2/documentation/prevent-fraud#signals).
+     */
+    public function withExistingUser(bool $existingUser): self
+    {
+        $self = clone $this;
+        $self['existingUser'] = $existingUser;
 
         return $self;
     }

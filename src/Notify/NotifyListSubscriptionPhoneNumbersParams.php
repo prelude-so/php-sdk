@@ -15,6 +15,8 @@ use Prelude\Notify\NotifyListSubscriptionPhoneNumbersParams\State;
  *
  * You can optionally filter by subscription state (SUB or UNSUB).
  *
+ * In order to get access to this endpoint, contact our support team.
+ *
  * @see Prelude\Services\NotifyService::listSubscriptionPhoneNumbers()
  *
  * @phpstan-type NotifyListSubscriptionPhoneNumbersParamsShape = array{

@@ -47,6 +47,8 @@ final class NotifyService implements NotifyContract
      *
      * Retrieve a specific subscription management configuration by its ID.
      *
+     * In order to get access to this endpoint, contact our support team.
+     *
      * @param string $configID The subscription configuration ID
      * @param RequestOpts|null $requestOptions
      *
@@ -66,6 +68,8 @@ final class NotifyService implements NotifyContract
      * @api
      *
      * Retrieve the current subscription status for a specific phone number within a subscription configuration.
+     *
+     * In order to get access to this endpoint, contact our support team.
      *
      * @param string $phoneNumber The phone number in E.164 format (e.g., +33612345678)
      * @param string $configID The subscription configuration ID
@@ -93,6 +97,8 @@ final class NotifyService implements NotifyContract
      *
      * Each configuration represents a subscription management setup with phone numbers for receiving opt-out/opt-in requests and a callback URL for webhook events.
      *
+     * In order to get access to this endpoint, contact our support team.
+     *
      * @param string $cursor Pagination cursor from the previous response
      * @param int $limit Maximum number of configurations to return per page
      * @param RequestOpts|null $requestOptions
@@ -118,6 +124,8 @@ final class NotifyService implements NotifyContract
      * Retrieve a paginated list of subscription events (status changes) for a specific phone number within a subscription configuration.
      *
      * Events are ordered by timestamp in descending order (most recent first).
+     *
+     * In order to get access to this endpoint, contact our support team.
      *
      * @param string $phoneNumber Path param: The phone number in E.164 format (e.g., +33612345678)
      * @param string $configID Path param: The subscription configuration ID
@@ -150,6 +158,8 @@ final class NotifyService implements NotifyContract
      * Retrieve a paginated list of phone numbers and their subscription statuses for a specific subscription configuration.
      *
      * You can optionally filter by subscription state (SUB or UNSUB).
+     *
+     * In order to get access to this endpoint, contact our support team.
      *
      * @param string $configID The subscription configuration ID
      * @param string $cursor Pagination cursor from the previous response
