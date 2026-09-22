@@ -42,7 +42,7 @@ final class Recipe implements BaseModel
     public string $recipeID;
 
     /**
-     * One result per rule in the recipe, in membership order. Every rule runs — a score is only meaningful when complete, so there is no short-circuit on the first trigger.
+     * One result per rule in the recipe, in membership order. Every rule runs — a score is only meaningful when complete, so there is no short-circuit on the first trigger. The exception is a recipe whose verdict a preempting rule has already determined, where a rule that could no longer change it may report `SKIPPED` instead.
      *
      * @var list<Rule> $rules
      */
@@ -161,7 +161,7 @@ final class Recipe implements BaseModel
     }
 
     /**
-     * One result per rule in the recipe, in membership order. Every rule runs — a score is only meaningful when complete, so there is no short-circuit on the first trigger.
+     * One result per rule in the recipe, in membership order. Every rule runs — a score is only meaningful when complete, so there is no short-circuit on the first trigger. The exception is a recipe whose verdict a preempting rule has already determined, where a rule that could no longer change it may report `SKIPPED` instead.
      *
      * @param list<Rule|RuleShape> $rules
      */

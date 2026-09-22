@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.0 (2026-09-22)
+
+Full Changelog: [v0.8.0...v0.9.0](https://github.com/prelude-so/php-sdk/compare/v0.8.0...v0.9.0)
+
+### Features
+
+* **api:** api update ([0efc28f](https://github.com/prelude-so/php-sdk/commit/0efc28f63ebca1a4557d55311bf0cf3c3b89d8ac))
+
 ## 0.8.0 (2026-09-18)
 
 Full Changelog: [v0.7.0...v0.8.0](https://github.com/prelude-so/php-sdk/compare/v0.7.0...v0.8.0)
