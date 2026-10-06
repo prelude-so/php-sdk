@@ -184,6 +184,14 @@ abstract class BaseClient
             return false;
         }
 
+        $shouldRetry = $rsp?->getHeaderLine('x-should-retry');
+        if ('true' === $shouldRetry) {
+            return true;
+        }
+        if ('false' === $shouldRetry) {
+            return false;
+        }
+
         $code = $rsp?->getStatusCode();
         if (408 == $code || 409 == $code || 429 == $code || $code >= 500) {
             return true;
@@ -202,15 +210,18 @@ abstract class BaseClient
     ): float {
         if (!empty($header = $rsp?->getHeaderLine('retry-after'))) {
             if (is_numeric($header)) {
-                return floatval($header);
-            }
+                $seconds = floatval($header);
+                if ($seconds > 0 && $seconds <= 60) {
+                    return $seconds;
+                }
+            } else {
+                try {
+                    $date = new \DateTimeImmutable($header);
+                    $span = time() - $date->getTimestamp();
 
-            try {
-                $date = new \DateTimeImmutable($header);
-                $span = time() - $date->getTimestamp();
-
-                return max(0.0, $span);
-            } catch (\DateMalformedStringException) {
+                    return max(0.0, $span);
+                } catch (\DateMalformedStringException) {
+                }
             }
         }
 
