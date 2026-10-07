@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.1 (2026-10-07)
+
+Full Changelog: [v0.8.0...v0.8.1](https://github.com/prelude-so/php-sdk/compare/v0.8.0...v0.8.1)
+
+### Bug Fixes
+
+* **client:** respect X-Should-Retry and ignore long Retry-After ([6ce3e8e](https://github.com/prelude-so/php-sdk/commit/6ce3e8e45bda439f7303d517489f154008be83fb))
+
 ## 0.8.0 (2026-09-18)
 
 Full Changelog: [v0.7.0...v0.8.0](https://github.com/prelude-so/php-sdk/compare/v0.7.0...v0.8.0)
