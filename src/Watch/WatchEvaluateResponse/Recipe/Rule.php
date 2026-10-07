@@ -9,15 +9,18 @@ use Prelude\Core\Attributes\Required;
 use Prelude\Core\Concerns\SdkModel;
 use Prelude\Core\Contracts\BaseModel;
 use Prelude\Watch\WatchEvaluateResponse\Recipe\Rule\Outcome;
+use Prelude\Watch\WatchEvaluateResponse\Recipe\Rule\Type;
 
 /**
  * @phpstan-type RuleShape = array{
  *   outcome: Outcome|value-of<Outcome>,
  *   ruleID: string,
+ *   type: Type|value-of<Type>,
  *   weight: int,
  *   blockedBy?: string|null,
  *   name?: string|null,
  *   unavailable?: bool|null,
+ *   versionID?: string|null,
  * }
  */
 final class Rule implements BaseModel
@@ -30,6 +33,7 @@ final class Rule implements BaseModel
      *  * `TRIGGERED` - The condition held; `weight` was added to the score.
      *  * `NOT_TRIGGERED` - The condition did not hold.
      *  * `NOT_EVALUATED` - The rule could not run, because something it reads never arrived. This is not a quieter `NOT_TRIGGERED`: it contributed nothing either way, and it is why `partial_evidence` is set on the recipe.
+     *  * `SKIPPED` - The rule was not run, because another rule had already determined the recipe's verdict — see `determined_by`. Nothing was missing and nothing failed, so `partial_evidence` is not set: `determined_by` is what accounts for the recipe's score resting on fewer rules.
      *
      * @var value-of<Outcome> $outcome
      */
@@ -41,6 +45,16 @@ final class Rule implements BaseModel
      */
     #[Required('rule_id')]
     public string $ruleID;
+
+    /**
+     * Who authored the rule, which is what says how much of the rest of this result you get.
+     *  * `MANAGED` - Prelude-owned, shared with customers: `name` and `version_id` are omitted, and `blocked_by` reports only `missing_data`.
+     *  * `CUSTOM` - Yours: every field is returned.
+     *
+     * @var value-of<Type> $type
+     */
+    #[Required(enum: Type::class)]
+    public string $type;
 
     /**
      * What this rule contributes to the recipe's score when it triggers.
@@ -69,17 +83,23 @@ final class Rule implements BaseModel
     public ?bool $unavailable;
 
     /**
+     * The version of the rule that scored — the one this recipe is pinned to, or the version current at evaluation time when it is not pinned. Present for a rule you authored, and omitted for a Prelude-managed one.
+     */
+    #[Optional('version_id')]
+    public ?string $versionID;
+
+    /**
      * `new Rule()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * Rule::with(outcome: ..., ruleID: ..., weight: ...)
+     * Rule::with(outcome: ..., ruleID: ..., type: ..., weight: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new Rule)->withOutcome(...)->withRuleID(...)->withWeight(...)
+     * (new Rule)->withOutcome(...)->withRuleID(...)->withType(...)->withWeight(...)
      * ```
      */
     public function __construct()
@@ -93,24 +113,29 @@ final class Rule implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Outcome|value-of<Outcome> $outcome
+     * @param Type|value-of<Type> $type
      */
     public static function with(
         Outcome|string $outcome,
         string $ruleID,
+        Type|string $type,
         int $weight,
         ?string $blockedBy = null,
         ?string $name = null,
         ?bool $unavailable = null,
+        ?string $versionID = null,
     ): self {
         $self = new self;
 
         $self['outcome'] = $outcome;
         $self['ruleID'] = $ruleID;
+        $self['type'] = $type;
         $self['weight'] = $weight;
 
         null !== $blockedBy && $self['blockedBy'] = $blockedBy;
         null !== $name && $self['name'] = $name;
         null !== $unavailable && $self['unavailable'] = $unavailable;
+        null !== $versionID && $self['versionID'] = $versionID;
 
         return $self;
     }
@@ -120,6 +145,7 @@ final class Rule implements BaseModel
      *  * `TRIGGERED` - The condition held; `weight` was added to the score.
      *  * `NOT_TRIGGERED` - The condition did not hold.
      *  * `NOT_EVALUATED` - The rule could not run, because something it reads never arrived. This is not a quieter `NOT_TRIGGERED`: it contributed nothing either way, and it is why `partial_evidence` is set on the recipe.
+     *  * `SKIPPED` - The rule was not run, because another rule had already determined the recipe's verdict — see `determined_by`. Nothing was missing and nothing failed, so `partial_evidence` is not set: `determined_by` is what accounts for the recipe's score resting on fewer rules.
      *
      * @param Outcome|value-of<Outcome> $outcome
      */
@@ -138,6 +164,21 @@ final class Rule implements BaseModel
     {
         $self = clone $this;
         $self['ruleID'] = $ruleID;
+
+        return $self;
+    }
+
+    /**
+     * Who authored the rule, which is what says how much of the rest of this result you get.
+     *  * `MANAGED` - Prelude-owned, shared with customers: `name` and `version_id` are omitted, and `blocked_by` reports only `missing_data`.
+     *  * `CUSTOM` - Yours: every field is returned.
+     *
+     * @param Type|value-of<Type> $type
+     */
+    public function withType(Type|string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
 
         return $self;
     }
@@ -184,6 +225,17 @@ final class Rule implements BaseModel
     {
         $self = clone $this;
         $self['unavailable'] = $unavailable;
+
+        return $self;
+    }
+
+    /**
+     * The version of the rule that scored — the one this recipe is pinned to, or the version current at evaluation time when it is not pinned. Present for a rule you authored, and omitted for a Prelude-managed one.
+     */
+    public function withVersionID(string $versionID): self
+    {
+        $self = clone $this;
+        $self['versionID'] = $versionID;
 
         return $self;
     }
