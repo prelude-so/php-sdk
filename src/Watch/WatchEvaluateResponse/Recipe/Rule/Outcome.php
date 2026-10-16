@@ -9,6 +9,7 @@ namespace Prelude\Watch\WatchEvaluateResponse\Recipe\Rule;
  *  * `TRIGGERED` - The condition held; `weight` was added to the score.
  *  * `NOT_TRIGGERED` - The condition did not hold.
  *  * `NOT_EVALUATED` - The rule could not run, because something it reads never arrived. This is not a quieter `NOT_TRIGGERED`: it contributed nothing either way, and it is why `partial_evidence` is set on the recipe.
+ *  * `SKIPPED` - The rule was not run, because another rule had already determined the recipe's verdict — see `determined_by`. Nothing was missing and nothing failed, so `partial_evidence` is not set: `determined_by` is what accounts for the recipe's score resting on fewer rules.
  */
 enum Outcome: string
 {
@@ -17,4 +18,6 @@ enum Outcome: string
     case NOT_TRIGGERED = 'NOT_TRIGGERED';
 
     case NOT_EVALUATED = 'NOT_EVALUATED';
+
+    case SKIPPED = 'SKIPPED';
 }
